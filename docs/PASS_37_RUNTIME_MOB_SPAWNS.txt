@@ -1,0 +1,63 @@
+Dream Realms V0.10.3 Modular Pass 37
+Runtime Mob Spawn System
+
+Goal
+----
+Convert editor mob spawn groups and placed spawn markers into live runtime enemy populations.
+
+Completed
+---------
+- Added systems/mob-spawn-system.js as the owner for runtime spawn-marker population.
+- Replaced the old procedural overworld and cave enemy population path with editor-marker-driven spawning.
+- Seeded default spawn markers into worlds that do not yet have placed mob spawn data:
+  - Dark Woods wolf packs.
+  - Dark Woods rotling groups.
+  - Mossfang Cave spider clusters.
+  - Mossfang Alpha rare spawn.
+- Spawn groups now enforce countMin/countMax caps from editor data.
+- Spawned mobs now use editor mob definitions for:
+  - mob id/name/color
+  - level range
+  - HP/attack/defense/speed
+  - XP
+  - loot table id
+  - aggro radius
+  - leash radius
+  - elite flag
+- Mob deaths are tracked by spawn slot.
+- Respawn timers use the spawn group/editor mob respawn data instead of immediate procedural respawns.
+- Dead spawn-slot state persists through world save/export/import as mobRuntime.
+- Runtime spawns avoid:
+  - blocked tiles
+  - safe-zone tiles
+  - spawn-point tiles
+  - no-mob-spawn attributes
+  - NPC safe radii
+  - cave entrances / cave exits
+  - the starter camp radius
+  - town radius when the spawn group asks for noSpawnNearTown
+- Enemy AI now reads editor aggroRadius and leashRadius data.
+- Editor hint text now states that mob spawn markers are live runtime population sources.
+
+Files changed
+-------------
+- Added systems/mob-spawn-system.js
+- Updated Dream Realms V0.10.3.html load order
+- Updated game.js to install/update the mob spawn runtime owner
+- Updated entities/enemy.js to support external spawn ownership, aggro radius, and leash radius
+- Updated systems/world-serializer.js to persist mobRuntime
+- Updated systems/save-system.js reset/import runtime cleanup
+- Updated systems/editor-system.js stale mob runtime hint
+- Updated README / VERSION / LOAD_ORDER / MODULAR_HISTORY
+
+Verification
+------------
+- Ran JS syntax checks across all core, data, entity, render, system, and game modules.
+- Ran a direct runtime smoke test that verified:
+  - default Dark Woods mob spawn markers are seeded
+  - overworld enemies are built from spawn markers
+  - cave enemies are built from cave spawn markers
+  - spawned enemies carry spawn metadata
+  - spawned enemies do not self-respawn through legacy procedural logic
+  - dead spawn slots are recorded in mobRuntime
+  - expired respawn slots respawn the existing enemy correctly

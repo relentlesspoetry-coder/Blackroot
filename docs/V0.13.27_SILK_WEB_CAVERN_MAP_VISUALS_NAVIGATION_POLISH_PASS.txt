@@ -1,0 +1,7 @@
+Dream Realms V0.13.27 — Silk Web Cavern Map Visuals Navigation Polish Pass
+
+- Added dungeon room overlays and key object markers to the world map and minimap.
+- Added Silk Web Cavern active objective summary on dungeon HUD overlay.
+- Added navigation snapshot data for active dungeon floors.
+- Improved web gate, cocoon, web hazard, poison drip, and web bridge visuals for readability.
+- Kept changes inside dungeon, minimap, and object-rendering owners; no late patch layer.

@@ -1,0 +1,30 @@
+Dream Realms V0.13.72 — Class Sprite Sheet Numeric Seed Bake Fix Pass
+
+Systems changed:
+- systems/sprite-bake-system.js
+- render/humanoid-animation-system.js
+- version metadata and build docs
+
+Fixes:
+- Fixed class sprite sheet baking failure caused by string bake actor IDs producing NaN humanoid animation seeds.
+- Added deterministic numeric bake IDs while preserving readable bake keys for metadata/debug logs.
+- Hardened HumanoidAnimationSystem with stable string-ID seed hashing so string IDs cannot poison pose math.
+- Improved no-visible-frame errors so the bake log is included with the failing model.
+- Preserved per-model sprite sheet output and procedural runtime fallback.
+
+Preserved:
+- Procedural renderers remain source of truth.
+- Runtime sprite sheet fallback remains safe.
+- Class trainer/player/bot visual routing is unchanged.
+- Nameplates, health bars, click bounds, footstep anchors, and gameplay systems are not baked or removed.
+
+Tests run:
+- JS syntax check across all JavaScript files.
+- Main HTML script reference audit.
+- Static audit for stableBakeSeed, numeric bake IDs, stableActorSeed, and expanded bake error diagnostics.
+- ZIP integrity validation.
+
+Manual browser-test caveats:
+- Re-test tools/sprite-baker.html in browser with Load Renderers, Validate Definitions, Bake Classes, and Bake Selected Model for Fighter/Bard/Druid.
+- Verify exported class PNGs are visible and not transparent.
+- Copy exported PNG/JSON files into assets/sprites/classes/ and verify runtime sprite rendering/fallback locally.

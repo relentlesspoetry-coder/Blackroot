@@ -1,0 +1,16 @@
+Dream Realms V0.10.7 - Turn Combat Action Recovery Fix
+
+Owning-system changes only.
+
+Updated systems/turn-combat-system.js directly to repair the turn loop.
+
+Fixes:
+- Enemy turns now tick down and resolve instead of leaving combat stuck in enemy phase.
+- Player turns now remain actionable with a valid target selected.
+- Turn combat no longer blocks camera rotation/zoom while active.
+- Attack no longer depends on the real-time attack timer during turn combat.
+- Attack advances toward an out-of-range target instead of silently failing.
+- Ability casting auto-locks a turn enemy as target when needed.
+- Turn combat validates victory/defeat and ends cleanly.
+
+No cascade patching, no bottom-of-file hotfix layer, no setTimeout wrapper.

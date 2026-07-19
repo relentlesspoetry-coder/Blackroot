@@ -1,0 +1,17 @@
+Dream Realms V0.16.05 - Warden High-Poly Graphical Revamp
+
+Summary
+- Full Warden visual revamp applied to the procedural/character-creation renderer.
+- Warden now clearly reads as a bark, root, moss, and stone wild guardian.
+- Added matching experimental 3D runtime details.
+- Added quad-only Warden high-poly bake source files and generator.
+
+Primary Files Changed
+- render/class-identity-procedural-model.js
+- systems/render3d-system.js
+- tools/generate-warden-highpoly.js
+- assets/models/highpoly/warden_class_highpoly_quadmesh_v0.16.04.obj
+- assets/models/highpoly/warden_class_highpoly_quadmesh_v0.16.04.mtl
+- assets/models/highpoly/warden_class_highpoly_quadmesh_v0.16.04.json
+- Dream Realms V0.16.05.html
+- PATCH_NOTES.md

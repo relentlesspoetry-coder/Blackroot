@@ -1,0 +1,18 @@
+Dream Realms V0.12.58 — Code Audit + DPR Transform Ownership Fix
+
+Audit scope:
+- JavaScript syntax
+- HTML script references and _script_order.json
+- Standalone external script check
+- Duplicate Game.prototype ownership
+- Cascade/hotfix/wrapper pattern scan
+- Renderer smoke tests for class, merc, and NPC identity renderers
+
+Bug fixed:
+- V0.12.57 resetCanvasTransform reset the context to raw identity. On high-DPI screens this discards the DPR transform established by resize(), causing mismatched clearing/drawing and potential visual scale/zoom issues after transform recovery.
+
+Owning-code fix:
+- game.js now owns displayPixelRatio(), applyCanvasDisplayTransform(), and resetCanvasTransform().
+- weather-system.js and dungeon-system.js screen overlays call the owned reset path instead of forcing raw identity.
+
+No cascade patch added.

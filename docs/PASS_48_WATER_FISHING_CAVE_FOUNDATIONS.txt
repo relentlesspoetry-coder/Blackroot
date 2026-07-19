@@ -1,0 +1,24 @@
+Dream Realms Modular Pass 48 - Water / Fishing / Cave Foundations
+
+Scope:
+- Swimming / underwater traversal foundation.
+- Hidden underwater cave/dungeon entrances.
+- Moving anti-AFK fishing hotspots.
+- Water visual polish.
+- Fishing profession starter tools, fish item drafts, fish loot behavior.
+- Cooking link through cooked fish recipes.
+- Gathering/mining default nodes and tool requirements.
+- Cave-pool water and underwater dungeon draft expansion.
+
+Runtime controls:
+- Walk into water to swim.
+- Press U while swimming to dive/surface.
+- Press E while underwater near bubble/cave indicators to enter a hidden underwater dungeon entrance.
+- Press F near visible fishing ripples/bubbles to fish.
+- Press G near herb/mining resource nodes to gather/mine.
+
+Implementation notes:
+- Fishing no longer succeeds from arbitrary nearby water. It requires an active hotspot.
+- Hotspots relocate on a timer, preventing safe AFK fishing at one static tile.
+- Resource nodes now seed default Dark Woods herbs and Mossfang Cave herb/mining nodes.
+- Mining requires a pickaxe; fishing requires a rod.

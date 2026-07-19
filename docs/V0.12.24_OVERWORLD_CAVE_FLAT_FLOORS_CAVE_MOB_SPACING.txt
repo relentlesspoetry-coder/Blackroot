@@ -1,0 +1,8 @@
+Dream Realms V0.12.24 — Overworld/Cave Flat Floors, Cave Mob Spacing, Cave Mob Runtime Ownership
+
+Changes
+- Flattened walkable Dark Woods terrain to remove raised half-block ground clutter.
+- Flattened cave and dungeon walkable terrain while preserving wall height.
+- Stopped cave mob runtime rebuilds from replacing generated cave encounter layouts.
+- Spread cave enemy placements across rooms using minimum-distance selection.
+- Updated patch notes and version metadata.

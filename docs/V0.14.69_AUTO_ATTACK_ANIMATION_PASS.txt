@@ -1,0 +1,14 @@
+Dream Realms V0.14.69 — Auto Attack Animation Pass
+
+Implemented:
+- Combat-system ownership of auto-attack animation timing via autoAttackVisualActive/type/phase/pulse.
+- Equipped weapon classification for melee versus ranged/caster auto-attack animation choice.
+- Humanoid animation routing that selects melee attack or caster cast pose while auto-attack is active.
+- Shared humanoid overlay effects for weapon swing arcs and ranged/caster hand-charge visuals.
+- Cleanup paths that clear auto-attack visual state when auto-attack stops or combat/session/death state resets.
+
+Validation targets:
+- Key 1 manual auto-attack toggle remains the only start path.
+- Melee classes/weapons swing while auto-attacking.
+- Caster/ranged weapons cast or shoot while auto-attacking.
+- Special ability animations override, then the auto-attack loop resumes only when the toggle remains active.

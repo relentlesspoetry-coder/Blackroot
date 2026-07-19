@@ -1,0 +1,19 @@
+Dream Realms V0.15.89 — 14-Class Roster Spellbook Integration
+
+Imported the uploaded Level 1–20 Class Spellbook into runtime systems:
+- Canonical playable class order: Paladin, Warden, Fighter, Rogue, Ranger, Assassin, Wizard, Shaman, Summoner, Necromancer, Cleric, Druid, Bard, Enchanter.
+- DR.CLASSES now exposes all 14 classes with role metadata, base stats, combat style, auto-attack range, colors, and role descriptions.
+- DR.CLASS_SPELL_BOOK now contains exactly 20 level-gated abilities per class, 280 total.
+- Core stat growth was expanded so new classes do not fall back to Fighter scaling.
+- Added starter gear and item definitions for Paladin, Warden, Ranger, Assassin, Wizard, and Shaman; corrected Fighter starter gear toward 2H heavy-weapon DPS identity.
+- Added starter-camp trainer NPC drafts and default placements for the six newly playable classes.
+- Expanded loot archetypes, mercenary role pools, procedural class renderer aliases/profiles, 3D class visuals, and sprite model registries for the full 14-class roster.
+
+Known limitation: the new class spell VFX use the existing runtime spell-kind compiler mappings rather than bespoke per-spell animation art. This keeps the integration stable and playable before deeper class-specific animation passes.
+
+Additional hardcode cleanup:
+- Updated bot playable class roster/order to all 14 classes.
+- Reassigned autonomous guardian bot identity from Fighter to Paladin so Fighter remains melee DPS.
+- Added bot AI profiles/templates/role labels for Paladin, Warden, Ranger, Assassin, Wizard, and Shaman.
+- Updated race recommended-class lists and removed obsolete Monk/Tinkerer recommendations.
+- Updated mercenary renderer role defaults so guardian/scout/adept resolve to Paladin/Ranger/Wizard instead of old 8-class fallbacks.

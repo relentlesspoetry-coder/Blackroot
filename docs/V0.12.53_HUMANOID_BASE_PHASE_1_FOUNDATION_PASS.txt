@@ -1,0 +1,19 @@
+Dream Realms V0.12.53 — Humanoid Base Phase 1 Foundation Pass
+
+Summary
+- Phase 1 begins the non-generic class-model cleanup by improving the shared humanoid foundation.
+
+Owning files updated
+- render/humanoid-animation-system.js
+- render/humanoid-base-renderer.js
+
+Key changes
+- Added canonical row constants for the shared 8-direction framework.
+- Added row-aware direction fallback handling for actors that expose a row index directly.
+- Added row-aware layering profiles to the shared humanoid base.
+- Improved rear-row arm occlusion so Up / Up Right / Up Left no longer show front arms incorrectly on top of the back.
+- Added ground-anchor metadata and richer debug-facing text for debug mode.
+
+Notes
+- This pass does not yet perform the stronger per-class silhouette rebuild.
+- It is the required foundation for later Fighter/Rogue/Bard/Cleric/Summoner/Druid identity passes.

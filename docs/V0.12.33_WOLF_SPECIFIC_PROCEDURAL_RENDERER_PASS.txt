@@ -1,0 +1,20 @@
+Dream Realms V0.12.33 — Wolf-Specific Procedural Renderer Pass
+
+Source
+- Implemented from the uploaded WolfProceduralModel drop-in specification.
+
+Implementation
+- Added render/wolf-procedural-model.js.
+- Added the module to the HTML load order before render/entity-renderer.js.
+- Added isWolfEnemyActor() and drawWolfEnemyModel() to render/entity-renderer.js.
+- drawEntity() now routes wolf-type enemies to drawWolfEnemyModel() before drawEnemySprite().
+- Dead wolf enemies route to the dedicated wolf corpse renderer instead of the generic corpse blob.
+- Live wolves skip the generic small enemy shadow because the wolf renderer draws a wider quadruped shadow.
+
+Visual identity
+- Cave-gloom wolf palette with blue-green tint.
+- Long quadruped body with shoulder/chest mass.
+- Direction-aware lowered head, muzzle, ears, eyes, and tail.
+- Four readable legs with paws.
+- Attack snarl and collapsed corpse pose.
+- 8-direction profiles for east, southeast, south, southwest, west, northwest, north, and northeast.

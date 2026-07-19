@@ -1,0 +1,45 @@
+# Dream Realms Ranger high-poly baking source materials
+newmtl ranger_skin_weathered
+Kd 0.72 0.49 0.35
+Ks 0.18 0.12 0.10
+Ns 24
+newmtl ranger_hair_dark
+Kd 0.22 0.15 0.09
+Ks 0.12 0.08 0.04
+Ns 18
+newmtl ranger_linen
+Kd 0.76 0.73 0.64
+Ks 0.08 0.08 0.07
+Ns 14
+newmtl ranger_oiled_leather
+Kd 0.28 0.19 0.12
+Ks 0.24 0.18 0.12
+Ns 38
+newmtl ranger_soft_hide
+Kd 0.37 0.27 0.17
+Ks 0.18 0.14 0.09
+Ns 28
+newmtl ranger_forest_cloth
+Kd 0.29 0.38 0.22
+Ks 0.09 0.12 0.08
+Ns 18
+newmtl ranger_dark_wool
+Kd 0.20 0.27 0.18
+Ks 0.05 0.07 0.05
+Ns 12
+newmtl ranger_burnished_metal
+Kd 0.58 0.57 0.53
+Ks 0.62 0.60 0.54
+Ns 72
+newmtl ranger_weathered_wood
+Kd 0.44 0.31 0.18
+Ks 0.12 0.10 0.06
+Ns 16
+newmtl ranger_feather
+Kd 0.72 0.73 0.61
+Ks 0.04 0.04 0.03
+Ns 8
+newmtl ranger_leaf_token
+Kd 0.64 0.72 0.33
+Ks 0.08 0.09 0.06
+Ns 14

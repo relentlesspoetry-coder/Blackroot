@@ -1,0 +1,9 @@
+window.DreamRealmsSpriteSheetMetadata = window.DreamRealmsSpriteSheetMetadata || {};
+window.DreamRealmsSpriteSheetMetadata['Merc_Post.json'] = {
+  "version": "0.13.74",
+  "type": "dream-realms-model-sprite-sheet",
+  "modelId": "Merc_Post",
+  "modelType": "prop",
+  "image": "Merc_Post.png",
+  "frames": {}
+};

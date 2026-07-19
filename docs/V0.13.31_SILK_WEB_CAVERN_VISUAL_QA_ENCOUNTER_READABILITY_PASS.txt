@@ -1,0 +1,7 @@
+Dream Realms V0.13.31 - Silk Web Cavern Visual QA Encounter Readability Pass
+
+- Adds active room readability roles and current-room HUD context for Silk Web Cavern.
+- Draws real authored room links on dungeon map/minimap so navigation reflects floor graph, not only room rectangles.
+- Adds non-blocking encounter readability objects: web curtains, cocoon walls, pit shadows, silk sigils, boss arena marks, expedition markers, webbed weapon racks, and venom runoff.
+- Adds layout readability audit helpers for floor identity, markers, links, boss/miniboss counts, and dressing coverage.
+- Keeps V0.13.30 direct layout hook; no duplicate dungeon loader or fake map data.

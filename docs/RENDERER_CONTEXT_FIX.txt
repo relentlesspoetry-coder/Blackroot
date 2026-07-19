@@ -1,0 +1,12 @@
+Dream Realms V0.10.3 Modular Pass 18.3 Renderer Context Fixed
+
+Problem:
+- After class select, the UI remained visible but the world canvas stayed dark/green.
+- The extracted entity renderer still referenced ctx as a closure/global symbol from the original single-file build.
+- After modularization, ctx became scoped inside game.js, so entity rendering threw before the frame could complete.
+
+Fix:
+- game.js now exposes canvas, ctx, minimap, mmctx, and ui on window after creating DR.runtime.
+- This preserves modular renderer files while keeping extracted classic-script renderer methods compatible.
+
+No gameplay, editor, map, cave, combat, or save behavior was changed.

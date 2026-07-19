@@ -1,0 +1,27 @@
+Dream Realms V0.12.68 — Pet Silhouette Replacement Pass
+
+Scope:
+- Correct the failed pet visual revamp by fully replacing the old silhouettes.
+- Summoner pet must be a floating blue ghostly shard with no legs.
+- Necromancer pet must be a clearer skeletal warrior / bone servant.
+
+Changed:
+- render/pet-identity-procedural-model.js
+- render/entity-renderer.js
+- entities/pet.js
+- systems/spell-system.js
+- data/classes.js
+- data/spells.js
+- VERSION.txt
+- README.txt
+- docs/MODULAR_HISTORY.txt
+- Dream Realms V0.12.68.html
+
+Acceptance target:
+- Summoner pet has no animal body, no legs, no grounded gait. It is a hovering blue crystal/shard familiar with mist, orbiting shards, and arcane glow.
+- Necro pet reads as a biped skeletal warrior with clean skull/ribs/limbs, ragged cloth, armor scraps, green glow, and clear bone-blade attack.
+
+Cascade status:
+- No bottom-of-file override layer.
+- No delayed setTimeout repair layer.
+- No wrapper patch.

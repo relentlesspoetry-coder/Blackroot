@@ -1,0 +1,30 @@
+Dream Realms V0.13.56 — Spirit Healer Visual Revamp Pass
+
+Systems changed:
+- Added render/spirit-healer-procedural-model.js as the dedicated sacred spirit NPC renderer.
+- Updated systems/npc-system.js so dream_spirit/spiritHealer NPCs route through SpiritHealerProceduralModel before any legacy fallback path.
+- Updated data/npcs.js so overworld and Silk Web Cavern Spirit Healers use rendererId "spiritHealer" and visualRole "spiritHealer".
+- Updated runtime metadata, HTML script references, README, VERSION, save metadata, default-zone metadata, and modular history for V0.13.56.
+
+Visual/model changes:
+- Replaced the old local placeholder dream-spirit drawing path with a dedicated high-detail sacred-spirit renderer.
+- Added a stronger feminine holy-spirit silhouette with head, halo, shoulders, layered robe body, sleeves, floating lower robe taper, and readable central glow.
+- Added large left/right angelic wings with layered feather groups and slow graceful idle flapping.
+- Added soft holy aura, radiant body glow, ground-level rune/aura ellipse, halo shimmer, robe drift, hover bob, and deterministic drifting motes.
+- Added dedicated nameplate anchoring above the halo so labels and interaction prompts remain readable.
+
+Gameplay preserved:
+- Spirit Healer respawn behavior, dungeon placement, overworld placement, NPC interaction range, click/hover targeting, collision, save/load, quest systems, party systems, bot systems, and render ordering remain unchanged.
+- No combat, loot, terrain, dungeon, pathfinding, or save schema logic was rewritten.
+
+Tests run:
+- All JavaScript files passed node --check.
+- Main HTML local script references were audited for missing files.
+- V0.13.56 metadata was verified in config, save-system, world-serializer, default-zones, README, VERSION, HTML, and docs.
+- Spirit Healer renderer registration and npc-system routing were statically verified.
+- Spirit Healer NPC definitions were verified to use the dedicated rendererId/visualRole.
+- ZIP integrity was verified.
+
+Manual browser-test caveats:
+- A real interactive browser visual test was not completed inside the container.
+- Manually verify overworld Spirit Healer rendering, Silk Web Cavern entrance rendering, slow wing flap readability, aura intensity, nameplate placement, click targeting, respawn usage, save/load, and long-session performance locally.

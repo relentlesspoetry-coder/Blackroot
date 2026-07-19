@@ -1,0 +1,13 @@
+Dream Realms V0.12.62 — Footstep Anchor + Meditation Stop Fix
+
+Fixes
+- Terrain footstep FX now render from the actual world-foot contact projection.
+- Removed old screen-anchor override behavior that could pull footstep particles upward to body/nameplate height.
+- Meditation toggle now debounces duplicate touch/pointer/click/key activations.
+- Meditation startup clears active click-to-move pathing.
+
+Files changed
+- systems/terrain-footstep-system.js
+- render/effects-renderer.js
+- game.js
+- systems/spell-system.js

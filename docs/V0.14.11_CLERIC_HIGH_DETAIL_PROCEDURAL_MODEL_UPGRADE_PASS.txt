@@ -1,0 +1,22 @@
+Dream Realms V0.14.11 — Cleric High-Detail Procedural Model Upgrade Pass
+
+Summary
+- Upgraded the Cleric model with an armored battle-priest overlay inside the existing shared class-identity renderer.
+- Improved the holy shield, mace, breastplate, pauldrons, tabard, belt relics, prayer book, reliquary, rosary, and lower armor readables.
+- Preserved silhouette, proportions, 8-direction support, and shared action hooks.
+
+Files changed
+- Dream Realms V0.14.11.html
+- render/class-identity-procedural-model.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.11_CLERIC_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- ZIP integrity verified.

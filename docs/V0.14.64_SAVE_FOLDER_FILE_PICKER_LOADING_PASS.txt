@@ -1,0 +1,14 @@
+Dream Realms V0.14.64 — Save Folder File Picker Loading Pass
+
+Summary:
+- Added a visible Load Game button flow for client-side HTML/JS saves.
+- showOpenFilePicker loads one or many JSON files from the player-selected Save folder.
+- Standard input fallback supports browsers without File System Access API.
+- showDirectoryPicker can link the Save folder, persist the directory handle in IndexedDB, and auto-load compatible saves later when permission remains granted.
+- Dream-Realms-Accounts.json merges account-bound records into local account storage.
+- Dream-Realms-Character-<Name>-<timestamp>.json imports standalone legacy character saves into account slots.
+- Save Game writes Dream-Realms-Accounts.json back to the linked Save folder when permitted.
+
+Validation:
+- Runtime JavaScript syntax checked.
+- ZIP integrity checked.

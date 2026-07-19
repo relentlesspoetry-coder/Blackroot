@@ -1,0 +1,24 @@
+Summoner Spell Icons Manifest
+Naming format: {Spell Name} - Summoner - Level {Level}.png
+Level 1 Summon Familiar was replaced with a style-matched icon based on the actual Summoner pet.
+
+Level 01: Summon Familiar - Summoner - Level 1.png
+Level 02: Arcane Spark - Summoner - Level 2.png
+Level 03: Command Attack - Summoner - Level 3.png
+Level 04: Mend Companion - Summoner - Level 4.png
+Level 05: Empower Beast - Summoner - Level 5.png
+Level 06: Planar Bolt - Summoner - Level 6.png
+Level 07: Protective Bond - Summoner - Level 7.png
+Level 08: Summon Elemental Servitor - Summoner - Level 8.png
+Level 09: Familiar Rush - Summoner - Level 9.png
+Level 10: Planar Gate - Summoner - Level 10.png
+Level 11: Bind Essence - Summoner - Level 11.png
+Level 12: Call Swarm - Summoner - Level 12.png
+Level 13: Soul Link - Summoner - Level 13.png
+Level 14: Elemental Rotation - Summoner - Level 14.png
+Level 15: Planar Surge - Summoner - Level 15.png
+Level 16: Mass Dismissal - Summoner - Level 16.png
+Level 17: Twin Summon - Summoner - Level 17.png
+Level 18: Overrun - Summoner - Level 18.png
+Level 19: Grand Binding - Summoner - Level 19.png
+Level 20: Legion Gate - Summoner - Level 20.png

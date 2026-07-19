@@ -1,0 +1,43 @@
+Dream Realms V0.13.65 — Detailed Zone Map + Zoomable Map UI Revamp Pass
+
+Systems changed:
+- render/minimap-renderer.js
+- systems/ui-system.js
+- game.js
+- Dream Realms V0.13.65.html
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- README.txt
+- VERSION.txt
+
+Map rendering changes:
+- Added a cached detailed zone map surface generated from active zone tile/object data.
+- Full map now shows real terrain material colors, water, roads/paths, camp/town areas, blocked/cliff-like cells, cave/dungeon entrances, landmarks, and object-level points of interest.
+- Dynamic marker overlay now draws player, party/companions, Spirit Healers, quest givers, trainers, vendors, cave entrances, dungeon entrances, exits/stairs, and configured landmarks.
+
+Zoom/pan changes:
+- Added mouse-wheel zoom support inside the map canvas.
+- Added + and - zoom buttons.
+- Added drag-to-pan support with clamped map bounds.
+- Added Center button to recenter the map on the player.
+- Added hover marker tooltip drawing inside the map canvas.
+
+Minimap preservation:
+- Existing minimap draw behavior remains lightweight and unchanged from the player's perspective.
+- The full-screen map uses a separate cached detailed map surface and dynamic markers.
+
+Gameplay systems preserved:
+- Movement, combat, targeting, bots, pets, party HUD, inventory, tooltips, save/load, terrain rendering, dungeon transitions, and minimap behavior were not intentionally changed.
+
+Tests run:
+- All JavaScript files passed node --check.
+- Main HTML local script references were audited.
+- V0.13.65 metadata was verified across config/save/default-world/serializer/README/VERSION/HTML/docs.
+- Static audit confirmed map zoom/pan/recenter helpers and detailed map cache paths exist.
+- ZIP integrity check passed.
+
+Manual browser-test caveats:
+- Interactive mouse-wheel zoom, drag panning, recenter behavior, marker hover readability, and map input release after close should be verified in a real browser.
+- Dark Woods, caves, and Silk Web Cavern should be checked locally for marker accuracy and map readability.

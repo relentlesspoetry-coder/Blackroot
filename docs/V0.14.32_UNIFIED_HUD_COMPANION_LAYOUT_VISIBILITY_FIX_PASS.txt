@@ -1,0 +1,22 @@
+Dream Realms V0.14.32 — Unified HUD Companion Layout Visibility Fix Pass
+
+Summary
+- Corrected the merged companion HUD layout introduced in V0.14.31.
+- The Pet Command / Party Companion section now spans the full player HUD width instead of being squeezed into the portrait column of the compact HUD grid.
+- Pet name, role, state, HP bar, and command buttons are visible and readable inside the same player HUD window.
+
+Files changed
+- Dream Realms V0.14.32.html
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.32_UNIFIED_HUD_COMPANION_LAYOUT_VISIBILITY_FIX_PASS.txt
+
+Validation
+- JavaScript syntax passed via node --check.
+- HUD CSS audit confirms `#hud .unifiedCompanionHud` uses `grid-column: 1 / -1`.
+- ZIP integrity passed.

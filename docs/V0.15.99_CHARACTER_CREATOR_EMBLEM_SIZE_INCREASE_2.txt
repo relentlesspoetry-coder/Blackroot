@@ -1,0 +1,4 @@
+Dream Realms V0.15.99 - Character Creator Emblem Size Increase 2
+
+- Increased the character creation class-emblem backdrop another 50%.
+- Adjusted the enlarged emblem placement so it sits behind the model more prominently.

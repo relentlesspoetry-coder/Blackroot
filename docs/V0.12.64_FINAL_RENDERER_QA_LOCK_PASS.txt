@@ -1,0 +1,39 @@
+Dream Realms V0.12.64 — Final Renderer QA Lock Pass
+
+Scope:
+- Lock the current renderer baseline before moving back into gameplay systems.
+- Add runtime renderer integrity checks without bottom-file overrides.
+- Harden Canvas-scale model rendering.
+- Keep terrain foot anchors stable even if a renderer error is isolated by the world renderer.
+
+Changed:
+- systems/runtime-qa-system.js
+- game.js
+- render/entity-renderer.js
+- render/humanoid-base-renderer.js
+- VERSION.txt
+- README.txt
+- docs/MODULAR_HISTORY.txt
+- Dream Realms V0.12.64.html
+
+Runtime QA checks:
+- HumanoidAnimationSystem exports
+- HumanoidBaseRenderer exports
+- ClassIdentityProceduralModel exports
+- MercNpcIdentityProceduralModel / CampNpcProceduralModel exports
+- Bard, Druid, and Wolf renderer presence
+- Canonical direction rows:
+  Row 0 Up
+  Row 1 Down
+  Row 2 Left
+  Row 3 Right
+  Row 4 Up Right
+  Row 5 Down Right
+  Row 6 Up Left
+  Row 7 Down Left
+- Social renderer profile resolution for merc and NPC role profiles
+
+Cascade status:
+- No bottom-of-file override layer.
+- No duplicate Game.prototype ownership.
+- No delayed repair layer.

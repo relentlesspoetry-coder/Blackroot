@@ -1,0 +1,16 @@
+Dream Realms V0.14.51 Chat Feed Chronology Scroll Fix Pass
+
+Goal:
+Fix all player-facing feed panels so the newest System, Combat, Chat, and Party messages appear at the bottom, matching standard chat behavior.
+
+Implemented:
+- UiSystem Game.log now appends entries chronologically instead of unshifting newest entries to index 0.
+- Feed history trimming now uses slice(-N) so retained history remains oldest-to-newest and keeps the newest entries.
+- renderLogTab now scrolls the log body to scrollHeight so newly-rendered active feeds show the most recent message by default.
+- The shared log body CSS now bottom-aligns short histories so new messages do not appear pinned to the top of an otherwise empty panel.
+- System, Combat, Chat, and Party continue to route through one shared owner path, avoiding duplicate per-feed fixes.
+
+Validation:
+- node --check run across all JavaScript files.
+- Static audit confirmed no remaining newest-first unshift use in UiSystem log history.
+- ZIP integrity verified after packaging.

@@ -1,0 +1,49 @@
+Pass 43 - Save Migration / Version Safety
+==========================================
+
+Purpose
+-------
+Formalize save compatibility now that the editor/runtime pipeline includes quests,
+events, chests, resources, crafting, NPCs, mob spawns, dungeons, puzzles, bosses,
+spell compilation, and item compilation.
+
+Implemented
+-----------
+- Added formal payload schema versioning:
+  - current payload schema: dream-realms-world-save-v2
+  - current saveFormatVersion: 2
+  - current buildPass: 43
+- Kept the browser storage key dream-realms.world.v1 for compatibility with existing users.
+- Added legacy v1 migration for Pass 31-42 world saves.
+- Migration now backfills missing sections with current defaults:
+  - bosses
+  - dungeons
+  - puzzles
+  - mob spawn groups
+  - dungeon markers
+  - class spell slots
+  - runtime state containers
+  - zone object grids when missing
+  - cave metadata/cave exit when missing
+- Added migrationHistory entries to migrated saves.
+- Added automatic in-place migration on load with backup preservation.
+- Added backup storage before save overwrite, reset, import, and automatic migration.
+- Added corrupted/unsupported save quarantine on boot so a bad save no longer blocks startup.
+- Import now validates and migrates before applying data.
+- Save now validates the generated payload before overwriting localStorage.
+- Reset now clears all newly added runtime/editor sections, including dungeon/puzzle/boss state.
+- Post-load/post-import rebuild now recompiles item and spell runtime catalogs and reapplies pending runtime state to installed systems.
+
+Storage Keys
+------------
+- Active world: dream-realms.world.v1
+- Last backup: dream-realms.world.backup.v1
+- Last quarantined bad save: dream-realms.world.corrupt.v1
+
+Acceptance
+----------
+- Current saves serialize as dream-realms-world-save-v2.
+- Legacy dream-realms-world-save-v1 exports migrate instead of being rejected.
+- Missing Pass 38-42 sections are backfilled during migration.
+- Corrupted JSON is quarantined and removed from the active slot at boot.
+- Load/import/save/reset paths all keep runtime compilers in a valid state.

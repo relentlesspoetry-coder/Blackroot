@@ -1,0 +1,20 @@
+Dream Realms V0.13.98 — Rotling Stable High-Detail Model Upgrade Pass
+
+Summary
+- Upgraded the Rotling visual model with stable botanical detail enhancements.
+- Preserved the V0.13.97 stable rendering behavior to avoid popping, drifting, or unstable movement.
+- Removed the stray `Dream Realms V0.13.83.html` file from the build package.
+
+Files Changed
+- render/rotling-procedural-model.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.13.98_ROTLING_STABLE_HIGH_DETAIL_MODEL_UPGRADE_PASS.txt
+- README.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- ZIP integrity verified with `unzip -t`.

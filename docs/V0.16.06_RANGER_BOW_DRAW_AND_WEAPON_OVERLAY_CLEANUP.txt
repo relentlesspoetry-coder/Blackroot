@@ -1,0 +1,16 @@
+Dream Realms V0.16.06 - Ranger Bow Draw Animation and Weapon Overlay Cleanup
+
+Summary
+- Added a visible bow draw / string pull / arrow release presentation for Ranger auto attacks.
+- Removed leftover generic weapon overlay art from Ranger and Warden by broadening class-lock checks to source-backed actors.
+
+Changed Files
+- render/class-identity-procedural-model.js
+- render/paperdoll-equipment-renderer.js
+- Dream Realms V0.16.06.html
+- PATCH_NOTES.md
+- VERSION.txt
+
+Notes
+- Ranger still uses the traveling arrow projectile added in V0.16.05; this pass makes the firing pose readable in-hand before the projectile leaves.
+- Warden and Ranger now keep their intended class-specific weapon visuals even when actor data is proxied through sourceEntity.

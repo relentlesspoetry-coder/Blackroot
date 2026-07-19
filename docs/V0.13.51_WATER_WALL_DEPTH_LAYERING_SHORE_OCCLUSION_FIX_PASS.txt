@@ -1,0 +1,53 @@
+Dream Realms V0.13.51 — Water Wall Depth Layering + Shore Occlusion Fix Pass
+
+SYSTEMS CHANGED
+- render/terrain-renderer.js now owns dedicated water-depth, cached water/ground composition, and cached shore-cap layers.
+- game.js separates shoreline depth renderables from the normal structural tile pass and draws them before terrain chunk surfaces.
+- Shared terrain cache statistics expose water, ground, shore-cap, depth-face, and composition-order diagnostics.
+- Runtime, save, world, README, HTML, and version metadata identify V0.13.51.
+
+WATER WALL DEPTH LAYERING
+- The previous pipeline drew seamless terrain surfaces first and then drew water depth shafts over them.
+- Shoreline depth shafts now render first as the recessed base layer.
+- Cached water tops then cover the shaft's water-side upper boundary.
+- Cached ground tops render after all visible water chunks, preventing cross-chunk water surfaces from covering land.
+- Material-aware shoreline caps render last within terrain composition and conceal the remaining upper shaft seam.
+- Props, actors, effects, health bars, nameplates, and chat bubbles remain above the completed terrain composition.
+
+SHORE OCCLUSION
+- Every walkable ground tile adjacent to logical water contributes a cached shore-cap segment.
+- Caps inherit the owning land material instead of using one hardcoded shoreline color.
+- A narrow land-colored overhang extends across the boundary and a restrained underside shade reinforces recessed depth.
+- Seeded contour lobes soften straight tile steps and remain deterministic across chunk seams.
+- Straight shores, corners, concave/convex stepped contours, ponds, rivers, and lakes use the same data-driven path.
+- Caps are static chunk content; no per-frame shoreline scan or overlay pass was added.
+
+PERFORMANCE / CACHE
+- Water depth faces are limited to visible shoreline tiles and no longer execute the full water-tile renderer.
+- Interior water remains fully cached and excluded from structural tile sorting/drawing.
+- Water, ground, shimmer, and cap surfaces share the existing 16×16 chunks, 72-entry bound, camera culling, terrain signatures, editor invalidation, and two-texel seam bleed.
+- Composition is performed in global phases across all visible chunks, preventing cross-chunk ordering artifacts without rebuilding surfaces.
+- No full-map redraw, duplicate render loop, per-frame canvas generation, or saved cache state was introduced.
+
+GAMEPLAY / SAVE COMPATIBILITY
+- Logical ground and TILE.WATER data are unchanged.
+- Collision, pathfinding, swimming, fishing, water blocking, spawn rejection, placement, combat distance, loot, NPC/mob placement, quests, dungeons, and saves retain their existing behavior.
+- V0.13.50 and older saves load without migration; cache/cap surfaces remain transient.
+- Seamless ground, seamless water, shimmer animation, autonomous parties, bot pets, targeting, paper doll, inventory drops, item comparison, currency, Purify, resurrection, ranged attacks, Silk Web encounters, Dark Woods visuals, and Esc save/exit remain intact.
+
+TESTS RUN
+- All JavaScript files pass node --check.
+- Main HTML references 88 existing ordered scripts.
+- Fighter start plus update/render smoke passes.
+- Instrumented render order confirms water depth precedes terrain surfaces and terrain precedes actors.
+- Cached composition reports water-depth, water-surface, ground-surface, shore-cap order.
+- Shoreline chunks contain cached cap surfaces and visible shoreline depth faces.
+- Cached water tiles no longer enter the tile-top render path.
+- Camera movement/yaw reuse shared chunks; waterDepth mutation rebuilds the affected chunk.
+- Shallow/deep water, seamless ground, logical water state, spawn rejection, and prior gameplay regressions pass.
+- ZIP compressed-data integrity is validated after packaging.
+
+MANUAL BROWSER CAVEATS
+- Review subjective shoreline-cap thickness and the recessed illusion around all four edge orientations during free camera rotation.
+- Review tight concave corners, isolated ponds, long rivers, cross-chunk shores, elevation changes, and props placed directly beside water.
+- Review extreme zoom/high-DPI behavior and cave/dungeon water on target Electron/AppImage hardware.

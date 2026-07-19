@@ -1,0 +1,315 @@
+Dream Realms V0.15.81 — Phase 3: Combat/Spell/Status/Projectile Parity
+=========================================================================
+
+Scope: per the Phase 3 brief that followed Phase 2
+(docs/PHASE_2_SAVE_MIGRATION_GATE_HARDENING.txt) - extend
+systems/combat-system.js, systems/spell-system.js,
+systems/status-effect-system.js, systems/threat-system.js, and effect
+rendering with Intersect-style target validators, projectile descriptors,
+spell categories, status contracts, cooldown groups, and clear failure
+messages, while keeping Auto Attack on key 1, the action bar on 1-0, and
+existing combat feel unchanged. No player-facing balance was changed for
+any currently shipped spell, status, or ability.
+
+
+1. AUDIT FIRST (read-only, before any code change)
+------------------------------------------------------
+Read all six relevant files in full before designing anything:
+systems/combat-system.js, systems/spell-system.js,
+systems/status-effect-system.js, systems/threat-system.js,
+systems/effects-system.js, render/effects-renderer.js. Key findings that
+drove every decision below:
+
+- Target validation for spells was duplicated, with subtly different
+  copies, in THREE places in systems/spell-system.js:
+  `getNecromancerHostileTarget` (Necromancer-only path),
+  `canCastClassSpell`'s inline offensive-target block (the preflight
+  gate), and a `requireTarget` closure inside `resolveClassSpell` (the
+  actual cast resolver). None of the three shared a single implementation;
+  none did line-of-sight (only auto-attack has LOS).
+- Spell cooldowns are a flat per-hotbar-slot array
+  (`player.spellCooldowns[0..8]`) with no concept of a shared "cooldown
+  group" - two spells never share a cooldown today.
+- `stun` and `silence` have existed as recognized status tags
+  (CONTROL_TAGS, tag-inference regexes, status icon theming) since an
+  earlier pass, but NOTHING in the codebase ever applies either tag to an
+  entity, and nothing checks for either tag to gate an action. Root/stun
+  only ever zeroed movement speed via `statusSpeedScalar`; there was no
+  "can this entity act at all" gate. This was a real, confirmed
+  vocabulary-exists-but-zero-consumers gap.
+- "Shield" (a damage-absorb pool) and "invulnerable" (full damage
+  immunity) were both completely unimplemented - no fields, no consumer,
+  nothing.
+- There is no real projectile system: every ranged spell/attack resolves
+  damage instantly (hitscan) at the moment of cast.
+  `Game.prototype.spawnBolt` (systems/effects-system.js) only spawns a
+  purely cosmetic line effect with a fixed 0.22s fade, decoupled from when
+  damage was already applied a line earlier in the calling code.
+- `Game.prototype.tauntEnemy` (systems/threat-system.js) had zero target
+  validation (no alive/hostile check) and zero callers anywhere in the
+  codebase - a real gap, but a currently-inert one.
+- Failure messaging is mostly present via `this.log`/`this.logCombat` but
+  duplicated as free-text strings per call site rather than shared
+  constants, and a few paths (e.g. `damageEntity` against a dead target)
+  fail with no log at all by design (internal/systemic calls, not
+  player-facing).
+- Auto Attack is bound to key "1" via `game.js`'s `defaultKeyBindings`
+  (`autoAttack: '1'`) and dispatches to `Game.prototype.playerAttack`
+  (systems/combat-system.js). Action bar keys "2"-"0" map to hotbar slots
+  0-8 via `game.js` -> `Game.prototype.useClassSpell`
+  (systems/spell-system.js). This three-way ownership split (game.js:
+  key config + dispatch; combat-system.js: auto-attack resolution;
+  spell-system.js: hotbar/spell resolution) was identified as something
+  that must not be touched, and was not touched.
+
+
+2. WHAT WAS IMPLEMENTED
+-------------------------
+
+a) Target validators (systems/combat-system.js, systems/spell-system.js)
+   Added `Game.prototype.resolveHostileSpellTarget(spell, candidate,
+   options)` in systems/combat-system.js (next to the other
+   hostile/friendly primitives it already owned:
+   `isHostileTarget`/`isFriendlyCombatActor`/`isFriendlyFireBlocked`). It
+   is a pure function (no facing/state mutation) that resolves a candidate
+   to a valid hostile target, checking friendly-fire, hostility, and range
+   in the exact order/messages the three duplicated implementations
+   already used. All three call sites in systems/spell-system.js
+   (`getNecromancerHostileTarget`, `canCastClassSpell`'s offensive branch,
+   and the `requireTarget` closure in `resolveClassSpell`) now call this
+   one function instead of re-implementing the checks. Behavior (message
+   text, resolution order, which target wins) is unchanged - this was
+   verified both by careful manual tracing of each call site's prior
+   logic (see reasoning in the implementation) and by an automated test
+   (section 5).
+
+b) Cooldown groups (systems/spell-compiler-system.js,
+   systems/spell-system.js)
+   Compiled spells now carry an optional `cooldownGroup` field (defaults
+   to `null`; no shipped spell draft sets it). `Game.prototype.
+   applySpellCooldownGroup(spell, slotIndex, cooldownValue)` (new, in
+   systems/spell-system.js) runs after a cast sets its own hotbar slot's
+   cooldown; if the cast spell declares a `cooldownGroup`, every other
+   hotbar slot in the same class spellbook sharing that group id is put on
+   the same cooldown. Because no current spell sets `cooldownGroup`, this
+   is a complete no-op for all existing content today - it only activates
+   once a future spell explicitly opts in.
+
+c) Status contracts (systems/status-effect-system.js,
+   systems/spell-system.js, systems/combat-system.js,
+   systems/threat-system.js)
+   Added three new query helpers next to the existing
+   `hasStatusTag`/`hasCurableStatusTag`/`statusSpeedScalar`:
+   `Game.prototype.isSilenced(entity)`, `Game.prototype.isActionLocked(entity)`
+   (stun), and `Game.prototype.isInvulnerable(entity)` (new 'invulnerable'
+   tag, added to the same substring-based tag-inference list that already
+   auto-tags 'stun'/'silence'/'root'/etc from an effect's id/name). These
+   are now real consumers of the previously-vocabulary-only tags:
+   - `canCastClassSpell` (systems/spell-system.js) now rejects casting
+     with "You cannot act while stunned." / "You cannot cast spells while
+     silenced." when the caster has either tag active.
+   - `playerAttack` (systems/combat-system.js) now rejects starting a NEW
+     attack while stunned, but still allows toggling an already-active
+     auto attack OFF while stunned (cancelling should always work).
+   - `damageEntity` (systems/combat-system.js) now returns 0 damage
+     outright against a target tagged 'invulnerable'.
+   - `tauntEnemy` (systems/threat-system.js, see (e)) also checks stun on
+     the actor attempting to taunt.
+   No shipped status effect currently applies 'stun', 'silence', or
+   'invulnerable', so none of this fires for any existing spell/ability -
+   it only establishes the contract for content that opts in later.
+
+d) Projectile descriptors (systems/spell-compiler-system.js,
+   systems/effects-system.js, render/effects-renderer.js,
+   systems/spell-system.js)
+   Compiled spells of the bolt-family kinds (`bolt`, `boltDot`,
+   `boltSummon`, `drain`) now carry a `projectile` descriptor
+   (`{speed, pierce, homing}`, overridable via new optional draft fields
+   `projectileSpeed`/`projectilePierce`/`projectileHoming`, defaulting to
+   `speed: 30`). `Game.prototype.spawnBolt` (systems/effects-system.js)
+   now accepts an optional 4th `options.projectile` argument: when given
+   (and `speed > 0`), it computes `travelDuration = min(0.6, distance /
+   speed)` and stores it on the (pooled) effect object, explicitly
+   resetting it to 0 when no descriptor is passed so a reused pooled
+   effect never leaks a previous bolt's travel state. render/effects-
+   renderer.js's bolt draw branch now animates the line's leading tip from
+   source to target over `travelDuration` (falling back to the exact
+   original static-line/fixed-0.22s-fade behavior when `travelDuration` is
+   0/absent - i.e. every pre-existing call site is visually unchanged).
+   Only the generic fallback `bolt`-kind cast path in
+   `resolveClassSpell` (systems/spell-system.js, the most common basic-
+   damage-spell branch) was wired to actually pass `spell.projectile` into
+   `spawnBolt` this phase; the Necromancer-specific and other explicit
+   `spawnBolt` call sites (drain/debuff/boltDot/boltSummon branches) were
+   deliberately left as plain 3-argument calls to limit this phase's blast
+   radius - they still work exactly as before (see Known Limitations).
+   Critically, damage is still applied synchronously at cast time in every
+   case - only the cosmetic bolt line's animation timing changed; no
+   combat outcome, timing, or balance changed.
+
+e) Threat/taunt validator (systems/threat-system.js)
+   `Game.prototype.tauntEnemy` now checks the target is alive and hostile,
+   checks the acting entity isn't stunned, and checks the target isn't
+   tagged `taunt_immune` (a new tag, Intersect-style boss-taunt-immunity,
+   unused by any shipped content today) before calling into `DR.Threat.add`.
+   `tauntEnemy` has zero callers anywhere in the current codebase, so this
+   only hardens the contract ahead of a future ability/AI hook (most
+   likely Phase 4 NPC AI work) - it changes no current behavior.
+
+
+3. FILES CHANGED THIS PHASE
+------------------------------
+- systems/combat-system.js (resolveHostileSpellTarget, stun gate in
+  playerAttack, invulnerable gate in damageEntity)
+- systems/spell-system.js (three call sites now use
+  resolveHostileSpellTarget; cooldown-group application;
+  silence/stun gate in canCastClassSpell; projectile descriptor wired into
+  the generic bolt-kind cast path)
+- systems/status-effect-system.js (isSilenced/isActionLocked/
+  isInvulnerable helpers; 'invulnerable' tag inference)
+- systems/threat-system.js (tauntEnemy target/status validation)
+- systems/spell-compiler-system.js (cooldownGroup + projectile descriptor
+  fields on compiled spells)
+- systems/effects-system.js (spawnBolt optional projectile descriptor)
+- render/effects-renderer.js (bolt draw: optional travel-time animation)
+- core/config.js (version bump + changelog comment)
+- VERSION.txt, README.txt (version bump, Phase 3 summary)
+- docs/PHASE_3_COMBAT_SPELL_STATUS_PARITY.txt (this file - new)
+
+
+4. SYSTEMS INTENTIONALLY NOT TOUCHED
+----------------------------------------
+- game.js's key-binding config and keydown dispatch (Auto Attack on "1",
+  action bar "2"-"0") - read to confirm the ownership split, not modified.
+- Renderers other than the one bolt-effect branch touched (terrain,
+  entity, minimap, procedural models), the Three.js prototype, the
+  editor, party/mercenary/bot AI, NPC AI - all out of Phase 3's scope per
+  the brief.
+- Shield/damage-absorb, sleep, transform, knockback, and on-hit-proc
+  status/spell mechanics named in the original Intersect reference list -
+  deliberately deferred (see Known Limitations); not started this phase.
+- The `player.skillCooldown` field (a vestigial, never-read global-
+  cooldown-like value found during the audit) - left as dead code rather
+  than activated, since making it actually gate casts now would be a real
+  combat-feel change for existing content, which this phase's mandate
+  explicitly rules out.
+
+
+5. VALIDATION RESULTS
+-----------------------
+- `node --check` on every changed file: 0 syntax errors.
+- Full-project sweep (`find . -name "*.js" ... node --check`, excluding
+  vendor/three.min.js and the bundled blender/ tooling): 0 syntax errors.
+- Built a 32-case automated regression test (Node harness loading the
+  actual edited systems/*.js files with `window`/`document` stubbed,
+  installing them onto a minimal fake `Game` class, and calling the real
+  Game.prototype methods) covering:
+  - `resolveHostileSpellTarget`: valid hostile in range resolves; friendly
+    candidate rejected with the exact prior message; out-of-range
+    candidate rejected; no-candidate/no-target rejected; dead candidate
+    correctly falls back to `getOffensiveTarget`.
+  - `canCastClassSpell`'s offensive branch produces identical accept/
+    reject results through the new shared validator.
+  - Cooldown groups: a spell with a shared `cooldownGroup` propagates its
+    cooldown to the other slot in the same group and leaves an ungrouped
+    slot alone; a spell with no `cooldownGroup` is a complete no-op on
+    other slots.
+  - Status contracts: `isSilenced`/`isActionLocked`/`isInvulnerable` all
+    correctly reflect tagged vs. untagged buffs;
+    `damageEntity` returns 0 (and leaves hp unchanged) against an
+    invulnerable target; `canCastClassSpell` is blocked while silenced and
+    works again once the status is cleared; `playerAttack` is blocked
+    from starting a new attack while stunned but toggling an active auto
+    attack off still succeeds while stunned.
+  - `tauntEnemy` rejects a dead target, rejects a friendly target,
+    succeeds on a valid hostile target, is blocked while the actor is
+    stunned, and is blocked by a `taunt_immune`-tagged target.
+  - `spawnBolt`: with no descriptor, `travelDuration` is exactly 0 and
+    `life` is exactly 0.22 (bit-for-bit the pre-Phase-3 default); with a
+    descriptor, `travelDuration` and `life` are computed correctly from
+    distance/speed.
+  - The spell compiler produces a `projectile` descriptor for `bolt`-kind
+    spells and `null` for non-bolt-family kinds (e.g. `heal`), and
+    `cooldownGroup` defaults to `null`.
+  All 32 cases passed.
+- Separately verified the bolt travel/fade lerp math extracted in
+  isolation (matching render/effects-renderer.js's exact formula) against
+  three scenarios: no-travel-descriptor (must match the original static-
+  line/fixed-fade output exactly), mid-travel (tip at the correct lerp
+  position, full opacity), and post-arrival fade (tip at the target,
+  correct partial opacity) - all three matched hand-computed expected
+  values exactly.
+
+
+6. KNOWN LIMITATIONS / FOLLOW-UPS FOR A FUTURE PHASE
+--------------------------------------------------------
+- This was verified via a Node-based unit/integration harness against the
+  real edited files, not a live browser session (this environment cannot
+  run a browser). The test checklist below should be run in-browser before
+  treating this build as final - in particular, actually playing combat
+  with each class to confirm feel is unchanged is something only a live
+  session can truly confirm.
+- Only the generic fallback `bolt`-kind cast path passes a `projectile`
+  descriptor into `spawnBolt`. The Necromancer-specific bolt calls
+  (Life Tap, Bone Spear, Grave Rot, Bone Shackles, Siphon Strength, Soul
+  Leech, Fear the Living, Plague Mark, Withering Curse, Soul Harvest) and
+  the explicit `drain`/`debuff`/`boltDot`/`boltSummon` branches still call
+  `spawnBolt` with the old 3-argument signature (which remains fully
+  valid - the new 4th argument is optional). Wiring those in is a natural,
+  low-risk follow-up, deliberately not done this phase to limit the
+  number of call sites touched in one pass.
+- No shield/damage-absorb pool, sleep, transform (beyond the existing
+  `transform` spell kind placeholder), knockback, or on-hit-proc mechanics
+  were implemented - these are larger, riskier mechanics (shield in
+  particular requires new arithmetic inside the central `damageEntity`
+  function) better suited to a dedicated future pass rather than being
+  bundled into this one.
+- `tauntEnemy`'s new validation is exercised by the automated test but has
+  no in-game caller yet (confirmed zero callers before and after this
+  phase) - its first real use will likely arrive with Phase 4 NPC AI work
+  (leash/aggro/threat), which is also when its behavior should get a live
+  in-game check for the first time.
+- The vestigial, non-functional `player.skillCooldown` field was
+  identified but intentionally left inactive (see section 4) - a future
+  phase could formally decide whether to implement it as a real global
+  cooldown or remove it, but that is itself a combat-feel decision outside
+  this phase's "preserve existing feel" mandate.
+
+
+7. TEST CHECKLIST (run in a real browser before shipping)
+--------------------------------------------------------------
+[ ] Auto Attack still toggles on/off with key "1" for every class.
+[ ] Action bar keys "2"-"0" still cast the correct spell in the correct
+    hotbar slot for every class.
+[ ] Cast every class's basic bolt/damage spell against a live enemy;
+    confirm damage lands immediately (no new delay) and the bolt visual
+    now appears to travel from caster to target rather than instantly
+    flashing (this is the one intentionally visible change this phase).
+[ ] Attempt to cast on a friendly target (party member, merc, pet, bot);
+    confirm "Cannot attack friendly target." still appears and nothing
+    else changes.
+[ ] Attempt to cast with no target selected and no valid target nearby;
+    confirm "No hostile target for <spell>." still appears.
+[ ] Attempt to cast at a target beyond spell range; confirm "<spell> is
+    out of range." still appears.
+[ ] Play a full session with each class's full spellbook (all slots 2-0)
+    and confirm cooldowns behave exactly as before (no spell now shares a
+    cooldown with another, since no shipped spell sets `cooldownGroup`).
+[ ] Confirm no current status effect/buff/debuff in the game ever blocks
+    casting or attacking, and no current damage source is ever reduced to
+    0 by an "invulnerable" effect - since nothing ships with those tags,
+    behavior should be identical to the prior build.
+[ ] DevTools console shows no new errors during normal combat play.
+
+
+8. NEXT RECOMMENDED PHASE
+----------------------------
+Phase 4 per the original brief: NPC AI, spawn, leash, loot ownership -
+extend systems/mob-spawn-system.js, entities/enemy.js,
+systems/combat-system.js, systems/threat-system.js, systems/loot-system.js
+with Intersect-style aggro, reset radius, flee HP, spell frequency,
+individualized loot, and party loot ownership, and ensure mobs cannot
+spawn on invalid/blocked/cave-entrance/NPC-avoid tiles. This phase's new
+`isActionLocked`/`isSilenced`/`isInvulnerable`/`tauntEnemy` validation and
+`resolveHostileSpellTarget` are natural building blocks for that phase's
+NPC-side target/status handling.

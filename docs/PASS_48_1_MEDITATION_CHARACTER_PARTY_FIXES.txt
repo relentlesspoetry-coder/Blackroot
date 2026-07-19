@@ -1,0 +1,28 @@
+Dream Realms V0.10.3 Modular Pass 48.1 - Meditation Combat State / Character Color / Party HUD Fixes
+
+Scope:
+- Fix meditation combat-state regression.
+- Fix character creation clothing color picker not applying to the player model.
+- Redesign party HUD with readable member identity and HP/Mana text values.
+
+Changes:
+1. Combat-state ownership
+   - Entity.updateBase now decrements combatCooldown for all entities, including the player.
+   - isEntityInCombat no longer treats passive nearby enemies as combat.
+   - Combat state is now based on recent hostility and active aggro enemies instead of proximity alone.
+   - This prevents meditation from being permanently blocked by nearby but non-engaged mobs.
+
+2. Character creation color persistence
+   - SaveSystem.start wrapper now forwards the appearance payload into the original Game.start call.
+   - Clothing primary/secondary colors selected in character creation now reach the Player constructor.
+   - Renderer already reads player.clothesPrimary and player.clothesSecondary, so the selected colors are now visible on the live model.
+
+3. Party HUD redesign
+   - Party HUD rows now display: Name - Class - Level.
+   - HP bars display current/max HP text inside the bar.
+   - Mana bars display current/max Mana text inside the bar.
+   - Party panel member rows now include the same identity format and readable HP bar text.
+
+Verification:
+- JS syntax check passed across all modules.
+- Zip integrity test passed.

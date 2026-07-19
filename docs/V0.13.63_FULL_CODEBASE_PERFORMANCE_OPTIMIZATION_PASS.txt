@@ -1,0 +1,63 @@
+Dream Realms V0.13.63 — Full Codebase Performance Optimization Pass
+
+Scope
+- Performance-only ownership pass.
+- Preserves gameplay behavior, graphics, art style, models, colors, animations, UI layout, camera behavior, mob counts, AI behavior, quests, loot, dungeons, bots, pets, targeting, and save/load semantics.
+
+Systems changed
+- game.js
+  - Adds a per-frame runtime stamp for cache ownership.
+  - Caches canvas references used by targeting/render helpers.
+  - Caches the FPS value node instead of querying it repeatedly.
+  - Reuses render scratch arrays for tile/depth/world renderable lists to reduce per-frame array garbage.
+
+- systems/ui-system.js
+  - Adds guarded DOM helper writes for text, HTML, display, width, and disabled state.
+  - updateUI now skips unchanged DOM mutations for common HUD, target, merc, and status fields.
+  - Preserves existing layout, text, colors, panel behavior, and HUD content.
+
+- systems/inventory-system.js
+  - Adds bag bar and bag window render signatures.
+  - Uses existing bagDirty ownership to avoid rebuilding unchanged inventory/bag DOM every frame while the bag is open.
+  - Preserves item tooltips, drag/drop, double-click/right-click behavior, bag bar behavior, and money display.
+
+- systems/threat-system.js
+  - Adds per-frame live ally/enemy threat actor cache and actor-id map.
+  - Reuses cached actor lists during threat decay, target picking, and actor lookup.
+  - Keeps V0.13.60 threat ownership rules intact: player threat is not credited from bot-owned actions.
+
+- entities/enemy.js
+  - Replaces enemy assist filter/map/filter chains with a single scan and nearest sort.
+  - Adds per-frame roaming-group membership cache for roaming patrol logic.
+  - Replaces repeated Object.keys threat checks with a lightweight table scan.
+
+- systems/combat-system.js
+  - Optimizes nearest enemy and hostile target candidate range filtering with squared-distance checks.
+  - Uses cached canvas ownership instead of querying the document during Tab targeting candidate visibility scoring.
+
+- systems/collision-system.js
+  - Optimizes nearby-water/path-route helper checks with squared-distance comparisons where exact distance was unnecessary.
+  - Preserves pathfinding, collision, water blocking, and companion movement behavior.
+
+- render/minimap-renderer.js
+  - Optimizes enemy minimap marker filtering with squared-distance checks.
+  - Visual markers and minimap behavior are unchanged.
+
+Bottlenecks addressed
+- Repeated DOM writes and innerHTML rebuilds in the frame loop.
+- Bag panel DOM rebuild while unchanged and open.
+- Repeated threat actor list construction during threat decay/pickTarget calls.
+- Repeated full enemy scans for roaming group membership.
+- Avoidable Math.hypot/square-root calls in hot range checks.
+- Per-frame render array allocation pressure.
+
+Validation run
+- All JavaScript files passed node --check.
+- Main HTML local script references were audited: all referenced scripts exist.
+- Version metadata verified across VERSION, README, core/config.js, default zone metadata, save metadata, world serializer metadata, HTML title/patch notes, and modular history.
+- Static audits verified performance helpers and cache paths are present.
+- Zip integrity check passed.
+
+Manual browser-test caveats
+- Container validation cannot prove real frame pacing or browser-only visual behavior.
+- Manually verify main menu, character login, player movement, camera rotation/zoom, graphics parity, inventory/bags/tooltips, combat, bots/mercs/pets, pathfinding around blockers/water, quests, dungeon loading, minimap/world map, save/load, and long-session FPS locally.

@@ -1,0 +1,19 @@
+Dream Realms V0.12.30 — Bard-Specific Procedural Renderer Pass
+
+Source
+- Implemented from the uploaded BardProceduralModel.js renderer specification.
+
+Implementation
+- Added render/bard-procedural-model.js.
+- Added the module to the HTML load order before render/entity-renderer.js.
+- Added isBardClassActor() and drawBardClassModel() to render/entity-renderer.js.
+- drawEntity() now routes Bard actors to drawBardClassModel() before Rogue and generic humanoid fallback.
+
+Visual identity
+- Large lute/instrument as the primary class-readability anchor.
+- Red/purple/gold palette.
+- Diagonal gold sash.
+- Cape and gold trim.
+- Feather/hair accent.
+- Music pouch/note glyph.
+- Optional music-note overlays when action is performing/playing.

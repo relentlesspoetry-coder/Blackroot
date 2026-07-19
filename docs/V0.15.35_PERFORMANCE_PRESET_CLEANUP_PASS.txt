@@ -1,0 +1,32 @@
+Dream Realms V0.15.35 — Performance Preset Cleanup Pass
+
+Purpose
+- Simplify the Settings panel after the Hybrid/WebGL rollout work.
+- Present player-facing renderer choices instead of exposing every internal promoted WebGL layer by default.
+- Preserve all advanced diagnostics, fallback systems, QA gates, health telemetry, and benchmark/export tools.
+
+Changes
+- Added systems/performance-settings-cleanup-system.js.
+- Added player-facing Renderer profiles:
+  - Auto: recommended default; uses Hybrid GPU when healthy and Canvas fallback when required.
+  - Hybrid GPU: requests the Hybrid WebGL rollout path immediately when available.
+  - Canvas Safe Mode: compatibility path; disables visible WebGL layers and keeps Canvas authoritative.
+- Simplified player-facing Performance controls:
+  - Quality
+  - Balanced
+  - Performance
+  - Rescue
+  - Low-Spec Mode
+- Moved noisy renderer internals behind Advanced Renderer Diagnostics.
+- Added renderer health export from the simplified Settings panel.
+- Added Reset to Auto and Clear Rollbacks / Holds controls.
+- Added F3 summary line for the current player-facing renderer/performance profile.
+
+Preserved
+- Hybrid default rollout.
+- Hybrid QA guardrails.
+- Hybrid final QA release-candidate gate.
+- Hybrid rollout health telemetry.
+- Canvas compatibility fallback.
+- F3/F6 benchmark workflow.
+- All class, combat, spell, loot, mob, zone, dungeon, and UI layout values.

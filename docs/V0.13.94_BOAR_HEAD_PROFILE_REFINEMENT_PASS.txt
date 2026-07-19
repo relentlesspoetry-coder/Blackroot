@@ -1,0 +1,18 @@
+Dream Realms V0.13.94 — Boar Head Profile Refinement Pass
+
+Summary
+- Refined the boar side-view head silhouette to improve skull, jaw, and snout readability.
+- Reduced the odd rounded/blocky head read through contour changes.
+
+Files Changed
+- render/boar-procedural-model.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.13.94_BOAR_HEAD_PROFILE_REFINEMENT_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- ZIP integrity verified with `unzip -t`.

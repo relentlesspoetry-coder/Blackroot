@@ -1,0 +1,264 @@
+Dream Realms — PHASE 7: Class/Stat/Vital & Inventory/Equipment/Shop Audit
+============================================================================
+
+Scope: read-only technical audit (no gameplay code changed this phase),
+requested explicitly instead of moving straight to a new feature phase. The
+original Intersect-parity task list numbers this work "Phase 2" (class/stat/
+vital foundation) and "Phase 3" (inventory/equipment/bags/bank/shops/
+trading). Both were skipped as dedicated phases during the original Phase 0
+audit because that audit's first pass judged the underlying systems already
+mature. This document re-examines that judgment in detail, field by field,
+against the literal Intersect-style spec, so the next implementation phase
+can be scoped from verified ground truth rather than assumption.
+
+Internal phase numbering note: this project's docs/PHASE_N_*.txt sequence
+runs 0 (audit) -> 1 (registry) -> 2 (save/gate hardening) -> 3 (combat/
+spell/status) -> 4 (NPC AI) -> 5 (event/quest/condition/variable) -> 6 (map/
+editor). This document is filed as Phase 7 to continue that sequence; it
+covers the task list's own "Phase 2" and "Phase 3" topics.
+
+Method: two independent read-only sub-audits (stat/class system; item/
+inventory/shop system), then targeted repo-wide grep verification of every
+claimed absence before writing it here. Every "absent" finding below was
+independently re-confirmed with `grep -rniE` across core/, data/, systems/,
+entities/ (vendor/ excluded) immediately before this document was written:
+`magic.?resist`, `\bbank\b`, `statPoint|skillPoint|unspentPoint|
+allocatePoint`, and `hpregen|manaregen|regenrate|healthregen` all returned
+zero matches project-wide.
+
+
+1. STATS — ACTUAL FIELD NAMES VS. INTERSECT NAMING
+----------------------------------------------------
+
+Canonical stat engine: core/stats.js. Two layers exist:
+- `ATTRIBUTE_KEYS` (core/stats.js:9): strength, dexterity, stamina,
+  intelligence, wisdom — primary RPG attributes, grown per class/level via
+  `CLASS_ATTRIBUTE_GROWTH` (core/stats.js:29-38).
+- `STAT_KEYS` (core/stats.js:10-16): a larger bonus/rating pool used by
+  equipment and buffs (hp, mana, attack, defense, speed, armor, cdr, crit*,
+  spellPower, healingPower, damagePower, physicalPower, magicPower,
+  damagePct, physicalDamagePct, magicDamagePct, healingPct).
+
+| Intersect stat | Dream Realms equivalent | Status |
+|---|---|---|
+| Attack | `attack` (core/stats.js:164) — base class number + str*0.32 + dex*0.10 + equipment bonus | Present, derived not flat |
+| Ability Power | No single stat. Split across `magicPower` + `spellPower` (equipment/buff-only, no base-class value) and INT/WIS attribute scaling inside `magicDamageMultiplier` (core/stats.js:205-209) | Present in spirit, differently shaped |
+| Defense | `defense` (core/stats.js:165) | Present |
+| Magic Resist | **Does not exist.** One shared `armorReduction` (core/stats.js:245-253) mitigates both physical and magic damage; there is no second mitigation path. Re-confirmed via repo-wide grep (0 hits). | **TRUE GAP** |
+| Speed | `speed` (core/stats.js:166) — governs movement only. `GLOBAL_AUTO_ATTACK_INTERVAL_MS = 2500` (data/classes.js:14) is a hardcoded constant for every class, and `AUTO_ATTACK_SPEED_TUNING.speedScalarPerPoint = 0` / `minHasteMultiplier/maxSlowMultiplier = 1` (data/classes.js:17-26) explicitly zero out any attack-speed effect from Speed. | Present for movement; attack-speed scaling is present as a data hook but deliberately disabled |
+
+Vitals: `hp`/`maxHp` and `mana`/`maxMana` (entities/entity.js:120-123,
+core/stats.js:162-163) — present and unambiguous. No regen field
+(`hpRegen`/`manaRegen`/equivalent) exists anywhere in the stat/class system;
+re-confirmed absent project-wide by grep.
+
+
+2. CLASS DESCRIPTOR (data/classes.js, `DR.CLASSES`)
+-------------------------------------------------------
+
+| Field | Status | Where it actually lives |
+|---|---|---|
+| Base stats / base vitals | Present | data/classes.js:110-241 (e.g. Fighter `hp:120, mana:35, attack:18, defense:7, speed:0.96`) |
+| Stat growth per level | Present, but on attributes not raw stats | `CLASS_ATTRIBUTE_GROWTH` (core/stats.js:29-38), applied in `attributesForClass` (core/stats.js:112-121) |
+| Vital growth per level | Present only indirectly | HP/mana grow via Stamina/Int/Wis attribute growth feeding core/stats.js:162-163; no flat per-level HP/mana table |
+| Vital regen | **Absent** | not found anywhere |
+| Starting items | Present, wrong owner | hardcoded per-class array in `Game.prototype.classStarterGearIds`, systems/inventory-system.js:137-196 — not in the class descriptor itself |
+| Starting spells | Present, separate file | `DR.CLASS_SPELL_BOOK` (data/spells.js:5-88), gated by `levelRequirement`; no persisted "known spells" list — availability is recomputed live from class+level |
+| Spawn map/position/facing | **Absent per-class** | one global spawn point, `CONFIG.START_X/START_Y` (core/config.js:45-46), used for every class; no `facing` field anywhere |
+| Attack animation reference | **Absent as data** | each class's `use(game)` calls `playAttackAnimation` with a literal inline style string (e.g. data/classes.js:169) rather than a declared reference |
+| Damage profile (min/max) | **Absent** | classes carry one flat `attack` number; actual hit numbers are hardcoded per-skill inside each class's `use()` and inside `DR.CLASS_SPELL_BOOK` power fields |
+| Crit chance / crit multiplier per class | **Absent** | crit is entirely global/attribute-derived (`RULES.critChance`/`critDamage`, core/stats.js:51-71) — identical formula shape for every class |
+| Attack speed per class | **Absent** | global constant applies uniformly (see Speed row above) |
+| Visual/sprite/model reference | Present, wrong owner | classes only carry a UI tint `color` hex; actual sprite/model/animation data is keyed by **race** (data/races.js), not by class |
+
+3. PLAYER RUNTIME FIELDS
+----------------------------
+
+| Field | Status | Where it actually lives |
+|---|---|---|
+| Level | Present | entities/entity.js:119, auto-incremented in systems/combat-system.js:1791-1794 |
+| XP | Present | entities/player.js:35-36 (`xp`, `nextXp`) |
+| Stat points (allocatable) | **Absent.** All growth is fully automatic per class/level curve; there is no spend-a-point mechanism anywhere. Re-confirmed absent project-wide by grep. | **TRUE GAP** |
+| classId | Present under a different name | `this.className` (entities/player.js:18), matches core/ids.js:73-78's documented ClassId format (display-name string) |
+| Known spells | Not tracked as a list | derived live from className+level against CLASS_SPELL_BOOK; no persisted `knownSpells` array |
+| Inventory | Present, owned by `Game` not `Player` | `Game.inventory` (game.js:276), manipulated in systems/inventory-system.js, persisted via save-system.js |
+| Equipment | Present, owned by `Game` not `Player` | `Game.equipment` object, systems/inventory-system.js:229-620 |
+| Hotbar | Present, DOM-bound | systems/spell-system.js:289-317, driven by the compiled spellbook |
+| Quest state | Present, owned by quest system | systems/quest-system.js:252-547 (`active`, `tasks`, `progress`, `status`) |
+| Variable state (generic) | **Absent as a generic system.** Quest gating uses the quest system's own task/progress counters. Note: systems/event-system.js already added event-scoped global variables + self-switches in Phase 5 (V0.15.83) — there is still no separate *player*-scoped or account-scoped variable store distinct from that event-variable table. | Partially covered by Phase 5's event variables; no player/account variable layer |
+
+
+4. ITEM TYPES VS. INTERSECT SPEC (data/items.js, systems/item-compiler-system.js)
+-------------------------------------------------------------------------------------
+
+| Intersect type | Status | Dream Realms name/location |
+|---|---|---|
+| None (misc/quest) | Present | `type: 'quest'`, material handling via `isMaterialItem` (systems/inventory-system.js:246) |
+| Equipment | Present | `type: 'weapon'/'armor'/'accessory'` -> compiled `kind: 'equipment'` (systems/item-compiler-system.js:114-121, 268-294) |
+| Consumable | Present | `type: 'consumable'` + `useEffect` (data/items.js:581,599; systems/item-compiler-system.js:380-407) |
+| Currency | Declared but unused | `DR.ITEM_TYPES` lists `'currency'` (data/items.js:15) and the compiler recognizes it, but zero item drafts use it — money is a player-wallet stat (`coinCopper`, systems/inventory-system.js:70-107), not an item |
+| Spell (cast-on-use item) | **Absent** | no field/flow anywhere; consumables are hard-limited to flat hp/mana restore |
+| Event item (on-use scripted trigger) | **Absent** | no `event`/`onUse`-trigger field on any item; unrelated to the world event-system (systems/event-system.js), which drives shops/warps/dialogue, not item use |
+| Bag | Present | `type: 'bag'` (data/items.js:22-127), runtime container logic systems/inventory-system.js:20-68 |
+
+5. ITEM FIELDS VS. INTERSECT SPEC
+--------------------------------------
+
+Present, same shape: rarity, icon (glyph/color descriptor, not texture),
+equipment slot (`DR.EQUIP_SLOTS`, data/loot.js:16-20), stat bonuses (flat
+key/value, only attack/defense/hp/mana/slots/speed actually populated in
+current data), max stack (`stackSize`/`maxStack`).
+
+Present, different shape (negative/derived flags instead of positive
+booleans): can-drop is `isItemDropProtected` (checks `noDrop`/`neverDrop`/
+`locked`/`bound`/`soulbound`/`starter`/quest-tag, systems/inventory-
+system.js:1345-1354); can-sell is `isItemSellProtected` (`neverSell`/
+`lockedNoSell`, systems/inventory-system.js:1619-1627); price is a single
+`sellValue`/`value` field with buy price derived as `sellValue*2`
+(systems/event-system.js:704-706), not separate buy/sell prices.
+
+Present in the stat engine but unused by data: percent stat bonuses
+(`damagePct`, `physicalDamagePct`, `magicDamagePct`, `healingPct` are all
+real, multiplicative stat keys in core/stats.js:14,145 — no item in
+data/items.js currently sets any of them). This is a content gap, not an
+engine gap.
+
+Absent everywhere:
+- can-bank (no bank system to gate — see below)
+- can-trade (no P2P trade to gate — see below)
+- vital regen bonuses (no regen concept exists in the stat engine at all,
+  consistent with section 1's finding)
+- item cooldown / cooldown group on use (items can be used back-to-back
+  with no throttle)
+- explicit two-handed flag (`item.twoHanded`/`item.hands` are read
+  defensively at equip time, systems/inventory-system.js:546, but never
+  actually set by any item draft — two-handed detection instead falls
+  back to a name/keyword regex against the item's display name)
+- spell-cast-item support (see item types above)
+- event-trigger-on-use (see item types above)
+- per-item paperdoll/visual override (paperdoll is a class-level 3D model
+  refresh keyed off `gearVisualChangedAt`, systems/inventory-
+  system.js:343,396,624-655 — items carry no model/texture override field)
+
+
+6. SYSTEMS VS. INTERSECT SPEC
+-----------------------------------
+
+Present: inventory slots (systems/inventory-system.js:117-134), equipment
+slots (15 slots via `DR.EQUIP_SLOTS`), bag containers (multi-bag with
+starter satchel + equippable bags, systems/inventory-system.js:20-68), shop
+buy/sell (NPC entrypoint systems/npc-system.js:1050-1174 -> UI/logic in
+systems/event-system.js:681-814 `openShop`/`buyShopItem`/`sellShopItem`),
+item pickup/drop (systems/inventory-system.js:1345-1500, systems/loot-
+system.js:676-752), currency display (systems/inventory-system.js:76-90).
+
+Absent:
+- **Bank/vault/personal storage** — zero references anywhere in the repo.
+  Only per-character inventory + equippable bags exist.
+- **Player-to-player trade** — the only "trade" in the codebase is a
+  player-vs-AI-companion-bot gear exchange window
+  (systems/bot-player-system.js:3025-3260, `tradeBotGearWithOtherBots`/
+  `tradeGearWithBotPlayer`). systems/multiplayer-system.js (163 lines) has
+  no trade-related code at all. Given this project's confirmed multiplayer
+  model (BroadcastChannel, same-browser tabs only, no server authority —
+  see Phase 0 section 4), a real trade system would need the same
+  request/accept/lock/confirm state machine Intersect uses even in a
+  local-only form, to avoid item duplication across tabs.
+
+
+7. WHAT IS ALREADY EQUIVALENT — DO NOT REBUILD
+----------------------------------------------------
+
+Per the task brief's own instruction to extend rather than replace mature
+systems, the following are functionally complete and should only ever be
+*extended* in a future phase, never re-architected:
+- Attack/Defense/Speed stats, HP/Mana vitals, crit system, equipment stat
+  application pipeline (core/stats.js, systems/inventory-system.js
+  recalculatePlayerStats).
+- Class base stats, per-level attribute growth curve, starting spell
+  gating by level.
+- Equipment slots (15 slots), bag containers, shop buy/sell, item pickup/
+  drop, currency wallet/display.
+- Item rarity, icon, stat-bonus application, stacking.
+
+
+8. TRUE GAPS — CONSOLIDATED LIST
+--------------------------------------
+
+Stat/class side:
+1. No Magic Resist stat/mitigation path distinct from Defense.
+2. No allocatable stat points (all growth is automatic).
+3. No per-class spawn position/facing, attack-animation reference,
+   damage-min/max profile, or crit chance/multiplier (globally uniform
+   instead).
+4. No vital regen concept anywhere in the stat engine.
+5. No generic player/account-scoped variable store (event-scoped variables
+   exist since Phase 5, but nothing player- or account-scoped).
+
+Item/inventory side:
+6. No bank/vault/personal storage system.
+7. No player-to-player trade system (only a bot-gear-exchange analog).
+8. No spell-cast-item support.
+9. No item-driven on-use event/quest triggers.
+10. No item cooldown / cooldown-group concept.
+11. No true currency item type in content (engine support exists, unused).
+12. No explicit two-handed flag in item data (regex-inferred instead).
+13. Percent stat bonuses are supported by the engine but unused by any
+    item draft (content gap only).
+
+
+9. RECOMMENDED PHASE PLAN (proposed, not started)
+-------------------------------------------------------
+
+Given "extend, don't replace" and "one clear owner per system," the
+following order minimizes risk while closing the highest-value gaps first.
+Each is sized to stay a single surgical phase:
+
+Phase 8a — Stat/class parity (owner: core/stats.js, data/classes.js):
+ - Add an optional `magicResist` stat key + a second mitigation formula for
+   magic damage, defaulting to 0/inert for every existing class/item until
+   content opts in (no rebalancing of existing combat).
+ - Add optional per-class `damageMin`/`damageMax`, `critChance`,
+   `critMultiplier`, `attackAnimation`, `spawnFacing` fields to `DR.CLASSES`,
+   consumed by combat/animation code only when present, falling back to
+   current global behavior otherwise.
+ - Add optional vital regen fields (`hpRegenPerSecond`/`manaRegenPerSecond`)
+   to class descriptors, wired into the existing update loop, defaulting to
+   0 (i.e. current behavior: no passive regen) unless a class opts in.
+
+Phase 8b — Inventory/item parity (owner: systems/inventory-system.js,
+data/items.js, systems/item-compiler-system.js):
+ - Add explicit `twoHanded` boolean field, consumed instead of the regex
+   fallback (keep the regex as a legacy fallback for old data, not removed).
+ - Add optional `cooldownMs`/`cooldownGroup` fields for consumable use,
+   defaulting to no cooldown unless an item opts in.
+ - Add optional `castsSpellId` field for consumable/event items so an item
+   can trigger an existing spell via the current spell-casting entrypoint
+   (no new targeting system needed — reuses Phase 3/4 spell-cast path).
+
+Phase 9 — Bank system (owner: new systems/bank-system.js, following the
+existing bag-container pattern in inventory-system.js): personal storage
+tab, save-system integration, no cross-character/guild bank yet (matches
+task brief's "local-safe stub first" guidance).
+
+Phase 10 — Local player-to-player trade stub (owner: new systems/
+trade-system.js): request/accept/lock/confirm state machine modeled on the
+existing party-invite flow (systems/party-system.js) for structure, reusing
+the existing BroadcastChannel gossip transport; explicit non-goal: no
+server-authoritative validation, since none exists anywhere else in the
+project either (documented multiplayer risk, Phase 0 section 4).
+
+Stat points (task list gap #2) and generic player-variable store (gap #5)
+are deliberately NOT scheduled above pending a product decision: Dream
+Realms' fully-automatic leveling is a confirmed, longstanding design
+choice (V0.11.x-era class-identity passes), and adding manual stat
+allocation would be a balance/design change, not a parity bugfix — this
+should be an explicit go/no-go decision before any code is written.
+
+
+10. FILES CHANGED THIS PHASE
+------------------------------
+- docs/PHASE_7_CLASS_STAT_INVENTORY_AUDIT.txt (this file — new).
+
+No other files were modified. No source-code changes were made this phase,
+consistent with its audit-only scope.

@@ -1,0 +1,23 @@
+Dream Realms V0.14.22 — Sustained Necromancer Pet Auto Attack Fix Pass
+
+Summary
+- Fixed Bone Servant attacking once and then idling.
+- Added sustained pet target retention for active combat.
+- Refreshed hostile combat state whenever pet auto-attacks land.
+- Kept Summoner shard familiar ranged-combat support intact.
+
+Files changed
+- entities/pet.js
+- Dream Realms V0.14.22.html
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.22_SUSTAINED_NECROMANCER_PET_AUTO_ATTACK_FIX_PASS.txt
+
+Validation
+- JavaScript syntax check passed across all JS files.
+- ZIP integrity verified.

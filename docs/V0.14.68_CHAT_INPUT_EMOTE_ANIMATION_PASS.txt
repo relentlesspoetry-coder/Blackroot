@@ -1,0 +1,17 @@
+Dream Realms V0.14.68 — Chat Input Emote Animation Pass
+
+Scope
+- Chat Box: Enter key focuses chat input; Enter/Send submits messages; Escape blurs the input.
+- Chat input focus suppresses movement and hotkeys through the existing editable-target input guard.
+- Commands: exact, case-insensitive /dance, dance, /sit, sit, /stand, stand.
+- /dance starts a looping player dance emote; /sit toggles a casual ground sit; /stand clears active emotes.
+- Emotes cancel on movement, damage, attack, spell cast, meditation, fishing, or gathering.
+
+Animation Ownership
+- HumanoidAnimationSystem now resolves dance/sit as first-class actor actions.
+- HumanoidBaseRenderer owns the shared dance/sit pose rigs and class-specific visual differentiation.
+- EntityRenderer passes emote state through procedural class renderers and blocks atlas fallback while emotes are active.
+
+Validation
+- node --check passed for all runtime JavaScript files.
+- No cascade patch layer added.

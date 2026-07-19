@@ -1,0 +1,18 @@
+Dream Realms V0.14.63 — Ash Root Horror High Detail Model Creation Pass
+
+Changed:
+- Replaced the simple deadroot/Ashroot Horror silhouette with a high-detail charred-root plant horror renderer.
+- Added coiling root-mass body construction, major crushing root limbs, smaller whip tendrils, pale sensory roots, a smoldering split maw, tooth-like wooden splinters, ember veins, smoke wisps, ash fallout, captured prey/debris, and pale regeneration shoots.
+- Preserved Ashroot Horror / Ashroot Elder gameplay behavior, spawns, combat profiles, target/click behavior, loot tables, visual keys, and nameplate anchors.
+- Added AshRootHorror sprite-bake definitions for ashrootHorror and ashrootElder variants.
+- Added assets/models/highpoly/ash_root_horror_highpoly_quadmesh_v0.14.63.obj as an all-quad high-poly bake/reference mesh.
+
+Validation:
+- Runtime JavaScript syntax checks passed.
+- High-poly OBJ face audit confirmed all faces are quads.
+- Zip integrity passed.
+
+Ownership:
+- Runtime model ownership remains in render/dark-woods-mob-procedural-model.js.
+- Bake/export definition ownership remains in systems/sprite-bake-system.js.
+- High-poly source/reference assets remain in assets/models/highpoly/.

@@ -1,0 +1,9 @@
+window.DreamRealmsSpriteSheetMetadata = window.DreamRealmsSpriteSheetMetadata || {};
+window.DreamRealmsSpriteSheetMetadata['Root_Arch.json'] = {
+  "version": "0.13.74",
+  "type": "dream-realms-model-sprite-sheet",
+  "modelId": "Root_Arch",
+  "modelType": "prop",
+  "image": "Root_Arch.png",
+  "frames": {}
+};

@@ -1,0 +1,220 @@
+Dream Realms V0.15.79 — Phase 1: Descriptor & Registry Normalization
+======================================================================
+
+Scope: smallest safe foundation pass, per the Phase 1 brief that followed
+docs/PHASE_0_CODEBASE_AUDIT.txt. Goal was a canonical descriptor lookup/
+validation layer inspired by Intersect's descriptor model, without
+rewriting any existing gameplay system. No player-facing balance was
+changed. No renderer, combat feel, editor UI, or party/merc/bot AI code was
+touched.
+
+
+1. WHY THIS PHASE
+------------------
+docs/PHASE_0_CODEBASE_AUDIT.txt (reused as-is this pass; re-verified still
+accurate against the current tree, see section 6) found that Dream Realms
+already has Intersect-equivalent descriptor tables for every content type
+(DR.CLASSES, DR.RACES, DR.ITEM_BY_ID, DR.SPELL_BY_ID, DR.NPC_DRAFT_BY_ID,
+DR.MOB_DRAFT_BY_ID, DR.BOSS_BY_ID, DR.QUEST_BY_ID, DR.EVENT_BY_ID,
+DR.RESOURCE_BY_ID, DR.CRAFTING_RECIPE_BY_ID, DR.DEFAULT_WORLD.zones) but no
+single shared place to safely look up or cross-validate an id across those
+tables, and no boot-time report of dangling references between them. That
+is the gap this phase closes.
+
+
+2. WHAT WAS IMPLEMENTED
+-------------------------
+a) core/registry.js — added DR.Registry, a read-only descriptor lookup and
+   validation layer:
+   - DR.Registry.tableFor(kind) / .has(kind, id) / .get(kind, id) /
+     .hasByName(kind, name) — lazy accessors over the EXISTING DR.*_BY_ID
+     catalogs (class, race, item, spell, mob, boss, npc, mobSpawn, quest,
+     event, resource, craftingRecipe, craftingStation, profession, zone,
+     lootTable). No catalog is duplicated or re-owned; every getter reads
+     the same object the owning data/*.js file already exports. The one
+     internal-only addition is a lazy id index over DR.LOOT_TABLES (an
+     array with no existing *_BY_ID map) built solely for this module's own
+     lookups — it does not add a new export or change data/loot-tables.js.
+   - DR.Registry.runBootValidation() — cross-references descriptors against
+     each other (spell->class, npc->quest/class, mob spawn->mob/boss/loot
+     table, mob/boss->loot table, crafting recipe->item/station/recipe,
+     quest->item/class/npc-by-name, resource->item-by-name, zone->parent
+     zone, event template->quest/zone) and logs any dangling reference as a
+     console.warn. It never throws past its own try/catch and never blocks
+     boot; a validation-code bug degrades to one extra warning, not a crash.
+   - DR.Registry.recordCompilerErrors(kind, errors) / .getReport() — a
+     single place to see both the cross-reference warnings above and the
+     existing item/spell compiler error lists together.
+   - DR.Registry.auditRuntimeReferences(kind, ids, context) — logs (does
+     not delete) ids found in save data that no longer resolve in current
+     content tables.
+   - DR.Registry.DESCRIPTOR_VERSION (currently 1) — a version counter for
+     save/load guarding, see (d).
+
+b) core/ids.js — added SCHEMA documentation entries (ClassId, RaceId,
+   ItemId, SpellDescriptorId, NpcId, MobId, ResourceId, CraftingRecipeId,
+   EventTypeId) describing id formats that were already in use but not yet
+   documented in this module. Purely additive; no validator/generator
+   behavior changed for the existing entries.
+
+c) data/default-zones.js — added one guarded call,
+   `DR.Registry?.runBootValidation?.()`, at the end of its IIFE. This file
+   is the LAST descriptor data file in both _script_order.json and the
+   HTML script list (verified positionally, see section 6), so by the time
+   it runs, every other DR.*_BY_ID catalog is guaranteed populated — making
+   it the correct, single, natural place for a one-time "all descriptors
+   are loaded, now cross-check them" pass. Wrapped in try/catch so a bug in
+   validation code cannot block world-zone bootstrap.
+
+d) systems/item-compiler-system.js, systems/spell-compiler-system.js — one
+   line each, feeding each compiler's own existing error list into
+   DR.Registry.recordCompilerErrors(). Compiler behavior/output is
+   unchanged; this only makes the errors visible from one shared place.
+
+e) systems/save-system.js, systems/world-serializer.js — descriptor-version
+   save/load guard:
+   - Both serializeCharacterState() and WorldSerializer.serialize() now
+     stamp `descriptorSchemaVersion: DR.Registry.DESCRIPTOR_VERSION` into
+     the payload they already build.
+   - Both applyCharacterState() and WorldSerializer's migratePayload() now
+     compare the stamped version against the current one and, if different,
+     log an informational console message — never block or alter the load.
+   - Both also call DR.Registry.auditRuntimeReferences('quest', ...) against
+     the quest ids in the loaded runtime blob (active/completed/discovered)
+     and log any that no longer resolve to a current quest definition. This
+     targets the exact gap flagged in the Phase 0 audit (quest runtime is
+     written/read from two save paths with no prior visibility into id
+     drift) with a pure read-only diagnostic — it does not decide which
+     path "wins" and does not prune or alter saved quest data.
+   - All of the above is wrapped in try/catch; a failure here can only
+     suppress a log line, never abort a save/load.
+
+f) _script_order.json — added the previously-missing "data/hairstyles.js"
+   entry in its correct position (between data/races.js and
+   data/spells.js), matching the HTML's actual script order. Verified by a
+   full positional diff: 131/131 entries now match exactly.
+
+g) Version bump: core/config.js, VERSION.txt, README.txt now report
+   V0.15.79 ("Descriptor Registry Normalization"). Prior to this pass,
+   core/config.js's own version constant (0.15.78) already disagreed with
+   VERSION.txt/README.txt (0.15.77) in addition to the package/zip filename
+   (V0.15.52) — see section 6. All three now agree at 0.15.79.
+
+
+3. FILES CHANGED THIS PHASE
+------------------------------
+- core/registry.js (DR.Registry added)
+- core/ids.js (SCHEMA documentation entries added)
+- core/config.js (version bump + changelog comment)
+- data/default-zones.js (boot validation trigger)
+- systems/item-compiler-system.js (compiler error reporting hook)
+- systems/spell-compiler-system.js (compiler error reporting hook)
+- systems/save-system.js (descriptor version stamp + load-time guard)
+- systems/world-serializer.js (descriptor version stamp + load-time guard)
+- _script_order.json (added missing data/hairstyles.js entry)
+- VERSION.txt, README.txt (version bump, Phase 1 summary)
+- docs/PHASE_1_DESCRIPTOR_REGISTRY.txt (this file — new)
+
+
+4. SYSTEMS INTENTIONALLY NOT TOUCHED
+----------------------------------------
+Per the Phase 1 brief: renderers (2D canvas, Three.js prototype, all
+procedural/sprite models), Bogling locomotion, editor UI
+(editor-system.js, layered-map-editor-system.js), combat/spell/status/
+threat feel, party/mercenary/bot/pet AI, the 10-file render/settings-panel
+QA wrapper chain, fishing-system.js's separate localStorage path, and the
+portal-system.js dungeon zone-key gap. All of these were flagged by the
+Phase 0 audit as known, deliberately deferred items for a LATER phase, not
+regressions introduced or missed this pass.
+
+
+5. VALIDATION RESULTS
+-----------------------
+- `find . -name "*.js" -print0 | xargs -0 -n1 node --check` across every
+  .js file in the project (excluding vendor/three.min.js): 0 syntax errors.
+- `python3 -m json.tool` on every changed .json file (_script_order.json):
+  valid.
+- HTML <script src> vs _script_order.json positional diff: 131/131 match
+  (previously 130/131 — data/hairstyles.js was missing from the manifest).
+- Dry-run of the new DR.Registry.runBootValidation() logic against the
+  real data/*.js files (outside the browser, via a throwaway Node harness
+  that loads the actual project files) found exactly 2 warnings, both
+  genuine pre-existing content gaps, not false positives introduced by this
+  pass:
+  - quest "quest_mossfang_warning" giver: unknown npc name "Wounded Scout".
+  - quest "quest_mossfang_warning" turnIn: unknown npc name "Wounded Scout".
+  These are pre-existing data gaps (the quest references an NPC that was
+  never added to data/npcs.js) now visible for the first time; nothing was
+  changed to "fix" them, per "do not change player-facing balance yet."
+- Manual code-path review (not a runtime browser session) of
+  applyCharacterState / WorldSerializer.migratePayload confirmed the new
+  guard code is purely additive: existing return values, control flow, and
+  data written to `this.inventory` / `this.equipment` / `this.player.*` /
+  `next.*` are unchanged; the only new behavior is console logging.
+
+
+6. KNOWN LIMITATIONS / FOLLOW-UPS FOR A FUTURE PHASE
+--------------------------------------------------------
+- A live in-browser boot test (open the HTML, check DevTools console for
+  errors, load/save a character and world) was NOT performed as part of
+  this response — this is a static/headless environment. The syntax
+  checks, positional script-order diff, and the Node-harness dry run of
+  the validator logic above are the verification that was possible here;
+  the test checklist below should be run in a real browser before treating
+  this build as final.
+- The Phase 0 audit's other flagged items (10-file render wrapper chain,
+  fishing-system.js's separate save path, portal-system.js's missing
+  'dungeon' zone-key branch, the two-path quest-runtime save ambiguity)
+  are NOT resolved by this phase. The quest-runtime audit added here makes
+  the drift *visible* (console warnings) but does not pick a winner between
+  the two save paths — that decision was explicitly out of scope for a
+  "smallest safe foundation pass."
+- The boot validation and save/load guards only check ids that already
+  have a clear, verified field name and format (see section 2a). Looser,
+  free-text references (e.g. quest task `target` strings like
+  "any_dark_woods_mob" or "cave_enemy", which are tags/categories rather
+  than ids) are intentionally NOT validated, to avoid generating noisy
+  false-positive warnings against a convention that isn't actually id-based.
+- Two genuine content gaps were newly surfaced (see section 5) and one
+  pre-existing loot-table naming pattern was inspected and found NOT to be
+  a gap (DR.LOOT_TABLES ids referenced by mob/boss lootTableId fields all
+  resolved correctly in this pass's dry run). No loot/quest content was
+  edited to close the "Wounded Scout" gap — flagged for a future content
+  pass, consistent with "no player-facing balance changes yet."
+
+
+7. TEST CHECKLIST (run in a real browser before shipping)
+--------------------------------------------------------------
+[ ] Open Dream Realms V0.15.52.html; game boots to the login/character
+    screen without a blank page.
+[ ] DevTools console shows no errors during boot (descriptor warnings, if
+    any, are console.warn/info only, not console.error, and do not stop
+    the boot sequence).
+[ ] Confirm no click/keypress before login+character-select can enter the
+    game world (pre-existing gate; not modified this phase, just verify no
+    regression).
+[ ] Load an existing pre-V0.15.79 character save; name/class/race/level/
+    hp/mana/inventory/equipment/gold all restore correctly.
+[ ] Load an existing pre-V0.15.79 world save; Dark Woods and Mossfang Cave
+    tile/object grids, worldTime, and weather restore correctly.
+[ ] Active/completed quests from an existing save still show correctly in
+    the quest log.
+[ ] Cast at least one spell per class slot type (damage/heal/buff) and
+    confirm no regression.
+[ ] Gather one resource node and craft one recipe; confirm no regression.
+[ ] Open F10 layered map editor; confirm it still opens (not a second
+    editor) and all 16 layers/tools are present.
+[ ] Toggle Settings > Renderer between Canvas 2D (default) and 3D
+    Prototype; confirm both still render.
+[ ] Check DevTools console for `[Dream Realms Registry]` warnings after a
+    few minutes of play; confirm they are informational only and gameplay
+    is unaffected.
+
+
+8. NEXT RECOMMENDED PHASE
+----------------------------
+Phase 2 per the original brief: save/migration hardening and account/
+character gate safety (verify no input path can bypass login/character
+creation/selection before the game world is enterable; strengthen
+account/character save schema further; add migration metadata/safe
+fallback paths beyond what Pass 43 and this phase already provide).

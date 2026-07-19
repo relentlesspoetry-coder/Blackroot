@@ -1,0 +1,17 @@
+Dream Realms V0.14.96 - Silk Web Miniboss Engagement Fix Pass
+
+Root Cause
+- Silk Web Cavern boss/miniboss ability timers were ticking globally as soon as the dungeon floor loaded.
+- castSilkWebBossAbility() selected the nearest friendly actor as a fallback even when that actor was outside the ability radius.
+- This allowed Threadjaw Alpha and Old Venomsac to log and apply Ripping Bite / Venom Pool from their rooms while the player and party were still at the dungeon entrance.
+
+Fix
+- Added a Silk Web boss encounter engagement gate in the dungeon system owner.
+- Boss/miniboss ability timers now remain idle unless a valid party target is inside encounter aggro range or the boss already has active threat/damage.
+- Silk Web boss abilities now require an in-radius primary target for hostile effects. No out-of-range nearest-target fallback is allowed for damaging/status abilities.
+- Non-targeted boss actions such as summons, shielding, retreat, and frenzy remain available only after the encounter has been engaged.
+
+Validation
+- Static checks confirm the dungeon boss engagement gate is called before ability timer countdown.
+- Static checks confirm Silk Web boss hostile abilities no longer select an out-of-range fallback target.
+- No content, loot, quest, spell balance, portal behavior, Bard meditation aura, friendly-fire rules, or save structures were removed.

@@ -1,0 +1,11 @@
+Dream Realms V0.12.56 — Merc NPC Renderer Runtime Zoom Fix
+
+Cause
+- The V0.12.55 social identity renderer referenced torso / handMain / handOff anchors, but the shared humanoid base exposes chest / mainHand / offHand anchors.
+- The same module also used several ellipse calls with fill color in the rotation argument slot. That could break or visually distort the first frame where NPCs/mercs render.
+
+Fix
+- Added anchor compatibility helpers in render/camp-npc-procedural-model.js.
+- Replaced invalid anchor usages with shared humanoid base-compatible anchors.
+- Corrected Base.ellipse calls to the proper argument order.
+- Smoke-tested mercenary and NPC profiles through the shared humanoid base.

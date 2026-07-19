@@ -1,0 +1,18 @@
+V0.13.38 — Party Size Six Capacity Hotfix
+
+Goal
+- Correct party capacity from the previous hard 4-bot limit to a 6-slot total party model.
+
+Changes
+- Added partyMaxSize() with a canonical cap of 6.
+- Added partyCapacityCount(), partyRemainingSlots(), partyHasRoomFor(), and partyFullMessage() in party-system ownership.
+- Bot party capacity now derives from total party occupancy: player + remote players + mercenary + class bots.
+- Default solo bot capacity is now 5 bots plus the player for a total party size of 6.
+- If a mercenary or remote player is in the group, available bot slots shrink accordingly.
+- Peer invites, merc invites, and bot recruitment now enforce the same capacity model.
+- Bot recruiter panel now displays total party size and bot-slot occupancy clearly.
+
+Verification
+- Static syntax checks.
+- Runtime smoke tests.
+- Party cap tests for player + 5 bots, sixth bot rejection, and merc consuming one party slot.

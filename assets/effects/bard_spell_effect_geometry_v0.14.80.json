@@ -1,0 +1,91 @@
+{
+  "asset": "bard_spell_effect_geometry_v0.14.80",
+  "game": "Dream Realms",
+  "version": "0.14.80",
+  "pipeline": "2.5D Canvas 2D procedural geometry layers",
+  "sourceSpec": "Pasted text(42).txt / Bard Spell Animation Set \u2014 Complete Creation",
+  "globalStyle": {
+    "palette": [
+      "warm gold",
+      "amber",
+      "rose gold",
+      "soft copper",
+      "orange-red discord accent"
+    ],
+    "shapeLanguage": "sound waves, musical notation, staves, rhythmic pulse rings, resonant light, performance-magic sparkles",
+    "topologyNote": "Core rings, crescents, ribbons, staves, and aura bands are authored as clean radial/strip geometry; transient note particles remain efficient runtime primitives."
+  },
+  "spells": {
+    "War Hymn": {
+      "components": [
+        "instrument_origin_glow",
+        "concentric_sound_rings",
+        "spiraling_notes",
+        "ally_chest_weapon_flash",
+        "sustained_song_shimmer",
+        "final_echo_fade"
+      ],
+      "animationFlow": "origin glow -> wave burst -> notes spiral -> ally empowerment flash -> lingering song aura -> final echo"
+    },
+    "Sonic Cut": {
+      "components": [
+        "sound_blade_formation",
+        "crescent_projectile",
+        "compressed_air_trail",
+        "stretched_note_fragments",
+        "sharp_impact_flash",
+        "lingering_slash_mark"
+      ],
+      "animationFlow": "sound condenses -> crescent launches -> trail distorts air -> impact slice -> notes scatter"
+    },
+    "Lullaby": {
+      "components": [
+        "soft_cast_pulse",
+        "rose_purple_waves",
+        "rest_symbols",
+        "target_wrap_threads",
+        "sleep_orbit",
+        "drowsy_fade"
+      ],
+      "animationFlow": "gentle melody -> hypnotic wave travel -> target wraps -> sleep symbols orbit -> threads dissolve"
+    },
+    "Valor Chorus": {
+      "components": [
+        "grand_origin_corona",
+        "braided_harmonic_rings",
+        "musical_staff_banner",
+        "ally_shield_motif",
+        "ally_blade_motif",
+        "final_cadence"
+      ],
+      "animationFlow": "crescendo -> harmonic expansion -> ally shield/blade motifs -> sustained chorus -> final chord pulse"
+    },
+    "Discordant Note": {
+      "components": [
+        "tense_fracture_build",
+        "jagged_sound_burst",
+        "shattered_notes",
+        "orange_red_shrapnel",
+        "enemy_impact_flash",
+        "single_pure_note_resolution"
+      ],
+      "animationFlow": "dissonant buildup -> jagged burst -> fragments hit -> ringing linger -> harmony restored"
+    },
+    "Refrain": {
+      "components": [
+        "heartbeat_origin_pulse",
+        "seeking_melody_ribbon",
+        "restorative_symbols",
+        "healing_spiral_wrap",
+        "warm_crescendo",
+        "peaceful_note_fade"
+      ],
+      "animationFlow": "gentle melody -> ribbon seeks ally -> healing embrace -> warm peak -> peaceful fade"
+    }
+  },
+  "runtimeFiles": [
+    "systems/effects-system.js",
+    "systems/spell-system.js",
+    "render/effects-renderer.js"
+  ]
+}

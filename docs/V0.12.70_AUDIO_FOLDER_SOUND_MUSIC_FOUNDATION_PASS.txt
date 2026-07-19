@@ -1,0 +1,65 @@
+Dream Realms V0.12.70 — Audio Folder + Sound Music Foundation Pass
+
+Scope:
+- Add two new folders for audio asset ownership.
+- Add a first owned audio system for sound effects and zone music.
+- Wire important gameplay/UI events to sound hooks.
+- Preserve standalone compatibility with procedural WebAudio fallback audio.
+
+New folders:
+- sound-effects/
+- music/
+
+New files:
+- systems/audio-system.js
+- sound-effects/ui_select.wav
+- sound-effects/footstep_grass.wav
+- sound-effects/footstep_dirt.wav
+- sound-effects/footstep_leaves.wav
+- sound-effects/footstep_stone.wav
+- sound-effects/footstep_water.wav
+- sound-effects/attack_slash.wav
+- sound-effects/attack_claw.wav
+- sound-effects/hit_thud.wav
+- sound-effects/magic_cast.wav
+- sound-effects/heal_chime.wav
+- sound-effects/pet_summon.wav
+- sound-effects/enemy_die.wav
+- sound-effects/level_up.wav
+- music/dark_woods_loop.wav
+- music/cave_ambience_loop.wav
+
+Changed:
+- game.js
+- systems/audio-system.js
+- systems/terrain-footstep-system.js
+- systems/effects-system.js
+- systems/combat-system.js
+- systems/spell-system.js
+- systems/runtime-qa-system.js
+- VERSION.txt
+- README.txt
+- docs/MODULAR_HISTORY.txt
+- Dream Realms V0.12.70.html
+
+Sound hooks added:
+- UI select / game start
+- terrain footsteps by terrain soundSet
+- attack slash / claw
+- spell cast cue
+- healing/status chime
+- hit impact
+- enemy death
+- pet summon
+- level up
+- zone music switching between Dark Woods and cave ambience
+
+Asset behavior:
+- Modular/full-project builds can use the external WAV files in sound-effects/ and music/.
+- Standalone HTML uses the same AudioSystem but falls back to procedural WebAudio if external WAV files are not available.
+
+Cascade status:
+- No bottom-of-file override layer.
+- No delayed setTimeout repair layer.
+- No monkey patch wrapper.
+- Audio methods are installed through systems/audio-system.js and called from owning gameplay systems.

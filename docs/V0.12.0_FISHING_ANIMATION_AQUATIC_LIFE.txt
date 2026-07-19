@@ -1,0 +1,57 @@
+Dream Realms V0.12.0 — Fishing Animation & Aquatic Life Pass
+
+Scope
+- Fully flesh out fishing presentation and moment-to-moment feel.
+- Make fishing visually read as an active player action instead of a static timer.
+- Add animated fish swimming through visible water bodies.
+- Connect static fishing resource nodes and moving fishing hotspots to the same character animation language.
+
+Player Fishing Animation
+- Added persistent player fishing state fields:
+  - fishing
+  - fishingAction
+  - fishingAnim
+  - fishingTargetX / fishingTargetY
+  - fishingCastTimer
+  - fishingReelTimer
+- The humanoid renderer now checks this state and renders a held fishing pole.
+- Fishing actions render distinct poses:
+  - casting
+  - waiting
+  - reeling
+  - catch landing / cancellation cleanup
+- The rod has animated bend, hand placement, reel motion, and line movement.
+
+Fishing Runtime
+- Moving hotspots remain the active F-key fishing target.
+- The fishing loop now progresses through cast -> wait -> bite/reel -> resolve catch.
+- The bobber animates more aggressively during bite/reel states.
+- The fishing panel now displays the current action and clean-reel count.
+- Catch tables now use the V0.11.9 fish catalog more directly:
+  - Small Pondfish
+  - Murkwater Minnow
+  - Mossback Trout
+  - Blackwater Eel
+  - Cave Blindfish
+  - Cave Eel
+  - Silverfin
+
+Aquatic Life
+- Added animated fish silhouettes to rivers, ponds, lakes, and cave pools.
+- Fish wander between valid water targets.
+- Fish avoid the player when approached.
+- Fish use body shimmer, tail movement, opacity, and different sizes/colors.
+- Dark Woods gets larger visible aquatic populations.
+- Cave floors get smaller underground fish populations when cave water exists.
+
+Static Fishing Resource Nodes
+- Fishing resource nodes started with G now trigger the visible fishing-pole pose.
+- The pose is cleared when the harvest completes, fails, or is cancelled.
+- This keeps profession fishing and hotspot fishing visually consistent.
+
+Ownership
+- Fishing behavior remains owned by systems/fishing-system.js.
+- Player animation state is owned by entities/player.js.
+- Player model rendering is owned by render/entity-renderer.js.
+- Static resource-node integration remains owned by systems/resource-gathering-system.js.
+- No late override file, bottom script, wrapper shim, or duplicate prototype owner was added.

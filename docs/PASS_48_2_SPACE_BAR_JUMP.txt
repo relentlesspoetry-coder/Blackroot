@@ -1,0 +1,13 @@
+Dream Realms Modular Pass 48.2 - Space Bar Jump
+
+Scope
+- Adds Space Bar jump input for the player.
+- Jump is a runtime animation/physics state and does not bypass collision.
+- Jump cancels meditation.
+- Jump is blocked while underwater.
+- Remote player sync includes jump height so browser-local party peers can see jumping.
+
+Implementation Notes
+- entities/entity.js owns z/vz/jumpCooldown/jumpAnim update.
+- game.js owns Space Bar input and playerJump().
+- render/entity-renderer.js lifts the character sprite while keeping the ground shadow anchored.

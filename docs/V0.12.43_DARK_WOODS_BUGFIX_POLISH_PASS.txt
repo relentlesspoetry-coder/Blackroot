@@ -1,0 +1,35 @@
+Dream Realms V0.12.43 - Dark Woods Bugfix Polish Pass
+
+Scope
+- Mob spacing and spawn distribution.
+- Bard procedural model facing reliability.
+- Vendor buy/sell flow.
+- Corpse-based loot flow.
+- Item icon readability.
+- NPC/dialogue/vendor/trainer distance behavior.
+- Terrain blending and Dark Woods palette.
+- Landmark pass: Gloomheart Tree.
+
+Implementation Notes
+- No bottom-of-file patch scripts were added.
+- Changes were made directly in owning systems:
+  - systems/mob-spawn-system.js
+  - render/entity-renderer.js
+  - systems/event-system.js
+  - systems/inventory-system.js
+  - systems/item-compiler-system.js
+  - systems/loot-system.js
+  - systems/combat-system.js
+  - systems/npc-system.js
+  - render/terrain-renderer.js
+  - render/object-renderer.js
+  - systems/world-system.js
+  - data/tiles.js
+- Enemy loot now stays on the corpse until player interaction.
+- Vendor shop UI now owns Buy/Sell tabs; legacy sell-only panel remains available but is no longer the main vendor flow.
+- NPC windows close when the player moves or leaves interaction range.
+
+Verification
+- JavaScript syntax checks should pass across all modules.
+- HTML script references should resolve.
+- No duplicate script tags should be introduced.

@@ -1,0 +1,10 @@
+Dream Realms V0.10.4 - Click-to-Walk Safe Steering Fix
+
+Fixes:
+- Rebuilt click-to-walk runtime steering to avoid frame-locking after a ground click.
+- Removed repeated movement-fallback probing from the frame update.
+- Added stricter dt clamping, finite-coordinate guards, click ownership, timeout, and stuck handling.
+- Prevented the old canvas click fallback from double-processing click-to-walk clicks.
+
+Verification:
+- Syntax check expected for game.js and systems/steam-deck-system.js.

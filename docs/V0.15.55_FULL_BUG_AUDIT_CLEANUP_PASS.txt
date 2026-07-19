@@ -1,0 +1,85 @@
+Dream Realms V0.15.55 — Full Bug Audit Cleanup Pass
+
+Scope: Full-codebase bug audit and cleanup pass across ownership, input, rendering,
+audio, save/load, editor, and collision/pathfinding. No cascade patches, wrapper
+hotfixes, or new duplicate systems were introduced. Fixes were made in the owning
+system for each bug.
+
+Fixes:
+- NPC Avoid painted with the main editor's "NPC Avoid" tool had no gameplay effect:
+  it wrote to game.editorAttributes, but the only gameplay-facing check
+  (game.layeredMapCanEnter, used by isWalkable for all movement) only read the
+  Layered Map editor's separate npcAvoid store. layeredMapAttributeAt now merges
+  both stores so NPC Avoid works regardless of which editor tool placed it.
+- Crafting, resource-gathering, and quest progress were serialized into character
+  saves (runtime.crafting, runtime.resourceGathering, runtime.quests) but never
+  read back on load. applyCharacterState now calls each owning system's existing
+  importState() to restore them, matching the pattern already used for worldTime,
+  weather, mercenary, pet, party, and botPlayers.
+- effectiveSfxVolume could theoretically exceed safe gain (localVolume clamped to
+  2 rather than 1, with no ceiling on the combined result). Added a final clamp
+  to 0-1 on both the sfx and ambient paths. No real call site currently passes a
+  volume that triggers this; this is defense-in-depth, not a behavior change.
+
+Verified intact, no regression (audited, not modified):
+- Fishing line endpoints are computed once per frame in fishing-system.js in
+  world-space and projected to screen only at draw time; no renderer computes or
+  mutates them; canceling fishing clears state cleanly.
+- Tab targets the closest valid hostile mob; clicking a mob targets it via an
+  early return before the click-to-move code path runs; Tab/keyboard shortcuts
+  are gated off while a text field or the layered map editor is active.
+- Audio: single AudioContext, WAV playback preferred, procedural oscillator
+  fallback defaults to false and is gated behind an explicit flag, fading music
+  nodes stay tracked in fadingMusicNodes/fadingMusicElements until stopped and
+  disconnected, and playMusic always stops the previous track first (no stacking).
+- Layered Map editor is a tab within the single editor shell (shared active flag,
+  each editor's canvas/keydown handlers no-op unless its own tab is active);
+  layered map edits mark game.worldSaveDirty and flow through the same
+  world-serializer save/load path as the rest of the world; undo stacks are
+  bounded (100 / 80 entries).
+- World save/load: every key world-serializer.js writes has a matching restore;
+  save data is schema-versioned with migration/back-fill for older saves; all
+  JSON.parse call sites are wrapped in try/catch; multiple save-producing paths
+  (manual, autosave, export) all funnel through the same serializer.
+- Collision: Blocked tiles are enforced for every entity type through the single
+  isWalkable() path; the primary editor's Blocked tool stays in sync with live
+  tile.blocked via syncBlockedAt.
+
+Documented risk, intentionally not changed this pass:
+- Game.prototype.render/update/renderSettingsPanel/updateDebugOverlay are wrapped
+  in a long chain (up to ~16 layers) by separate per-pass QA/telemetry systems
+  (final-*, hybrid-*, *-release-*, *-qa-* files under systems/). Every wrapper in
+  the chain was verified to correctly delegate to the previous implementation and
+  guards against double-installation, so this is not a functional bug. It is a
+  legitimate but verbose delegation-chain architecture; collapsing it into fewer
+  layers would be a large, high-risk refactor across a dozen files and was out of
+  scope for this bug-fix pass per "do not rewrite large systems unnecessarily."
+- mob-spawn-system.js's isTileBlockedForZone checks tile.blocked directly but does
+  not consult game.layeredMapCanEnter, so a tile blocked only via the Layered Map
+  editor's own Blocked store (as opposed to the primary editor's Blocked tool,
+  which syncs into tile.blocked) will not by itself prevent a mob from spawning
+  there. Not fixed this pass: layeredMapCanEnter resolves its zone from the
+  player's current zone (zoneKey()), while mob spawning operates on a passed-in
+  zoneId that can differ from the player's active zone; wiring these together
+  without a proper zone-key mapping risked a cross-zone regression worse than the
+  narrow bug it would fix.
+- fishing-system.js persists fishing progress to its own localStorage key
+  (dream-realms-fishing-system-v3) rather than exposing serializeState/importState
+  to save-system.js, so fishing progress does not travel with an exported/shared
+  character save file. Left unchanged: adding save-system integration is a larger
+  change to the fishing system's storage model, not a small direct fix.
+- docs/SYSTEM_OWNERSHIP.txt is stale relative to the current systems/ directory
+  and was not rewritten in this pass (documentation only, not a runtime bug).
+
+Files changed:
+- systems/layered-map-editor-system.js
+- systems/save-system.js
+- systems/audio-system.js
+- core/config.js
+- VERSION.txt
+- README.txt
+- Dream Realms V0.15.52.html (title + both patch notes panels)
+
+Validation:
+- node --check on all 178 .js files: pass.
+- python3 -m json.tool on all .json files: pass.

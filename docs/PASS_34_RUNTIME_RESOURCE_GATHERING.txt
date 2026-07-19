@@ -1,0 +1,33 @@
+Dream Realms V0.10.3 Modular Pass 34 - Runtime Resource Gathering
+
+Baseline:
+- Built from Dream Realms V0.10.3 Modular Pass 33.
+
+Purpose:
+- Turn editor-placed resource nodes into usable runtime gameplay nodes.
+
+Added:
+- systems/resource-gathering-system.js
+- G key interaction for nearby editor-placed resource nodes.
+- Runtime gathering for herb, mining, and fishing resource categories.
+- Node depletion and respawn timers using resource respawnSeconds metadata.
+- Profession state for Gathering, Mining, and Fishing.
+- Profession XP, levels, harvest counts, and rare-find counts.
+- Resource HUD panel in the external systems stack.
+- Runtime resource node markers near the player.
+- Save/export/import persistence for resourceRuntime.
+- Quest objective hook for gather-type quest tasks such as herb_gloomleaf.
+- Reset support for runtime resource state.
+
+Behavior:
+- Herb nodes gather faster.
+- Mining nodes take longer.
+- Fishing resource nodes work separately from free-water fishing; placed fishing nodes use G.
+- Resource nodes use their assigned lootTableId when present.
+- If no loot table result is produced, node direct drops are used as fallback.
+- Chests remain owned by systems/chest-system.js and are not gathered by this system.
+
+Deferred:
+- Tool inventory requirements.
+- Full crafting consumption loop.
+- Resource node animations beyond marker/ring feedback.

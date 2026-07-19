@@ -1,0 +1,19 @@
+Dream Realms V0.12.96 — Bot Adventure Loop Combat Followthrough Pass
+
+Baseline: Dream Realms V0.12.95 — NPC Class Models Bot Inspect Adventure AI Pass
+
+Implemented:
+- Strengthened autonomous bot adventure behavior so bots do not remain in town while labeled as questing.
+- Added explicit out-of-camp adventure intent: bots now resolve camp radius, objective anchors, and quest enemies before roaming.
+- Bots now commit to hunt objectives and travel directly toward matching mobs instead of randomly wandering around the camp area.
+- Kill-quest bots now prioritize real quest-matching enemies outside the camp safe radius.
+- Bots now hold adventure target IDs and anchors through save/load so their behavior survives save restoration.
+- Bot camp visits now end by assigning a real adventure destination instead of dropping back into town loops.
+- Bot runtime summary now reports how many bots are actively adventuring.
+
+Validation:
+- JS syntax check required on all active JavaScript files.
+- HTML script order should match _script_order.json.
+- Targeted checks verify bot adventure anchor methods, camp radius gating, quest enemy acquisition, snapshot version 6, and out-of-camp behavior fields.
+
+No cascade patch layer was added.

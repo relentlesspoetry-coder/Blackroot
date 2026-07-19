@@ -8,7 +8,7 @@
 
 **Blackroot** is a dark-fantasy browser RPG built with HTML5 Canvas and modular JavaScript. It is inspired by classic MMORPG progression: character creation, class identity, party play, mercenary companions, loot, quests, professions, caves, dungeons, and hostile wilderness exploration.
 
-Current reviewed build: **V0.16.68 — Party Mercenary Command Buttons Regression Fix**
+Current reviewed build: **V0.21.16 — Band-Major Terrain Composite**
 
 ## Overview
 
@@ -66,7 +66,7 @@ Controls can be rebound in-game through the Settings panel.
 No build step is required.
 
 1. Download or clone the repository.
-2. Open `Blackroot V0.16.68.html` in a modern desktop browser.
+2. Open `Blackroot V0.21.16.html` in a modern desktop browser.
 3. Create or load an account/character from the main menu.
 
 For GitHub Pages, copy or rename the main HTML file to `index.html` so the page loads automatically.
@@ -89,7 +89,7 @@ tools/            Sprite baking/export and high-poly generation utilities
 ## Technical Notes
 
 - Built as a static browser game using plain JavaScript, HTML, CSS, and Canvas.
-- The reviewed package contains 194 JavaScript files; all passed `node --check` syntax validation.
+- The reviewed package contains 204 JavaScript files; all passed `node --check` syntax validation.
 - The runtime is modular but does not currently require npm, bundling, or a server.
 - Some internal code/comments still use older `DreamRealms` namespace labels; the public project name is **Blackroot**.
 

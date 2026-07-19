@@ -1,0 +1,24 @@
+Dream Realms V0.11.0 - Dark Woods Content Foundation
+
+Owning-system changes only. No cascade patch layer.
+
+Added:
+- Road Warden Cael and Deepwood Surveyor Iren NPC definitions and default placements.
+- Briar Boar, Duskwisp, Hollow Stag, and Ashroot Horror mob drafts.
+- Dark Woods spawn definitions and default spawn placements for early, mid, deep, and outer level bands.
+- Dark Woods quests: Briars on the Road, Wisps at Dusk, and Ashroot Signs.
+- New item drops/rewards: Briar Tusk, Duskwisp Core, Ashroot Splinter, Deepwood Ring, Warden Lantern Charm.
+- Dark Woods loot table expansion for the new mob families.
+- Dark Woods level cap normalized to 10 across save/editor/world defaults.
+
+Edited owners:
+- data/npcs.js
+- data/quests.js
+- data/items.js
+- data/loot-tables.js
+- systems/npc-system.js
+- systems/mob-spawn-system.js
+- systems/save-system.js
+- systems/editor-system.js
+- systems/world-serializer.js
+- game.js

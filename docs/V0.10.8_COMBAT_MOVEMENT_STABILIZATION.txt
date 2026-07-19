@@ -1,0 +1,13 @@
+Dream Realms V0.10.8 - Combat and Movement Stabilization
+
+Focus:
+- Stabilized turn-based combat action loop.
+- Repaired player-turn/enemy-turn state transitions.
+- Kept movement locked during active turn combat, but kept attack/ability/wait/flee actions responsive.
+- Added F3 debug overlay with FPS, player position, tile, target, turn state, click-to-walk state, and nearby enemy count.
+- Audited click-to-walk so combat starts clear movement targets and movement state is visible in debug.
+
+Ownership:
+- Turn combat logic lives in systems/turn-combat-system.js.
+- Debug overlay state/update lives in game.js and HTML/CSS.
+- No cascade patching or bottom-of-file hotfix wrapper added.

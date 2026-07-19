@@ -1,0 +1,17 @@
+Dream Realms V0.14.62 — Party Auxiliary Slot Count Fix Pass
+
+Summary:
+This pass fixes party member-limit ownership so mercenaries and pets are auxiliary followers, not slot-consuming party members.
+
+Implemented:
+- Added a shared partyMemberConsumesSlot helper in the party system.
+- Updated partyCapacityCount/partyRemainingSlots/partyHasRoomFor to count only local/remote players and party bots.
+- Removed mercenary slot consumption from player invite acceptance, remote party updates, bot-party acceptance, bot slot availability, and save restore pruning.
+- Removed mercenary party-full fallback from the Mercenary Hiring UI and hire flow.
+- Updated Party Panel and Unified Companion HUD text to show player/bot party slots separately from auxiliary companions.
+- Kept mercenary and pet UI/functionality intact as companion/auxiliary frames.
+
+Validation:
+- Runtime JavaScript syntax checked with node --check.
+- Party capacity and full-party text searched for remaining mercenary-slot coupling.
+- ZIP integrity verified after packaging.

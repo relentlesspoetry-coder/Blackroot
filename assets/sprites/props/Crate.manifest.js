@@ -1,0 +1,9 @@
+window.DreamRealmsSpriteSheetMetadata = window.DreamRealmsSpriteSheetMetadata || {};
+window.DreamRealmsSpriteSheetMetadata['Crate.json'] = {
+  "version": "0.13.74",
+  "type": "dream-realms-model-sprite-sheet",
+  "modelId": "Crate",
+  "modelType": "prop",
+  "image": "Crate.png",
+  "frames": {}
+};

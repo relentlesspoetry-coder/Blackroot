@@ -1,0 +1,21 @@
+Dream Realms V0.13.90 — Boar High-Detail Procedural Model Upgrade Pass
+
+Summary
+- Upgraded the Boar procedural renderer with high-detail rugged creature surface detail.
+- Preserved the existing silhouette, proportions, orientation, animation states, scale behavior, and gameplay hooks.
+
+Files Changed
+- render/boar-procedural-model.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.13.90_BOAR_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- ZIP integrity verified with `unzip -t`.
+
+Note
+- This project uses Canvas 2D procedural rendering. The upgrade is modeled procedural geometry/detail inside the renderer, not a true 3D all-quad mesh export.

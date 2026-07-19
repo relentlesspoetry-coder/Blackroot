@@ -1,0 +1,52 @@
+Dream Realms V0.13.74 — Global Auto Attack Timing Normalization Pass
+
+Summary
+- Normalized standard auto-attack cadence to one shared 2.5 second interval.
+- Applied the shared interval to player auto attacks, enemy/mob auto attacks, autonomous bot fallback attacks, mercenary basic role attacks, and pet basic attacks.
+- Preserved separate cooldown/timer ownership for spells, heals, taunts, buffs, debuffs, dots/hots, boss specials, scripted abilities, and existing AI decision timers.
+
+Systems Changed
+- data/classes.js
+  - Added GLOBAL_AUTO_ATTACK_INTERVAL_MS = 2500 and GLOBAL_AUTO_ATTACK_INTERVAL_SECONDS = 2.5.
+  - Updated DR.resolveAutoAttackIntervalSeconds() so standard auto attacks resolve through the shared interval instead of class/weapon/profile-specific scattered values.
+  - Kept a future explicit modifier hook without applying implicit speed-stat haste to standard attacks.
+
+- systems/combat-system.js
+  - Player swing delay now resolves directly through the shared auto-attack interval.
+  - Enemy standard swing delay now resolves directly through the shared auto-attack interval.
+  - Preserved melee/ranged range checks, targeting, hit/miss/crit/damage logic, damage numbers, and combat log behavior.
+
+- systems/bot-player-system.js
+  - Autonomous bot fallback auto attacks now use the shared 2.5 second interval.
+  - Preserved bot AI target acquisition, spell decisions, tank threat, ranged line-of-sight, and threat ownership.
+
+- entities/bot-player.js
+  - Bot entity-local fallback attack cadence now uses the shared 2.5 second interval.
+
+- entities/mercenary.js
+  - Mercenary role basic attacks now resolve through the shared interval resolver.
+  - Heal, taunt, emergency-heal, and role special cooldown ownership remains separate.
+
+- systems/mercenary-system.js
+  - Mercenary revive attack reset now uses the shared interval instead of a shorter startup attack timer.
+
+- entities/pet.js
+  - Pet basic attacks now use the shared 2.5 second interval while preserving pet range/pathing and owner threat behavior.
+
+- entities/enemy.js
+  - Enemy fallback swing reset now uses 2.5 seconds when the game-level resolver is unavailable.
+
+Gameplay Preservation
+- Did not change spell cooldowns, healing cooldowns, taunts, boss specials, scripted abilities, damage formulas, targeting, threat ownership, loot, quests, pathing, save/load, or sprite-sheet runtime fallback.
+- Did not add duplicate combat loops, duplicate timers, bottom-of-file patches, monkey patches, or class-specific timer hacks.
+
+Validation
+- All JavaScript files passed syntax check with node --check.
+- Main HTML local script references were audited.
+- Version metadata was updated across HTML, README, VERSION, config, save metadata, default world metadata, and world serializer metadata.
+- Static audit confirmed player, enemy, bot, mercenary, and pet auto-attack timers route through the shared 2.5 second interval.
+- Zip integrity passed.
+
+Manual Browser-Test Caveats
+- Manual timing validation is still required in-browser with a stopwatch/log overlay for player, mob, bot, mercenary, and pet attacks.
+- Verify repeated auto-attack key presses do not double-fire, target swaps do not grant instant extra swings, and save/load does not create attack spam.

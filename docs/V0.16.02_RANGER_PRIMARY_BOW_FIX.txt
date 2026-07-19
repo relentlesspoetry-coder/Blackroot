@@ -1,0 +1,11 @@
+Dream Realms V0.16.05 - Ranger Primary Bow Fix
+
+Summary
+- Fixed the procedural Ranger class preview/model so it now displays a longbow as the primary weapon.
+- Added a back-mounted quiver with visible arrows.
+- Moved Ranger sidearms to hip-mounted secondary blades instead of dual hand-held daggers.
+
+Files
+- render/class-identity-procedural-model.js
+- Dream Realms V0.16.05.html
+- PATCH_NOTES.md

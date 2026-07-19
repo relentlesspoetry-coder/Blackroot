@@ -1,0 +1,7 @@
+Dream Realms V0.10.3 Modular Pass 25 — Quest Editor Foundation
+
+Added data/quests.js with starter quest draft definitions.
+Added a Quests editor tab for creating/editing/deleting quest drafts.
+Quest hooks can be placed on the map and assigned to the selected quest draft.
+Quest metadata is saved/exported through the world serializer.
+Runtime quest tracking, quest log UI, dialogue execution, and rewards are intentionally deferred.

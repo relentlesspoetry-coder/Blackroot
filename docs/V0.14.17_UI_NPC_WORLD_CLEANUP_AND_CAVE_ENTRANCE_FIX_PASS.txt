@@ -1,0 +1,34 @@
+Dream Realms V0.14.17 — UI NPC World Cleanup and Cave Entrance Fix Pass
+
+Summary
+- Fixed the Character Window paper doll so it renders the actual player class model.
+- Lifted universal nameplate/health-bar positioning.
+- Removed overworld half-block floor clutter from walkable terrain.
+- Cleaned Dead Lantern camp NPCs to retain quest NPCs, trainers, and the respawn-critical Spirit Healer.
+- Added trainer class-emblem nameplates.
+- Removed extraneous floating text from NPC prompts and world objects.
+- Fixed cave entrance warp triggers so the front of the cave mouth activates correctly.
+
+Files changed
+- systems/inventory-system.js
+- systems/ui-system.js
+- systems/npc-system.js
+- systems/cave-system.js
+- systems/world-system.js
+- systems/world-serializer.js
+- systems/crafting-system.js
+- systems/chest-system.js
+- systems/resource-gathering-system.js
+- render/entity-renderer.js
+- render/object-renderer.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- Dream Realms V0.14.17.html
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+
+Validation
+- `node --check` passed on all JavaScript files.
+- ZIP integrity passed with `unzip -t`.

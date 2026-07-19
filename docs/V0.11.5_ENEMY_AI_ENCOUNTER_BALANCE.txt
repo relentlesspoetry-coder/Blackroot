@@ -1,0 +1,20 @@
+Dream Realms V0.11.5 - Enemy AI and Encounter Balance
+
+Scope
+- Adds structured AI profiles and turn ability definitions to Dark Woods and cave mobs.
+- Carries AI/threat metadata from mob draft data through runtime spawn construction.
+- Reworks enemy turn ability selection to use mob-owned turn abilities instead of hard-coded name checks where structured data exists.
+- Adds ranged, charge, cleave, AoE, pack-bonus, and status-marking behavior.
+- Displays enemy threat tags in the target HUD and turn-combat enemy rows.
+
+Owning files changed
+- data/npcs.js
+- data/enemies.js
+- systems/mob-spawn-system.js
+- systems/turn-combat-system.js
+- systems/ui-system.js
+
+No cascade patching
+- No bottom-of-file hotfix script.
+- No prototype wrapper layer.
+- No duplicate enemy AI controller.

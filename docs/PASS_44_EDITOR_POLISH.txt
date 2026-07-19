@@ -1,0 +1,21 @@
+Pass 44 - Editor Polish Pass
+================================
+
+Scope
+-----
+This pass improves the usability of the existing editor without changing runtime gameplay ownership.
+
+Completed
+---------
+- Added palette search/filtering to every editor tab with live visible/total counts.
+- Added separate Validate Only and Validate + Repair actions.
+- Added detailed validation category reporting with sample broken references.
+- Added validation status panel output so validation results remain visible after logs scroll.
+- Added editor shortcuts: / focuses palette search, [ and ] adjust odd brush sizes, Esc clears selection and rectangle anchors.
+- Added Focus Player and Copy Inspector workflow actions.
+- Inspector/status output now includes palette filter and last validation state.
+- Updated editor badge, help text, roadmap, history, load-order header, and README controls.
+
+Notes
+-----
+Pass 44 deliberately does not add new runtime systems. Runtime integration remains owned by Passes 31-43. Pass 45 should now focus on full QA/stabilization across editor/runtime paths.

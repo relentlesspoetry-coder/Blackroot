@@ -1,0 +1,18 @@
+Dream Realms V0.13.92 — Boar Body Shape Cleanup Pass
+
+Summary
+- Removed the large circle-like torso shapes from the boar body.
+- Rebuilt the boar body using more anatomical polygonal contour masses.
+
+Files Changed
+- render/boar-procedural-model.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.13.92_BOAR_BODY_SHAPE_CLEANUP_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- ZIP integrity verified with `unzip -t`.

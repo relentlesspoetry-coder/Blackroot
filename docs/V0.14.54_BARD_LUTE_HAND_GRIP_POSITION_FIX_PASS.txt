@@ -1,0 +1,16 @@
+Dream Realms V0.14.54 — Bard Lute Hand Grip Position Fix Pass
+
+Root Cause:
+- The bard procedural renderer used the generic chest/instrument anchor for non-combat lute placement, which visually put the lute on the shoulder/back instead of in the hands.
+
+Changes:
+- Replaced shoulder/chest anchored lute placement with a hand-driven transform derived from main-hand and off-hand rig anchors.
+- Preserved combat and casting motion while keeping the lute attached to the active hand positions.
+- Kept gathering from snapping the lute back to the shoulder slot while the harvest pose owns the reach/cut animation.
+- Added front-layer grip finger lines so the player can read that the bard is holding the instrument.
+- Updated README, VERSION, HTML patch notes, save/default-world metadata, patch notes, and modular history to V0.14.54.
+
+Validation:
+- Ran node --check across all runtime JavaScript files.
+- Audited bard renderer placement to confirm idle/walk no longer use the old shoulder-rest path.
+- Verified ZIP integrity after packaging.

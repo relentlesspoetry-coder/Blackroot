@@ -1,0 +1,34 @@
+Dream Realms V0.13.59 — Dark Woods Boar Model Revamp Pass
+
+Systems changed:
+- Added render/boar-procedural-model.js as the dedicated boar-family renderer.
+- Updated render/dark-woods-mob-procedural-model.js so Briar Boar and Old Tusk Briarback route through BoarProceduralModel instead of the older inline oval-body boar drawer.
+- Updated render/entity-renderer.js so boar-family enemies preserve dedicated nameplate/health-bar anchoring from the new renderer.
+- Updated data/npcs.js and data/enemies.js with explicit boar palette metadata for Briar Boar and Old Tusk Briarback.
+- Updated _script_order.json and the main HTML script references so the boar renderer loads before the Dark Woods mob renderer.
+
+Visual/model changes:
+- Boars now use a front-heavy silhouette with a hunched shoulder mass, thick neck, wedge-shaped head, long snout, nose disk, visible tusks, bristled spine, compact rear mass, short strong legs, hooves, belly/shoulder shading, mud/scar accents, and material-toned body detail.
+- Animation coverage includes idle, walk, charge, attack, hit, death, and specialAttack mapping.
+- Charge/attack poses lower the head, push tusks forward, and lean the front body without moving the gameplay hitbox.
+- Death rendering collapses the boar into a low body pose rather than a standing corpse.
+
+Rare/elite/named coverage:
+- Rare/elite boars receive darker palettes, heavier bristles, stronger shoulder mass, richer tusk/eye detail, and extra accent marks.
+- Old Tusk Briarback receives a distinct named treatment with larger uneven tusks, scar treatment, bark/moss shoulder details, a heavier frame, and stronger anchor height.
+
+Gameplay preserved:
+- No mob stats, loot tables, quest links, spawn data, aggro rules, charge behavior, combat ranges, collision, pathfinding, save/load, click targeting, Tab targeting, corpse loot handling, or AI systems were changed.
+- Existing wolf, spider, stag, wisp, rootling, skeleton, bandit, and other Dark Woods renderers remain intact.
+
+Tests run:
+- All JavaScript files passed node --check.
+- Main HTML local script references were audited and all referenced files exist.
+- V0.13.59 metadata was verified across config, save system, world serializer, default zones, README, VERSION, HTML, patch notes, and modular history.
+- Dedicated boar renderer static audit verified canDraw, draw, drawLocal, anchorHeight, supportedActions, and supportedDirections.
+- Mocked canvas smoke tests rendered Briar Boar and Old Tusk Briarback across all 8 directions and idle/walk/charge/attack/hit/death actions.
+- Dark Woods routing smoke test verified Briar Boar resolves to boarDedicated.
+- ZIP integrity was verified.
+
+Manual browser-test caveats:
+- A real interactive browser session was not completed in the container. Manually verify Briar Boar herds, Old Tusk Briarback, charge readability, health-bar/nameplate anchors, click/Tab targeting, corpse loot markers, save/load, and FPS with several boars visible.

@@ -1,0 +1,12 @@
+Dream Realms V0.14.58 — Hollow Stag High Detail Model Creation Pass
+
+Summary:
+- Upgraded the existing Hollow Stag / Thorn-Crowned Stag procedural renderer into a high-detail cursed forest guardian model without changing gameplay behavior, spawn ownership, nameplates, targeting, or enemy data.
+- Added gaunt undead anatomy, exposed ribs, glowing hollow torso cavity, torn flesh margins, visible vertebrae, mummified skull/head detail, hollow eye glow, slack jaw, exposed teeth, deadwood antlers, bark cracks, moss/lichen, vines, bone totems, corruption nodes, fungal growth, black ichor drips, skeletal legs, cracked overgrown hooves, and ground deposition cues.
+- Added Hollow Stag sprite-bake definitions for future atlas workflows.
+- Added `assets/models/highpoly/hollow_stag_highpoly_quadmesh_v0.14.58.obj`, a complete new all-quad high-poly Hollow Stag mesh for baking/reference workflows.
+
+Validation:
+- Runtime JavaScript passes node --check.
+- The Hollow Stag OBJ contains 19,116 vertices and 16,212 quad faces.
+- OBJ validation detected no triangle or n-gon faces.

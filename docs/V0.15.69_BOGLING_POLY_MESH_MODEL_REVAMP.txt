@@ -1,0 +1,3 @@
+Dream Realms V0.15.69 — Bogling Poly-Mesh Model Revamp
+
+Revamped the Bogling race model with a high-quality layered poly-mesh style renderer, race-specific amphibian anatomy, detailed webbed hands and feet, throat pouch, ridge and spot details, wet-skin highlights, and full upgraded color variant palettes. Bogling appearance now updates correctly in character creation and persists into gameplay while preserving sprite-sheet fallback support.

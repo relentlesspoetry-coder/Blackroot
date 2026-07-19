@@ -1,0 +1,32 @@
+Dream Realms V0.14.39 — UI Bar Background Threat Text Polish Pass
+
+Scope:
+- Player EXP bar background polish.
+- Player HUD HP/MP background polish.
+- Mob threat meter text polish.
+
+Implementation notes:
+- Updated the V0.14.39 HTML shell CSS where the player HUD/action bar visual layers are owned.
+- Updated render/entity-renderer.js where mob nameplates, health bars, and threat bars are owned.
+- No bottom-of-file hotfixes, timeout wrappers, or cascade patch layers were added.
+
+Changes:
+1. Player EXP bar
+- Added a darker purple empty/background layer beneath the current purple fill.
+- The filled portion remains the existing purple gradient.
+- The empty portion now reads as intentional dark purple instead of generic black.
+
+2. Mob threat bar
+- Enlarged the threat bar enough to carry readable centered text.
+- Added centered text in the format: Threat 12%.
+- Text updates from the existing player-relative threat percentage.
+- Preserved yellow/orange/red fill gradient and primary-threat highlight.
+
+3. Player HUD health and mana bars
+- Added darker red/green HP empty layer beneath health fill.
+- Added darker blue mana empty layer beneath mana fill.
+- Kept existing fill colors and bar text styling.
+
+Validation:
+- node --check passed across all JavaScript files.
+- ZIP integrity passed.

@@ -1,0 +1,11 @@
+Dream Realms V0.15.40 — Final Performance QA Patch
+
+Scope:
+- Adds a final performance QA layer above StableLock, Release Polish, PostRC hardening, Hybrid health, and Final QA gates.
+- Adds release-ready scoring for the renderer/performance stack.
+- Adds a conservative black-frame guard for Hybrid GPU mode; repeated dark-frame probes can force Canvas Safe Mode.
+- Adds Settings controls to run the release benchmark, export/copy QA evidence, clear QA samples, and force Canvas Safe Mode.
+- Adds F3 FinalPerfQA diagnostics.
+
+No gameplay/content changes:
+- No class, spell, item, loot, quest, dungeon, mob, economy, zone, UI layout, or balance values changed.

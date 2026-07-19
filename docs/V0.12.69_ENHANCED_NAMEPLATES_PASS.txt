@@ -1,0 +1,37 @@
+Dream Realms V0.12.69 — Enhanced Nameplates Pass
+
+Scope:
+- Update player, NPC, and mob nameplates to display readable name/level structure.
+- Add class emblems for player nameplates.
+- Add elite emblems for elite mobs.
+- Preserve the existing health bar and meditation experience bar.
+
+Changed:
+- render/entity-renderer.js
+- VERSION.txt
+- README.txt
+- docs/MODULAR_HISTORY.txt
+- Dream Realms V0.12.69.html
+
+Nameplate structure:
+- Line 1: Character / mob name
+- Line 2: Lvl:XX plus emblem when applicable
+
+Rules:
+- Player / remote-player style actors: name + level + class emblem.
+- Standard mobs: name + level only.
+- Elite / named / dungeon elite / boss mobs: name + level + gold elite emblem.
+
+Implemented class emblems:
+- Fighter: crossed blades / shield mark
+- Rogue: dagger mark
+- Cleric: holy cross
+- Summoner: arcane orbit / shard
+- Necromancer: skull mark
+- Bard: music note
+- Druid: leaf mark
+
+Cascade status:
+- No bottom-of-file override layer.
+- No delayed setTimeout repair layer.
+- No monkey patch wrapper.

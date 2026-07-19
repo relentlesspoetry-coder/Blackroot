@@ -1,0 +1,17 @@
+Dream Realms V0.12.23 — Cave Mob Restore, Flat Floors, Zone Density, Model Polish, Patch Notes Fix
+
+Bug fixes
+- Caves were going empty because the mob-spawn runtime rebuilt the active cave enemy array from editor spawn markers. Most named/multi-floor caves use generated cave enemies rather than editor mob spawn markers, so the runtime could clear the generated enemies back to zero.
+- The mob-spawn runtime now preserves generated cave enemies when a cave floor has no explicit editor spawn markers.
+- Playable cave floor/water elevation is flattened after cave generation, removing small half-block floor slabs while keeping wall mass/vertical boundaries.
+
+QoL / density
+- Dark Woods outdoor spawn anchors were increased from 22 to 66 default placements, roughly tripling the number of outdoor combat groups while keeping them spread across the map.
+- Extra placements use existing safe-spawn validation, town radius checks, cave-entrance checks, and per-spawn radius placement.
+
+Class model polish
+- Class-profile body colors now override generic white/grey starter-rarity colors unless an item has an explicit visualColor.
+- Added stronger shoulder/collar structure, wider legs, and larger boot mass to improve the procedural humanoid read.
+
+Patch notes
+- Updated the HTML title and splash Patch Notes panel with V0.12.11 through V0.12.23.

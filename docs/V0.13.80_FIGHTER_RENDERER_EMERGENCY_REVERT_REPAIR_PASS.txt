@@ -1,0 +1,31 @@
+Dream Realms V0.13.80 — Fighter Renderer Emergency Revert Repair Pass
+
+Purpose:
+- Stop the broken Fighter renderer path that made Fighter appear as a giant shield/wedge with legs.
+- Restore the last known working Fighter class renderer composition from V0.13.76.
+- Preserve the improved overhead nameplate visuals from V0.13.77+.
+
+Root cause / decision:
+- V0.13.77–V0.13.79 overrode the Fighter class renderer with shield-heavy Fighter-specific composition paths.
+- The attempted repair still produced shield-dominant output in character creation and in-game render paths.
+- This pass removes that risky Fighter-specific renderer override by restoring the stable V0.13.76 class identity renderer file.
+
+Changed:
+- render/class-identity-procedural-model.js was restored from V0.13.76.
+- No nameplate renderer changes were made.
+- No combat, targeting, save/load, sprite sheet, map, inventory, party, or UI flow systems were intentionally changed.
+
+Expected result:
+- Fighter renders as a full humanoid class again.
+- Head, torso, arms, shield, sword, legs, and feet should be visible again.
+- Fighter no longer renders as a giant central shield with feet.
+- Character creation Fighter preview and class card preview use the restored renderer.
+- Improved nameplate styling remains intact.
+
+Validation:
+- JavaScript syntax check passed for all JS files.
+- Main HTML script reference audit passed.
+- ZIP integrity passed.
+
+Manual browser-test caveat:
+- Browser visual validation is still required locally. Specifically check Fighter front idle, class card preview, character creation main preview, in-game front/side/diagonal/back facing, walking, attacking, and the preserved nameplate styling.

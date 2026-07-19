@@ -1,0 +1,29 @@
+Dream Realms V0.15.17 — Hybrid Render Batch Preparation Pass
+
+Goal
+- Continue performance work without a risky renderer replacement.
+- Preserve Canvas 2D as the visible gameplay renderer.
+- Start building the render-batch metadata needed for a future WebGL/WebGPU renderer.
+
+Changes
+- Added hybrid render batch preparation for the already-built render queues.
+- Added backend diagnostics for terrain, world, object, entity, effect, and damage renderable batches.
+- Added backend batch overflow tracking and batch-build timing metrics.
+- Added cached distant-canopy overlay drawing with safe Canvas fallback.
+- Added cached sun-shaft overlay drawing with safe Canvas fallback.
+- Expanded F3 overlay with backend batch counts, kind counts, batch cost, and drawable percentage.
+- Added performance config controls for batch preparation, max batch items, and canopy/sun-shaft overlay caching.
+
+Files changed
+- core/config.js
+- game.js
+- systems/render-backend-system.js
+- Dream Realms V0.15.17.html
+- README.txt
+- VERSION.txt
+- Save/save-folder-manifest.json
+
+Validation
+- JavaScript syntax validation required across all runtime files.
+- HTML script reference validation required.
+- Zip integrity validation required.

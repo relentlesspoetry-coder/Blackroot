@@ -1,0 +1,30 @@
+Dream Realms V0.12.3 — Deep Water System Pass
+
+Scope:
+- Diagnose and fix shallow water behavior.
+- Generate and normalize real water depths from 5 to 12 blocks.
+- Support vertical swimming through the full water column.
+- Add breath/oxygen tracking while underwater.
+- Improve visual depth cues with darker water centers, light attenuation, deep shafts, and underwater overlays.
+
+Diagnosis:
+- V0.12.1/V0.12.2 stored waterDepth on many water tiles and rendered edge shafts, but gameplay still treated water mostly as a boolean swimming tile.
+- Player swimming used underwater true/false instead of an actual depth coordinate.
+- Older generated maps/saves could still contain water without consistent depth metadata.
+- Cave pools created per-tile random depths but were not normalized as connected bodies.
+
+Implementation:
+- Added DR.normalizeWaterDepthsForMap(map) in systems/world-system.js.
+- Overworld generation now normalizes connected water bodies after terrain and landmark placement.
+- Cave floor generation now normalizes water pools after cave decoration.
+- systems/swimming-system.js now owns vertical swimDepth, max water depth checks, breath tracking, underwater dungeon interaction state, and depth overlays.
+- render/terrain-renderer.js now uses waterDepth for stronger darkening, attenuation, and deep-water cues.
+
+Controls:
+- Enter water to swim.
+- Hold U to dive downward.
+- Hold Space to ascend and surface.
+- Press E near an underwater entrance while underwater to enter it.
+
+No cascade patching:
+- Changes were made directly in world-system.js, cave-system.js, swimming-system.js, terrain-renderer.js, game.js, and player.js ownership points.

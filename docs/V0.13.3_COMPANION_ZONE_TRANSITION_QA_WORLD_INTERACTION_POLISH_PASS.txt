@@ -1,0 +1,20 @@
+Dream Realms V0.13.3 — Companion Zone Transition QA and World Interaction Polish Pass
+
+Baseline: Dream Realms V0.13.2 — World AI Target Discipline and Camp NPC Visual Polish Pass
+
+Implemented:
+- Party-system now owns a generic syncPartyCompanionsToPlayerZone() path.
+- The transition helper moves and resets mercs, pets, and party bots together.
+- Cave floor load, cave exit, dungeon floor load, and dungeon exit use the shared transition helper.
+- setActiveEnemySet() now rebuilds active entities from activeZoneAllies() so party companions survive enemy-list refreshes.
+- Party bot transition reset clears stale autonomous state: simulated dungeon flags, objective/adventure target IDs, path routes, and squad IDs.
+- Companion HUD and party panel now use transition labels during zone-transition grace windows.
+
+Validation targets:
+- Party with merc + pet + bots enters cave; all companions remain visible and active.
+- Party changes cave floors; companions snap near player and lose stale targets.
+- Party enters dungeon from a cave; companions appear in dungeon and can be targeted by dungeon boss abilities.
+- Party exits dungeon/cave; companions return to overworld/cave with player.
+- Enemy-set refresh does not drop valid companions from the active entity array.
+
+No cascade patches or bottom-of-file hotfix wrappers were added.

@@ -1,0 +1,18 @@
+Dream Realms V0.15.36 — Stable Release Candidate Pass
+
+Scope
+- Adds a final stable release-candidate gate for the Hybrid renderer rollout.
+- Keeps Hybrid/WebGL as the default rollout path only when health, Final QA, fallback pressure, layer promotion, and WebGL readiness are acceptable.
+- Keeps Canvas 2D Stable / Canvas Safe Mode as the compatibility and rollback path.
+
+Changes
+- Added systems/stable-release-candidate-system.js.
+- Added release-candidate score, status, checklist, blockers, warnings, and recommendation telemetry.
+- Added Settings controls for Release Gate, Release Armed, Export Release JSON, Copy Release Summary, and Clear Release Samples.
+- Added F3 overlay StableRC summary line.
+- Added CONFIG.PERFORMANCE thresholds for release readiness.
+- Updated build metadata to V0.15.36.
+
+Gameplay
+- No combat, class, spell, loot, quest, mob, dungeon, economy, or zone values changed.
+- This pass only touches renderer/performance release validation and diagnostics.

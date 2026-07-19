@@ -1,0 +1,11 @@
+Dream Realms V0.13.26 — Silk Web Cavern Loot Quest Reward Integration Pass
+
+Scope:
+- Added guaranteed dungeon-exclusive reward support to the shared loot-table roller via guaranteedPool/guaranteedCount.
+- Mini-boss, floor-boss, final-boss, treasure, and completion tables now guarantee appropriate dungeon items while preserving random drops.
+- Added class-aware quest reward choice support to the runtime quest system.
+- Added prerequisite chain gating for the five Silk Web Cavern quests.
+- Quest log now displays fixed rewards and class reward choices with item tooltips.
+- Added audit helpers for Silk Web loot tables, quest chain, and dungeon progression wiring.
+
+No bottom-of-file patch layer or disconnected loot/quest system was added.

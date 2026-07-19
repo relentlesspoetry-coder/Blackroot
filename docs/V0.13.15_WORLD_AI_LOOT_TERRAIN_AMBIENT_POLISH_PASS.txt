@@ -1,0 +1,13 @@
+Dream Realms V0.13.15 - World AI Loot Terrain Ambient Polish Pass
+
+- Reduced and normalized mob aggro acquisition range.
+- Hardened enemy pathing failure handling and leash return behavior.
+- Added 45-second corpse visual despawn while preserving loot bags.
+- Added blue map/minimap circle markers for mercs and bot companions.
+- Added small Dark Woods bag drops and compatible bag item definitions.
+- Removed passive bot/merc regeneration outside meditation or explicit healing effects.
+- Added friendly targeting for mercs/bots/pets with support spell validation.
+- Expanded deterministic terrain detail and transition rendering.
+- Extended the atmosphere owner with non-combat ambient creatures: butterflies, moths, beetles, lizards, and fireflies.
+
+No cascade patch layer was added.

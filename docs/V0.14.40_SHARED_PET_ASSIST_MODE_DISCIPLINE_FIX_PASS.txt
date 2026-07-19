@@ -1,0 +1,22 @@
+Dream Realms V0.14.40 - Shared Pet Assist Mode Discipline Fix Pass
+
+Owner systems changed:
+- entities/pet.js
+
+Summary:
+- Centralized Assist-mode target eligibility for all Pet instances, covering both Necromancer Bone Servant and Summoner Azure Shard Familiar.
+- Moved meditation/resting/gathering/fishing/busy checks ahead of threat selection so recovery/non-combat states hard-block assist engagement.
+- Changed owner-threat handling so a selected target is not treated as valid merely because some other enemy is threatening the owner.
+- Prioritized actual owner attackers before owner-selected attack targets.
+- Bot-owned assist pets now use the same assist discipline path instead of a separate owner-assist branch.
+- Added stale assist combat cleanup that clears pet auto-attack, forced targets, stale target ids, pet combat cooldown, and this pet's own threat entries when the owner is out of combat.
+
+Rules preserved:
+- Attack command can still force pet aggression.
+- Guard command keeps guard behavior.
+- Follow/passive remain non-combat.
+- Existing pet renderer, command HUD, save/load, and auto-attack damage cadence are preserved.
+
+Validation:
+- node --check passed.
+- Smoke tests passed for both undead and shard pet types.

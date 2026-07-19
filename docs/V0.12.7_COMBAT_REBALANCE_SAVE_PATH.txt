@@ -1,0 +1,13 @@
+Dream Realms V0.12.7 — Combat Rebalance and Same-Folder Character Saves
+
+Combat fixes:
+- Reduced low-level enemy burst damage against the player.
+- Added incoming-damage scaling by enemy level.
+- Added player damage caps for starter enemies.
+- Lengthened enemy auto-attack swing delays to reinforce slower EverQuest-style combat pacing.
+- Centralized enemy auto-attack damage and swing timing in the combat owner while the Enemy entity calls those owner methods.
+
+Save path fixes:
+- Save Folder now links the selected game folder directly instead of creating a nested character-save folder.
+- Character autosave writes JSON directly beside the HTML/JS files when the browser grants File System Access API permission.
+- Browser-local character save fallback remains active because plain browser HTML cannot silently write files next to itself without user approval.

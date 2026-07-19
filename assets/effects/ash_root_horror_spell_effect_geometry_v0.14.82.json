@@ -1,0 +1,90 @@
+{
+  "asset": "ash_root_horror_spell_effect_geometry_v0.14.82",
+  "game": "Dream Realms",
+  "version": "0.14.82",
+  "pipeline": "2.5D Canvas 2D procedural geometry layers",
+  "globalStyle": {
+    "palette": [
+      "charcoal black",
+      "ash grey",
+      "deep ember orange",
+      "banked red",
+      "sickly corrupted green"
+    ],
+    "motion": "heavy ash fall, rolling smoke, charred root eruptions, ember pulses, ground cracks",
+    "topologyNote": "Core spell silhouettes are structured as quad-friendly radial rings, root strips, cloud lobes, bloom petals, and ground decals; transient ash/ember particles remain lightweight runtime primitives."
+  },
+  "abilities": {
+    "Ashroot Crush": {
+      "components": [
+        "charred_root_limb",
+        "downward_arc",
+        "ash_trail",
+        "impact_crater",
+        "ember_fissures",
+        "splinter_burst"
+      ],
+      "animationFlow": "limb rises -> heavy descent -> impact flash -> fissures glow -> ash settles"
+    },
+    "Ash Cloud": {
+      "components": [
+        "ground_eruption_column",
+        "rolling_cloud_lobes",
+        "ember_motes",
+        "ashen_debuff_coating",
+        "settling_ash"
+      ],
+      "animationFlow": "ash column bursts -> cloud rolls outward -> embers pulse -> targets grey out -> ash settles"
+    },
+    "Death Bloom": {
+      "components": [
+        "ground_breach",
+        "charred_stem",
+        "bark_petals",
+        "sickly_green_core",
+        "spore_wave",
+        "crumbling_bloom"
+      ],
+      "animationFlow": "ground bulges -> bloom rises -> petals unfurl -> spores burst -> bloom collapses"
+    },
+    "Cinderroot Snare": {
+      "components": [
+        "warning_cracks",
+        "grasping_roots",
+        "ember_veins",
+        "leg_wraps",
+        "burn_tick_pulses",
+        "root_crumble"
+      ],
+      "animationFlow": "ground trembles -> roots burst upward -> roots wrap target -> embers pulse -> roots crumble"
+    },
+    "Blightwood Pulse": {
+      "components": [
+        "core_drain",
+        "expanding_blight_rings",
+        "darkened_ground",
+        "withering_rootlets",
+        "vulnerability_flash",
+        "zone_fade"
+      ],
+      "animationFlow": "core dims -> pulse expands -> ground darkens -> rootlets wither -> field fades"
+    },
+    "Ashen Regrowth": {
+      "components": [
+        "inward_ash_streams",
+        "ember_surge",
+        "bark_sealing_plates",
+        "fresh_sickly_growth",
+        "ashen_armor_shell",
+        "healing_pulses"
+      ],
+      "animationFlow": "ash draws inward -> embers surge -> bark seals -> armor forms -> pulses sustain"
+    }
+  },
+  "runtimeFiles": [
+    "entities/enemy.js",
+    "systems/effects-system.js",
+    "render/effects-renderer.js",
+    "data/enemies.js"
+  ]
+}

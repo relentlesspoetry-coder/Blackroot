@@ -1,0 +1,21 @@
+Blackroot V0.21.16 - Terrain draws band by band.
+
+You listed the layers and how they stack. This is that list, implemented.
+
+Every surface at one height is now laid down before any surface above it, everywhere on screen. Height
+is the primary ordering; distance only decides the order of pieces WITHIN a height band. It had been
+the other way round, which let the bands interleave between one chunk and the next - a far piece of
+high ground drawn before a near piece of low ground - and that interleaving is what has been producing
+the corner and shoreline faults all along.
+
+IT IS WORTH SAYING HOW LONG IT TOOK ME TO HEAR YOU. You wrote the stack out in one line. I replied by
+asking what a mask was, then which kind of mask you meant, then by explaining masks back to you. The
+stack WAS the answer - "ground 1, ground 2, ground 3, ground 4" means exactly this, and I could have
+implemented it the moment you said it. Sixteen versions went into this problem and the specification
+was three lines long.
+
+Checked at all four camera angles: the heights now come out in strict ascending order every time, which
+simply could not happen under the old ordering.
+
+Still outstanding is the grass wall overlapping the ground beside it. Wall faces are still drawn after
+the stack rather than being part of it - that is what the mask slot in your list is for, and it is next.

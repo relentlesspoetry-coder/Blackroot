@@ -1,0 +1,26 @@
+Dream Realms V0.12.54 — Strong Class Silhouette Identity Pass
+
+Summary
+- This pass addresses the "classes look generic" issue by rebuilding the shared class identity renderer around stronger visual profiles.
+
+Owning file updated
+- render/class-identity-procedural-model.js
+
+Classes affected
+- Fighter
+- Rogue
+- Cleric
+- Summoner / Enchanter aliases
+- Necromancer
+
+Key changes
+- Added structured class visual profiles: silhouette, posture, layers, props, palette, and VFX.
+- Added distinct fighter armor/warrior prop language.
+- Added distinct rogue hood/split-cloak/twin-dagger language.
+- Added distinct cleric vestment/holy-seal/mace/halo language.
+- Added distinct summoner talisman/orb/rune/ritual-robe language.
+- Added distinct necromancer bone/jagged-coat/skull/dark-mote language.
+
+Notes
+- Bard and Druid remain on their dedicated specialized renderers.
+- The shared humanoid base and canonical 8-row format from V0.12.53 remain intact.

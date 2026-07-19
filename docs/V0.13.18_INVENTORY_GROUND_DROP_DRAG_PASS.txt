@@ -1,0 +1,10 @@
+Dream Realms V0.13.18 - Inventory Ground Drop Drag Pass
+
+- Inventory and equipped bag slot items can be dragged onto the world canvas.
+- Drops are validated against blocked tiles, water, cave walls, and solid objects.
+- Invalid drops return safely to the original slot because items are removed only after a valid world drop is accepted.
+- Player-dropped items use the existing corpse/ground loot interaction path and despawn after 45 seconds.
+- Clicking a player-dropped ground item picks it back up if inventory capacity is available.
+- Hovering dropped ground items shows the shared item tooltip.
+- Quest, locked, protected, bound, starter, and non-droppable items are rejected.
+- Equipped bags cannot be dropped if locked/starter or if removing them would strand inventory contents.

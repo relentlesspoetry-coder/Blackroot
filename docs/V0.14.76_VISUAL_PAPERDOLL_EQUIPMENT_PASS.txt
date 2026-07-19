@@ -1,0 +1,15 @@
+Dream Realms V0.14.76 — Visual Paperdoll Equipment Pass
+
+Implemented:
+- Added a shared procedural paperdoll equipment renderer.
+- Bound armor and weapons directly to the existing equipment slot data.
+- Added visual treatment for head, shoulders, chest, legs, hands, feet, cape, amulet/rings/charm, weapon, and off-hand.
+- Character Window preview now renders the same live equipped gear overlays as the world actor model.
+- Bots and mercenaries with equipment now inherit the same visual paperdoll path.
+- Gear visuals use actual item metadata: slot, name/tags, armor family, weapon family, rarity color, icon color, and explicit visualColor if present.
+- Added lightweight equip/unequip flash feedback.
+
+Validation:
+- Runtime JavaScript syntax validated with node --check.
+- Zip integrity validated with unzip -t.
+- No cascade patch layer added.

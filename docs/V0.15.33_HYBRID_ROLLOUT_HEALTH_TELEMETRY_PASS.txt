@@ -1,0 +1,56 @@
+Dream Realms V0.15.33 — Hybrid Rollout Health Telemetry Pass
+
+Scope
+- Post-rollout stabilization pass for the Hybrid/WebGL default renderer path.
+- No gameplay, class, mob, loot, spell, quest, dungeon, zone, or UI layout balance changes.
+
+Added
+- systems/hybrid-rollout-health-system.js
+- Rolling Hybrid renderer health score from 0–100.
+- Recent renderer-failure evidence history.
+- Health-state classification: stable, healthy, degraded, high-risk, critical.
+- Health recommendation text for Settings and F3 diagnostics.
+- Exportable Hybrid health JSON report.
+- Copyable Hybrid health summary.
+- Clearable Hybrid health history.
+
+Renderer rollout safety
+- Adds transient-risk dampening for Hybrid default rollout.
+- Hard failures still force unsafe states:
+  - WebGL context lost
+  - renderer mode denied
+  - WebGL unavailable
+- Stable health can suppress non-hard transient high-risk rollout signals so one bad frame does not cause noisy rollback.
+- Critical health can escalate rollout risk and recommend Canvas rollback.
+
+F3 diagnostics
+- HybridHealth score/status/sample count.
+- HybridHealth cost and fallback deltas.
+- HybridHealth layer mask and transient-risk suppression state.
+- HybridHealth recommendation.
+
+Settings panel
+- New Hybrid Rollout Health section.
+- Toggle health telemetry.
+- Export Health JSON.
+- Copy Health Summary.
+- Clear Health History.
+
+Config additions
+- enableHybridRolloutHealthTelemetry
+- hybridRolloutHealthSampleMs
+- hybridRolloutHealthWindow
+- hybridRolloutHealthStableScore
+- hybridRolloutHealthDegradedScore
+- hybridRolloutHealthHighRiskScore
+- hybridRolloutHealthRollbackScore
+- hybridRolloutHealthFallbackWarn
+- hybridRolloutHealthCanvasFallbackWarn
+- hybridRolloutHealthCostWarnMs
+- hybridRolloutHealthCriticalCostMs
+- hybridRolloutHealthSuppressTransientRollback
+- hybridRolloutHealthExportHistoryLimit
+
+Validation
+- JavaScript syntax validation required across all runtime JS files.
+- _script_order.json and HTML script references must include the new system.

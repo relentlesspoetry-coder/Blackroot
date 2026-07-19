@@ -1,0 +1,49 @@
+Dream Realms V0.15.14 — Performance Verification and Hotspot Fix Pass
+
+Baseline:
+- Dream Realms V0.15.13 Runtime Memory and GC Stabilization Pass
+
+Goals:
+- Stop guessing at the next bottleneck by making runtime hotspots measurable in-game.
+- Add persistent player-selectable performance presets.
+- Add a true Low-Spec mode for weaker laptops, Steam Deck stress cases, and browser throttling.
+- Add a 60-second benchmark runner that records frame/update/render/UI/pathing/cache metrics.
+
+Changes:
+1. Added systems/performance-verification-system.js
+   - Persistent Quality, Balanced, Performance, and Rescue presets.
+   - LocalStorage-backed performance settings.
+   - Low-Spec Mode toggle.
+   - 60-second benchmark sampling and stored last result.
+   - Rolling hotspot classifier for render/update/UI/render queue/sprite cache/pathfinding/AI pressure.
+
+2. Added controls
+   - F4: cycle performance preset.
+   - F5: toggle Low-Spec Mode.
+   - F6: start/stop benchmark.
+
+3. Added Settings panel controls
+   - Performance preset buttons.
+   - Low-Spec Mode toggle.
+   - Benchmark start/stop.
+   - Reset performance settings.
+
+4. Expanded F3 overlay
+   - Current preset and Low-Spec state.
+   - Current hotspot and reason.
+   - Benchmark active/idle state.
+   - Last benchmark p95/worst frame time and hotspot.
+
+5. Runtime integration
+   - performanceSettings() now applies persistent preset/Low-Spec overrides before adaptive governor adjustments.
+   - Canvas resize is requested when DPR-impacting performance settings change.
+   - Benchmark metrics are sampled after update/render timing is known.
+
+Validation:
+- JavaScript syntax validation passed.
+- _script_order.json includes the new performance verification system.
+- HTML script references include the new performance verification system.
+
+Notes:
+- This pass still keeps Canvas 2D as the active renderer.
+- The purpose is to identify whether the next bottleneck is render, update, UI, pathfinding fallback, AI budget, or sprite cache churn.

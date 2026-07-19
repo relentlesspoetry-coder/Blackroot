@@ -1,0 +1,5 @@
+Dream Realms V0.15.104 - Class Emblem White Fringe Cleanup
+
+- Cleaned the tiny white fringe around the class emblem icons.
+- Rebuilt the shared class emblem sprite sheet from the cleaned icon PNGs.
+- Preserved the thin inset outline treatment from V0.15.103.

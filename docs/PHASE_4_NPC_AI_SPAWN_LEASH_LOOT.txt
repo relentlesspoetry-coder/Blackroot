@@ -1,0 +1,286 @@
+Dream Realms V0.15.82 — Phase 4: NPC AI, Spawn, Leash, Loot Ownership
+========================================================================
+
+Scope: per the Phase 4 brief that followed Phase 3
+(docs/PHASE_3_COMBAT_SPELL_STATUS_PARITY.txt) - extend
+systems/mob-spawn-system.js, entities/enemy.js, systems/combat-system.js,
+systems/threat-system.js, systems/loot-system.js with Intersect-style
+aggro, reset radius, flee HP, spell frequency, individualized loot, and
+party loot ownership, and ensure mobs cannot spawn on invalid/blocked/
+cave-entrance/NPC-avoid tiles. No player-facing balance was changed for
+any currently shipped mob, spawn group, or loot table.
+
+
+1. AUDIT FIRST (read-only, before any code change)
+------------------------------------------------------
+Read systems/mob-spawn-system.js, entities/enemy.js, the enemy-AI-relevant
+portions of systems/combat-system.js, systems/threat-system.js,
+systems/loot-system.js, and systems/collision-system.js/systems/layered-
+map-editor-system.js for the tile-attribute side, in full, before designing
+anything. Key findings:
+
+- **Confirmed gap** (this Phase 0's own prior audit had already flagged
+  "mob-spawn-system.js's layeredMapCanEnter gap" without fixing it):
+  systems/mob-spawn-system.js's tile-validity stack
+  (`isTileBlockedForZone`/`isSafeSpawnTile`/`isRoamSafeTile`) never called
+  `game.isWalkable` or `game.layeredMapCanEnter`. It has its own, older,
+  separate check against `game.editorAttributes` (a legacy attribute store
+  from systems/editor-system.js) plus inline tile-type/object-regex checks.
+  The Layered Map Editor's real "Blocked" and "NPC Avoid" painted layers
+  (`systems/layered-map-editor-system.js`'s `attributes.blocked`/
+  `attributes.npcAvoid`, the F9/F10 tool players actually use) had **zero
+  effect** on mob spawn or roam placement.
+- Aggro radius (`baseType.aggroRadius`, `Enemy.effectiveAggroRadius`) and
+  leash/reset radius (`baseType.leashRadius`, the reset block in
+  `Enemy.update()` that clears threat/aggro and walks the mob home without
+  healing or teleporting) were both already implemented correctly and
+  data-driven - genuinely already at Intersect parity. No gap, no change
+  needed.
+- Flee HP exists but only as a hardcoded 0.18 ratio in
+  `Enemy.tryLowHealthTactic` with no per-mob data field, and elite/named
+  mobs are unconditionally excluded from ever fleeing.
+- Ability/spell cast frequency is already cooldown-gated
+  (`tacticalCooldown`), which is reasonable frequency control - but the
+  declared `turnAbilities` weighted-selection data on `MOB_DRAFTS` is
+  never actually read at runtime; ability selection is hand-authored
+  per-family string matching in entities/enemy.js instead. Also noted:
+  `tryTacticalAbility`'s return value isn't checked at its call site, so a
+  successful tactical ability and the basic attack swing can both land in
+  the same tick.
+- Loot: enemies roll one shared "corpse loot" bag per death
+  (`rollEnemyLoot`/`killEntity`). `systems/party-system.js` already
+  computes and tags a party-loot policy onto that bag
+  (`corpseLoot.party = { partyLoot, eligibleIds, rule }`,
+  `tagCorpseLootForParty`) and already logs a message claiming the loot is
+  "party-tagged for N eligible members" - but **nothing ever checked that
+  tag**. `takeCorpseLootItem`/`takeCorpseLootGold`/`takeAllCorpseLoot`
+  operated purely on the shared bag with no eligibility check at all, so
+  any client (party member or not) could take party-reserved loot. XP, by
+  contrast, genuinely is split via a real share-multiplier mechanism - loot
+  was the one place where the claimed behavior and actual behavior
+  diverged.
+- `noSpawnNearTown` (a spawn-group data flag) is set on nearly every spawn
+  draft but never actually branched on in the tile-validity functions - the
+  real town-avoidance is a separate, unconditional, hardcoded-coordinate
+  radius check that only applies when `zoneId === 'dark_woods'`. Two spawn
+  drafts (`spawn_cave_spiders`, `spawn_mossfang_alpha`) explicitly set it
+  to `false`, but both are cave-zone spawns, where the town-radius check
+  never runs anyway (it is unconditionally gated to `dark_woods` only) - so
+  wiring up this flag would very likely be a no-op in every case that
+  currently exists, and doing so without being fully certain of the
+  intended semantics (should `noSpawnNearTown` interact with anything
+  besides the dark_woods-only hardcoded check?) was judged not safe enough
+  to include this phase. See Known Limitations.
+
+
+2. WHAT WAS IMPLEMENTED
+-------------------------
+
+a) Mob spawn/roam tile validity (systems/mob-spawn-system.js)
+   `isTileBlockedForZone(game, zoneId, x, y)` - the single choke point
+   both `isSafeSpawnTile` (spawn placement) and `isRoamSafeTile` (patrol/
+   roam validity) call first - now also asks
+   `game.layeredMapAttributeAt(x, y, zoneId)` and treats a `blocked` or
+   `npcAvoid` result as blocked, in addition to every check it already
+   did. Deliberately calls `layeredMapAttributeAt` (which takes an
+   explicit zone parameter) rather than `game.layeredMapCanEnter` (which
+   always checks the CURRENTLY ACTIVE zone via `game.currentZone` with no
+   way to ask about a different zone) - important because mob-spawn-system
+   checks tiles by an explicit `zoneId` that is not always the zone the
+   player is currently standing in. The call is optionally-chained so a
+   boot sequence where the layered-map system hasn't installed yet
+   degrades to the exact prior behavior rather than throwing.
+
+b) Data-driven flee HP (systems/mob-spawn-system.js, entities/enemy.js)
+   `makeEnemyType` (systems/mob-spawn-system.js) now carries an optional
+   `fleeHp` field from `MOB_DRAFTS` onto the compiled `baseType`, only
+   accepting a value strictly between 0 and 1 (else `null`).
+   `Enemy.tryLowHealthTactic` (entities/enemy.js) now reads
+   `this.baseType?.fleeHp` and falls back to the exact same `0.18` it
+   always used when the field is absent or invalid. No shipped mob sets
+   `fleeHp` today, so every existing mob's flee behavior - including the
+   unconditional elite/named "never flee" guard, which was intentionally
+   left untouched - is byte-for-byte identical to before.
+
+c) Party loot ownership enforcement (systems/loot-system.js)
+   Added `Game.prototype.isCorpseLootEligibleForLocalPlayer(enemy)`, which
+   reads the existing (previously unused) `enemy.corpseLoot.party` tag:
+   if `partyLoot` is falsy (solo kills - the default/common case) or
+   `eligibleIds` is empty/missing, it returns eligible (fails open, so
+   nothing about solo play or legacy/untagged corpses changes).  If
+   `partyLoot` is true, it checks `eligibleIds.includes(this.localPeerId)`.
+   `takeCorpseLootGold` and `takeCorpseLootItem` (the two actual mutation
+   points; `takeAllCorpseLoot` calls both and needed no direct change) now
+   call this check first and log "This loot is reserved for the party
+   that defeated it." instead of proceeding when ineligible. This makes
+   the party-loot tag - which the game already computed and already
+   logged a claim about - actually mean something, closing a real gap
+   between stated and enforced behavior, without introducing any new
+   mechanic (round-robin/need-greed/master-looter distribution was NOT
+   added - see Known Limitations).
+
+d) Aggro/leash/spell-frequency: audited, found already correct, not
+   changed. Documented here so it does not need re-auditing from scratch
+   in a future phase.
+
+
+3. FILES CHANGED THIS PHASE
+------------------------------
+- systems/mob-spawn-system.js (layered-map tile-validity check in
+  isTileBlockedForZone; fleeHp field on makeEnemyType's compiled baseType)
+- entities/enemy.js (data-driven flee threshold in tryLowHealthTactic)
+- systems/loot-system.js (isCorpseLootEligibleForLocalPlayer; enforcement
+  in takeCorpseLootGold/takeCorpseLootItem)
+- core/config.js (version bump + changelog comment)
+- VERSION.txt, README.txt (version bump, Phase 4 summary)
+- docs/PHASE_4_NPC_AI_SPAWN_LEASH_LOOT.txt (this file - new)
+
+systems/combat-system.js and systems/threat-system.js (both named in the
+Phase 4 brief) were read in full for the audit but required no changes -
+aggro/leash/target-acquisition logic there was already correct.
+
+
+4. SYSTEMS INTENTIONALLY NOT TOUCHED
+----------------------------------------
+- Aggro radius / leash / reset-to-home logic (entities/enemy.js,
+  systems/threat-system.js) - audited, already correct and data-driven,
+  left as-is.
+- The hand-authored per-family tactical ability dispatch in
+  entities/enemy.js (spider poison, wolf rend, root snare, the Ashroot
+  Horror rotation) - the vestigial `turnAbilities` weighted-selection data
+  was noted but not wired up; rewriting ability selection to actually
+  consume that data would be a much larger change to how every mob family
+  chooses abilities, deferred to a future phase (see Known Limitations).
+- `noSpawnNearTown` - found vestigial/likely-inert, deliberately not
+  wired up without higher confidence in its intended interaction with the
+  existing hardcoded town-radius check (see section 1).
+- True per-player individualized loot (independent rolls per eligible
+  party member) and round-robin/need-greed/master-looter distribution -
+  this phase only enforces the existing shared-bag eligibility tag; it
+  does not change the underlying "one shared corpse bag" architecture.
+- Everything out of Phase 4's scope per the original brief: renderers,
+  editor UI, quests/events, crafting/resources, other combat/spell/status
+  work already completed in Phase 3.
+
+
+5. VALIDATION RESULTS
+-----------------------
+- `node --check` on every changed file: 0 syntax errors.
+- Full-project sweep (`find . -name "*.js" ... node --check`, excluding
+  vendor/three.min.js and the bundled blender/ tooling): 0 syntax errors.
+- Built 31 automated test cases across three Node harnesses loading the
+  actual edited files (not reimplementations) with `window`/`document`
+  stubbed:
+  - 9 cases against `Game.prototype.isValidMobSpawnTile` (the real public
+    entry point, which calls the real, unexported `isSafeSpawnTile` ->
+    `isTileBlockedForZone`): confirms an open tile is valid with no
+    layered-map system installed (matches pre-Phase-4 behavior exactly);
+    confirms a `blocked` layered-map attribute now rejects the tile;
+    confirms an `npcAvoid` attribute now rejects the tile; confirms a
+    clean/unpainted attribute result does NOT introduce a false positive;
+    confirms a `null` attribute result (no paint data at all) is still
+    valid; confirms the explicit `zoneId` argument (not the "currently
+    active zone") is what gets passed through to
+    `layeredMapAttributeAt`, specifically verifying the
+    `layeredMapCanEnter`-would-have-been-wrong scenario; and confirms
+    every pre-existing tile check (blocked flag, water tiles) still works
+    exactly as before, independent of the new check.
+  - 8 cases verifying the exact flee-threshold expression added to
+    `tryLowHealthTactic` (copied verbatim from the real edited file, since
+    booting the full `Enemy` class was impractical in this harness):
+    no/absent `baseType.fleeHp` correctly falls back to 0.18; a valid
+    in-range value (0.35) is used; and out-of-range/invalid values (0, 1,
+    negative, NaN, null) all correctly fall back to 0.18 rather than
+    silently accepting a nonsensical threshold.
+  - 14 cases against the real, installed `Game.prototype.
+    isCorpseLootEligibleForLocalPlayer`/`takeCorpseLootGold`/
+    `takeCorpseLootItem`: no party tag at all is eligible; `partyLoot:
+    false` is eligible regardless of `eligibleIds` contents; a local peer
+    present in `eligibleIds` is eligible; a local peer absent from
+    `eligibleIds` is correctly rejected; an empty/missing `eligibleIds`
+    array fails open (eligible) rather than locking everyone out; an
+    ineligible `takeCorpseLootGold`/`takeCorpseLootItem` call is blocked,
+    logs the reservation message, and leaves the loot data completely
+    unmutated (no partial/silent state corruption); an eligible call
+    succeeds, grants the currency/item, and correctly clears/marks the
+    taken loot; and a solo kill (no party tag at all) behaves completely
+    identically to before this phase.
+  All 31 cases passed.
+
+
+6. KNOWN LIMITATIONS / FOLLOW-UPS FOR A FUTURE PHASE
+--------------------------------------------------------
+- This was verified via Node-based test harnesses against the real edited
+  files, not a live browser session (this environment cannot run a
+  browser). In particular, actually painting a Blocked/NPC Avoid tile in
+  the live F9/F10 editor and watching a mob fail to spawn/roam there, and
+  actually testing party loot with two real connected clients, are both
+  things only a live session can truly confirm - see the test checklist.
+- `noSpawnNearTown` remains vestigial (see section 1) - a future phase
+  should either formally wire it up (deciding what it should mean when
+  `false` on a non-dark_woods spawn, since the current hardcoded town
+  check is dark_woods-only) or remove it if it's confirmed to be fully
+  dead weight.
+- The `turnAbilities` weighted-ability-selection data on `MOB_DRAFTS`
+  remains unread by runtime code; `entities/enemy.js`'s per-family
+  hand-authored ability dispatch was not rewritten to consume it. This is
+  a larger, riskier change (it touches how every mob family chooses which
+  ability to use) better suited to a dedicated future pass.
+- `tryTacticalAbility`'s return value still isn't checked at its call
+  site in `Enemy.update()`, so a successful tactical ability and that
+  tick's basic attack can still both land - left as-is since "fixing" it
+  would change per-tick damage output for every mob with tactical
+  abilities, which is a real combat-feel/balance change outside this
+  phase's mandate.
+- Loot ownership enforcement is eligibility-only (can-you-take-it-at-all),
+  not a full redistribution mechanic - no round-robin, need/greed roll, or
+  master-looter assignment was implemented. The architecture is still one
+  shared corpse bag per kill, not per-player individualized loot rolls;
+  true individualization (each eligible player gets their own independent
+  loot roll) would be a larger, separate change to loot generation and the
+  corpse-loot-window UI.
+- Bosses instantiated via a path other than `mob-spawn-system.js`'s
+  `makeEnemyType` (e.g. through `systems/dungeon-system.js`, which is not
+  one of this phase's owning files) do not get the new `fleeHp` field
+  threaded through automatically - though since bosses are effectively
+  always `elite`/`named`, they were already excluded from ever fleeing
+  regardless.
+
+
+7. TEST CHECKLIST (run in a real browser before shipping)
+--------------------------------------------------------------
+[ ] In the F9/F10 Layered Map editor, paint a Blocked tile in an area with
+    an active mob spawn group; confirm mobs stop spawning/roaming onto
+    that exact tile while continuing to spawn/roam normally elsewhere.
+[ ] Paint an NPC Avoid tile the same way; confirm the same result.
+[ ] Confirm normal mob spawning/roaming everywhere else in Dark Woods and
+    the caves is completely unaffected (this is the most important
+    regression check for this phase - the new check should only ever
+    subtract tiles that were explicitly painted, never change anything
+    else).
+[ ] Fight several different mob families down to low HP solo; confirm
+    flee behavior (the 18% "falling back" kiting tactic) still triggers
+    at the same HP percentage as before, and elite/named mobs still never
+    flee.
+[ ] Kill an enemy solo; confirm the corpse loot window opens and every
+    item/gold can still be taken exactly as before, with no new message
+    or restriction appearing.
+[ ] If two+ real clients/peers can be tested in a party together, have
+    the party kill an enemy and confirm all party members can loot the
+    corpse; then have a non-party client attempt to loot the same corpse
+    and confirm it now sees "This loot is reserved for the party that
+    defeated it." instead of silently succeeding.
+[ ] DevTools console shows no new errors during normal exploration,
+    combat, and looting.
+
+
+8. NEXT RECOMMENDED PHASE
+----------------------------
+Phase 5 per the original brief: event/quest/condition/variable parity -
+extend systems/event-system.js, systems/quest-system.js,
+systems/npc-system.js, data/events.js, data/quests.js with event pages,
+conditions, variables, self-switches, event command execution, and
+deterministic quest state transitions, while keeping the existing quest/
+dialogue UI working. This phase's party-loot-eligibility helper and the
+Phase 1 descriptor registry's quest/npc lookups are natural building
+blocks for that phase's condition/variable evaluation.

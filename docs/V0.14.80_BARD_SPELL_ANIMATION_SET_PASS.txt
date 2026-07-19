@@ -1,0 +1,27 @@
+Dream Realms V0.14.80 — Bard Spell Animation Set Pass
+
+Implemented:
+- Created a dedicated procedural spell animation set for the Bard's six spells:
+  - War Hymn
+  - Sonic Cut
+  - Lullaby
+  - Valor Chorus
+  - Discordant Note
+  - Refrain
+- Added Bard musical visual identity across all six spells: golden sound waves, warm amber/copper notes, rose-gold healing ribbons, purple lullaby wraps, musical staves, runes, and performance-magic sparkles.
+- Added new effect spawning ownership in systems/effects-system.js.
+- Added spell resolver hooks in systems/spell-system.js so existing Bard spells trigger their correct visual effect.
+- Added effect renderer branches in render/effects-renderer.js:
+  - drawBardSongWaveEffect
+  - drawBardSonicCutEffect
+  - drawBardLullabyEffect
+  - drawBardDiscordantNoteEffect
+  - drawBardRefrainEffect
+  - drawBardNoteParticleEffect
+- Added animation-ready procedural geometry documentation:
+  - assets/effects/bard_spell_effect_geometry_v0.14.80.json
+
+Validation:
+- Runtime JavaScript syntax validated with node --check.
+- Zip integrity validated with unzip -t.
+- No cascade patch layer added.

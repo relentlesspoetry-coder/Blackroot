@@ -1,0 +1,23 @@
+Dream Realms V0.14.16 — Spirit Healer High-Detail Procedural Model Upgrade Pass
+
+Summary
+- Upgraded the dedicated Spirit Healer procedural renderer with higher-detail ethereal angelic readables.
+- Preserved the current Spirit Healer silhouette, proportions, respawn behavior, interaction hooks, placement footprint, and nameplate anchoring.
+- Added richer halo/crown detail, layered wing feather anatomy, drifting hair wisps, robe constellation embroidery, luminous blessing hands, sacred ground glyphs, respawn anchor beacon, soul tethers, and attendant spirit motes.
+
+Files changed
+- render/spirit-healer-procedural-model.js
+- Dream Realms V0.14.16.html
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.16_SPIRIT_HEALER_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt
+
+Validation
+- node --check passed across all JavaScript files.
+- Direct Spirit Healer renderer smoke test passed across 8 facings and close/non-close variants.
+- ZIP integrity verified.

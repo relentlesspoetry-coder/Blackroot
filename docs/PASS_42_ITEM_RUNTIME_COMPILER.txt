@@ -1,0 +1,34 @@
+Pass 42 - Item Runtime Compiler
+================================
+
+Goal
+----
+Make item drafts produced by the item editor become real runtime inventory, loot, shop, quest, resource, and crafting outputs.
+
+Implemented
+-----------
+- Added systems/item-compiler-system.js.
+- Compiles game.editorItems / DR.ITEM_BY_ID into game.compiledItemById.
+- Adds getCompiledItem(), createRuntimeItemInstance(), grantEditorItem(), and stack-aware addCompiledItem() integration.
+- Normalizes draft slot aliases into the current runtime equipment grid:
+  - ring1/ring2/ring_left/ring_right -> ring
+  - cape/cloak/back -> charm
+  - boots -> feet
+  - gloves -> hands
+  - pants -> legs
+  - robe/body -> chest
+- Equipment instances preserve source item id, rarity, class restrictions, stats, damage metadata, armor, value, level requirement, description, and icon metadata.
+- Stackable runtime instances preserve max stack size and merge into existing stacks before occupying a new bag slot.
+- Consumables are now usable from the bag and consume one stack count.
+- Roasted Darkwater Fish restores HP at runtime.
+- Loot tables, event shops, quest rewards, resource gathering, and crafting outputs resolve through compiled item definitions.
+- Editor item changes, world import/load, and world reset mark/rebuild the compiled item catalog.
+
+Verification targets
+--------------------
+- Compiled catalog contains all editor item drafts.
+- item_gloom_kings_signet compiles from ring1 to runtime ring.
+- item_silk_mothers_mantle compiles from cape to runtime charm.
+- item_roasted_darkwater_fish compiles as consumable and restores HP when used.
+- item_copper_ore grants merge into capped stacks.
+- Equipment grants become equipable runtime items.

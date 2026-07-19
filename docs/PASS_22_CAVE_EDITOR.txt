@@ -1,0 +1,45 @@
+Dream Realms V0.10.3 Modular Pass 22 — Cave Editor Foundation
+
+Built from: Dream Realms V0.10.3 Modular Pass 21
+
+Scope:
+- Continue the Intersect-style in-game editor work.
+- Add cave-specific layout and theme tools without touching normal gameplay/combat/render behavior.
+
+Added:
+- Cave theme palette in the Caves editor tab.
+- Cave layout preset selector.
+- Cave Properties tool.
+- Generate Small Cave tool.
+- Generate Big Cave tool.
+- Generate Large Cave tool.
+- Cave Room carving tool.
+- Cave Tunnel carving tool.
+- Cave metadata save support.
+
+Cave theme presets:
+- Mossfang Cave
+- Silk Web Cavern
+- Hollowroot Burrow
+- Emberstone Hollow
+
+Cave layout presets:
+- Small Cave: short, simple 1-3 room layout.
+- Big Cave: branching mid-sized layout.
+- Large Cave: larger cave with loops and more side-room space.
+
+Editor usage notes:
+- Enter the cave before using room/tunnel carving or layout generation.
+- Full-cave generation replaces the current cave tile/object layout.
+- Export the world JSON before major cave generation if you want a backup.
+- Cave metadata is stored in the world save payload under mossfang_cave.caveEditorMeta.
+
+No gameplay changes:
+- No combat changes.
+- No spell changes.
+- No party/multiplayer changes.
+- No renderer changes.
+- No cave wall rendering experiments.
+
+Next recommended pass:
+- Pass 23 — Resource Placement Tools: herb nodes, mining nodes, fishing spots, chests, and resource metadata.

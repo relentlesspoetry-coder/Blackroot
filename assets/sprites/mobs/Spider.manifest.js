@@ -1,0 +1,9 @@
+window.DreamRealmsSpriteSheetMetadata = window.DreamRealmsSpriteSheetMetadata || {};
+window.DreamRealmsSpriteSheetMetadata['Spider.json'] = {
+  "version": "0.13.74",
+  "type": "dream-realms-model-sprite-sheet",
+  "modelId": "Spider",
+  "modelType": "mob",
+  "image": "Spider.png",
+  "frames": {}
+};

@@ -1,0 +1,22 @@
+Dream Realms V0.14.85 — Professions Skills Side By Side Window Fix Pass
+
+Implemented:
+- Fixed Professions opening so it also opens the Skills window immediately.
+- Both windows now appear side by side in one synchronous layout transaction:
+  - Professions on the left.
+  - Skills on the right.
+  - Both vertically centered as a combined pair.
+- If Skills is already open, it is repositioned next to Professions.
+- If Professions closes, Skills may remain open independently.
+- The layout respects the movable window system; both windows remain individually draggable after opening.
+- No delayed setTimeout/cascade patch logic was added.
+
+Changed files:
+- systems/ui-system.js
+- systems/profession-system.js
+- systems/skills-system.js
+
+Validation:
+- Runtime JavaScript syntax validated with node --check.
+- Zip integrity validated with unzip -t.
+- No cascade patch layer added.

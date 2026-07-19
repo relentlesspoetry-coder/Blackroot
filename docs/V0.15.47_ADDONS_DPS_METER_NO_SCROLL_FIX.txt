@@ -1,0 +1,24 @@
+Dream Realms V0.15.47 — Add-Ons DPS Meter No-Scroll Fix Pass
+
+Changed:
+- Added a root Add-Ons category to the Settings/Options menu.
+- Moved DPS Meter visibility/window/reset controls into Settings > Add-Ons.
+- Persisted DPS Meter visibility through the existing DPS meter player setting.
+- Reworked DPS Meter layout at the source in systems/dps-meter-system.js.
+- Removed internal DPS Meter body scrolling.
+- Added compact single-line party rows showing rank, name/class, DPS, and total damage.
+- Added auto-fit height for DPS rows, capped to screen height.
+- Added compact/tiny display modes for large party/merc/pet rosters.
+- Updated the settings fallback recovery path so Add-Ons still appears if the normal settings render path fails.
+
+Files changed:
+- systems/ui-system.js
+- systems/dps-meter-system.js
+- systems/settings-panel-regression-fix-system.js
+- core/config.js
+- README.txt
+- VERSION.txt
+- Save/save-folder-manifest.json
+
+No gameplay/content balance changes:
+- No class, spell, mob, loot, quest, dungeon, economy, XP, mana, cooldown, or combat-balance values were changed.

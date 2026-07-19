@@ -1,0 +1,5 @@
+Dream Realms V0.15.102 - Class Emblem Outline Pass
+
+- Added a thin black outline to class emblem icons.
+- Added a thin black outline to the large class emblem backdrop in the character creator preview.
+- Preserved creator model centering and emblem centering from V0.15.101.

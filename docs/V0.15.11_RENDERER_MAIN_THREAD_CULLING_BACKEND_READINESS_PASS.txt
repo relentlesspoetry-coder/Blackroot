@@ -1,0 +1,29 @@
+Dream Realms V0.15.11 — Renderer Main-Thread Culling and Backend Readiness Pass
+
+Scope
+- Preserve Canvas 2D gameplay rendering.
+- Avoid a risky full WebGL renderer swap in this pass.
+- Reduce main-thread render queue pressure with stricter offscreen culling.
+- Add backend capability data needed for a future WebGL/WebGPU renderer path.
+
+Changes
+- Added strict screen-space culling for entities before they enter the sorted world render queue.
+- Added strict screen-space culling for transient effects before queue insertion.
+- Added strict screen-space culling for floating damage text before queue insertion.
+- Added per-frame render queue build timing and sort timing metrics.
+- Added culling counters for tile-rectangle culls and screen-space culls.
+- Added WebGL/WebGL2/bitmaprenderer/OffscreenCanvas capability probe.
+- Expanded F3 overlay with queue cost, culling, and backend readiness lines.
+- Added CONFIG.PERFORMANCE controls for entity/effect/damage cull padding and render backend probing.
+
+Files changed
+- core/config.js
+- game.js
+- README.txt
+- VERSION.txt
+- Save/save-folder-manifest.json
+
+Notes
+- Canvas 2D remains the active renderer.
+- WebGL is probed but not used for world rendering yet.
+- This pass is intended to make the eventual WebGL renderer easier to scope by showing whether render time is queue build, queue sort, or draw execution.

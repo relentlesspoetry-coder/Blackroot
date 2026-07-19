@@ -1,0 +1,68 @@
+Dream Realms V0.13.46 — Silk Web Cavern Dungeon Structure + Encounter Polish Pass
+
+Systems changed
+- Silk Web Cavern floor generation, dungeon object placement, encounter spawning, transition staging, and runtime object interaction were updated in the dungeon owner.
+- Dungeon definition data now owns the six-member entrance offsets, three quest-giver offsets, Spirit Healer offset, three-floor identifiers, and party recommendation.
+- Quest, NPC, item, loot-table, party transition, save metadata, and release metadata were updated without changing unrelated systems.
+
+Dungeon layout and progression
+- Floor 1 remains the Outer Webworks and now functions as Webbed Entry Tunnels: a safe lantern entrance, split introductory routes, web-sac and cocoon pockets, controlled entry packs, two mini-bosses, Broodwarden Skirr, and a reachable descent.
+- Floor 2 remains the Cocoon Warrens and now functions as Venom Nest Depths: branching cocoon cells, prisoner and nursery objectives, three bridge approaches, guarded cache pockets, three mini-bosses, Matron Velyra, and a reachable descent.
+- Floor 3 remains the Queen’s Loom and now functions as Matriarch’s Hollow: elite-only royal packs, three pylon approaches, four named guardians, an optional reliquary room, Queen Arakh’Zel’s six-member arena, final treasure, and an exit route.
+- Every floor retains connected room-and-corridor links, readable floor/wall separation, web curtains, eggs, cocoons, venom runoff, bones, chitin columns, arena marks, and treasure details inside the existing renderer budget.
+
+Encounter placement
+- Replaced the large round-robin random trash loop with 32 explicit room-owned encounter packs: small spider packs, webling swarms, venom pairs, Webguard formations, cocoon guards, venom nests, warren casters, hatchery guards, royal guards, royal casters, and chitin brute groups.
+- Packs use deterministic formation offsets around authored room anchors. Each actor is resolved through the central dungeon placement validator before creation.
+- Normal Weblings and Thorn Widows introduce Floor 1 mechanics; elite density and mixed control/poison roles increase on Floor 2; Floor 3 pack members are royal elites.
+- Selected packs use the existing enemy patrol system with validated home points and bounded patrol radii. No new patrol/update loop or teleport pathing behavior was added.
+- Pack members stay clear of entrance staging and transition tiles. Boss/add behavior continues to use the existing dungeon boss ability system.
+
+Collision and pathing validation
+- Silk-specific object placement no longer clears or carves floor beneath a requested coordinate. Objects now select an already walkable, open-neighbor floor tile or fail cleanly.
+- Actor placement retains bounds, walkability, blocker, solid-object, reachability, reservation, and actor-spacing validation.
+- Exact validated coordinates are assigned after entity construction, fixing the prior half-tile constructor drift between the checked tile and final actor position.
+- Validation applies to the player, five companions, quest NPCs, Spirit Healer, encounter packs, mini-bosses, bosses, quest objectives, chests, transitions, respawns, and revive fallbacks.
+
+Entrance and quest integration
+- Floor 1 interior staging now has authored positions for the player, five companions, Field Cleric Liora, Scout Tamsin, Venomkeeper Oren, and the Cavern Spirit Healer without blocking the exit.
+- Five stable quest IDs were retained while their current definitions now form the intended chain: Clear the Webbed Mouth, Cave Moss and Silk, Venom in the Walls, Break the Webguard, and The Silk Matriarch.
+- Four Glowmoss nodes, four bound-silk nodes, and seven venom nests are placed across reachable guarded pockets. Objective interaction grants real items or advances the real quest objective and is run-scoped.
+- Existing older active quest snapshots remain completable because prior cocoons, mini-boss semantic tags, venom item drops, and all three legacy boss IDs remain present.
+
+Mini-bosses and bosses
+- Floor 1 includes Threadjaw Alpha and Old Venomsac before Broodwarden Skirr.
+- Floor 2 includes the Cocoon Tender, Pale Spinner Yssra, and Hollowfang Brood-Sire before Matron Velyra.
+- Floor 3 includes Chitinmaw, Widow of the Loom, Venom-Eye Oracle, and the Egg-Heart before Queen Arakh’Zel.
+- The three main bosses retain unique real ability sets, spider visual roles, arena metadata, gate progression, currency rolls, and boss-specific loot tables.
+
+Dungeon loot
+- Added four optional guarded Web Cache/Royal Reliquary nodes using the existing Silk Web treasure table. Optional caches are run-scoped but do not falsely mark the dungeon complete.
+- Queen and final reward pools now include the existing Webbed Queen Earring, Royal Websilk Cape, and Arakh’Zel’s Spined Shoulders alongside weapons, chest armor, rings, amulets, offhands, and the royal bag.
+- Venom-Stained Boots, Old Venomsac’s Gland, and the Antivenom Charm now expose supported poison-resistance stats.
+- Raw legacy trinket/waist Silk items now use the canonical charm slot; old saves remain safe through existing slot aliases and stable item IDs.
+- Mob C/S/G/P currency remains owned by the existing level/rank currency system and stays additive with item drops.
+
+Save/load compatibility
+- Build metadata is V0.13.46. Existing character, world, party, currency, equipment, spell, and dungeon runtime schemas are unchanged.
+- Existing boss, mini-boss, puzzle, quest, item, and loot-table IDs were preserved.
+- New objective and cache interaction keys are additive and run-scoped. Existing unrelated save data is not removed.
+- Floor geometry and encounter actors regenerate from current dungeon data while persistent boss kills, gates, interacted objects, looted nodes, and run state continue through the existing dungeon serializer.
+
+Tests run
+- All JavaScript files passed node --check.
+- Main HTML loaded all 88 existing scripts with no missing references and completed Fighter boot/update/render smoke.
+- Runtime integrity audit completed with no failures or warnings.
+- All three generated floors verified unique floor metadata, connected reachable routes, 32 encounter packs, 97 pack members, nine valid mini-boss placements, three unique valid boss placements, and six-member-sized arenas.
+- All NPCs, party members, mobs, bosses, objectives, optional caches, exits, stairs, checkpoints, and patrol homes passed central floor/reachability validation.
+- Transition tiles had no encounter member within four tiles and each boss route was reachable from the floor entrance.
+- Four Glowmoss, four silk, and seven venom objectives were reachable; live interaction completed Cave Moss and Silk plus Venom in the Walls in an isolated quest-state test.
+- An optional guarded cache granted its dungeon loot without marking the dungeon run complete.
+- All Silk Web and boss loot tables resolved existing item IDs; equipment entries normalized to valid slots and dungeon tooltip comparison executed successfully.
+- Regression smoke passed for C/S/G/P currency, poison/Purify, Cleric/Druid resurrection, visible dungeon respawn, ranged/melee auto-attacks, six-member HUD and targeting, autonomous bot AI and speech, obstacle pathing, right-click targeting, paper doll, ground drops, item comparison, Dark Woods rendering, Esc menu, and save/load.
+- ZIP integrity and packaged HTML/script validation passed.
+
+Manual browser caveats
+- Manually play each main route and side pocket to assess live encounter pacing, aggro chaining, and patrol timing with different party compositions.
+- Manually verify bridge, gate, cocoon, cache, stair, and exit interaction readability at unusual camera zoom and rotation.
+- Manually stress Purify, resurrection, ranged spacing, and chat-bubble readability during Floor 2 poison packs and all three boss fights.

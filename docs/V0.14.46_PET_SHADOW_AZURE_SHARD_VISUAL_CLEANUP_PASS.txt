@@ -1,0 +1,26 @@
+Dream Realms V0.14.46 Pet Shadow Azure Shard Visual Cleanup Pass
+
+Changed files:
+- render/entity-renderer.js
+- render/pet-identity-procedural-model.js
+- Dream Realms V0.14.46.html
+- README.txt
+- VERSION.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+
+Implementation notes:
+- EntityRenderer now detects identity-rendered pets before drawing the generic fallback entity shadow.
+- Identity pet renderers keep their model-specific single contact/hover shadow.
+- Fallback pet rendering still receives the generic renderer shadow if the identity renderer is unavailable.
+- Azure Shard Familiar no longer draws the ground-plane rune ring or animated caustic strokes below the body.
+- The familiar's body, orbiting shards, glow, hover, summon assembly, attack flare, hit reaction, nameplate anchor, and behavior logic are unchanged.
+
+Validation:
+- node --check passed across all JavaScript files.
+- Pet shadow ownership audit confirmed identity pets no longer receive the generic renderer shadow.
+- Azure Shard renderer audit confirmed the under-body rune ring and animated caustic strokes were removed.
+- ZIP integrity verified.

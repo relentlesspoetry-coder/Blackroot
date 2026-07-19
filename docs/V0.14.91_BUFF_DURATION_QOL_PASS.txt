@@ -1,0 +1,24 @@
+Dream Realms V0.14.91 — Buff Duration QoL Pass
+
+Scope:
+- Updated the owning spell data for the requested long-duration buff table.
+- No cascade patching; player, bot, ally, party, group, mercenary, and pet applications all read the same spell duration value.
+- Updated spell tooltip/spellbook duration display and buff tray tooltip formatting for minute-scale durations.
+
+Fixed durations:
+- Bard War Hymn: 12 minutes.
+- Bard Valor Chorus: 15 minutes.
+- Druid Oakskin: 13 minutes.
+- Enchanter Rune Guard: 14 minutes.
+- Fighter Battle Cry: 10 minutes.
+- Fighter Iron Guard: 11 minutes.
+- Rogue Evasion: 10 minutes.
+- Summoner Crystal Ward: 14 minutes.
+- Summoner Empower Pet / Empowered Shard: 12 minutes.
+- Necromancer Grave Armor: 15 minutes.
+- Cleric Holy Ward: 13 minutes.
+
+Validation:
+- Verified spell data durations in seconds: 600, 660, 720, 780, 840, and 900.
+- Verified tooltip and buff tray display use the same stored duration/remaining fields.
+- No spell power, cooldown, cost, target, range, mob, quest, loot, or dungeon content was removed or reduced.

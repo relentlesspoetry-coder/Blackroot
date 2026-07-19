@@ -1,0 +1,9 @@
+window.DreamRealmsSpriteSheetMetadata = window.DreamRealmsSpriteSheetMetadata || {};
+window.DreamRealmsSpriteSheetMetadata['Bones.json'] = {
+  "version": "0.13.74",
+  "type": "dream-realms-model-sprite-sheet",
+  "modelId": "Bones",
+  "modelType": "prop",
+  "image": "Bones.png",
+  "frames": {}
+};

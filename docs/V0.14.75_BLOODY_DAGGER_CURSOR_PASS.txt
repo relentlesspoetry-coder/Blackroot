@@ -1,0 +1,12 @@
+Dream Realms V0.14.75 — Bloody Dagger Cursor Pass
+
+Implemented:
+- Replaced the default browser/system cursor with a custom in-game bloody dagger cursor.
+- Added 64x64 and 32x32 cursor PNG assets under assets/cursors/.
+- Aligned the cursor hotspot to the dagger tip so click targeting and click-to-move remain accurate.
+- Applied the shared cursor style across the world canvas, menus, HUD panels, game windows, and editor UI.
+
+Validation:
+- Runtime JavaScript syntax validated with node --check.
+- Zip integrity validated with unzip -t.
+- No cascade patch layer added.

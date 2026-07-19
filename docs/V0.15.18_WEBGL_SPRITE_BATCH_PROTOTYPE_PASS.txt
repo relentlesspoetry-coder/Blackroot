@@ -1,0 +1,29 @@
+Dream Realms V0.15.18 — WebGL Sprite Batch Prototype Pass
+
+Goal
+- Begin the renderer migration toward true GPU usage without destabilizing the Canvas 2D game renderer.
+
+Implemented
+- Added a Hybrid WebGL Sprite Prototype renderer mode behind a Settings toggle.
+- Kept Canvas 2D as the visible/stable renderer.
+- Added WebGL shader/program setup for sprite-texture quads.
+- Added sprite texture cache backed by cached runtime sprite frames.
+- Added per-frame upload budgets, draw budgets, texture cache trimming, and fallback counters.
+- Added real WebGL shadow/prototype draw calls to a prototype WebGL surface for diagnostics.
+- Added F3 metrics for:
+  - renderer mode
+  - WebGL sprite prototype enabled/program-ready state
+  - sprite candidates/eligible quads
+  - WebGL texture uploads/entries/evictions
+  - WebGL draw calls/quads
+  - upload/draw time
+  - WebGL fallback/error status
+- Added Settings panel renderer toggle:
+  - Canvas 2D Stable
+  - Hybrid WebGL Prototype
+
+Safety
+- The WebGL path does not replace the gameplay renderer yet.
+- Canvas 2D remains the authoritative visible output.
+- If WebGL fails, the game remains playable through Canvas.
+- No combat, AI, class, spell, mob, zone, item, quest, save, or UI layout values were changed.

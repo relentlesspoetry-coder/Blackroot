@@ -1,0 +1,25 @@
+Dream Realms V0.10.6 - Terrain Step Effects
+===============================================
+
+Added terrain-tag-based movement effects emitted only on player step timing.
+
+Implementation ownership:
+- Terrain profile data lives in data/tiles.js.
+- Movement triggers are called from systems/collision-system.js and the water movement branch in systems/swimming-system.js.
+- Effect spawning/timing lives in systems/terrain-footstep-system.js.
+- Drawing lives in render/effects-renderer.js.
+
+Rules:
+- Effects only trigger while the player is moving, grounded, alive, not meditating, not mounted, and not swimming/falling.
+- Effects are step-timed by movement distance, not spawned every frame.
+- Particle counts are low and short-lived.
+- Tiny offscreen effects are culled before spawning.
+- Water sets wetness carryover but does not spam footstep effects while swimming.
+
+Current terrain mappings:
+- Grass / underbrush: grass blade flecks.
+- Dirt / camp: dust puffs.
+- Forest floor: leaf scatter.
+- Stone / ruins: pebble grit.
+- Cave floor: gray ash dust.
+- Water: shallow ripple profile for future wading and wetness carryover.

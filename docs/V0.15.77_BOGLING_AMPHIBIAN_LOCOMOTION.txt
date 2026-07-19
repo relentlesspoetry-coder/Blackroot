@@ -1,0 +1,3 @@
+Dream Realms V0.15.77 — Bogling Amphibian Locomotion
+
+Rebuilt Bogling locomotion so land movement uses a low amphibian hop-waddle and swimming uses a true frog-kick cycle with tuck, synchronized power stroke, webbed-foot spread, and glide. Fixed animation routing so swim overrides walk, refreshed Bogling walk/swim sprite usage where applicable, and preserved male/female Bogling support, all color variants, save/load, and fallback rendering.

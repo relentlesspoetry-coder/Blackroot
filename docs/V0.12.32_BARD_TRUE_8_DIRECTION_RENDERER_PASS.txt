@@ -1,0 +1,21 @@
+Dream Realms V0.12.32 — Bard True 8-Direction Renderer Pass
+
+Source
+- Implemented from the uploaded Bard renderer correction requiring exact 8-direction profiles rather than a front/back branch.
+
+Implementation
+- Replaced the old if (profile.backVisible) drawBackBard() else drawFrontBard() ownership path.
+- Added BARD_DIRECTION_PROFILES for east, southeast, south, southwest, west, northwest, north, and northeast.
+- Added resolveFacingName(), normalizeFacingName(), getBardProfile(), and drawBardByDirection().
+- Added explicit drawBardEast(), drawBardSoutheast(), drawBardSouth(), drawBardSouthwest(), drawBardWest(), drawBardNorthwest(), drawBardNorth(), and drawBardNortheast() direction entries.
+- All direction entries use the same Bard identity but consume different profile anchors for gear and silhouette.
+
+Direction-specific changes
+- Head X offset and face width vary per direction.
+- Side views use compressed body width and one-eye face behavior.
+- Back/back-diagonal views hide the face and draw back head/strap treatment.
+- Lute position, angle, scale, and front/back layer now vary by direction.
+- Sash angle, cape bias, shoulder skew, near/far arm order, and leg stance vary by profile.
+
+Result
+- Bard no longer collapses eight movement directions into two visual frames.

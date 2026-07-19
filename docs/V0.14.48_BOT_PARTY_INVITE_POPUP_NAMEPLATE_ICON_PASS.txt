@@ -1,0 +1,27 @@
+Dream Realms V0.14.48 — Bot Party Invite Popup Nameplate Icon Pass
+
+Scope
+- Bot Party Invite – Accept/Decline Popup Window.
+- Nameplate QoL Update – class icon positioning before names.
+
+Implemented
+- PartySystem now owns a reusable non-blocking party invite popup.
+- Incoming bot party invites render in a floating popup with leader name, level, class emblem, member count, and Accept / Decline controls.
+- Popup click handling delegates to the existing acceptPartyInvite / declinePartyInvite root paths.
+- Expired bot invites are pruned before render and blocked on accept.
+- BotPlayerSystem now writes leader class and level metadata into bot-to-player invites.
+- Party panel invite rows were retained as secondary controls and now include inline class emblems and level/class details.
+- EntityRenderer now draws class emblems before player, bot, and pet names.
+- Pet nameplates resolve the displayed emblem from the pet owner's/master's class.
+- Class trainer nameplates now draw the trainer class emblem before the trainer name.
+
+Ownership Notes
+- No cascade patch layer was added.
+- Party invite UI behavior was implemented in systems/party-system.js.
+- Bot invite metadata was implemented in systems/bot-player-system.js.
+- Player/bot/pet nameplates were implemented in render/entity-renderer.js.
+- Class trainer nameplates were implemented in systems/npc-system.js.
+
+Validation
+- node --check passed for modified JavaScript files.
+- Package ZIP integrity verified after rebuild.

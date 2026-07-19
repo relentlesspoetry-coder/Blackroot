@@ -1,0 +1,16 @@
+Dream Realms V0.14.97 - Silk Web Boss Room Engagement Fix Pass
+
+Problem:
+- Broodwarden Skirr could still acquire party targets and fire combat/ability logic before the player reached his boss room.
+- The prior pass stopped the visible miniboss ability timer issue but did not fully room-lock boss acquisition, stale threat, forced-target state, or targetless boss abilities.
+
+Root fix:
+- Added a Silk Web encounter gate owned by the dungeon system.
+- Silk Web minibosses and bosses now use their encounter-room bounds as the activation gate.
+- Threadjaw Alpha, Old Venomsac, Broodwarden Skirr, and later Silk Web bosses cannot acquire targets from the dungeon entrance or hallways before a party actor enters the encounter arena.
+- Combat-system enemy target selection now checks the dungeon encounter gate before allowing Silk Web bosses to acquire player, bot, mercenary, or pet targets.
+- Threat-system target selection now rejects and clears invalid stale/forced threat targets for dormant Silk Web bosses.
+- Boss ability casting is guarded at cast time so targetless skills such as Brood Call, shield, heal, retreat, or frenzy cannot fire while dormant.
+
+Preserved:
+- No mobs, NPCs, abilities, quests, loot, balance values, visuals, portal behavior, Bard meditation aura behavior, friendly-fire rules, resurrection behavior, or save structures were removed or reduced.

@@ -1,0 +1,21 @@
+Dream Realms V0.12.1 — Combat, Fishing, and Deep Water Revamp
+
+Baseline: corrected V0.12.0.
+
+Changes:
+- Removed loaded turn-based combat runtime.
+- Combat now uses slow real-time EverQuest-style auto-attack pacing.
+- Attack key starts auto-attack on the current/nearest target; movement remains available during combat.
+- Enemy, mercenary, and pet attack timers are slowed to make combat more readable.
+- Damage-over-time effects now tick over real time instead of enemy turns.
+- Fishing hotspots are removed from runtime play; players can cast into any valid nearby water tile.
+- Fishing line origin is anchored to the visible rod tip.
+- Aquatic fish remain visible in rivers, ponds, lakes, and cave pools.
+- Water tiles now render as deep water wells/drop-offs, using 5-12 block visual depth.
+- Terrain side faces render for north/east/south/west edges so rotated camera views keep complete block sides.
+
+Ownership:
+- Combat changes live in combat-system.js and entity AI files.
+- Fishing changes live in fishing-system.js and player fishing render helpers.
+- Terrain/deep-water changes live in terrain-renderer.js and water-depth assignment in world/cave/swimming systems.
+- No bottom-layer hotfix or wrapper scripts were added.

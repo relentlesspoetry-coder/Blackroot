@@ -1,0 +1,39 @@
+Dream Realms V0.11.9 — Profession Loop Pass
+
+Scope implemented:
+- Functional profession loop for Gathering, Mining, Fishing, Cooking, and Blacksmithing.
+- Resource nodes now have level requirements, tool requirements, gather timers, XP rewards, success rolls, depletion state, and respawn timers.
+- Expanded starter tools and profession materials.
+- Added additional cave/overworld resource node definitions for herbs, mushrooms, ores, crystals, fish pools, and late cave reagents.
+- Added profession-focused loot tables for starter mining, iron mining, cursed veins, catacomb gathering, Dark Woods fishing pools, and cave fishing pools.
+- Added cooking recipes and blacksmithing recipes that consume gathered materials and produce food, bars, components, and gear.
+- Added profession overview UI with K.
+- Skills window now reports profession XP using the V0.11.9 XP curve.
+
+Key systems changed:
+- data/items.js
+- data/resources.js
+- data/loot-tables.js
+- data/crafting.js
+- systems/resource-gathering-system.js
+- systems/crafting-system.js
+- systems/fishing-system.js
+- systems/skills-system.js
+- systems/profession-system.js
+- game.js
+- systems/world-serializer.js
+
+Deferred:
+- tool durability
+- full alchemy
+- enchanting
+- skinning
+- farming
+- player-owned crafting stations
+- crafting quality tiers
+- economy/auction systems
+
+Audit correction:
+- Removed static cave profession-node coordinates from the resource-gathering owner because procedural cave floors can move rooms/tunnels between builds.
+- Cave profession nodes now come from CaveSystem room decoration/open-cell seeding.
+- Cave fishing nodes now use walkable shore placement, keeping the blocked pool center visual while preserving interaction range.

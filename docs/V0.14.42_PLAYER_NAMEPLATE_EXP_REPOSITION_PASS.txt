@@ -1,0 +1,28 @@
+Dream Realms V0.14.42 - Player Nameplate EXP Reposition Pass
+
+Summary:
+- Redesigned the player's HUD nameplate into a two-row bot-style identity block.
+- Top row: player name and class emblem.
+- Bottom row: Lvl:X and current action/status.
+- Moved player EXP from the hotbar into the player HUD directly under HP.
+- Removed the separate Meditating label that was drawn above the world-space meditation skill EXP bar.
+
+Files changed:
+- Dream Realms V0.14.42.html
+- game.js
+- systems/ui-system.js
+- render/entity-renderer.js
+- README.txt
+- VERSION.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.42_PLAYER_NAMEPLATE_EXP_REPOSITION_PASS.txt
+
+Validation:
+- node --check passed across JavaScript files.
+- HUD order audit confirmed player nameplate -> HP -> EXP ordering.
+- Separate Meditating world label removal verified.
+- ZIP integrity passed.

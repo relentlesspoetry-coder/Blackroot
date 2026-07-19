@@ -1,0 +1,28 @@
+Dream Realms V0.12.86 — Bot Player Foundation Pass
+
+Baseline
+- Dream Realms V0.12.85 — Character Creation Revamp Pass
+- The discarded mount/class renderer branch was not used.
+
+Implemented
+- Added entities/bot-player.js as the BotPlayer entity owner.
+- Added systems/bot-player-system.js as the bot runtime owner.
+- Added AI-controlled player-like actors with names, classes, levels, gear score, quest goals, HP/mana, and class appearance data.
+- Added autonomous bot behavior: patrol/quest, engage nearby hostile enemies, heal allies, recover after death, level up, and improve gear score.
+- Added party integration: bots can be invited to/removed from the party through right-click world context actions.
+- Added bot combat integration: enemies can target bots, bots generate threat, bots can assist party fights, and bot healers support party actors.
+- Added bot XP/progression integration through party rewards and bot-owned kills.
+- Added bot save/load serialization under character runtime.botPlayers.
+- Added renderer/nameplate support for bot class emblems.
+
+Validation Targets
+- JS syntax check on all active JavaScript files.
+- HTML script order matches _script_order.json.
+- BotPlayer entity loads before game.js.
+- BotPlayerSystem installs before Runtime QA.
+- Runtime QA warns if bot owners are missing.
+- Bot spawn, party invite, XP serialization, and combat method presence validated statically.
+
+Development Notes
+- No mount system, class renderer revamp, or discarded branch files were used.
+- Bot players are intentionally a foundation implementation. Later passes should deepen quest/dungeon/economy behavior rather than expanding this pass into a full simulation layer.

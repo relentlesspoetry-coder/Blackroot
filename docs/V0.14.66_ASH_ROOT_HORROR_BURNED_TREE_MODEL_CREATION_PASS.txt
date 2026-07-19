@@ -1,0 +1,13 @@
+Dream Realms V0.14.66 — Ash Root Horror Burned Tree Model Creation Pass
+
+Changed:
+- Corrected Ashroot Horror / Ashroot Elder visual direction from subterranean root-mass horror to a walking burned-tree humanoid.
+- Reworked the runtime deadroot renderer around a tall lean trunk body, stump/burl head, split ember face, long branch arms, splintered kindling fingers, awkward trunk legs, gripping split feet, back branch stubs, smoke, ash, char flakes, ember fissures, and small persistent flame tongues.
+- Removed the prior trailing root/tendril/sensory-root visual language from the runtime Ashroot silhouette so the creature reads as a furious burnt tree that got up and started walking.
+- Preserved existing Ashroot Horror / Ashroot Elder gameplay data, spawns, targeting/click behavior, combat behavior, loot progression, visual keys, sprite-bake routing, and nameplate anchors.
+- Added assets/models/highpoly/ash_root_horror_highpoly_quadmesh_v0.14.66.obj as a corrected all-quad high-poly bake/reference source mesh.
+
+Validation:
+- Runtime JavaScript syntax checked with node --check.
+- Ash Root Horror V0.14.66 OBJ verified as quad-only.
+- ZIP integrity checked with unzip -t.

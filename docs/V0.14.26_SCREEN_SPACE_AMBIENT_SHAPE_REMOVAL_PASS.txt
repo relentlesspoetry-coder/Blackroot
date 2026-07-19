@@ -1,0 +1,24 @@
+Dream Realms V0.14.26 — Screen-Space Ambient Shape Removal Pass
+
+Summary
+- Removed the unwanted drifting translucent screen-space shapes reported in caves and overworld areas.
+- The source was the legacy post-world depth-fog oval overlay and animated sunshaft ground-patch pass.
+- This pass removes those shapes at the owning render path instead of adding a wrapper or cascade patch.
+
+Files changed
+- game.js
+- render/effects-renderer.js
+- Dream Realms V0.14.26.html
+- README.txt
+- VERSION.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.26_SCREEN_SPACE_AMBIENT_SHAPE_REMOVAL_PASS.txt
+
+Validation
+- JavaScript syntax validated with node --check.
+- Render-path audit confirms the old frame-level drawDepthFog call is removed.
+- ZIP integrity verified.

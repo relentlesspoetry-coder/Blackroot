@@ -1,0 +1,38 @@
+Dream Realms V0.12.66 — Pet Revamp Polish Pass
+
+Scope:
+- Correct the V0.12.65 pet-model direction based on QA feedback.
+- Make the Summoner pet a floating blue ghostly shard with no legs.
+- Rebuild the Necromancer pet into a cleaner skeletal warrior / bone servant.
+
+Changed:
+- render/pet-identity-procedural-model.js
+- entities/pet.js
+- VERSION.txt
+- README.txt
+- docs/MODULAR_HISTORY.txt
+- Dream Realms V0.12.66.html
+
+Summoner pet:
+- No legs or grounded animal body.
+- Floating blue shard familiar silhouette.
+- Hover / glide motion instead of walk legs.
+- Spectral mist trail.
+- Orbiting shard fragments.
+- Blue-white arcane core glow.
+- Summon rune ring and shard assembly visuals.
+- Attack flare, hit flicker, and death fade support.
+
+Necromancer pet:
+- Cleaner skeletal warrior silhouette.
+- Larger readable skull.
+- Cleaner rib cage and spine.
+- Better pelvis, arms, legs, and feet.
+- Tattered cloth and simple shoulder armor.
+- Necrotic eye and chest glow.
+- Clearer bone-blade attack silhouette.
+
+Cascade status:
+- No bottom-of-file override layer.
+- No delayed repair layer.
+- No wrapper hotfix.

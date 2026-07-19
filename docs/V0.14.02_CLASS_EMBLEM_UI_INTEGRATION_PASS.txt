@@ -1,0 +1,20 @@
+Dream Realms V0.14.02 — Class Emblem UI Integration Pass
+
+Summary
+- Integrated the new class emblem badge art into the character HUD, character window, and player/bot nameplates.
+- Added a sprite-sheet asset for the class badges and kept vector fallback logic for nameplates.
+
+Files Changed
+- assets/ui/class-emblems.png
+- systems/ui-system.js
+- render/entity-renderer.js
+- Dream Realms V0.14.02.html
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.02_CLASS_EMBLEM_UI_INTEGRATION_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- Asset presence verified.
+- ZIP integrity verified with `unzip -t`.

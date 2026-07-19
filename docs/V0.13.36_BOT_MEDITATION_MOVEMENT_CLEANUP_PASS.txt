@@ -1,0 +1,8 @@
+V0.13.36 — Bot Meditation Movement Cleanup Pass
+
+- Added centralized meditation-state cleanup used by interrupted bot, merc, and player meditation exits.
+- Meditation exit now clears stale sitting/rest/recovery flags, pending meditation intent, animation state, cached speed/path data, and meditation-only movement penalties.
+- Companion pathing now force-recalculates after meditation ends instead of reusing a path built while the actor was sitting.
+- Bot and companion movement now resolve speed through the owning movement-speed resolver, where meditation returns zero only while actively meditating.
+- Status-effect ticking now includes bot players, so real slows/snares/roots expire correctly on bots.
+- Bot save/load restoration now strips persisted meditation/rest/recovery state so old saves cannot reload bots into a permanent slow state.

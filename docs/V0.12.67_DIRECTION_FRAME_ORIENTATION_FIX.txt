@@ -1,0 +1,39 @@
+Dream Realms V0.12.67 — Direction Frame Orientation Fix
+
+Scope:
+- Fix inverted directional animation rows reported in V0.12.66.
+- Down-screen movement must show front/down frames.
+- Up-screen movement must show back/up frames.
+- Preserve canonical 8-row format:
+  Row 0 Up
+  Row 1 Down
+  Row 2 Left
+  Row 3 Right
+  Row 4 Up Right
+  Row 5 Down Right
+  Row 6 Up Left
+  Row 7 Down Left
+
+Changed:
+- render/humanoid-animation-system.js
+- render/entity-renderer.js
+- systems/runtime-qa-system.js
+- VERSION.txt
+- README.txt
+- docs/MODULAR_HISTORY.txt
+- Dream Realms V0.12.67.html
+
+Technical notes:
+- Added screen-vector row resolution to HumanoidAnimationSystem.
+- EntityRenderer.actorFacingName now routes live facingX/facingY through projected screen motion.
+- This prevents raw world north/south assumptions from flipping visual rows after camera/projection transforms.
+- Runtime QA now verifies:
+  - bottom-screen vector -> Row 1 Down/front
+  - top-screen vector -> Row 0 Up/back
+  - screen-right vector -> Row 3 Right
+  - screen-left vector -> Row 2 Left
+
+Cascade status:
+- No bottom-of-file override layer.
+- No delayed setTimeout repair layer.
+- No monkey patch wrapper.

@@ -1,0 +1,27 @@
+Dream Realms V0.14.38 — Meditation UI Label Fix Pass
+
+Purpose
+- Add a clear centered "Meditating" label above the player meditation EXP bar while active meditation is running.
+
+Implementation
+- Updated render/entity-renderer.js in the existing player meditation EXP bar render path.
+- The label is drawn immediately above the meditation EXP bar and centered to the same anchor.
+- The label is gated by the same active meditation condition as the EXP bar, so it appears when meditation starts and disappears when meditation ends or is interrupted.
+- Preserved meditation EXP text, skill progression, animation state, cancellation rules, and bar placement.
+
+Files changed
+- render/entity-renderer.js
+- Dream Realms V0.14.38.html
+- README.txt
+- VERSION.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.38_MEDITATION_UI_LABEL_FIX_PASS.txt
+
+Validation
+- node --check passed across all JavaScript files.
+- Meditation label render path verified in render/entity-renderer.js.
+- ZIP integrity checked with unzip -t.

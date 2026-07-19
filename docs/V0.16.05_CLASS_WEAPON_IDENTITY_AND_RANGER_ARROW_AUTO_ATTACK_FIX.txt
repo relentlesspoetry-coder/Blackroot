@@ -1,0 +1,15 @@
+Dream Realms V0.16.05 - Class Weapon Identity and Ranger Arrow Auto Attack Fix
+
+Summary
+- Fixed Warden in-world weapon visuals so they match the character creation model: living shield + geode/petrified maul.
+- Fixed Ranger in-world weapon visuals so the bow remains visible instead of generic starter weapons.
+- Added Ranger arrow projectile rendering for auto attacks.
+
+Files
+- render/class-identity-procedural-model.js
+- render/paperdoll-equipment-renderer.js
+- systems/combat-system.js
+- systems/effects-system.js
+- render/effects-renderer.js
+- Dream Realms V0.16.05.html
+- PATCH_NOTES.md

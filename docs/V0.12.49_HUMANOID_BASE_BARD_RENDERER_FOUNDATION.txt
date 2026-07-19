@@ -1,0 +1,18 @@
+Dream Realms V0.12.49 - Humanoid Base Bard Renderer Foundation
+
+Implemented:
+- Added render/humanoid-animation-system.js as the shared direction/action pose owner.
+- Added render/humanoid-base-renderer.js as the reusable humanoid rig/body renderer.
+- Rebuilt render/bard-procedural-model.js on the humanoid base instead of one-off Bard-only body math.
+- Bard now resolves all 8 facing directions: N, NE, E, SE, S, SW, W, NW.
+- Bard supports reusable humanoid action states: idle, walk, attack, cast, hit reaction, death, meditate/rest, and fishing passthrough.
+- Bard instrument now uses rig anchors and changes layer/placement by facing and action.
+- Added debug-facing label support when the debug overlay is enabled.
+- Updated load order, patch notes, version metadata, README, and modular HTML script tags.
+
+No intentional changes:
+- Inventory/bags unchanged.
+- Vendor buy/sell unchanged.
+- Corpse loot unchanged.
+- Dialogue windows unchanged.
+- Save/load unchanged.

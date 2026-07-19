@@ -1,0 +1,33 @@
+V0.13.40 — Dark Woods Mob Visual Revamp Pass
+
+Summary
+- Added a Dark Woods mob procedural renderer ownership layer for species-specific enemy silhouettes.
+- Added intentional visual keys and animation profiles for Dark Woods mob drafts and runtime enemy types.
+- Preserved combat stats, loot tables, spawn placement, quest references, aggro behavior, collision, pathfinding, and save compatibility.
+
+Renderer Coverage
+- Wolves now use a long-bodied predator model with shoulder mass, lowered head, muzzle, ears, tail, fur ridge, paws, bite/lunge pose, hit reaction, and death collapse.
+- Spiders now use an arachnid model with abdomen, thorax/head cluster, eight readable legs, fangs, eye cluster, skitter gait, web markings, and curled death pose.
+- Briar Boars now use a heavy tusker model with front mass, bristled ridge, snout, tusks, charge stance, and elite scar/detail treatment.
+- Hollow Stags now use a deepwood stag model with long legs, body/neck separation, antlers, sweep posture, and thorn-crowned rare variant support.
+- Rotlings now use a corrupted plant/rootling model with root legs, thorn arms, bark body, glowing eyes, and snare/corruption silhouette.
+- Duskwisps/Grave Wisps now use a floating spirit model with translucent glow body, trailing wisps, and caster-oriented visual state.
+- Ashroot Horrors/Elders now use a corrupted deadroot bruiser model with tree-trunk body, root limbs, branch crown, ember core, and named-elite scale/detail.
+- Cave Bats now use a flier model with wings, ears, glowing eyes, and flap animation.
+- Bone Watchers/Mine Husks now use an undead skeletal humanoid model with skull, rib cage, thin limbs, weapon, broken cloth/gear, and bone-pile death.
+- Crystal Crawlers now use a low crawler model with crystal spines, segmented legs, glowing facets, and death shard collapse.
+- Hostile humanoid/bandit renderer support was added for Dark Woods outlaw-style mobs when present in data.
+
+Technical Changes
+- Added render/dark-woods-mob-procedural-model.js.
+- Added DarkWoodsMobProceduralModel registration under DreamRealms.render.
+- EntityRenderer now prefers the Dark Woods species renderer before the generic enemy fallback while preserving the dedicated Silk Web Cavern spider renderer.
+- Enemy construction now carries rendererId, mobVisualKey, visualScale, animationProfile, and family from type data.
+- Runtime mob spawn type generation now forwards visual fields from mob drafts.
+- Dark Woods mob drafts and base enemy type data now declare deliberate renderer/model keys.
+
+Validation Notes
+- All Dark Woods mob families now resolve to non-generic visual keys.
+- Every renderer exposes idle, walk, attack, hit, death plus special-action compatibility.
+- The renderer maps into the existing 8-direction actor facing pipeline.
+- Elite, rare, and named mobs resolve stronger scale/detail/glow variants without altering gameplay stats.

@@ -1,0 +1,15 @@
+Dream Realms V0.14.50 Herb Gathering Kneel Cut Animation Pass
+
+Goal:
+Replace the generic herb harvesting reach with a readable ground-level kneel/bend animation that shows the player cutting and plucking the herb during the full gather duration.
+
+Implemented:
+- HumanoidAnimationSystem now exposes gather loop, cut phase, cut impact, and completion-hold fields for renderers.
+- HumanoidBaseRenderer now owns the herb-gathering body silhouette: lower pelvis, forward/down chest/head reach, ground-level hands, and kneeling leg placement.
+- ClassIdentityProceduralModel now renders the harvest knife/cut line, cut flash, disturbed leaves, and lifted herb sprig at completion.
+- ResourceGatheringSystem now holds the successful herb completion pose briefly before clearing back to idle.
+- Movement and damage cancellation remain rooted in ResourceGatheringSystem update/cancel paths.
+
+Validation:
+- node --check run across all JavaScript files.
+- ZIP integrity verified after packaging.

@@ -1,0 +1,91 @@
+Dream Realms V0.15.58 — 3D Renderer Entity Models Phase 4
+
+Scope: Phase 4 (Entity Mesh System) of the 3D conversion, building on Phase
+1-3 (V0.15.56-57). Still fully opt-in via Settings > Renderer > "3D
+Prototype"; Canvas 2D remains the default and is unaffected. All changes are
+inside systems/render3d-system.js.
+
+Replaced the Phase 1 placeholder (one shared capsule mesh, color-coded only
+by entity.kind) with a real classification-driven model registry:
+
+- classifyEntity(entity) maps every live entity (game.entities - player,
+  bot, remote, merc, pet, npc, enemy) to a {family, key} pair using the same
+  fields the 2D game already uses to distinguish them:
+  - Player/bot/remote/merc: entity.className (all 8 classes: Fighter,
+    Cleric, Necromancer, Rogue, Bard, Druid, Enchanter, Summoner). Mercs
+    reuse the class registry directly since each merc role already maps 1:1
+    to a class flavor (data/mercs.js roleKey -> className).
+  - Pet: entity.visualModel (summonerFloatingShard, necroBoneServant,
+    necroSkeletonKnight).
+  - NPC: entity.role/npcRole grouped into 7 readable archetypes (vendor,
+    healer, trainer, recruiter, scholar, guard, villager) - mirrors an
+    archetype grouping the game itself already does for NPC visuals.
+  - Enemy: entity.rendererId first (the same field the 2D renderer uses to
+    pick a monster template - one entry covers every named mob sharing it,
+    e.g. rendererId 'spider' covers both Thorn Widow and Webling Skitterer),
+    falling back to entity.family for elites/bosses that don't set
+    rendererId (e.g. family 'silk_web_spider' covers all 14 Silk Web Cavern
+    elites with one visual entry).
+- Four body-shape builders (buildHumanoidGroup, buildQuadrupedGroup,
+  buildSpiderGroup, buildFloatingGroup) compose primitive Three.js geometry
+  (capsule/cylinder body, sphere head, cone/torus/box accessories, box/
+  cylinder weapons) into a THREE.Group per classification. Player classes
+  and NPC archetypes get class-appropriate head accessory (helmet/hood/hat/
+  halo/crown) and weapon (sword/staff/daggers/lute/orb) combinations; class
+  colors are read from the real per-class theme (DR.CLASSES[name].color),
+  not invented.
+- Geometries and materials are cached per (family:key) via a new
+  sharedMaterial() (alongside the existing sharedGeometry()), so every
+  entity of the same class/family shares GPU buffers; only each entity's
+  own Group transform is unique. Player, bots, and all other entities now
+  flow through the same ensureEntityMesh()/updateEntities() path - the
+  Phase 1 player-only special case (separate playerMesh field) was removed.
+
+Fixed a real bug caught during validation: buildQuadrupedGroup used
+`new THREE.CapsuleGeometry(...)` directly, without the capability guard the
+Phase 1 humanoid body already had. THREE.CapsuleGeometry does not exist in
+the vendored r128 build (added in a later Three.js release) - unguarded, it
+threw on every enemy render. Extracted the guard into a shared
+capsuleOrCylinder() helper (falls back to a stretched cylinder) and now use
+it everywhere a capsule shape is needed, closing off this class of bug at
+any future call site too.
+
+Verified this pass (Playwright + headless Chromium, live game state, real
+character in Dark Woods): every one of 257 live entities (1 player, 8 bots,
+248 enemies) resolved to a real classification with zero fallback to the
+generic default - 8 distinct player/bot classes and 7 distinct enemy
+families (wolf, boar, stag, rotling, wisp, deadroot, spider) all present
+and rendering with no console errors or exceptions. Visual spot-checks
+(teleporting the player next to a wolf, a boar, and a bot) confirm distinct
+readable silhouettes: quadruped body shape clearly differs from the
+humanoid capsule, and different player/bot classes show different colors,
+head accessories, and weapon shapes. node --check passes on all 180 .js
+files; all .json files validate.
+
+Known limitations (unchanged in kind from Phase 1-3, still scoped for later
+phases):
+- These are simple primitive-composed silhouettes ("full unique detailed
+  mesh" per class/monster, as directed, means hand-built geometry per
+  family - not yet at high visual fidelity; a later pass can add more
+  detail per family without changing the classification/registry
+  architecture, which is exactly what it's designed for).
+- Not every single named boss/miniboss/elite got a bespoke shape - most
+  reuse their family's base shape with a distinct color/size (already
+  correctly wired via ENEMY_VISUALS, e.g. silk_web_boss/silk_web_miniboss
+  are larger/differently-colored spiders) rather than a fully unique boss
+  silhouette per name; only the 7 families actually encountered in Dark
+  Woods overworld testing were visually spot-checked, not every one of the
+  ~20 family entries in the table (the untested ones follow the identical
+  code path as the verified ones, so risk is low, but they are unverified
+  by direct observation).
+- No animation state machine yet (idle/walk/attack poses) - meshes are
+  static poses that translate/rotate with the entity (Phase 5).
+- No 3D combat/spell VFX or raycast-based targeting yet (Phase 6-7).
+- Camera pitch is still fixed, no terrain-collision-safe arc yet (Phase 7).
+
+Files changed:
+- systems/render3d-system.js
+- core/config.js
+- VERSION.txt
+- README.txt
+- Dream Realms V0.15.52.html (title + both patch notes panels)

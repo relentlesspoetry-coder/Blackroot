@@ -1,0 +1,38 @@
+Dream Realms V0.15.06 - CPU/GPU Performance Optimization Pass
+
+Goal
+- Reduce main-thread CPU and Canvas 2D pixel/render pressure without removing gameplay systems, mobs, quests, caves, items, spells, UI panels, or save data.
+
+Implemented
+1. Canvas DPR cap
+- Added configurable performance settings in core/config.js.
+- Default runtime DPR is capped at 1.25 in balanced mode instead of allowing 2.0.
+- Quality mode can still allow a higher 1.5 DPR through dreamRealmsPerformanceMode = quality.
+
+2. Render radius reduction
+- Reduced CONFIG.RENDER_PAD from 28 to 20.
+- Added Game.worldRenderPadTiles() so render radius is now driven by performance config.
+
+3. Expensive overlay budget
+- Added Game.shouldDrawExpensiveWorldEffect().
+- Disabled sun shafts and world dust motes in balanced mode.
+- Weather foreground and sky overlay remain enabled by default.
+
+4. Terrain chunk cache validation
+- Changed getOrBuildTerrainChunk() so it no longer recomputes terrainChunkSignature() every visible chunk every frame.
+- Existing terrain invalidation still deletes affected chunks immediately.
+- Safety signature audits now occur every 180 frames by default.
+
+5. Enemy spatial grid
+- Added per-frame enemy spatial indexing.
+- Added queryEnemiesNearPoint() and queryEnemiesNearEntity().
+- Replaced several repeated full enemy scans in combat, party assist targeting, bot quest targeting, autonomous bot assist targeting, AoE debuff targeting, and enemy assist calls.
+
+6. UI/map cadence
+- Increased UI update intervals slightly.
+- Minimap refresh cadence now uses CONFIG.PERFORMANCE.minimapInterval.
+- Full map redraw is throttled while open instead of redrawing every simulation frame.
+
+Notes
+- This package contains sprite-sheet metadata but no generated sprite PNGs. Runtime still falls back to procedural renderers when sprite images are missing.
+- This pass does not convert the renderer to WebGL/WebGPU. That remains the larger GPU-utilization architecture step.

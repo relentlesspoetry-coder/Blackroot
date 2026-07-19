@@ -1,0 +1,299 @@
+Dream Realms V0.15.83 — Phase 5: Event/Quest/Condition/Variable Parity
+=========================================================================
+
+Scope: per the Phase 5 brief that followed Phase 4
+(docs/PHASE_4_NPC_AI_SPAWN_LEASH_LOOT.txt) - extend
+systems/event-system.js, systems/quest-system.js, systems/npc-system.js,
+data/events.js, data/quests.js with event pages, conditions, variables,
+self-switches, event command execution, and deterministic quest state
+transitions, while keeping the existing quest/dialogue UI working. No
+player-facing balance was changed for any currently shipped event, quest,
+or NPC.
+
+
+1. AUDIT FIRST (read-only, before any code change)
+------------------------------------------------------
+Read systems/event-system.js, systems/quest-system.js, and
+systems/npc-system.js in full, plus data/events.js and data/quests.js,
+before designing anything. Key findings:
+
+- Event command execution was ALREADY fully implemented and real, not
+  decorative: placed event markers (`game.editorEvents[zone]`, distinct
+  instances copied from the `DR.EVENT_TYPES` templates at placement time)
+  trigger via interact-key or touch, and all 5 existing command types
+  (`showText`, `openChest`, `openShop`, `warp`, `questHook`) already
+  execute against real live game state (real dialogue, real loot rolls,
+  a real vendor window, real player movement, real quest calls) - none of
+  them were editor-only placeholders. This meant Phase 5 did not need to
+  build a command interpreter from scratch, only extend the existing one.
+- **No event pages, no variables, no self-switches existed anywhere in the
+  codebase**, confirmed by a broad project-wide grep (not just the 5
+  target files) for variable/switch/flag terminology - every hit was
+  unrelated (JS `switch` statements, physical lever/switch dungeon puzzle
+  objects, decorative "flag" map-object strings, telemetry counters). This
+  is the clearest, most direct gap named in the brief.
+- `node.conditions` is a field that DOES already exist on placed event
+  nodes, but is **completely unread at runtime** - the exact same
+  "vocabulary exists, zero consumers" pattern found and fixed for status
+  tags in Phase 3 and the party-loot tag in Phase 4. The only code that
+  ever WRITES a non-empty `conditions` array is the quest-hook editor tool
+  (`editor-system.js`'s `makeQuestHookNode`/`assignQuestHookAt`, which set
+  `conditions: [{type:'questAvailable', questId}]`) - every other event
+  type always has `conditions: []`.
+- Quest state transitions (discovered -> active -> ready -> completed) are
+  already centralized in `quest-system.js` (`acceptQuest`/`completeQuest`/
+  `isQuestComplete`), already idempotent against double-calls, and already
+  enforce quest prerequisites (`prerequisiteQuestIds`) and level gates
+  correctly. No gap, no change needed to the core state machine.
+- NPC quest-giving and `quest-system.js`'s own `interact()` both correctly
+  funnel through one shared decision function, `chooseQuestFromSource`
+  (returns `{id, mode}` where mode is `complete|accept|locked|progress|
+  done`) - but `event-system.js`'s `executeQuestHook` **duplicated an
+  equivalent, less complete version of the same logic inline**, missing
+  the `locked` case entirely. A player interacting with a quest-hook
+  marker for a quest they couldn't yet accept (prerequisite or level not
+  met) would incorrectly be told "You have already completed this quest,"
+  a real, confirmed messaging bug.
+- NPC dialogue text selection (`npc-system.js`'s `dialogueText(npc)`) is a
+  plain ad hoc if/else priority chain with no condition-based branching at
+  all.
+
+
+2. WHAT WAS IMPLEMENTED
+-------------------------
+
+a) Variables and self-switches (systems/event-system.js)
+   `eventRuntimeState` (the existing per-save event runtime blob, already
+   round-tripped through `serializeState()`/`importState()` and the
+   world-save pipeline with zero changes needed there) gained two new,
+   previously-nonexistent sections: `variables` (a flat name -> number/
+   string map) and `selfSwitches` (a map keyed by the same stable
+   `eventKey()` already used for `activatedEvents`, each value an
+   `{A,B,C,D}` boolean bucket - one independent set of switches per placed
+   event instance, RPG-Maker/Intersect convention). New accessor methods:
+   `getEventVariable(name, fallback)`/`setEventVariable(name, value)` and
+   `getEventSelfSwitch(node, letter)`/`setEventSelfSwitch(node, letter,
+   value)`. Both start empty and are only ever written by the new event
+   commands below - no existing save produces any entries.
+
+b) Condition evaluator (systems/event-system.js)
+   `evaluateEventCondition(condition, node)` supports six condition types:
+   `variable` (comparison with `op` in `==|!=|>=|<=|>|<`, numeric-aware),
+   `selfSwitch` (checks a node's own A-D flag), `questAvailable`/
+   `questCompleted` (delegates to `game.questSystem`), `level` (player
+   level threshold), and `itemOwned` (inventory stack-quantity check).
+   `evaluateEventConditions(conditions, node)` is the array form (AND
+   semantics - RPG-Maker "all conditions must be true" convention).
+
+c) Where the conditions gate was (and deliberately was NOT) wired in
+   `interactWithEvent`'s generic command-list fallback now calls
+   `evaluateEventConditions(node.conditions, node)` before running
+   `executeCommands` - but this gate sits AFTER the quest/dialogue/chest/
+   shop/warp category shortcuts, which return earlier and never reach it.
+   This was a deliberate, carefully-reasoned decision: the ONE place
+   `conditions` is ever populated today is the quest-hook tool's
+   `{type:'questAvailable', questId}`, and quest-hook nodes always take the
+   `category === 'quest'` shortcut. Gating that shortcut on
+   `isQuestAvailable` would have been WRONG - `isQuestAvailable` returns
+   false for a quest that's already active, so gating interaction on it
+   would have blocked players from re-interacting with a quest-hook marker
+   to check progress or turn in, a real regression `executeQuestHook`'s
+   own logic already correctly avoids. Net effect: the new gate is a
+   complete no-op for every existing node (quest-hook nodes bypass it
+   entirely via the category shortcut; every other existing node has an
+   empty `conditions` array) - it only activates for a future generic/
+   custom event that declares real conditions and reaches the fallback
+   path.
+
+d) New event commands (systems/event-system.js `executeCommands`)
+   `setVariable` (`{name, op: 'set'|'add'|'sub', value}`) and
+   `setSelfSwitch` (`{key: 'A'-'D', value}`) - the write-side counterpart
+   to (a), so future event content can actually manipulate the new state.
+   No existing event data uses either command.
+
+e) Quest-hook duplication fix (systems/event-system.js `executeQuestHook`)
+   Rewritten to call the same `game.questSystem.chooseQuestFromSource(...)`
+   used by `quest-system.js`'s own `interact()` and by `npc-system.js`,
+   instead of reimplementing an incomplete subset of that logic inline.
+   This is a genuine bug fix (see audit finding above) - the
+   complete/accept/progress outcomes are unchanged, but the previously-
+   missing `locked` case now correctly shows
+   `unavailableQuestReason(questId)` (e.g. "Complete X first." or
+   "Requires level N.") instead of the wrong "already completed" message.
+
+f) Optional quest.requiredConditions (systems/quest-system.js)
+   `isQuestAvailable`/`unavailableQuestReason` now also check an optional
+   `quest.requiredConditions` array, reusing the exact same condition
+   format/evaluator as (b) via `game.eventSystem.evaluateEventConditions`.
+   No shipped quest sets this field, so it is a no-op for every current
+   quest - this only gives a future quest a way to gate on the new
+   variable/self-switch state (or level/item/quest conditions) in addition
+   to the existing prerequisite-quest and min-level gates, which are
+   unchanged.
+
+g) Optional NPC dialogueVariants (systems/npc-system.js)
+   `dialogueText(npc)` now checks an optional `npc.dialogueVariants` array
+   first (each entry `{text, conditions}`, first matching condition set
+   wins), reusing the same evaluator, before falling through to the
+   existing `dialogueText`/`dialogueId`/`quest.beforeOfferText`/`notes`/
+   generic-fallback chain, which is completely unchanged. No shipped NPC
+   declares `dialogueVariants` today.
+
+h) data/events.js and data/quests.js were deliberately NOT changed this
+   phase (see Known Limitations) - the gap was entirely in the systems
+   files' runtime logic, not in the data shapes those files already
+   define; the existing generic `event_marker` template already supports
+   attaching the new `setVariable`/`setSelfSwitch` commands to any placed
+   instance without a new template being required.
+
+
+3. FILES CHANGED THIS PHASE
+------------------------------
+- systems/event-system.js (variables, self-switches, condition evaluator,
+  new commands, conditions gate on the generic fallback, quest-hook
+  duplication fix)
+- systems/quest-system.js (optional requiredConditions gate)
+- systems/npc-system.js (optional dialogueVariants)
+- core/config.js (version bump + changelog comment)
+- VERSION.txt, README.txt (version bump, Phase 5 summary)
+- docs/PHASE_5_EVENT_QUEST_CONDITION_VARIABLE.txt (this file - new)
+
+data/events.js and data/quests.js were read in full for the audit but
+intentionally not modified this phase - see section 2h and Known
+Limitations.
+
+
+4. SYSTEMS INTENTIONALLY NOT TOUCHED
+----------------------------------------
+- The existing 5 event command executors (`showText`/`openChest`/
+  `openShop`/`warp`/`questHook`) - already real and correct, only extended
+  with two new command types alongside them.
+- Quest state transition functions (`acceptQuest`/`completeQuest`/
+  `isQuestComplete`/`cloneQuestForRuntime`) - audited, already correct and
+  idempotent, not changed.
+- The quest/dialogue log UI (`ensureQuestLogWindow`/`renderQuestLog`,
+  the NPC dialogue/vendor panels) - not touched; every function/field
+  those panels read (`chooseQuestFromSource`, `questById`, `completeQuest`,
+  `acceptQuest`, `isQuestComplete`, `isQuestAvailable`,
+  `state.active[id]`, `serializeState`/`importState`) keeps its exact
+  existing signature and return contract.
+- Everything out of Phase 5's scope per the original brief: renderers,
+  editor UI beyond what already writes `node.conditions`, combat/spell/
+  status/NPC-AI work already completed in Phases 3-4.
+
+
+5. VALIDATION RESULTS
+-----------------------
+- `node --check` on every changed file: 0 syntax errors.
+- Full-project sweep (`find . -name "*.js" ... node --check`, excluding
+  vendor/three.min.js and the bundled blender/ tooling): 0 syntax errors.
+- Built 47 automated test cases across three Node harnesses loading the
+  actual edited files (via the real `registerDreamRealmsSystem`/
+  `install(game)` bootstrap path, not reimplementations):
+  - 33 cases against the real, installed event-system.js runtime: get/set
+    variable round-trip and fallback defaults; get/set self-switch
+    round-trip, independence between letters on the same node, and
+    independence between different node instances; all 6 condition types
+    (variable with every comparison operator, selfSwitch, level,
+    itemOwned including stack-quantity math) both passing and failing;
+    `evaluateEventConditions` AND-semantics (empty array true, all-pass
+    true, one-fail false); the new `setVariable` command's `set`/`add`/
+    `sub` ops and the new `setSelfSwitch` command, executed through the
+    real `executeCommands` dispatcher; and - the most important regression
+    check - a generic event node with a failing condition is correctly
+    blocked (no dialogue shown), a generic node with a passing condition
+    executes normally, and a quest-category node with the SAME kind of
+    restrictive `conditions` field is confirmed to completely bypass the
+    gate (proving the deliberate category-shortcut-first design actually
+    holds at runtime, not just on paper).
+  - 10 cases against the real, integrated event-system.js +
+    quest-system.js quest-hook flow: accepting an available quest through
+    a quest-hook node; re-interacting while active correctly reports
+    progress (not a re-accept); completing a finished quest through the
+    same node; a quest blocked by an unmet `requiredConditions` entry
+    correctly reports "Requirements not yet met" (NOT the old incorrect
+    "already completed" message) and is confirmed NOT to have been
+    accepted; the same quest becomes acceptable once its condition is
+    satisfied by setting the relevant event variable; and a separate
+    quest whose prerequisite was already satisfied accepts normally.
+  - 4 cases against the real, installed npc-system.js `dialogueText`:
+    confirms no-`dialogueVariants` NPCs fall through to the exact prior
+    priority chain unchanged; confirms an explicit `npc.dialogueText`
+    still wins when no variants are declared; confirms first-matching-
+    variant-wins semantics; confirms falling through to the existing
+    chain when no variant's conditions match.
+  All 47 cases passed.
+
+
+6. KNOWN LIMITATIONS / FOLLOW-UPS FOR A FUTURE PHASE
+--------------------------------------------------------
+- This was verified via Node-based test harnesses against the real edited
+  files, not a live browser session (this environment cannot run a
+  browser). Interacting with real placed quest-hook/dialogue/chest/shop/
+  warp markers and real quest-giving NPCs in an actual game session is
+  something only a live session can truly confirm - see the test
+  checklist.
+- True "event pages" (multiple alternative behavior sets for the same
+  placed event, with the editor able to author more than one page and the
+  runtime picking the first page whose conditions pass) were NOT built as
+  a distinct authoring concept - only a single conditions-gated command
+  list per node. The new self-switches + conditions primitives are the
+  building blocks a future phase could use to implement true multi-page
+  events (e.g. page 2's conditions checking a self-switch that page 1's
+  commands set), but the editor UI and node data shape for authoring
+  multiple pages was not added this phase.
+- data/events.js was not given a new template type demonstrating
+  `setVariable`/`setSelfSwitch`/`conditions` - the existing generic
+  `event_marker` template already supports attaching these to any placed
+  instance via its `commands`/`conditions` arrays, so a new template
+  entry was judged to be decoration rather than closing a real gap.
+  data/quests.js was not given an example quest using
+  `requiredConditions` - adding one would mean either modifying an
+  existing quest's gating (a real content/balance change) or inventing an
+  entirely new quest, neither of which was asked for.
+- The condition evaluator's `itemOwned` type checks `game.inventory`
+  directly; it does not check bank storage, mercenary/pet inventories, or
+  equipped-item slots. This matches what was actually needed for a
+  first, safe implementation - broadening it is straightforward if a
+  future quest/event genuinely needs it.
+- No editor UI was added for authoring variables, self-switches,
+  conditions, or dialogueVariants - these are currently only settable via
+  hand-authored data or the new runtime commands, not through a visual
+  tool. Adding editor support is a reasonable follow-up once real content
+  starts using these primitives.
+
+
+7. TEST CHECKLIST (run in a real browser before shipping)
+--------------------------------------------------------------
+[ ] Interact with every existing quest-hook event marker in Dark Woods/
+    caves; confirm accept/progress/complete text and behavior is
+    identical to before this build.
+[ ] Find a quest gated by a prerequisite (e.g. any Silk Web Cavern chain
+    quest before its prerequisite is done) and interact with its
+    quest-hook marker or quest-giving NPC; confirm it now shows a correct
+    "Complete X first."/"Requires level N." message rather than an
+    incorrect "already completed" message.
+[ ] Interact with every existing dialogue/chest/shop/warp event marker;
+    confirm behavior is completely unchanged (none of these should ever
+    be affected by the new conditions gate).
+[ ] Talk to every existing quest-giving and vendor NPC; confirm dialogue
+    text is identical to before this build.
+[ ] DevTools console shows no new errors while placing/testing events in
+    the F9/F10 editor or interacting with events/NPCs/quests in normal
+    play.
+[ ] Save and reload a world; confirm the new (empty, for any existing
+    save) `variables`/`selfSwitches` sections round-trip without error
+    and do not corrupt `activatedEvents`/`openedChests`.
+
+
+8. NEXT RECOMMENDED PHASE
+----------------------------
+Phase 6 per the original brief: map/layer/attribute/warp/resource/
+crafting parity - extend systems/world-system.js, systems/cave-system.js,
+systems/dungeon-system.js, systems/collision-system.js,
+systems/resource-gathering-system.js, systems/crafting-system.js,
+systems/layered-map-editor-system.js with Intersect-style map attributes
+and descriptor validation, while preserving the current 16-layer map
+workflow. This phase's condition evaluator and the Phase 4 layered-map
+attribute fix are natural building blocks for that phase's map-attribute
+validation work.

@@ -1,0 +1,28 @@
+Dream Realms V0.14.79 — Paperdoll Hardcoded Weapon Suppression Fix Pass
+
+Implemented:
+- Added centralized paperdoll equipment queries:
+  - hasEquippedWeapon(actor)
+  - hasEquippedOffhand(actor)
+  - slotItem(actor, slot)
+- Fixed class model default weapon visibility so hardcoded/default weapons are hidden while actual equipped weapon/offhand items exist.
+- Fixed duplicate visuals for:
+  - Fighter default sword / shield
+  - Rogue default daggers
+  - Bard default lute
+  - Cleric mace / holy offhand
+  - Enchanter scepter
+  - Summoner ritual rod
+  - Necromancer bone staff / skull charm
+  - Druid staff and other default caster props
+- Kept default weapons available when the relevant equipment slot is empty.
+- Applied the fix to:
+  - shared class-identity renderer
+  - Bard procedural renderer
+  - premium Fighter renderer path
+  - legacy standing/preview model path
+
+Validation:
+- Runtime JavaScript syntax validated with node --check.
+- Zip integrity validated with unzip -t.
+- No cascade patch layer added.

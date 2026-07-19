@@ -1,0 +1,26 @@
+Dream Realms V0.15.29 — Hybrid Depth / Camera Rotation Audit Pass
+
+Goal
+- Harden the Hybrid Canvas/WebGL renderer before making it the default path.
+- Prevent visible WebGL terrain/sprite/effect/damage-text promotion from drawing when camera/depth alignment is unsafe.
+- Preserve Canvas fallback for all unsupported or audit-blocked renderables.
+
+Changes
+- Added hybrid camera/depth audit metrics to the render backend.
+- Added worldToScreen/screenToWorld round-trip testing around the player.
+- Added sorted world-renderable depth-order violation counting.
+- Added sprite screen-origin drift diagnostics to catch stale actor screen positions during rotation/zoom.
+- Added camera yaw/zoom delta tracking for rotation stress testing.
+- Added audit-based promotion guardrails. If audit state becomes blocked, visible WebGL promotion for terrain, sprites, effects, and damage text is denied and Canvas fallback remains authoritative.
+- Added F3 overlay diagnostics for audit state, round-trip error, sprite-origin drift, depth violations, yaw delta, zoom delta, and audit block reason.
+- Added Settings panel audit status text.
+
+No gameplay changes
+- No spell, loot, mob, class, dungeon, quest, AI, pathfinding, or economy values were changed.
+- Canvas 2D remains the stable fallback renderer.
+- Hybrid WebGL remains optional and guarded.
+
+Validation
+- JavaScript syntax validation passed across the modular runtime.
+- _script_order.json checked with no missing files.
+- HTML script references checked with no missing files.

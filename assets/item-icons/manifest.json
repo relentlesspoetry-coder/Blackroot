@@ -1,0 +1,2998 @@
+[
+  {
+    "itemId": "item_old_path_amulet",
+    "iconKey": "old_path_amulet",
+    "file": "assets/item-icons/old_path_amulet.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Amulet of the Old Path.png",
+    "sourceLabel": "Amulet of the Old Path",
+    "canonicalName": "Amulet of the Old Path",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_arakhzels_carapace_mantle",
+    "iconKey": "arakhzels_carapace_mantle",
+    "file": "assets/item-icons/arakhzels_carapace_mantle.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Arakh'Zel's Carapace M.png",
+    "sourceLabel": "Arakh'Zel's Carapace M",
+    "canonicalName": "Arakh'Zel's Carapace Mantle",
+    "matchMethod": "unique-truncated-prefix",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_arakhzels_spined_shoulders",
+    "iconKey": "arakhzels_spined_shoulders",
+    "file": "assets/item-icons/arakhzels_spined_shoulders.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Arakh'Zel's Spined Sho.png",
+    "sourceLabel": "Arakh'Zel's Spined Sho",
+    "canonicalName": "Arakh'Zel's Spined Shoulders",
+    "matchMethod": "unique-truncated-prefix",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_ashroot_band",
+    "iconKey": "ashroot_band",
+    "file": "assets/item-icons/ashroot_band.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Ashroot Band.png",
+    "sourceLabel": "Ashroot Band",
+    "canonicalName": "Ashroot Band",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_ashroot_elder_heart",
+    "iconKey": "ashroot_elder_heart",
+    "file": "assets/item-icons/ashroot_elder_heart.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Ashroot Elder Heart.png",
+    "sourceLabel": "Ashroot Elder Heart",
+    "canonicalName": "Ashroot Elder Heart",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_warden_barkguard",
+    "iconKey": "starter_v01689_warden_barkguard",
+    "file": "assets/item-icons/starter_v01689_warden_barkguard.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Barkguard Buckler.png",
+    "sourceLabel": "Barkguard Buckler",
+    "canonicalName": "Barkguard Buckler",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_druid_barkwoven_leggings",
+    "iconKey": "starter_v01689_druid_barkwoven_leggings",
+    "file": "assets/item-icons/starter_v01689_druid_barkwoven_leggings.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Barkwoven Leggings.png",
+    "sourceLabel": "Barkwoven Leggings",
+    "canonicalName": "Barkwoven Leggings",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_basic_fishing_rod",
+    "iconKey": "basic_fishing_rod",
+    "file": "assets/item-icons/basic_fishing_rod.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Basic Fishing Rod.png",
+    "sourceLabel": "Basic Fishing Rod",
+    "canonicalName": "Basic Fishing Rod",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_cleric_bell_mace",
+    "iconKey": "starter_v01689_cleric_bell_mace",
+    "file": "assets/item-icons/starter_v01689_cleric_bell_mace.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Bellmark Acolyte Mace.png",
+    "sourceLabel": "Bellmark Acolyte Mace",
+    "canonicalName": "Bellmark Acolyte Mace",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_summoner_binder_rod",
+    "iconKey": "starter_v01689_summoner_binder_rod",
+    "file": "assets/item-icons/starter_v01689_summoner_binder_rod.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Binder Rod.png",
+    "sourceLabel": "Binder Rod",
+    "canonicalName": "Binder Rod",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_blackroot_signet",
+    "iconKey": "blackroot_signet",
+    "file": "assets/item-icons/blackroot_signet.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Blackroot Signet.png",
+    "sourceLabel": "Blackroot Signet",
+    "canonicalName": "Blackroot Signet",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_blackroot_staff",
+    "iconKey": "blackroot_staff",
+    "file": "assets/item-icons/blackroot_staff.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Blackroot Staff.png",
+    "sourceLabel": "Blackroot Staff",
+    "canonicalName": "Blackroot Staff",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_assassin_hand_crossbow",
+    "iconKey": "starter_v01689_assassin_hand_crossbow",
+    "file": "assets/item-icons/starter_v01689_assassin_hand_crossbow.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Blackstring Hand Crossbow.png",
+    "sourceLabel": "Blackstring Hand Crossbow",
+    "canonicalName": "Blackstring Hand Crossbow",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_summoner_pact_grimoire",
+    "iconKey": "starter_v01689_summoner_pact_grimoire",
+    "file": "assets/item-icons/starter_v01689_summoner_pact_grimoire.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Blank Pact Grimoire.png",
+    "sourceLabel": "Blank Pact Grimoire",
+    "canonicalName": "Blank Pact Grimoire",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_bone_luck_charm",
+    "iconKey": "bone_luck_charm",
+    "file": "assets/item-icons/bone_luck_charm.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Bone Luck Charm.png",
+    "sourceLabel": "Bone Luck Charm",
+    "canonicalName": "Bone Luck Charm",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_necromancer_bonepin_wand",
+    "iconKey": "starter_v01689_necromancer_bonepin_wand",
+    "file": "assets/item-icons/starter_v01689_necromancer_bonepin_wand.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Bonepin Wand.png",
+    "sourceLabel": "Bonepin Wand",
+    "canonicalName": "Bonepin Wand",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_necromancer_bonewrap_leggings",
+    "iconKey": "starter_v01689_necromancer_bonewrap_leggings",
+    "file": "assets/item-icons/starter_v01689_necromancer_bonewrap_leggings.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Bonewrap Leggings.png",
+    "sourceLabel": "Bonewrap Leggings",
+    "canonicalName": "Bonewrap Leggings",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_summoner_boundcloth_pants",
+    "iconKey": "starter_v01689_summoner_boundcloth_pants",
+    "file": "assets/item-icons/starter_v01689_summoner_boundcloth_pants.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Boundcloth Pants.png",
+    "sourceLabel": "Boundcloth Pants",
+    "canonicalName": "Boundcloth Pants",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_briar_silver_earring",
+    "iconKey": "briar_silver_earring",
+    "file": "assets/item-icons/briar_silver_earring.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Briar-Silver Earring.png",
+    "sourceLabel": "Briar-Silver Earring",
+    "canonicalName": "Briar-Silver Earring",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_briarback_cleaver",
+    "iconKey": "briarback_cleaver",
+    "file": "assets/item-icons/briarback_cleaver.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Briarback Cleaver.png",
+    "sourceLabel": "Briarback Cleaver",
+    "canonicalName": "Briarback Cleaver",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_briarhide_gloves",
+    "iconKey": "briarhide_gloves",
+    "file": "assets/item-icons/briarhide_gloves.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Briarhide Gloves.png",
+    "sourceLabel": "Briarhide Gloves",
+    "canonicalName": "Briarhide Gloves",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_broodwardens_fang",
+    "iconKey": "broodwardens_fang",
+    "file": "assets/item-icons/broodwardens_fang.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Broodwarden's Fang.png",
+    "sourceLabel": "Broodwarden's Fang",
+    "canonicalName": "Broodwarden's Fang",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_fighter_bruiser_pants",
+    "iconKey": "starter_v01689_fighter_bruiser_pants",
+    "file": "assets/item-icons/starter_v01689_fighter_bruiser_pants.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Bruiser Footwork Pants.png",
+    "sourceLabel": "Bruiser Footwork Pants",
+    "canonicalName": "Bruiser Footwork Pants",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_fighter_bruisers_token",
+    "iconKey": "starter_v01689_fighter_bruisers_token",
+    "file": "assets/item-icons/starter_v01689_fighter_bruisers_token.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Bruiser Training Token.png",
+    "sourceLabel": "Bruiser Training Token",
+    "canonicalName": "Bruiser Training Token",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_assassin_throwing_fangs",
+    "iconKey": "starter_v01689_assassin_throwing_fangs",
+    "file": "assets/item-icons/starter_v01689_assassin_throwing_fangs.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Bundle of Throwing Fangs.png",
+    "sourceLabel": "Bundle of Throwing Fangs",
+    "canonicalName": "Bundle of Throwing Fangs",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_bard_camp_songblade",
+    "iconKey": "starter_v01689_bard_camp_songblade",
+    "file": "assets/item-icons/starter_v01689_bard_camp_songblade.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Camp Songblade.png",
+    "sourceLabel": "Camp Songblade",
+    "canonicalName": "Camp Songblade",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_cleric_candlewax_boots",
+    "iconKey": "starter_v01689_cleric_candlewax_boots",
+    "file": "assets/item-icons/starter_v01689_cleric_candlewax_boots.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Candlewax Field Boots.png",
+    "sourceLabel": "Candlewax Field Boots",
+    "canonicalName": "Candlewax Field Boots",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_cave_eel_skewer",
+    "iconKey": "cave_eel_skewer",
+    "file": "assets/item-icons/cave_eel_skewer.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Cave Eel Skewer.png",
+    "sourceLabel": "Cave Eel Skewer",
+    "canonicalName": "Cave Eel Skewer",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_necromancer_chalk_skull",
+    "iconKey": "starter_v01689_necromancer_chalk_skull",
+    "file": "assets/item-icons/starter_v01689_necromancer_chalk_skull.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Chalk-Marked Skull Foc.png",
+    "sourceLabel": "Chalk-Marked Skull Foc",
+    "canonicalName": "Chalk-Marked Skull Focus",
+    "matchMethod": "unique-truncated-prefix",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_wizard_chipped_orb",
+    "iconKey": "starter_v01689_wizard_chipped_orb",
+    "file": "assets/item-icons/starter_v01689_wizard_chipped_orb.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Chipped Blueglass Orb.png",
+    "sourceLabel": "Chipped Blueglass Orb",
+    "canonicalName": "Chipped Blueglass Orb",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_chitin_buckler",
+    "iconKey": "chitin_buckler",
+    "file": "assets/item-icons/chitin_buckler.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Chitin Buckler.png",
+    "sourceLabel": "Chitin Buckler",
+    "canonicalName": "Chitin Buckler",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_summoner_circle_sandals",
+    "iconKey": "starter_v01689_summoner_circle_sandals",
+    "file": "assets/item-icons/starter_v01689_summoner_circle_sandals.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Circle-Step Sandals.png",
+    "sourceLabel": "Circle-Step Sandals",
+    "canonicalName": "Circle-Step Sandals",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_enchanter_clouded_orb",
+    "iconKey": "starter_v01689_enchanter_clouded_orb",
+    "file": "assets/item-icons/starter_v01689_enchanter_clouded_orb.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Clouded ThoughtOrb.png",
+    "sourceLabel": "Clouded ThoughtOrb",
+    "canonicalName": "Clouded Thought Orb",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_cocoon_tenders_sash",
+    "iconKey": "cocoon_tenders_sash",
+    "file": "assets/item-icons/cocoon_tenders_sash.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Cocoon Tender's Sash.png",
+    "sourceLabel": "Cocoon Tender's Sash",
+    "canonicalName": "Cocoon Tender's Sash",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_cocoonweave_gloves",
+    "iconKey": "cocoonweave_gloves",
+    "file": "assets/item-icons/cocoonweave_gloves.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Cocoonweave Gloves.png",
+    "sourceLabel": "Cocoonweave Gloves",
+    "canonicalName": "Cocoonweave Gloves",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_cooked_eel_skewer",
+    "iconKey": "cooked_eel_skewer",
+    "file": "assets/item-icons/cooked_eel_skewer.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Cooked Eel Skewer.png",
+    "sourceLabel": "Cooked Eel Skewer",
+    "canonicalName": "Cooked Eel Skewer",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_cooked_forest_stew",
+    "iconKey": "cooked_forest_stew",
+    "file": "assets/item-icons/cooked_forest_stew.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Cooked Forest Stew.png",
+    "sourceLabel": "Cooked Forest Stew",
+    "canonicalName": "Cooked Forest Stew",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_druid_crooked_branch_staff",
+    "iconKey": "starter_v01689_druid_crooked_branch_staff",
+    "file": "assets/item-icons/starter_v01689_druid_crooked_branch_staff.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Crooked Branch Staff.png",
+    "sourceLabel": "Crooked Branch Staff",
+    "canonicalName": "Crooked Branch Staff",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_enchanter_rune_wand",
+    "iconKey": "starter_v01689_enchanter_rune_wand",
+    "file": "assets/item-icons/starter_v01689_enchanter_rune_wand.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Crooked Rune Wand.png",
+    "sourceLabel": "Crooked Rune Wand",
+    "canonicalName": "Crooked Rune Wand",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_crude_pickaxe",
+    "iconKey": "crude_pickaxe",
+    "file": "assets/item-icons/crude_pickaxe.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Crude Pickaxe.png",
+    "sourceLabel": "Crude Pickaxe",
+    "canonicalName": "Crude Pickaxe",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_crude_sword",
+    "iconKey": "crude_sword",
+    "file": "assets/item-icons/crude_sword.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Crude Sword.png",
+    "sourceLabel": "Crude Sword",
+    "canonicalName": "Crude Sword",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_crystal_band",
+    "iconKey": "crystal_band",
+    "file": "assets/item-icons/crystal_band.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Crystal Band.png",
+    "sourceLabel": "Crystal Band",
+    "canonicalName": "Crystal Band",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_rogue_cutpurse_pants",
+    "iconKey": "starter_v01689_rogue_cutpurse_pants",
+    "file": "assets/item-icons/starter_v01689_rogue_cutpurse_pants.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Cutpurse Leather Pants.png",
+    "sourceLabel": "Cutpurse Leather Pants",
+    "canonicalName": "Cutpurse Leather Pants",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_darkbough_helmet",
+    "iconKey": "darkbough_helmet",
+    "file": "assets/item-icons/darkbough_helmet.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Darkbough Helmet.png",
+    "sourceLabel": "Darkbough Helmet",
+    "canonicalName": "Darkbough Helmet",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_darkwood_satchel",
+    "iconKey": "darkwood_satchel",
+    "file": "assets/item-icons/darkwood_satchel.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Darkwood Satchel - 5 slots.png",
+    "sourceLabel": "Darkwood Satchel",
+    "canonicalName": "Darkwood Satchel",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_deepwood_band",
+    "iconKey": "deepwood_band",
+    "file": "assets/item-icons/deepwood_band.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Deepwood Band.png",
+    "sourceLabel": "Deepwood Band",
+    "canonicalName": "Deepwood Band",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_deepwood_ring",
+    "iconKey": "deepwood_ring",
+    "file": "assets/item-icons/deepwood_ring.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Deepwood Ring.png",
+    "sourceLabel": "Deepwood Ring",
+    "canonicalName": "Deepwood Ring",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_druid_dewmoss_sandals",
+    "iconKey": "starter_v01689_druid_dewmoss_sandals",
+    "file": "assets/item-icons/starter_v01689_druid_dewmoss_sandals.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Dewmoss Sandals.png",
+    "sourceLabel": "Dewmoss Sandals",
+    "canonicalName": "Dewmoss Sandals",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_paladin_dull_mail",
+    "iconKey": "starter_v01689_paladin_dull_mail",
+    "file": "assets/item-icons/starter_v01689_paladin_dull_mail.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Dull Sunmail Vest.png",
+    "sourceLabel": "Dull Sunmail Vest",
+    "canonicalName": "Dull Sunmail Vest",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_duskwisp_charm",
+    "iconKey": "duskwisp_charm",
+    "file": "assets/item-icons/duskwisp_charm.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/DuskwispCharm.png",
+    "sourceLabel": "DuskwispCharm",
+    "canonicalName": "Duskwisp Charm",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_enchanter_faded_silk_robe",
+    "iconKey": "starter_v01689_enchanter_faded_silk_robe",
+    "file": "assets/item-icons/starter_v01689_enchanter_faded_silk_robe.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Faded Violet Silk Robe.png",
+    "sourceLabel": "Faded Violet Silk Robe",
+    "canonicalName": "Faded Violet Silk Robe",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_fangbone_earring",
+    "iconKey": "fangbone_earring",
+    "file": "assets/item-icons/fangbone_earring.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Fangbone Earring.png",
+    "sourceLabel": "Fangbone Earring",
+    "canonicalName": "Fangbone Earring",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_cleric_field_chain_leggings",
+    "iconKey": "starter_v01689_cleric_field_chain_leggings",
+    "file": "assets/item-icons/starter_v01689_cleric_field_chain_leggings.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Field Chain Leggings.png",
+    "sourceLabel": "Field Chain Leggings",
+    "canonicalName": "Field Chain Leggings",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_necromancer_gravecloth_robe",
+    "iconKey": "starter_v01689_necromancer_gravecloth_robe",
+    "file": "assets/item-icons/starter_v01689_necromancer_gravecloth_robe.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Frayed Gravecloth Robe.png",
+    "sourceLabel": "Frayed Gravecloth Robe",
+    "canonicalName": "Frayed Gravecloth Robe",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_ranger_frayed_quiver",
+    "iconKey": "starter_v01689_ranger_frayed_quiver",
+    "file": "assets/item-icons/starter_v01689_ranger_frayed_quiver.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Frayed Scout Quiver.png",
+    "sourceLabel": "Frayed Scout Quiver",
+    "canonicalName": "Frayed Scout Quiver",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_frayed_traveler_bag",
+    "iconKey": "frayed_traveler_bag",
+    "file": "assets/item-icons/frayed_traveler_bag.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Frayed Traveler Bag - 4 slots.png",
+    "sourceLabel": "Frayed Traveler Bag",
+    "canonicalName": "Frayed Traveler Bag",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_assassin_ghoststep_boots",
+    "iconKey": "starter_v01689_assassin_ghoststep_boots",
+    "file": "assets/item-icons/starter_v01689_assassin_ghoststep_boots.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Ghoststep Boots.png",
+    "sourceLabel": "Ghoststep Boots",
+    "canonicalName": "Ghoststep Boots",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_gloom_kings_signet",
+    "iconKey": "gloom_kings_signet",
+    "file": "assets/item-icons/gloom_kings_signet.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Gloom King's Signet.png",
+    "sourceLabel": "Gloom King's Signet",
+    "canonicalName": "Gloom King's Signet",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_gloomforged_blade",
+    "iconKey": "gloomforged_blade",
+    "file": "assets/item-icons/gloomforged_blade.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Gloomforged Blade.png",
+    "sourceLabel": "Gloomforged Blade",
+    "canonicalName": "Gloomforged Blade",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_gloomguard_pauldrons",
+    "iconKey": "gloomguard_pauldrons",
+    "file": "assets/item-icons/gloomguard_pauldrons.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Gloomguard Pauldrons.png",
+    "sourceLabel": "Gloomguard Pauldrons",
+    "canonicalName": "Gloomguard Pauldrons",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_necromancer_gravedust_boots",
+    "iconKey": "starter_v01689_necromancer_gravedust_boots",
+    "file": "assets/item-icons/starter_v01689_necromancer_gravedust_boots.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Gravedust Boots.png",
+    "sourceLabel": "Gravedust Boots",
+    "canonicalName": "Gravedust Boots",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_ranger_greenwood_bow",
+    "iconKey": "starter_v01689_ranger_greenwood_bow",
+    "file": "assets/item-icons/starter_v01689_ranger_greenwood_bow.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Greenwood Scout Bow.png",
+    "sourceLabel": "Greenwood Scout Bow",
+    "canonicalName": "Greenwood Scout Bow",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_grilled_minnow",
+    "iconKey": "grilled_minnow",
+    "file": "assets/item-icons/grilled_minnow.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Grilled Minnow.png",
+    "sourceLabel": "Grilled Minnow",
+    "canonicalName": "Grilled Minnow",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_rogue_gutter_dagger",
+    "iconKey": "starter_v01689_rogue_gutter_dagger",
+    "file": "assets/item-icons/starter_v01689_rogue_gutter_dagger.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Gutter Training Dagger.png",
+    "sourceLabel": "Gutter Training Dagger",
+    "canonicalName": "Gutter Training Dagger",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_fighter_stride_boots",
+    "iconKey": "starter_v01689_fighter_stride_boots",
+    "file": "assets/item-icons/starter_v01689_fighter_stride_boots.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Heavy-Step Stride Boot.png",
+    "sourceLabel": "Heavy-Step Stride Boot",
+    "canonicalName": "Heavy-Step Stride Boots",
+    "matchMethod": "unique-truncated-prefix",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_herbalist_knife",
+    "iconKey": "herbalist_knife",
+    "file": "assets/item-icons/herbalist_knife.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Herbalist Knife.png",
+    "sourceLabel": "Herbalist Knife",
+    "canonicalName": "Herbalist Knife",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_hollow_stag_mantle",
+    "iconKey": "hollow_stag_mantle",
+    "file": "assets/item-icons/hollow_stag_mantle.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Hollow Stag Mantle.png",
+    "sourceLabel": "Hollow Stag Mantle",
+    "canonicalName": "Hollow Stag Mantle",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_hollow_warden_bulwark",
+    "iconKey": "hollow_warden_bulwark",
+    "file": "assets/item-icons/hollow_warden_bulwark.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Hollow Warden Bulwark.png",
+    "sourceLabel": "Hollow Warden Bulwark",
+    "canonicalName": "Hollow Warden Bulwark",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_hollowfang_chitin_guard",
+    "iconKey": "hollowfang_chitin_guard",
+    "file": "assets/item-icons/hollowfang_chitin_guard.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Hollowfang Chitin Guar.png",
+    "sourceLabel": "Hollowfang Chitin Guar",
+    "canonicalName": "Hollowfang Chitin Guard",
+    "matchMethod": "unique-truncated-prefix",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_wizard_inkmarked_trousers",
+    "iconKey": "starter_v01689_wizard_inkmarked_trousers",
+    "file": "assets/item-icons/starter_v01689_wizard_inkmarked_trousers.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Inkmarked Cloth Trouse.png",
+    "sourceLabel": "Inkmarked Cloth Trouse",
+    "canonicalName": "Inkmarked Cloth Trousers",
+    "matchMethod": "unique-truncated-prefix",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_iron_chestguard",
+    "iconKey": "iron_chestguard",
+    "file": "assets/item-icons/iron_chestguard.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Iron Chestguard.png",
+    "sourceLabel": "Iron Chestguard",
+    "canonicalName": "Iron Chestguard",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_iron_dagger",
+    "iconKey": "iron_dagger",
+    "file": "assets/item-icons/iron_dagger.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Iron Dagger.png",
+    "sourceLabel": "Iron Dagger",
+    "canonicalName": "Iron Dagger",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_ironbark_shield",
+    "iconKey": "ironbark_shield",
+    "file": "assets/item-icons/ironbark_shield.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Ironbark Shield.png",
+    "sourceLabel": "Ironbark Shield",
+    "canonicalName": "Ironbark Shield",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_paladin_lantern_shield",
+    "iconKey": "starter_v01689_paladin_lantern_shield",
+    "file": "assets/item-icons/starter_v01689_paladin_lantern_shield.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Lantern Oath Shield.png",
+    "sourceLabel": "Lantern Oath Shield",
+    "canonicalName": "Lantern Oath Shield",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_lanternthread_cape",
+    "iconKey": "lanternthread_cape",
+    "file": "assets/item-icons/lanternthread_cape.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Lanternthread Cape.png",
+    "sourceLabel": "Lanternthread Cape",
+    "canonicalName": "Lanternthread Cape",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_druid_leafmend_robe",
+    "iconKey": "starter_v01689_druid_leafmend_robe",
+    "file": "assets/item-icons/starter_v01689_druid_leafmend_robe.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Leafmend Robe.png",
+    "sourceLabel": "Leafmend Robe",
+    "canonicalName": "Leafmend Robe",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_linen_pouch",
+    "iconKey": "linen_pouch",
+    "file": "assets/item-icons/linen_pouch.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Linen Pouch - 8 slots.png",
+    "sourceLabel": "Linen Pouch",
+    "canonicalName": "Linen Pouch",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_lumen_wisp_shard",
+    "iconKey": "lumen_wisp_shard",
+    "file": "assets/item-icons/lumen_wisp_shard.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Lumen-Wisp Shard.png",
+    "sourceLabel": "Lumen-Wisp Shard",
+    "canonicalName": "Lumen-Wisp Shard",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_matrons_venom_focus",
+    "iconKey": "matrons_venom_focus",
+    "file": "assets/item-icons/matrons_venom_focus.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Matron's Venom Focus.png",
+    "sourceLabel": "Matron's Venom Focus",
+    "canonicalName": "Matron's Venom Focus",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_mine_relic_pick",
+    "iconKey": "mine_relic_pick",
+    "file": "assets/item-icons/mine_relic_pick.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Mine Relic Pick.png",
+    "sourceLabel": "Mine Relic Pick",
+    "canonicalName": "Mine Relic Pick",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_miners_broth",
+    "iconKey": "miners_broth",
+    "file": "assets/item-icons/miners_broth.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Miners Broth.png",
+    "sourceLabel": "Miners Broth",
+    "canonicalName": "Miner's Broth",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_ranger_miretrail_boots",
+    "iconKey": "starter_v01689_ranger_miretrail_boots",
+    "file": "assets/item-icons/starter_v01689_ranger_miretrail_boots.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Miretrail Boots.png",
+    "sourceLabel": "Miretrail Boots",
+    "canonicalName": "Miretrail Boots",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_moonless_silk_hood",
+    "iconKey": "moonless_silk_hood",
+    "file": "assets/item-icons/moonless_silk_hood.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Moonless Silk Hood.png",
+    "sourceLabel": "Moonless Silk Hood",
+    "canonicalName": "Moonless Silk Hood",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_moss_stitched_mantle",
+    "iconKey": "moss_stitched_mantle",
+    "file": "assets/item-icons/moss_stitched_mantle.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Moss-Stitched Mantle.png",
+    "sourceLabel": "Moss-Stitched Mantle",
+    "canonicalName": "Moss-Stitched Mantle",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_warden_mossbound_boots",
+    "iconKey": "starter_v01689_warden_mossbound_boots",
+    "file": "assets/item-icons/starter_v01689_warden_mossbound_boots.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Mossbound Boots.png",
+    "sourceLabel": "Mossbound Boots",
+    "canonicalName": "Mossbound Boots",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_mossfang_charm",
+    "iconKey": "mossfang_charm",
+    "file": "assets/item-icons/mossfang_charm.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Mossfang Charm.png",
+    "sourceLabel": "Mossfang Charm",
+    "canonicalName": "Mossfang Charm",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_shaman_mudsole_boots",
+    "iconKey": "starter_v01689_shaman_mudsole_boots",
+    "file": "assets/item-icons/starter_v01689_shaman_mudsole_boots.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Mudsole Spirit Boots.png",
+    "sourceLabel": "Mudsole Spirit Boots",
+    "canonicalName": "Mudsole Spirit Boots",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_mushroom_stew",
+    "iconKey": "mushroom_stew",
+    "file": "assets/item-icons/mushroom_stew.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Mushroom Stew.png",
+    "sourceLabel": "Mushroom Stew",
+    "canonicalName": "Mushroom Stew",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_assassin_nightpad_vest",
+    "iconKey": "starter_v01689_assassin_nightpad_vest",
+    "file": "assets/item-icons/starter_v01689_assassin_nightpad_vest.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Nightpad Leather Vest.png",
+    "sourceLabel": "Nightpad Leather Vest",
+    "canonicalName": "Nightpad Leather Vest",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_paladin_oath_mace",
+    "iconKey": "starter_v01689_paladin_oath_mace",
+    "file": "assets/item-icons/starter_v01689_paladin_oath_mace.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Oathlit Recruit Mace.png",
+    "sourceLabel": "Oathlit Recruit Mace",
+    "canonicalName": "Oathlit Recruit Mace",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_paladin_oathwalker_boots",
+    "iconKey": "starter_v01689_paladin_oathwalker_boots",
+    "file": "assets/item-icons/starter_v01689_paladin_oathwalker_boots.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Oathwalker Boots.png",
+    "sourceLabel": "Oathwalker Boots",
+    "canonicalName": "Oathwalker Boots",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_old_venomsacs_gland",
+    "iconKey": "old_venomsacs_gland",
+    "file": "assets/item-icons/old_venomsacs_gland.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Old Venomsac's Gland.png",
+    "sourceLabel": "Old Venomsac's Gland",
+    "canonicalName": "Old Venomsac's Gland",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_pale_spinners_hood",
+    "iconKey": "pale_spinners_hood",
+    "file": "assets/item-icons/pale_spinners_hood.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Pale Spinner's Hood.png",
+    "sourceLabel": "Pale Spinner's Hood",
+    "canonicalName": "Pale Spinner's Hood",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_bard_minstrel_vest",
+    "iconKey": "starter_v01689_bard_minstrel_vest",
+    "file": "assets/item-icons/starter_v01689_bard_minstrel_vest.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Patchwork Minstrel Ves.png",
+    "sourceLabel": "Patchwork Minstrel Ves",
+    "canonicalName": "Patchwork Minstrel Vest",
+    "matchMethod": "unique-truncated-prefix",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_ranger_pathfinder_pants",
+    "iconKey": "starter_v01689_ranger_pathfinder_pants",
+    "file": "assets/item-icons/starter_v01689_ranger_pathfinder_pants.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Pathfinder Field Pants.png",
+    "sourceLabel": "Pathfinder Field Pants",
+    "canonicalName": "Pathfinder Field Pants",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_shaman_pebble_totem",
+    "iconKey": "starter_v01689_shaman_pebble_totem",
+    "file": "assets/item-icons/starter_v01689_shaman_pebble_totem.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Pebble Spirit Totem.png",
+    "sourceLabel": "Pebble Spirit Totem",
+    "canonicalName": "Pebble Spirit Totem",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_cleric_plain_chain_vest",
+    "iconKey": "starter_v01689_cleric_plain_chain_vest",
+    "file": "assets/item-icons/starter_v01689_cleric_plain_chain_vest.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Plain Acolyte Chain Ve.png",
+    "sourceLabel": "Plain Acolyte Chain Ve",
+    "canonicalName": "Plain Acolyte Chain Vest",
+    "matchMethod": "unique-truncated-prefix",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_queens_loomheart_staff",
+    "iconKey": "queens_loomheart_staff",
+    "file": "assets/item-icons/queens_loomheart_staff.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Queen's Loomheart Staff.png",
+    "sourceLabel": "Queen's Loomheart Staff",
+    "canonicalName": "Queen's Loomheart Staff",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_queens_venom_fang",
+    "iconKey": "queens_venom_fang",
+    "file": "assets/item-icons/queens_venom_fang.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Queen's Venom Fang.png",
+    "sourceLabel": "Queen's Venom Fang",
+    "canonicalName": "Queen's Venom Fang",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_enchanter_quietmind_slippers",
+    "iconKey": "starter_v01689_enchanter_quietmind_slippers",
+    "file": "assets/item-icons/starter_v01689_enchanter_quietmind_slippers.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Quietmind Slippers.png",
+    "sourceLabel": "Quietmind Slippers",
+    "canonicalName": "Quietmind Slippers",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_shaman_raincaller_rod",
+    "iconKey": "starter_v01689_shaman_raincaller_rod",
+    "file": "assets/item-icons/starter_v01689_shaman_raincaller_rod.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Raincaller Rod.png",
+    "sourceLabel": "Raincaller Rod",
+    "canonicalName": "Raincaller Rod",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_reinforced_small_bag",
+    "iconKey": "reinforced_small_bag",
+    "file": "assets/item-icons/reinforced_small_bag.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Reinforced Small Bag - 6 slots.png",
+    "sourceLabel": "Reinforced Small Bag",
+    "canonicalName": "Reinforced Small Bag",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_hollow_light_ring",
+    "iconKey": "hollow_light_ring",
+    "file": "assets/item-icons/hollow_light_ring.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Ring of Hollow Light.png",
+    "sourceLabel": "Ring of Hollow Light",
+    "canonicalName": "Ring of Hollow Light",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_ring_of_sticky_silk",
+    "iconKey": "ring_of_sticky_silk",
+    "file": "assets/item-icons/ring_of_sticky_silk.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Ring of Sticky Silk.png",
+    "sourceLabel": "Ring of Sticky Silk",
+    "canonicalName": "Ring of Sticky Silk",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_ring_of_the_looming_hunger",
+    "iconKey": "ring_of_the_looming_hunger",
+    "file": "assets/item-icons/ring_of_the_looming_hunger.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Ring of the Looming Hu.png",
+    "sourceLabel": "Ring of the Looming Hu",
+    "canonicalName": "Ring of the Looming Hunger",
+    "matchMethod": "unique-truncated-prefix",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_shaman_riverwoven_leggings",
+    "iconKey": "starter_v01689_shaman_riverwoven_leggings",
+    "file": "assets/item-icons/starter_v01689_shaman_riverwoven_leggings.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Riverwoven Leggings.png",
+    "sourceLabel": "Riverwoven Leggings",
+    "canonicalName": "Riverwoven Leggings",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_road_wardens_buckler",
+    "iconKey": "road_wardens_buckler",
+    "file": "assets/item-icons/road_wardens_buckler.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Road Warden's Buckler.png",
+    "sourceLabel": "Road Warden's Buckler",
+    "canonicalName": "Road Warden's Buckler",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_roasted_darkwater_fish",
+    "iconKey": "roasted_darkwater_fish",
+    "file": "assets/item-icons/roasted_darkwater_fish.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Roasted Darkwater Fish.png",
+    "sourceLabel": "Roasted Darkwater Fish",
+    "canonicalName": "Roasted Darkwater Fish",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_roasted_fish",
+    "iconKey": "roasted_fish",
+    "file": "assets/item-icons/roasted_fish.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Roasted Fish.png",
+    "sourceLabel": "Roasted Fish",
+    "canonicalName": "Roasted Fish",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_rootbound_scepter",
+    "iconKey": "rootbound_scepter",
+    "file": "assets/item-icons/rootbound_scepter.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Rootbound Scepter.png",
+    "sourceLabel": "Rootbound Scepter",
+    "canonicalName": "Rootbound Scepter",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_warden_rootfiber_leggings",
+    "iconKey": "starter_v01689_warden_rootfiber_leggings",
+    "file": "assets/item-icons/starter_v01689_warden_rootfiber_leggings.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Rootfiber Leggings.png",
+    "sourceLabel": "Rootfiber Leggings",
+    "canonicalName": "Rootfiber Leggings",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_rootglass_signet",
+    "iconKey": "rootglass_signet",
+    "file": "assets/item-icons/rootglass_signet.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Rootglass Signet.png",
+    "sourceLabel": "Rootglass Signet",
+    "canonicalName": "Rootglass Signet",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_warden_root_mallet",
+    "iconKey": "starter_v01689_warden_root_mallet",
+    "file": "assets/item-icons/starter_v01689_warden_root_mallet.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Rootstone Training Mallet.png",
+    "sourceLabel": "Rootstone Training Mallet",
+    "canonicalName": "Rootstone Training Mallet",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_rotroot_wraps",
+    "iconKey": "rotroot_wraps",
+    "file": "assets/item-icons/rotroot_wraps.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Rotroot Wraps.png",
+    "sourceLabel": "Rotroot Wraps",
+    "canonicalName": "Rotroot Wraps",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_royal_websilk_cape",
+    "iconKey": "royal_websilk_cape",
+    "file": "assets/item-icons/royal_websilk_cape.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Royal Websilk Cape.png",
+    "sourceLabel": "Royal Websilk Cape",
+    "canonicalName": "Royal Websilk Cape",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_royal_websilk_satchel",
+    "iconKey": "royal_websilk_satchel",
+    "file": "assets/item-icons/royal_websilk_satchel.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Royal Websilk Satchel - 8 slots.png",
+    "sourceLabel": "Royal Websilk Satchel",
+    "canonicalName": "Royal Websilk Satchel",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_enchanter_runecloth_trousers",
+    "iconKey": "starter_v01689_enchanter_runecloth_trousers",
+    "file": "assets/item-icons/starter_v01689_enchanter_runecloth_trousers.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Runecloth Trousers.png",
+    "sourceLabel": "Runecloth Trousers",
+    "canonicalName": "Runecloth Trousers",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_fighter_rustcleaver",
+    "iconKey": "starter_v01689_fighter_rustcleaver",
+    "file": "assets/item-icons/starter_v01689_fighter_rustcleaver.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Rustcleaver Training Blade.png",
+    "sourceLabel": "Rustcleaver Training Blade",
+    "canonicalName": "Rustcleaver Training Blade",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_druid_seedling_totem",
+    "iconKey": "starter_v01689_druid_seedling_totem",
+    "file": "assets/item-icons/starter_v01689_druid_seedling_totem.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Seedling Totem.png",
+    "sourceLabel": "Seedling Totem",
+    "canonicalName": "Seedling Totem",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_shadowmoss_cape",
+    "iconKey": "shadowmoss_cape",
+    "file": "assets/item-icons/shadowmoss_cape.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Shadowmoss Cape.png",
+    "sourceLabel": "Shadowmoss Cape",
+    "canonicalName": "Shadowmoss Cape",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_rogue_shadowpatched_jerkin",
+    "iconKey": "starter_v01689_rogue_shadowpatched_jerkin",
+    "file": "assets/item-icons/starter_v01689_rogue_shadowpatched_jerkin.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Shadowpatched Jerkin.png",
+    "sourceLabel": "Shadowpatched Jerkin",
+    "canonicalName": "Shadowpatched Jerkin",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_assassin_silent_trousers",
+    "iconKey": "starter_v01689_assassin_silent_trousers",
+    "file": "assets/item-icons/starter_v01689_assassin_silent_trousers.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Silent Mark Trousers.png",
+    "sourceLabel": "Silent Mark Trousers",
+    "canonicalName": "Silent Mark Trousers",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_silk_mothers_mantle",
+    "iconKey": "silk_mothers_mantle",
+    "file": "assets/item-icons/silk_mothers_mantle.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Silk Mother's Mantle.png",
+    "sourceLabel": "Silk Mother's Mantle",
+    "canonicalName": "Silk Mother's Mantle",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_silk_web_antivenom_charm",
+    "iconKey": "silk_web_antivenom_charm",
+    "file": "assets/item-icons/silk_web_antivenom_charm.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Silk Web Antivenom Cha.png",
+    "sourceLabel": "Silk Web Antivenom Cha",
+    "canonicalName": "Silk Web Antivenom Charm",
+    "matchMethod": "unique-truncated-prefix",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_silkfang_dagger",
+    "iconKey": "silkfang_dagger",
+    "file": "assets/item-icons/silkfang_dagger.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Silkfang Dagger.png",
+    "sourceLabel": "Silkfang Dagger",
+    "canonicalName": "Silkfang Dagger",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_simple_travel_ration",
+    "iconKey": "simple_travel_ration",
+    "file": "assets/item-icons/simple_travel_ration.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Simple Travel Ration.png",
+    "sourceLabel": "Simple Travel Ration",
+    "canonicalName": "Simple Travel Ration",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_skirrs_chitin_chestguard",
+    "iconKey": "skirrs_chitin_chestguard",
+    "file": "assets/item-icons/skirrs_chitin_chestguard.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Skirr's Chitin Chestgu.png",
+    "sourceLabel": "Skirr's Chitin Chestgu",
+    "canonicalName": "Skirr's Chitin Chestguard",
+    "matchMethod": "unique-truncated-prefix",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_rogue_sleeve_shiv",
+    "iconKey": "starter_v01689_rogue_sleeve_shiv",
+    "file": "assets/item-icons/starter_v01689_rogue_sleeve_shiv.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Sleeve Shiv.png",
+    "sourceLabel": "Sleeve Shiv",
+    "canonicalName": "Sleeve Shiv",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_rogue_softfall_boots",
+    "iconKey": "starter_v01689_rogue_softfall_boots",
+    "file": "assets/item-icons/starter_v01689_rogue_softfall_boots.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Softfall Boots.png",
+    "sourceLabel": "Softfall Boots",
+    "canonicalName": "Softfall Boots",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_wizard_softstep_slippers",
+    "iconKey": "starter_v01689_wizard_softstep_slippers",
+    "file": "assets/item-icons/starter_v01689_wizard_softstep_slippers.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Softstep Study Slipper.png",
+    "sourceLabel": "Softstep Study Slipper",
+    "canonicalName": "Softstep Study Slippers",
+    "matchMethod": "unique-truncated-prefix",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_wizard_splinter_wand",
+    "iconKey": "starter_v01689_wizard_splinter_wand",
+    "file": "assets/item-icons/starter_v01689_wizard_splinter_wand.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Splintered Arcane Wand.png",
+    "sourceLabel": "Splintered Arcane Wand",
+    "canonicalName": "Splintered Arcane Wand",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_fighter_split_leather_vest",
+    "iconKey": "starter_v01689_fighter_split_leather_vest",
+    "file": "assets/item-icons/starter_v01689_fighter_split_leather_vest.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Split-Leather Bruiser.png",
+    "sourceLabel": "Split-Leather Bruiser",
+    "canonicalName": "Split-Leather Bruiser Vest",
+    "matchMethod": "unique-truncated-prefix",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_paladin_squire_greaves",
+    "iconKey": "starter_v01689_paladin_squire_greaves",
+    "file": "assets/item-icons/starter_v01689_paladin_squire_greaves.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Squire Sunmail Greaves.png",
+    "sourceLabel": "Squire Sunmail Greaves",
+    "canonicalName": "Squire Sunmail Greaves",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_bard_stageworn_boots",
+    "iconKey": "starter_v01689_bard_stageworn_boots",
+    "file": "assets/item-icons/starter_v01689_bard_stageworn_boots.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Stageworn Performer Bo.png",
+    "sourceLabel": "Stageworn Performer Bo",
+    "canonicalName": "Stageworn Performer Boots",
+    "matchMethod": "unique-truncated-prefix",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starlit_moth_earring",
+    "iconKey": "starlit_moth_earring",
+    "file": "assets/item-icons/starlit_moth_earring.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Starlit Moth Earring.png",
+    "sourceLabel": "Starlit Moth Earring",
+    "canonicalName": "Starlit Moth Earring",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_shaman_stormhide_wrap",
+    "iconKey": "starter_v01689_shaman_stormhide_wrap",
+    "file": "assets/item-icons/starter_v01689_shaman_stormhide_wrap.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Stormhide Initiate Wra.png",
+    "sourceLabel": "Stormhide Initiate Wra",
+    "canonicalName": "Stormhide Initiate Wrap",
+    "matchMethod": "unique-truncated-prefix",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_summoner_teal_initiate_robe",
+    "iconKey": "starter_v01689_summoner_teal_initiate_robe",
+    "file": "assets/item-icons/starter_v01689_summoner_teal_initiate_robe.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Teal Initiate Robe.png",
+    "sourceLabel": "Teal Initiate Robe",
+    "canonicalName": "Teal Initiate Robe",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_thorn_crowned_mantle",
+    "iconKey": "thorn_crowned_mantle",
+    "file": "assets/item-icons/thorn_crowned_mantle.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Thorn-Crowned Mantle.png",
+    "sourceLabel": "Thorn-Crowned Mantle",
+    "canonicalName": "Thorn-Crowned Mantle",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_warden_thornhide_vest",
+    "iconKey": "starter_v01689_warden_thornhide_vest",
+    "file": "assets/item-icons/starter_v01689_warden_thornhide_vest.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Thornhide Initiate Ves.png",
+    "sourceLabel": "Thornhide Initiate Ves",
+    "canonicalName": "Thornhide Initiate Vest",
+    "matchMethod": "unique-truncated-prefix",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_wizard_threadbare_robe",
+    "iconKey": "starter_v01689_wizard_threadbare_robe",
+    "file": "assets/item-icons/starter_v01689_wizard_threadbare_robe.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Threadbare Arcane Robe.png",
+    "sourceLabel": "Threadbare Arcane Robe",
+    "canonicalName": "Threadbare Arcane Robe",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_threadjaw_fangblade",
+    "iconKey": "threadjaw_fangblade",
+    "file": "assets/item-icons/threadjaw_fangblade.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Threadjaw Fangblade.png",
+    "sourceLabel": "Threadjaw Fangblade",
+    "canonicalName": "Threadjaw Fangblade",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_ranger_trailhide_jerkin",
+    "iconKey": "starter_v01689_ranger_trailhide_jerkin",
+    "file": "assets/item-icons/starter_v01689_ranger_trailhide_jerkin.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Trailhide Scout Jerkin.png",
+    "sourceLabel": "Trailhide Scout Jerkin",
+    "canonicalName": "Trailhide Scout Jerkin",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_bard_travel_tights",
+    "iconKey": "starter_v01689_bard_travel_tights",
+    "file": "assets/item-icons/starter_v01689_bard_travel_tights.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Travel-Tuned Trousers.png",
+    "sourceLabel": "Travel-Tuned Trousers",
+    "canonicalName": "Travel-Tuned Trousers",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_travelers_pack",
+    "iconKey": "travelers_pack",
+    "file": "assets/item-icons/travelers_pack.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Traveler's Pack - 12 slots.png",
+    "sourceLabel": "Traveler's Pack",
+    "canonicalName": "Traveler's Pack",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_velyras_cocoon_robe",
+    "iconKey": "velyras_cocoon_robe",
+    "file": "assets/item-icons/velyras_cocoon_robe.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Velyra's Cocoon Robe.png",
+    "sourceLabel": "Velyra's Cocoon Robe",
+    "canonicalName": "Velyra's Cocoon Robe",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_venom_stained_boots",
+    "iconKey": "venom_stained_boots",
+    "file": "assets/item-icons/venom_stained_boots.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Venom-Stained Boots.png",
+    "sourceLabel": "Venom-Stained Boots",
+    "canonicalName": "Venom-Stained Boots",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_warden_lantern_amulet",
+    "iconKey": "warden_lantern_amulet",
+    "file": "assets/item-icons/warden_lantern_amulet.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Warden Lantern Amulet.png",
+    "sourceLabel": "Warden Lantern Amulet",
+    "canonicalName": "Warden Lantern Amulet",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_warden_lantern_charm",
+    "iconKey": "warden_lantern_charm",
+    "file": "assets/item-icons/warden_lantern_charm.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Warden Lantern Charm.png",
+    "sourceLabel": "Warden Lantern Charm",
+    "canonicalName": "Warden Lantern Charm",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_bard_weathered_lute",
+    "iconKey": "starter_v01689_bard_weathered_lute",
+    "file": "assets/item-icons/starter_v01689_bard_weathered_lute.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Weathered Camp Lute.png",
+    "sourceLabel": "Weathered Camp Lute",
+    "canonicalName": "Weathered Camp Lute",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_webbed_queen_earring",
+    "iconKey": "webbed_queen_earring",
+    "file": "assets/item-icons/webbed_queen_earring.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Webbed Queen Earring.png",
+    "sourceLabel": "Webbed Queen Earring",
+    "canonicalName": "Webbed Queen Earring",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_webspinner_wand",
+    "iconKey": "webspinner_wand",
+    "file": "assets/item-icons/webspinner_wand.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Webspinner Wand.png",
+    "sourceLabel": "Webspinner Wand",
+    "canonicalName": "Webspinner Wand",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_widow_silk_leggings",
+    "iconKey": "widow_silk_leggings",
+    "file": "assets/item-icons/widow_silk_leggings.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Widow-Silk Leggings.png",
+    "sourceLabel": "Widow-Silk Leggings",
+    "canonicalName": "Widow-Silk Leggings",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_widowfang_dagger",
+    "iconKey": "widowfang_dagger",
+    "file": "assets/item-icons/widowfang_dagger.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Widowfang Dagger.png",
+    "sourceLabel": "Widowfang Dagger",
+    "canonicalName": "Widowfang Dagger",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_wolfclaw_boots",
+    "iconKey": "wolfclaw_boots",
+    "file": "assets/item-icons/wolfclaw_boots.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Wolfclaw Boots.png",
+    "sourceLabel": "Wolfclaw Boots",
+    "canonicalName": "Wolfclaw Boots",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_starter_v01689_cleric_wooden_prayer_icon",
+    "iconKey": "starter_v01689_cleric_wooden_prayer_icon",
+    "file": "assets/item-icons/starter_v01689_cleric_wooden_prayer_icon.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Wooden Prayer Icon.png",
+    "sourceLabel": "Wooden Prayer Icon",
+    "canonicalName": "Wooden Prayer Icon",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_worn_hatchet",
+    "iconKey": "worn_hatchet",
+    "file": "assets/item-icons/worn_hatchet.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Worn Hatchet.png",
+    "sourceLabel": "Worn Hatchet",
+    "canonicalName": "Worn Hatchet",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_worn_small_pouch",
+    "iconKey": "worn_small_pouch",
+    "file": "assets/item-icons/worn_small_pouch.png",
+    "sourcePack": "Item Icons(1).zip",
+    "sourceFile": "Item Icons/Worn Small Pouch - 3 slots.png",
+    "sourceLabel": "Worn Small Pouch",
+    "canonicalName": "Worn Small Pouch",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_ashroot",
+    "iconKey": "ashroot",
+    "file": "assets/item-icons/ashroot.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Ashroot.png",
+    "sourceLabel": "Ashroot",
+    "canonicalName": "Ashroot",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_ashroot_moss",
+    "iconKey": "ashroot_moss",
+    "file": "assets/item-icons/ashroot_moss.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Ashroot Moss.png",
+    "sourceLabel": "Ashroot Moss",
+    "canonicalName": "Ashroot Moss",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_ashroot_splinter",
+    "iconKey": "ashroot_splinter",
+    "file": "assets/item-icons/ashroot_splinter.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Ashroot Splinter.png",
+    "sourceLabel": "Ashroot Splinter",
+    "canonicalName": "Ashroot Splinter",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_bitterleaf",
+    "iconKey": "bitterleaf",
+    "file": "assets/item-icons/bitterleaf.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Bitterleaf.png",
+    "sourceLabel": "Bitterleaf",
+    "canonicalName": "Bitterleaf",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_blackiron_bar",
+    "iconKey": "blackiron_bar",
+    "file": "assets/item-icons/blackiron_bar.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Blackiron Bar.png",
+    "sourceLabel": "Blackiron Bar",
+    "canonicalName": "Blackiron Bar",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_blackiron_ore",
+    "iconKey": "blackiron_ore",
+    "file": "assets/item-icons/blackiron_ore.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Blackiron Ore.png",
+    "sourceLabel": "Blackiron Ore",
+    "canonicalName": "Blackiron Ore",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_blackwater_eel",
+    "iconKey": "blackwater_eel",
+    "file": "assets/item-icons/blackwater_eel.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Blackwater Eel.png",
+    "sourceLabel": "Blackwater Eel",
+    "canonicalName": "Blackwater Eel",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_bone_dust",
+    "iconKey": "bone_dust",
+    "file": "assets/item-icons/bone_dust.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Bone Dust.png",
+    "sourceLabel": "Bone Dust",
+    "canonicalName": "Bone Dust",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_briar_hide",
+    "iconKey": "briar_hide",
+    "file": "assets/item-icons/briar_hide.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Briar Hide.png",
+    "sourceLabel": "Briar Hide",
+    "canonicalName": "Briar Hide",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_briar_tusk",
+    "iconKey": "briar_tusk",
+    "file": "assets/item-icons/briar_tusk.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Briar Tusk.png",
+    "sourceLabel": "Briar Tusk",
+    "canonicalName": "Briar Tusk",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_cave_blindfish",
+    "iconKey": "cave_blindfish",
+    "file": "assets/item-icons/cave_blindfish.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Cave Blindfish.png",
+    "sourceLabel": "Cave Blindfish",
+    "canonicalName": "Cave Blindfish",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_cave_eel",
+    "iconKey": "cave_eel",
+    "file": "assets/item-icons/cave_eel.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Cave Eel.png",
+    "sourceLabel": "Cave Eel",
+    "canonicalName": "Cave Eel",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_coal",
+    "iconKey": "coal",
+    "file": "assets/item-icons/coal.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Coal.png",
+    "sourceLabel": "Coal",
+    "canonicalName": "Coal",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_copper_bar",
+    "iconKey": "copper_bar",
+    "file": "assets/item-icons/copper_bar.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Copper Bar.png",
+    "sourceLabel": "Copper Bar",
+    "canonicalName": "Copper Bar",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_copper_ore",
+    "iconKey": "copper_ore",
+    "file": "assets/item-icons/copper_ore.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Copper Ore.png",
+    "sourceLabel": "Copper Ore",
+    "canonicalName": "Copper Ore",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_corrupted_root",
+    "iconKey": "corrupted_root",
+    "file": "assets/item-icons/corrupted_root.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Corrupted Root.png",
+    "sourceLabel": "Corrupted Root",
+    "canonicalName": "Corrupted Root",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_cursed_ore",
+    "iconKey": "cursed_ore",
+    "file": "assets/item-icons/cursed_ore.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Cursed Ore.png",
+    "sourceLabel": "Cursed Ore",
+    "canonicalName": "Cursed Ore",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_darkstone_bar",
+    "iconKey": "darkstone_bar",
+    "file": "assets/item-icons/darkstone_bar.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Darkstone Bar.png",
+    "sourceLabel": "Darkstone Bar",
+    "canonicalName": "Darkstone Bar",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_darkstone_ore",
+    "iconKey": "darkstone_ore",
+    "file": "assets/item-icons/darkstone_ore.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Darkstone Ore.png",
+    "sourceLabel": "Darkstone Ore",
+    "canonicalName": "Darkstone Ore",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_darkwater_fish",
+    "iconKey": "darkwater_fish",
+    "file": "assets/item-icons/darkwater_fish.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Darkwater Fish.png",
+    "sourceLabel": "Darkwater Fish",
+    "canonicalName": "Darkwater Fish",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_dreamspore",
+    "iconKey": "dreamspore",
+    "file": "assets/item-icons/dreamspore.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Dreamspore.png",
+    "sourceLabel": "Dreamspore",
+    "canonicalName": "Dreamspore",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_duskwisp_core",
+    "iconKey": "duskwisp_core",
+    "file": "assets/item-icons/duskwisp_core.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Duskwisp Core.png",
+    "sourceLabel": "Duskwisp Core",
+    "canonicalName": "Duskwisp Core",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_glimmer_crystal",
+    "iconKey": "glimmer_crystal",
+    "file": "assets/item-icons/glimmer_crystal.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Glimmer Crystal.png",
+    "sourceLabel": "Glimmer Crystal",
+    "canonicalName": "Glimmer Crystal",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_gloomleaf",
+    "iconKey": "gloomleaf",
+    "file": "assets/item-icons/gloomleaf.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Gloomleaf.png",
+    "sourceLabel": "Gloomleaf",
+    "canonicalName": "Gloomleaf",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_gloomleaf_wraps",
+    "iconKey": "gloomleaf_wraps",
+    "file": "assets/item-icons/gloomleaf_wraps.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Gloomleaf Wraps.png",
+    "sourceLabel": "Gloomleaf Wraps",
+    "canonicalName": "Gloomleaf Wraps",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_glooms_crypt_key",
+    "iconKey": "glooms_crypt_key",
+    "file": "assets/item-icons/glooms_crypt_key.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Gloom's Crypt Key.png",
+    "sourceLabel": "Gloom's Crypt Key",
+    "canonicalName": "Gloom's Crypt Key",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_glowmoss",
+    "iconKey": "glowmoss",
+    "file": "assets/item-icons/glowmoss.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Glowmoss.png",
+    "sourceLabel": "Glowmoss",
+    "canonicalName": "Glowmoss",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_grave_moss",
+    "iconKey": "grave_moss",
+    "file": "assets/item-icons/grave_moss.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Grave Moss.png",
+    "sourceLabel": "Grave Moss",
+    "canonicalName": "Grave Moss",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_hollow_antler",
+    "iconKey": "hollow_antler",
+    "file": "assets/item-icons/hollow_antler.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Hollow Antler.png",
+    "sourceLabel": "Hollow Antler",
+    "canonicalName": "Hollow Antler",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_iron_bar",
+    "iconKey": "iron_bar",
+    "file": "assets/item-icons/iron_bar.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Iron Bar.png",
+    "sourceLabel": "Iron Bar",
+    "canonicalName": "Iron Bar",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_iron_ore",
+    "iconKey": "iron_ore",
+    "file": "assets/item-icons/iron_ore.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Iron Ore.png",
+    "sourceLabel": "Iron Ore",
+    "canonicalName": "Iron Ore",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_light_essence",
+    "iconKey": "light_essence",
+    "file": "assets/item-icons/light_essence.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Light Essence.png",
+    "sourceLabel": "Light Essence",
+    "canonicalName": "Light Essence",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_mooncap",
+    "iconKey": "mooncap",
+    "file": "assets/item-icons/mooncap.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Mooncap.png",
+    "sourceLabel": "Mooncap",
+    "canonicalName": "Mooncap",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_mossback_carp",
+    "iconKey": "mossback_carp",
+    "file": "assets/item-icons/mossback_carp.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Mossback Carp.png",
+    "sourceLabel": "Mossback Carp",
+    "canonicalName": "Mossback Carp",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_mossback_trout",
+    "iconKey": "mossback_trout",
+    "file": "assets/item-icons/mossback_trout.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Mossback Trout.png",
+    "sourceLabel": "Mossback Trout",
+    "canonicalName": "Mossback Trout",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_murkwater_minnow",
+    "iconKey": "murkwater_minnow",
+    "file": "assets/item-icons/murkwater_minnow.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Murkwater Minnow.png",
+    "sourceLabel": "Murkwater Minnow",
+    "canonicalName": "Murkwater Minnow",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_night_crystal",
+    "iconKey": "night_crystal",
+    "file": "assets/item-icons/night_crystal.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/NightCrystal.png",
+    "sourceLabel": "NightCrystal",
+    "canonicalName": "Night Crystal",
+    "matchMethod": "normalized-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_pale_eel",
+    "iconKey": "pale_eel",
+    "file": "assets/item-icons/pale_eel.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Pale Eel.png",
+    "sourceLabel": "Pale Eel",
+    "canonicalName": "Pale Eel",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_redcap_fungus",
+    "iconKey": "redcap_fungus",
+    "file": "assets/item-icons/redcap_fungus.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Redcap Fungus.png",
+    "sourceLabel": "Redcap Fungus",
+    "canonicalName": "Redcap Fungus",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_reinforced_buckle",
+    "iconKey": "reinforced_buckle",
+    "file": "assets/item-icons/reinforced_buckle.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Reinforced Buckle.png",
+    "sourceLabel": "Reinforced Buckle",
+    "canonicalName": "Reinforced Buckle",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_river_driftwood",
+    "iconKey": "river_driftwood",
+    "file": "assets/item-icons/river_driftwood.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/River Driftwood.png",
+    "sourceLabel": "River Driftwood",
+    "canonicalName": "River Driftwood",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_rotling_root",
+    "iconKey": "rotling_root",
+    "file": "assets/item-icons/rotling_root.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Rotting Root.png",
+    "sourceLabel": "Rotting Root",
+    "canonicalName": "Rotling Root",
+    "matchMethod": "variance-rotling",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_rough_gem",
+    "iconKey": "rough_gem",
+    "file": "assets/item-icons/rough_gem.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Rough Gem.png",
+    "sourceLabel": "Rough Gem",
+    "canonicalName": "Rough Gem",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_silkcap_mushroom",
+    "iconKey": "silkcap_mushroom",
+    "file": "assets/item-icons/silkcap_mushroom.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Silkcap Mushroom.png",
+    "sourceLabel": "Silkcap Mushroom",
+    "canonicalName": "Silkcap Mushroom",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_silverfin",
+    "iconKey": "silverfin",
+    "file": "assets/item-icons/silverfin.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Silverfin.png",
+    "sourceLabel": "Silverfin",
+    "canonicalName": "Silverfin",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_silverthorn_sprig",
+    "iconKey": "silverthorn_sprig",
+    "file": "assets/item-icons/silverthorn_sprig.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Silverthorn Sprig.png",
+    "sourceLabel": "Silverthorn Sprig",
+    "canonicalName": "Silverthorn Sprig",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_small_pondfish",
+    "iconKey": "small_pondfish",
+    "file": "assets/item-icons/small_pondfish.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Small Pondfish.png",
+    "sourceLabel": "Small Pondfish",
+    "canonicalName": "Small Pondfish",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_spider_silk",
+    "iconKey": "spider_silk",
+    "file": "assets/item-icons/spider_silk.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Spider Silk.png",
+    "sourceLabel": "Spider Silk",
+    "canonicalName": "Spider Silk",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_spider_silk_thread",
+    "iconKey": "spider_silk_thread",
+    "file": "assets/item-icons/spider_silk_thread.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Spider Silk Thread.png",
+    "sourceLabel": "Spider Silk Thread",
+    "canonicalName": "Spider Silk Thread",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_stone",
+    "iconKey": "stone",
+    "file": "assets/item-icons/stone.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Stone.png",
+    "sourceLabel": "Stone",
+    "canonicalName": "Stone",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_tin_bar",
+    "iconKey": "tin_bar",
+    "file": "assets/item-icons/tin_bar.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Tin Bar.png",
+    "sourceLabel": "Tin Bar",
+    "canonicalName": "Tin Bar",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_tin_ore",
+    "iconKey": "tin_ore",
+    "file": "assets/item-icons/tin_ore.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Tin Ore.png",
+    "sourceLabel": "Tin Ore",
+    "canonicalName": "Tin Ore",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_torn_boot",
+    "iconKey": "torn_boot",
+    "file": "assets/item-icons/torn_boot.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Torn Boot.png",
+    "sourceLabel": "Torn Boot",
+    "canonicalName": "Torn Boot",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_venom_sac",
+    "iconKey": "venom_sac",
+    "file": "assets/item-icons/venom_sac.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Venom Sac.png",
+    "sourceLabel": "Venom Sac",
+    "canonicalName": "Venom Sac",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_webbed_chitin_shard",
+    "iconKey": "webbed_chitin_shard",
+    "file": "assets/item-icons/webbed_chitin_shard.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Webbed Chitin Shard.png",
+    "sourceLabel": "Webbed Chitin Shard",
+    "canonicalName": "Webbed Chitin Shard",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_wolf_pelt",
+    "iconKey": "wolf_pelt",
+    "file": "assets/item-icons/wolf_pelt.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Gloom Wolf Pelt.png",
+    "sourceLabel": "Gloom Wolf Pelt",
+    "canonicalName": "Gloom Wolf Pelt",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  },
+  {
+    "itemId": "item_worn_fishing_rod",
+    "iconKey": "worn_fishing_rod",
+    "file": "assets/item-icons/worn_fishing_rod.png",
+    "sourcePack": "Item Icons (V0.17.94)",
+    "sourceFile": "Item Icons/Worn Fishing Rod.png",
+    "sourceLabel": "Worn Fishing Rod",
+    "canonicalName": "Worn Fishing Rod",
+    "matchMethod": "exact-name",
+    "dimensions": [
+      128,
+      128
+    ]
+  }
+]

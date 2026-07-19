@@ -1,0 +1,42 @@
+Pass 40 — Runtime Boss / Dungeon Loot
+=====================================
+
+Purpose
+-------
+Converts dungeon boss-room placeholders into playable boss encounters and connects dungeon elite/boss reward flow to the runtime loot-table system.
+
+Implemented
+-----------
+- Added boss draft data through DR.BOSS_DRAFTS / DR.BOSS_BY_ID.
+- Added boss reward item drafts:
+  - Hollow Warden Bulwark
+  - Rootbound Scepter
+  - Gloom King's Signet
+  - Silk Mother's Mantle
+- Added loot tables:
+  - loot_dungeon_elite_mobs
+  - loot_boss_hollow_warden
+  - loot_boss_rootbound_matriarch
+  - loot_boss_gloom_king
+  - loot_boss_silk_mother
+- Dungeon boss rooms now create one named boss selected from dungeon.bossIds by floor.
+- Boss rooms also create elite add mobs.
+- Combat, puzzle, and boss-room dungeon mobs are elite dungeon mobs.
+- Dungeon elite mobs use lootRolls from dungeon.eliteMultiplier, capped for sanity.
+- Bosses use dedicated boss loot tables.
+- Stairs and treasure nodes are sealed while a floor boss is alive.
+- Boss kills are stored in dungeonRuntime.bossKills.
+- Treasure claims are stored in dungeonRuntime.lootedNodes and cannot be repeated during the same run.
+- Bosses cast timed special abilities and enter stronger phases at 66% and 33% HP.
+- Boss visual rendering now uses a larger scale, aura, and longer nameplate range.
+
+Verification Notes
+------------------
+Expected smoke checks:
+- Enter Gloom's Crypt or Silk Web Depths.
+- Reach a boss room.
+- Confirm the room has a named boss, not only generic guardians.
+- Try stairs/treasure while boss is alive; interaction should be blocked.
+- Kill the boss; stairs/treasure should unlock.
+- Boss loot should use boss-specific loot-table ids.
+- Final treasure should not be repeat-lootable in the same run.

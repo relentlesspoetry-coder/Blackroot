@@ -1,0 +1,23 @@
+Dream Realms V0.15.04 - Dark Woods Density Boundary Pass
+
+Summary
+- Reduced Dark Woods hostile density by roughly 50% from the mob spawn owner.
+- Kept spawn coverage distributed across the full zone instead of deleting large regions of content.
+- Added a dense, visible, impassable tree wall around the entire Dark Woods map perimeter.
+- Added an inner foliage fringe so the zone edge reads as dense forest, not an invisible wall.
+- Boundary trees are real collision/pathing blockers, so players and mobs treat them as solid obstacles.
+
+Files Updated
+- systems/mob-spawn-system.js
+- systems/world-system.js
+- Dream Realms V0.15.04.html
+- core/config.js
+- systems/save-system.js
+- README.txt
+- VERSION.txt
+- Save/save-folder-manifest.json
+
+Validation Notes
+- Spawn counts are scaled down at generation time.
+- Existing saved spawn runtime data is clamped/rebuilt through the population version/signature update.
+- Quest NPCs, resource nodes, interactables, caves, and camp/town content were not removed.

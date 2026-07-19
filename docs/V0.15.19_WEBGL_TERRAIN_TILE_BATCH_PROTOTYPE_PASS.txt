@@ -1,0 +1,37 @@
+Dream Realms V0.15.19 — WebGL Terrain Tile Batch Prototype Pass
+
+Baseline:
+- Dream Realms V0.15.18 — WebGL Sprite Batch Prototype Pass
+
+Purpose:
+- Continue the safe renderer migration from optimized Canvas 2D toward GPU-backed rendering.
+- Add WebGL terrain/chunk texture-batch diagnostics without replacing the visible Canvas renderer.
+
+Changes:
+- Canvas 2D remains the visible stable renderer.
+- Hybrid WebGL Prototype mode now runs both sprite and terrain shadow prototypes.
+- Existing cached terrain chunk surfaces are collected as WebGL terrain candidates.
+- Terrain chunk surfaces are uploaded as WebGL textures under a bounded cache.
+- WebGL issues diagnostic terrain quad draw calls to the prototype surface.
+- Added terrain texture upload/draw budgets and cache limits.
+- Added terrain WebGL metrics to the F3 overlay.
+- Added terrain backend metrics to benchmark snapshots through the render backend snapshot.
+
+New config controls:
+- enableWebglTerrainBatchPrototype
+- webglTerrainPrototypeShadowDraw
+- webglTerrainMaxCandidates
+- webglTerrainMaxUploadsPerFrame
+- webglTerrainMaxDrawsPerFrame
+- webglTerrainTextureCacheMaxEntries
+
+F3 overlay additions:
+- WebGLTerrain enabled/program/candidate counts
+- WebGLTerrain draw calls/quads/texture entries/uploads
+- WebGLTerrain upload/draw ms/fallback/error state
+
+Safety notes:
+- Terrain is not visually replaced by WebGL yet.
+- The prototype uses shadow WebGL draws for cost validation and texture-cache diagnostics.
+- If WebGL is unavailable, Canvas rendering continues unchanged.
+- No gameplay, combat, loot, quests, zone layout, class balance, or UI layout changes are intended.

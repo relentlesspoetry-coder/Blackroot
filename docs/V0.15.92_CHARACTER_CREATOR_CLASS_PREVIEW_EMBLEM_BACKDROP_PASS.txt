@@ -1,0 +1,19 @@
+# Dream Realms V0.15.92 - Character Creator Class Preview Emblem Backdrop Pass
+
+## Changed
+
+- Enlarged the character creation center model preview scale for all race/class combinations.
+- Switched the preview sizing logic to use the actual model viewport dimensions instead of the outer stage dimensions.
+- Raised humanoid preview scale substantially while keeping the full model inside the preview window.
+- Added the selected class emblem as a large translucent backdrop behind the character during creation.
+- Kept the existing transparent class emblem sheet and canonical 14-class order intact.
+
+## UI Paths Affected
+
+- Character creation center preview.
+- Class switching refresh path.
+- Randomize / appearance refresh path.
+
+## Validation
+
+- JavaScript syntax sweep: 194 files checked, 0 syntax errors.

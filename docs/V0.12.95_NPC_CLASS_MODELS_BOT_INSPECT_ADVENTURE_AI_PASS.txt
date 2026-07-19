@@ -1,0 +1,18 @@
+Dream Realms V0.12.95 — NPC Class Models Bot Inspect Adventure AI Pass
+
+Baseline: V0.12.94 — Bot Loot Trading Meditation Pass
+
+Fixes:
+- Town/camp NPCs now route through the shared ClassIdentityProceduralModel first, using class/trainer/role mappings instead of the crude NPC fallback renderer.
+- NPC role badges remain as overlays above the class model instead of being baked into bad body sprites.
+- Bot Inspect opens a real equipment/stat window modeled after the player character sheet.
+- Bot inspection shows equipment slots, carried trade gear, HP/mana, quest state, economy, activity, and trade controls.
+- Autonomous bots now resolve an out-of-town adventure anchor from their active quest and nearby suitable mobs.
+- Bot roaming now pulls them toward combat/resource objectives instead of looping around town with a fake Questing label.
+- Bot target selection prefers quest-matching mobs and can initiate pulls while actively questing/patrolling.
+
+Validation target:
+- NPCs should visually read as class-model humanoids.
+- Inspect Bot should open a window, not only log text.
+- Non-party bots should leave camp to hunt/gather and return only for supplies, death recovery, or quest turn-in.
+- No cascade patch layer added.

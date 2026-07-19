@@ -1,0 +1,37 @@
+Dream Realms V0.15.13 — Runtime Memory and GC Stabilization Pass
+
+Goal:
+Reduce browser main-thread garbage collection pressure without changing gameplay, balance, graphics, zones, mobs, items, or UI layout.
+
+Changes:
+- Added runtime memory pool configuration in CONFIG.PERFORMANCE.
+- Added reusable visual-effect object pooling.
+- Converted central addEffect() to keep active effects in reusable pooled objects when safe.
+- Preserved Bard meditation aura side-map behavior by excluding those tracked effects from pooling.
+- Recycled expired visual effects during updateEffects() instead of allowing all expired objects to become garbage.
+- Recycled dropped effects when effect budgets are exceeded.
+- Extended combat damage text pooling and copied direct addDamageText() calls into pooled entries.
+- Converted common high-frequency effect spawners to use pooled entries directly:
+  - ring
+  - slash
+  - bolt
+  - cast cue
+  - combat impact
+  - combat sparks
+  - status pulse
+- Replaced Bard meditation aura effect cleanup with in-place array compaction instead of Array.filter() allocation.
+- Added render-item pool usage tracking and capped render item pool growth.
+- Added F3 runtime memory metrics:
+  - effect pool entries
+  - effect pool recycled/reused counts
+  - expired/dropped effect counts
+  - damage text pool entries
+  - damage text recycled/reused counts
+  - dropped damage text counts
+  - render item pool used/size/trims
+  - in-place compaction count
+
+Validation:
+- JavaScript syntax validation should pass across the modular runtime.
+- Script order and HTML references should remain intact.
+- This pass is additive and preserves the V0.15.12 adaptive performance governor.

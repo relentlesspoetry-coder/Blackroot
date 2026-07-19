@@ -1,0 +1,20 @@
+Dream Realms V0.13.86 — Fighter Meditation FX Position + Clarity Pass
+
+Summary
+- Increased Fighter meditation effect size and brightness.
+- Lowered the blue aura below the seated Fighter's legs and feet.
+- Repositioned the meditation experience bar below the model.
+
+Files Changed
+- render/class-identity-procedural-model.js
+- render/entity-renderer.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.13.86_FIGHTER_MEDITATION_FX_POSITION_CLARITY_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- ZIP integrity verified with `unzip -t`.

@@ -1,0 +1,26 @@
+Dream Realms V0.13.84 — Fighter Action Animation Upgrade Pass
+
+Summary
+- Extended the high-poly Premium Fighter procedural model with explicit animation poses for meditation, fishing, and auto-attack readiness.
+- Implemented the pass inside the owning Fighter renderer instead of adding a late patch wrapper.
+
+Renderer changes
+- Meditation:
+  - Lowers the Fighter into a seated stance.
+  - Draws crossed armored legs with plate detail and boot grounding.
+  - Draws folded/resting arms instead of standing combat arms.
+  - Keeps Fighter equipment visible by rendering a resting sword and shield near the seated pose.
+  - Preserves the existing meditation aura effect.
+
+- Fishing:
+  - Draws a braced two-hand fishing pose instead of the default sword/shield pose.
+  - Reuses the existing fishing rod/line contract so fishingRodTipScreen is still updated for the fishing line renderer.
+  - Supports casting/waiting/reeling motion through fishingAction/fishingCastTimer.
+
+- Auto attack:
+  - Adds a ready stance while autoAttack/combatCooldown is active and attackAnim is not currently swinging.
+  - Keeps the existing attackAnim swing/slash effect for actual attack frames.
+  - Adds a subtle weapon readiness glint so auto-attack reads as active without looking like a permanent slash.
+
+Preserved
+- Fighter silhouette, proportions, high-poly plate mesh, armor design language, hair/skin/clothing color customization, facing direction support, nameplate/click anchors, combat timing, targeting, inventory, save/load, party, bot, pet, dungeon, and fishing system behavior.

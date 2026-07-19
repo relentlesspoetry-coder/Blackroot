@@ -1,0 +1,55 @@
+Dream Realms V0.13.53 — Ground Over Half-Block Layering Fix Pass
+
+Systems changed:
+- game.js
+  - Split cached-ground structural rendering into a dedicated terrain-depth-underlay phase, terrain-surface phase, terrain-occlusion-cap phase, and unchanged structural wall/object/actor phases.
+  - Ground elevation faces that belong to cached walkable terrain now render before cached water/ground surfaces instead of after them.
+  - Cached terrain fallback remains intact: if chunk surfaces are unavailable, affected tiles return to the full legacy draw path.
+- render/terrain-renderer.js
+  - Added structural draw modes for depth-underlay and occlusion-cap rendering inside the owning terrain renderer.
+  - Reused the existing elevation-face renderer for the lower/depth wall face while suppressing its old post-surface ledge lip in the underlay pass.
+  - Added a systematic material-colored ground surface occlusion lip that draws after cached ground surfaces and hides the upper seam of half-block/depth faces.
+  - Added explicit neighboring tile sampling metadata for terrain chunk signatures so edge masks and lips invalidate across chunk boundaries.
+- core/config.js, data/default-zones.js, systems/save-system.js, systems/world-serializer.js, README.txt, VERSION.txt, and Dream Realms V0.13.53.html
+  - Updated build/version metadata from V0.13.52 to V0.13.53.
+- docs/MODULAR_HISTORY.txt
+  - Added this pass at the top of modular history.
+
+Terrain layer-order fix:
+- Previous cached terrain order drew water/ground surfaces first, then emitted half-block elevation faces through the structural tile path.
+- V0.13.53 changes the visual order to:
+  1. water depth faces
+  2. cached-ground terrain depth underlay faces
+  3. cached water surfaces and shimmer
+  4. cached walkable ground surfaces
+  5. material ground occlusion lips/caps
+  6. cached shoreline caps
+  7. structural cave walls, non-cached tiles, props, actors, effects, labels, and UI overlays
+- This makes the walkable top surface visually sit above the half-block/depth wall face.
+
+Half-block/depth-face occlusion fix:
+- Half-block vertical faces now render as lower terrain depth geometry beneath cached walkable ground.
+- The old ledge lip is not drawn during the depth-underlay pass, preventing it from sitting on top of the world surface.
+- A material-colored ground occlusion lip is drawn afterward from the owning terrain renderer, using the tile’s ground material instead of a generic dark box or hard outline.
+- The cap covers the upper seam of the depth face while preserving the recessed cliff/drop-off read.
+
+Chunk composition changes:
+- The terrain chunk cache remains the owner of cached water, cached ground, shimmer, material transitions, and shoreline caps.
+- Chunk composition order is now documented in runtime cache stats as: water-depth, terrain-depth-underlay, water-surface, ground-surface, ground-occlusion-cap, shore-cap, structural-walls, actors-props.
+- Terrain chunk signatures now sample two tiles beyond chunk bounds for edge-dependent invalidation, while the existing three-tile build padding remains in place.
+- No full-map redraw, duplicate render loop, monkey patch, bottom-of-file hotfix, or hardcoded coordinate exception was added.
+
+Gameplay systems preserved:
+- Logical tile types, elevation values, collision, water blocking, pathfinding, spawn validation, quest/objective placement, loot placement, combat distance, ranged auto attacks, Purify, resurrection, autonomous bots, pets, dungeon logic, paper doll, bag-to-ground drag/drop, item stat compare, currency drops, save/load, and Esc menu behavior remain unchanged.
+- The fix is limited to terrain render ordering, terrain chunk signature sampling, and material seam caps.
+
+Tests run:
+- JavaScript syntax check for every .js file with node --check.
+- HTML script reference audit confirmed every referenced local script exists.
+- Version metadata audit confirmed V0.13.53 metadata in config, save, default-world, serializer, README, VERSION, and HTML title.
+- Terrain pipeline static audit confirmed render order includes terrain-depth-underlay before terrain-surfaces and terrain-occlusion-cap after cached surfaces.
+- Terrain renderer static audit confirmed drawTile supports depth-underlay and occlusion-cap modes, drawGroundSurfaceOcclusionLip exists, and chunk signatures sample neighboring tiles.
+- ZIP integrity check passed after packaging.
+
+Manual browser-test caveats:
+- Manual Chrome/Firefox playtesting is still recommended for subjective cap thickness, cliff/shore contrast, rotated camera views, extreme zoom/DPI, chunk-border seams, actor/prop overlap near drop-offs, Silk Web Cavern floor transitions, and long-session cache invalidation behavior.

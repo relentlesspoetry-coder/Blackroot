@@ -1,0 +1,22 @@
+Dream Realms V0.10.3 Modular Pass 19 — Editor Paint Tools
+
+Added actual in-game editor paint tools on top of the Pass 18.4 working editor baseline.
+
+Controls:
+- F10 toggles editor mode.
+- Click or drag on the world while the editor is active.
+- Tiles tab: Paint Tile, Rectangle, Fill, Eyedropper, Raise, Lower.
+- Objects tab: Place Object, Erase Object, Eyedropper Object.
+- Attributes tab: Block and Unblock currently work; other attribute tools are reserved.
+- Caves tab: Cave Floor, Cave Wall, Cave Entrance, Cave Exit.
+
+Save integration:
+- Edits mark the world dirty.
+- Save World writes the current world through the Pass 17 world save pipeline.
+- Export JSON exports edited map/object/cave state.
+
+Scope exclusions:
+- No event editor yet.
+- No NPC editor yet.
+- No quest/item/spell data editors yet.
+- No undo/redo yet.

@@ -1,0 +1,26 @@
+Dream Realms V0.15.21 — Hybrid WebGL Scene Preview Composite Pass
+
+Goal
+- Continue the controlled renderer migration without replacing the stable Canvas 2D gameplay renderer.
+- Convert the WebGL prototype from isolated shadow diagnostics into a visible scene-preview composite that can be inspected safely.
+
+Changes
+- Updated version metadata to V0.15.21.
+- Added a WebGL scene-preview compositor that renders terrain chunk textures and runtime sprite cache candidates into an actual screen-space WebGL scene canvas.
+- Added screen-correct terrain quad placement using the current isometric camera yaw, zoom, terrain chunk crop rectangles, and cached terrain surfaces.
+- Added screen-correct sprite quad placement using runtime sprite cache entries and current camera zoom.
+- Added a Settings toggle for the WebGL Scene Preview overlay.
+- The overlay displays the WebGL scene preview in the lower-right corner while Canvas 2D remains the authoritative gameplay renderer.
+- Added persistent localStorage state for the WebGL scene-preview overlay toggle.
+- Added F3 metrics for scene-preview state, draw calls, quads, terrain quads, sprite quads, draw cost, composite cost, and last error.
+- Preserved Canvas 2D fallback and the existing hybrid renderer watchdog.
+
+Safety
+- Canvas 2D remains the active visible gameplay renderer.
+- The WebGL scene-preview overlay is opt-in from Settings.
+- If WebGL is unavailable, context-lost, or blocked by the watchdog, the game remains on Canvas 2D.
+- No gameplay, balance, AI, loot, map, quest, class, spell, UI layout, or save-system changes.
+
+Validation
+- JavaScript syntax validation passed.
+- Existing script order preserved.

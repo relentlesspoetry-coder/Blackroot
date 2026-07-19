@@ -1,0 +1,54 @@
+Dream Realms — PHASE 10: Local Player-to-Player Trade
+========================================================
+
+Scope: implementation phase following docs/PHASE_7_CLASS_STAT_INVENTORY_
+AUDIT.txt, which confirmed the only "trade" anywhere in the codebase was a
+player-vs-AI-companion-bot gear exchange (systems/bot-player-system.js) -
+real player-to-player trading had no code path. Ships as V0.15.87. Full
+Added/Safety-model/Validation/Known-Limitations detail lives in
+PATCH_NOTES.md under "V0.15.87" - this file is the short architecture
+rationale.
+
+Files changed: systems/trade-system.js (new), systems/multiplayer-
+system.js, systems/party-system.js, systems/ui-system.js, game.js,
+Dream Realms V0.15.52.html, _script_order.json.
+
+Architecture: reuses two existing owners rather than introducing new ones.
+Transport is `Game.prototype.broadcastMultiplayer`
+(systems/multiplayer-system.js), the same BroadcastChannel already used by
+every other local-multiplayer feature (party invites, combat pings, party
+rewards); six new message types (`tradeRequest`/`tradeAccept`/
+`tradeDecline`/`tradeUpdate`/`tradeConfirm`/`tradeCancel`) are added as new
+branches in the single existing dispatcher (`receiveMultiplayerMessage`),
+matching the exact `if (message.type === ...)` pattern every party message
+type already uses, including the same `targetId !== this.localPeerId`
+addressing guard. UX is modeled on the existing party-invite request/
+accept flow (systems/party-system.js: `invitePeer`/`receivePartyInvite`/
+`acceptPartyInvite`) rather than inventing a new interaction pattern -
+trade-system.js's `requestTrade`/`receiveTradeRequest`/`acceptTradeInvite`
+mirror that shape function-for-function. Incoming trade requests are
+rendered inside the party panel's existing invite list via one new
+cross-reference function (`tradeInviteRows`, owned by trade-system.js,
+called from party-system.js's `renderPartyPanel`) rather than a second
+popup system.
+
+Trust model: this project has no authoritative server anywhere (Phase 0
+audit, section 4) - every existing multiplayer feature is trust-on-receipt
+between tabs, with damage/loot/inventory mutated instantly and locally with
+no validation seam. Trade follows the same model (this phase does not, and
+could not consistently with the rest of the project, add server-style
+validation that doesn't exist elsewhere) but adds three specific safety
+properties on top of it - see PATCH_NOTES.md "V0.15.87" Safety model for
+the full list (no removal before mutual confirm; confirm-time
+re-validation by stable item id; single-execution guard per tradeId).
+
+Validation: full-project `node --check` sweep, 0 errors; manually traced
+the dispatcher to confirm no existing message type's branch was altered and
+every new branch uses the established addressing guard; confirmed the HTML
+script tag and _script_order.json manifest agree. See PATCH_NOTES.md
+"V0.15.87" for full detail.
+
+Known limitations: no partial-stack offers; no concurrency lock on offered
+items during negotiation (only confirm-time re-validation); trade state is
+session-only, not persisted; no guild-bank-adjacent multi-party trade. See
+PATCH_NOTES.md for full detail.

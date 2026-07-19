@@ -1,0 +1,15 @@
+Dream Realms V0.13.10 — Merc Cave Transition Follow Fix Pass
+
+Scope:
+- Fix active hired mercenaries being left in the overworld when the player enters caves, changes cave floors, exits caves, or crosses dungeon/cave/overworld transitions.
+- Keep the fix inside party/merc ownership paths. No bottom-of-file hotfix layer.
+
+Changes:
+- syncPartyCompanionsToPlayerZone now treats any active hired mercenary as a zone-following companion. It no longer requires partyMercIncluded for cave/dungeon transitions.
+- Hired mercenaries now receive an explicit runtime zone at hire time.
+- Restored mercenaries are re-added to entities and reconciled to the active player zone after load.
+
+Validation:
+- Syntax check across active JavaScript files.
+- Static ownership scan for duplicate Game.prototype assignment owners.
+- Targeted merc cave transition probe: active merc moves from overworld to cave, tracks cave floor loads, and returns to overworld on exit.

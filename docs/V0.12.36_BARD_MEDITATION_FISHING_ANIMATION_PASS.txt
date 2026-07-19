@@ -1,0 +1,15 @@
+Dream Realms V0.12.36 — Bard Meditation and Fishing Animation Pass
+
+Renderer ownership
+- render/bard-procedural-model.js now owns bard-specific meditation/fishing pose logic.
+- render/entity-renderer.js now forwards meditation/fishing state into the bard renderer.
+
+Included animation states
+- Meditation: seated bard pose, crossed legs, aura ring, rising restorative orbs, lute resting across lap.
+- Fishing: bard-specific hand placement for rod handling, fishing rod overlay, fishing line, reel spool, and continuous rod tip anchor output.
+- Existing perform/song state remains intact.
+
+Implementation notes
+- Meditation and fishing are drawn directly by the bard renderer rather than falling back to the generic humanoid renderer.
+- Instrument rendering is suppressed while fishing so the bard does not appear to play and fish simultaneously.
+- Nameplate anchor is lowered during meditation to match the seated bard silhouette.

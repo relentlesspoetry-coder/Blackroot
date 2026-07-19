@@ -1,0 +1,8 @@
+Dream Realms V0.15.89 — 14 Class Spellbook Import Pass
+
+Imported the uploaded 14-class level 1-20 spellbook into runtime data:
+- Added Paladin, Warden, Ranger, Assassin, Wizard, and Shaman as playable classes.
+- Rebuilt DR.CLASSES with the canonical 14-class order.
+- Rebuilt DR.CLASS_SPELL_BOOK so every class has 20 level-gated abilities, 280 total.
+- Mapped design ability categories onto the existing runtime spell kinds: melee, ranged bolt, DoT/debuff, AoE, group buff, heal, revive, cleanse, summon pet, pet buff, and temporary minions.
+- Preserved Fighter as heavy-weapon melee DPS, Assassin as physical ranged DPS, Shaman as magic ranged DPS, and Paladin/Warden as the two true tanks.

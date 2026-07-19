@@ -1,0 +1,4 @@
+Dream Realms V0.15.100 - Character Creator Centering Fix
+
+- Raised the class model in the creator preview so it sits centered in the visible window.
+- Raised the oversized class emblem backdrop so it is centered behind the model and no longer sinks into the lower UI strip.

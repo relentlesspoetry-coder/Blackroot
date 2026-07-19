@@ -1,0 +1,5 @@
+Dream Realms V0.15.111 - Updated Creator Background Icons and Centering
+
+- The character creator now uses the newly spaced-out class icon sheet for the model backgrounds.
+- Each class icon is centered behind the model using updated visible-art bounds.
+- The 40% size reduction from the previous pass remains in place.

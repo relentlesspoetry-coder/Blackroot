@@ -1,0 +1,23 @@
+Dream Realms V0.14.31 — Unified Pet Party HUD Merge Fix Pass
+
+Summary
+- Fixed Pet Command / Party Companion UI so it becomes part of the original player HUD panel.
+- Removed the visual second-window treatment for the unified companion HUD once attached to the character HUD.
+- Preserved pet command buttons, party companion frames, class emblems, and solo-hidden behavior.
+
+Files changed
+- systems/ui-system.js
+- Dream Realms V0.14.31.html
+- README.txt
+- VERSION.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.31_UNIFIED_PET_PARTY_HUD_MERGE_FIX_PASS.txt
+
+Validation
+- JavaScript syntax passed via node --check.
+- HUD ownership audit confirms `attachUnifiedCompanionHudToPlayerHud()` reparents the companion HUD into `#hud`.
+- ZIP integrity verified.

@@ -1,0 +1,15 @@
+Dream Realms V0.12.10 — Character Creation Text Input Fix
+
+Root cause:
+- The global keydown handler processed movement bindings before checking whether an editable field had focus.
+- Because W, A, S, and D are movement keys, they were prevented and stored in the gameplay key set instead of being typed into the character-name field.
+
+Fix:
+- Added Game.prototype.isEditableTextTarget().
+- The main keydown handler now returns immediately for input, textarea, select, and contenteditable targets before processing movement/combat/UI hotkeys.
+- Key rebinding still works because the rebind capture remains before the editable-field guard.
+
+Verification:
+- W/A/S/D are allowed through to the character creation name input.
+- Gameplay movement bindings still work after character creation.
+- No cascade patches, wrapper overrides, or duplicate prototype owners were added.

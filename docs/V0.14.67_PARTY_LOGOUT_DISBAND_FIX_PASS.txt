@@ -1,0 +1,18 @@
+Dream Realms V0.14.67 — Party Logout Disband Fix Pass
+
+Scope:
+- Fixed party session cleanup when the player logs out, exits through the game menu, or closes the browser/app window.
+
+Changes:
+- Added an owning party-session cleanup path in systems/party-system.js.
+- Logout and Exit Game now clean party state before character/account saves are written.
+- Party leaders now disband the party on session end instead of causing silent leader promotion.
+- Party members now leave cleanly on session end without keeping stale local party data.
+- Browser beforeunload/pagehide now broadcasts party cleanup and writes account-bound local save data without active party runtime where possible.
+- Remote clients now handle explicit partyDisband messages and leader disconnects by clearing party state.
+- serializePartyState now returns null when there is no active party runtime, preventing solo/local empty party state from being persisted.
+
+Validation:
+- node --check completed across runtime JavaScript files.
+- ZIP integrity verified with unzip -t.
+- No cascade patch layer added.

@@ -1,0 +1,22 @@
+Dream Realms V0.13.1 — Party Companion Cave Sync HUD Label NPC Model Fix Pass
+
+Baseline
+- Dream Realms V0.13.0 — AI Pathing NPC Class Models Fishing Animation Bugfix Pass
+
+Fixes
+- Party bots are now preserved in the active render/update entity set when cave/dungeon enemy sets refresh.
+- Party bot zone sync now captures zone changes before assignment, clears autonomous/simulated dungeon state, and guarantees the bot remains in the active entity list.
+- Pet, merc, bot, and party resource bars now display as prefix-first labels: HP: current/max, Mana: current/max, EXP: current/max.
+- Runtime camp NPC rendering now directly uses Bard, Druid, or ClassIdentity model renderers with NPC actors. The crude fallback NPC body is emergency-only.
+
+Ownership Notes
+- Bot cave/dungeon follow fix is in bot-player-system.js and mob-spawn-system.js.
+- HUD label fix is in ui-system.js and party-system.js.
+- NPC model fix is in npc-system.js.
+- No cascade wrapper or bottom-file hotfix layer was added.
+
+Validation
+- JS syntax check passed for all active JavaScript files.
+- HTML script order matches _script_order.json.
+- Missing script check passed.
+- Static checks passed for active bot entity preservation, cave/dungeon sync state clearing, prefix-first HUD labels, and direct NPC class-model rendering.

@@ -1,0 +1,7 @@
+Dream Realms V0.13.32 - Bot Recruiter Party Management Pass
+
+- Mercenary recruiter NPC now exposes Class Bot Contracts for all playable bot classes.
+- Added shared recruitment helpers: getBotRecruitmentOptions, hireClassBot, dismissClassBot, bot party slot counting, and capacity validation.
+- Added role/class descriptions for Fighter, Cleric, Druid, Summoner, Bard, Necromancer, Rogue, and Enchanter bot contracts.
+- Bot mass-spawn testing hook is now debug-gated for normal play.
+- Bot recruitment uses the existing BotPlayer, party, pathing, save/load, and class AI systems instead of fake parallel bot logic.

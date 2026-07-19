@@ -1,0 +1,30 @@
+Dream Realms V0.12.85 — Character Creation Revamp Pass
+
+Baseline
+- Dream Realms V0.12.84 — Main Menu + Account Character Slots Pass
+
+Scope
+- Character creation appearance options only.
+- No mounts, no class-renderer off-roadmap branch, no bot players, and no unrelated systems.
+
+Changes
+- Added expanded hairstyle list: Short, Long, Ponytail, Braid, Shaved, Pixie Cut, Curls, Mohawk, Bun, Twin Braids, Topknot, Undercut, Loose Waves.
+- Added hair color picker.
+- Added face preset selector: Balanced, Soft, Sharp, Stern, Scarred, Tattooed.
+- Added live appearance preview panel to the creator screen.
+- Creator summary now includes face preset, hair style, skin, hair color, and clothing colors.
+- Character slot summaries now show face + hair selection.
+- Player entity now owns hairColor and faceStyle.
+- Save payload now persists hairColor and faceStyle.
+- Save restoration reapplies hairColor and faceStyle.
+- Humanoid renderer now reads selected hairColor, expanded hairStyle values, and faceStyle details.
+- Shared HumanoidBaseRenderer path also supports expanded hair and face data for class-identity renderers.
+
+Validation
+- JS syntax check.
+- Script order check.
+- Required creator control presence check.
+- Save/load ownership check.
+- Renderer support check.
+
+No cascade patch layer was added.

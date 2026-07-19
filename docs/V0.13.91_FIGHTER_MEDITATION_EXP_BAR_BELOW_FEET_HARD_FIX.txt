@@ -1,0 +1,18 @@
+Dream Realms V0.13.91 — Fighter Meditation EXP Bar Below Feet Hard Fix
+
+Summary
+- Fixed the meditation EXP bar still rendering across the Fighter body by adding a dedicated below-feet anchor from the Fighter procedural renderer.
+
+Files Changed
+- render/class-identity-procedural-model.js
+- render/entity-renderer.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.13.91_FIGHTER_MEDITATION_EXP_BAR_BELOW_FEET_HARD_FIX.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- ZIP integrity verified with `unzip -t`.

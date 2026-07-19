@@ -1,0 +1,16 @@
+Dream Realms V0.15.45 — Settings Panel Regression Fix
+
+Purpose:
+Fix the regression where the Settings window shell opened but the Settings options/body did not render.
+
+Changes:
+- Added systems/settings-panel-regression-fix-system.js.
+- Added Game.prototype.ensureSettingsList().
+- Wrapped renderSettingsPanel with a final safety layer that catches render failures.
+- If the Settings body is empty after render, the system renders a safe fallback Settings body.
+- Fallback Settings body includes HUD toggles, performance controls when available, audio mixer controls, audio reset/test controls, key binding controls, and reset controls.
+- Close button behavior is preserved.
+- Later renderer/performance/QA systems can still append below the base settings body.
+
+No gameplay/content changes:
+- No combat, class, spell, loot, mob, quest, dungeon, economy, or zone layout values changed.

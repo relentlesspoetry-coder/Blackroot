@@ -1,0 +1,35 @@
+Dream Realms V0.12.42 - Status Threat Systems Pass
+
+Owned systems added:
+- systems/status-effect-system.js
+- systems/threat-system.js
+
+Status Effect System:
+- Owns buff/debuff duration, remaining time, stacks, max stacks, stat modifiers, control tags, DoT ticks, HoT ticks, source attribution, colors, and serialization.
+- Supports hostile and beneficial effects.
+- Supports control tags such as slow, root, stun, and silence for future ability expansion.
+- Preserves compatibility with existing entity.addBuff callers while routing new behavior through the status owner.
+- Replaces the previous combat-owned periodic damage loop.
+
+Threat / Aggro System:
+- Owns per-enemy threat tables.
+- Damage creates source-owned threat.
+- Pet damage creates pet-owned threat.
+- Mercenary damage creates merc-owned threat.
+- Healing creates group healing threat across nearby hostile enemies.
+- Taunt forces a temporary target and bumps the taunter above current threat.
+- Enemy target selection now prefers threat targets, then proximity fallback.
+- Threat decays and clears when actors die, leash out, or enemies reset/respawn.
+
+Gameplay wiring:
+- Combat damage and healing feed threat.
+- Enemy AI uses threat target selection.
+- Guardian mercenary uses a periodic taunt.
+- Status effects render on player, target, and mercenary HUD trays.
+- Character saves persist active player status effects.
+
+Verification target:
+- No duplicate Game.prototype owners.
+- No bottom-of-file hotfix/cascade wrapper.
+- Syntax check all JS files.
+- HTML load order includes status/threat before combat.

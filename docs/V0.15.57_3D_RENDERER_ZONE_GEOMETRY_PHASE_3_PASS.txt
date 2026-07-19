@@ -1,0 +1,86 @@
+Dream Realms V0.15.57 — 3D Renderer Zone Geometry Phase 3
+
+Scope: Phase 3 (Terrain and Zone Geometry) of the 3D conversion, building on
+Phase 1+2 (V0.15.56). Still fully opt-in via Settings > Renderer > "3D
+Prototype"; Canvas 2D remains the default and is unaffected. All changes are
+inside systems/render3d-system.js, the sole owner of the 3D rendering layer.
+
+Added:
+- Real per-tile-type terrain colors: tileBaseColor() now reads the same
+  DR.TILE_DEF[type].top hex color the 2D renderer already uses, instead of a
+  fragile string-substring guess. Fixed a real bug from Phase 1: tile.type is
+  a numeric enum (DR.TILE.*), not a string, so the old substring checks (e.g.
+  type.includes('water')) silently never matched and water/rock/dirt tiles
+  were all falling through to the default grass color.
+- Water surfaces: water tiles are now excluded from the opaque terrain color
+  and instead get a separate translucent blue mesh built only over actual
+  water tiles, sitting just above the lake bed (uses tile.waterSurfaceElev
+  when present, e.g. cave pools).
+- Cliff/cave-wall faces: a continuous heightmap mesh renders elevation
+  changes as smooth ramps, which is wrong for walls (CAVE_WALL and any other
+  tile type marked non-walkable at the type level, per DR.TILE_DEF). Those
+  cells are now excluded from the smooth terrain mesh (using the nearest
+  walkable neighbor's elevation instead, so the floor stays flat under them)
+  and rendered as separate vertical InstancedMesh blocks sized to the tile's
+  actual elevation - verified numerically (2.25 world units = 5 elevation
+  steps, matching CAVE_WALL's elev:5) and visually (hard vertical edge
+  instead of a walkable-looking ramp).
+- Blocked-tile readability: flat tiles with the runtime `blocked` flag set
+  (the editor's Block tool, or a blocking object) but a naturally-walkable
+  type get a red-brown color tint, so "invisible walls" remain visible in 3D
+  without affecting already-distinct wall/cliff tiles.
+- World objects: game.objects (the same static grid the 2D renderer reads -
+  trees, rocks, tents, camp props, cave hazards, etc.) are now rendered as
+  3D primitives, classified by exact type first and a substring fallback
+  second, grouped into one InstancedMesh per category (tree/deadTree/rock/
+  structure/hazard/prop/default) for a single draw call per category
+  regardless of instance count (verified with ~3900 tree instances in Dark
+  Woods and ~38 in Mossfang Cave with no errors). This is deliberately
+  simple block-out geometry (cones, boxes, dodecahedra) - Phase 4 replaces
+  the geometry factories with detailed per-type meshes without changing the
+  classification/instancing approach.
+- Zone-aware lighting/fog: cave and dungeon zones (matching the existing
+  cave/dungeon "dark zone" grouping already used by ambient-audio-system.js,
+  atmosphere-system.js, and audio-system.js) get darker ambient/directional
+  light and closer, darker fog than the overworld, only re-applied when the
+  zone actually changes.
+
+Verified this pass (Playwright + headless Chromium, live game state, real
+character in Dark Woods and Mossfang Cave):
+- Zone transition via the real enterCave()/exitCave() gameplay functions:
+  terrain, water, walls, and objects all correctly rebuild for the new
+  zone's live map/object grid; atmosphere switches to cave-dark and back to
+  overworld; no leftover meshes from the previous zone (disposeObjectMeshes
+  runs before every rebuild).
+- Object instance counts differ correctly per zone (Dark Woods: ~3900 trees,
+  ~5300 props, ~450 rocks, 6 structures; Mossfang Cave: 25 props, 1 rock, 1
+  structure, no trees) - confirms the object grid is read live per zone, not
+  cached from a stale prior zone.
+- Wall block geometry confirmed numerically correct via live scene
+  introspection (sample instance height 2.25 world units = 5 elevation
+  units x 0.45 scale, matching CAVE_WALL's authored elev:5).
+- No console errors or thrown exceptions in either zone or during the
+  transition, only benign software-WebGL GPU driver performance warnings in
+  the headless test environment.
+- node --check passes on all 180 .js files; all .json files validate.
+
+Known limitations (unchanged from Phase 1+2, still scoped for later phases):
+- World objects and entities remain simple color-coded primitives, not
+  unique per-type/per-class meshes (Phase 4).
+- No animation state machine, 3D combat/spell VFX, or raycast-based
+  targeting yet (Phase 5-7).
+- Camera pitch is still a fixed constant with no terrain-collision-safe
+  arc (Phase 7).
+- Terrain/water/wall/object meshes rebuild in full on every zone change but
+  are not chunked/culled/LOD'd - fine at this prototype's scale, a Phase 8
+  concern for very large maps.
+- Roads/paths read via existing DIRT/CAMP tile coloring only; no distinct
+  road mesh/texture treatment was added this pass (not required for
+  readability at this fidelity tier).
+
+Files changed:
+- systems/render3d-system.js
+- core/config.js
+- VERSION.txt
+- README.txt
+- Dream Realms V0.15.52.html (title + both patch notes panels)

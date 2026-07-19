@@ -1,0 +1,25 @@
+Dream Realms V0.12.92 — Bot Party Movement HUD Duplication Bugfix Pass
+
+Problem
+- Bot players moved too fast and appeared to jump around.
+- Party bots jittered beside the player while the player was idle.
+- Each party bot also created a duplicate generic player HUD row showing Offline/Downed.
+
+Root Cause
+- followParty() returned false when a grouped bot was close to its formation point, so the bot immediately fell through into updateRoam() and kept trying to wander while still in the party.
+- Bot IDs were stored both in botPartyMembers and partyMembers. getPartyRoster() rendered the real bot from botPartyMembers, then treated the same ID as a missing remote peer and rendered a fake Offline/Downed player row.
+
+Fixes
+- Party bots now always consume their party-follow update. They either move toward formation or hold position; they no longer fall through into autonomous roaming.
+- Added idle formation dead-zone and velocity clearing to stop local jitter.
+- Added deterministic per-bot formation offsets to reduce stacking.
+- Reduced bot movement speed scalar and clamped bot movement deltas.
+- Kept bot membership owned by botPartyMembers instead of duplicating bot IDs into partyMembers.
+- Filtered legacy bot IDs out of partyMembers in normalization, party roster building, restore, and serialization.
+
+Validation Targets
+- Invite 1 bot: one bot HUD row, no Offline/Downed duplicate.
+- Invite 4 bots: each bot appears once in the unified HUD.
+- Stand still: bots hold nearby formation without jittering or wandering away.
+- Move: bots follow at a controlled pace without large jumps.
+- Save/load: bot party members still restore without duplicate HUD rows.

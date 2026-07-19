@@ -1,0 +1,20 @@
+Dream Realms V0.12.40 - Time Rate Balance Pass
+
+Purpose
+- Slow the day/night cycle so every 10 real seconds advances the clock by 1 in-game minute.
+
+Changes
+- WORLD_TIME_RULES.secondsPerGameDay changed to 14,400 seconds.
+- Full in-game day length is now 4 real hours.
+- Time-cycle save version bumped to 2.
+- V0.12.39 world-time saves migrate to the new rate automatically while preserving current day and minute.
+
+Owned files updated
+- systems/time-cycle-system.js
+- systems/world-serializer.js
+- systems/save-system.js
+- Dream Realms V0.12.40.html
+- README.txt
+- VERSION.txt
+- docs/LOAD_ORDER.txt
+- docs/MODULAR_HISTORY.txt

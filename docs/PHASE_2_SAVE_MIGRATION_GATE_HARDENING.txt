@@ -1,0 +1,233 @@
+Dream Realms V0.15.80 — Phase 2: Save/Migration Hardening & Gate Safety
+==========================================================================
+
+Scope: per the Phase 2 brief that followed Phase 1
+(docs/PHASE_1_DESCRIPTOR_REGISTRY.txt) - audit and, where a real gap was
+found, harden the account/character save schema and the login/character
+gate. No player-facing balance, combat, rendering, or UI layout was
+changed. The existing local/offline account system was preserved as-is,
+not replaced.
+
+
+1. GATE AUDIT (click/tap/keyboard/gamepad before login+character-select)
+----------------------------------------------------------------------------
+This was the highest-risk item in the Phase 2 brief, so it was audited
+first and thoroughly before writing any code. Traced every input path that
+runs before `Game.started` becomes true:
+
+- The three pre-game screens (#logoSplash, #classScreen,
+  #characterSlotScreen) are each `position: fixed; inset: 0` with a
+  near-opaque background and a z-index above the game canvas (30, 10, 12
+  respectively). While any is visible, mouse/touch/pointer events cannot
+  reach the canvas underneath - confirmed by reading the actual CSS rules,
+  not assumed.
+- Every canvas-level pointer handler (`pointerdown`, `contextmenu` in
+  game.js bindEvents()) explicitly checks `!this.started` and returns
+  early. Click-to-move/click-to-target cannot fire before `started`.
+- The entire per-frame simulation - `Game.prototype.update(dt)`, which is
+  the only place movement, combat, spellcasting, and every other gameplay
+  action are processed - is gated in `Game.prototype.loop()` by
+  `if (this.started && !this.paused) this.update(dt);`. No gameplay logic
+  runs at all while the splash/character screens are up, regardless of
+  what keys were pressed.
+- The one function that hides the login splash on click/tap/gamepad,
+  `Game.prototype.closeLogoSplash()` (systems/ui-system.js), already
+  redirects to the login panel instead of closing when
+  `!this.activeAccountId` - i.e. clicking/tapping/pressing A or Start on
+  the splash before actually logging in opens the login form, it does not
+  skip it. Verified this is the ONLY code path that can hide the splash
+  outside of the explicit login/account-create button handlers.
+- `systems/steam-deck-system.js` gamepad handling mirrors the keyboard
+  gate exactly: gameplay actions are behind `if (this.started)`, and the
+  gamepad's "confirm" buttons before that point only call the same gated
+  `closeLogoSplash()`.
+- The one capture-phase keydown handler that runs unconditionally
+  (corpse-loot interact key, game.js bindEvents()) calls
+  `Game.prototype.tryInteractCorpseLoot()`, which itself starts with
+  `if (!this.started || this.paused || !this.player || !this.player.alive)
+  return false;` - safe even though the outer listener doesn't check first.
+- Entering the actual game world only ever happens via
+  `Game.prototype.start(className, appearance)`, which sets
+  `this.started = true`. Grepped every call site: it is called from
+  exactly two places - the "Enter Realm" button handler (which itself
+  checks `this.activeAccountId == null` and bounces back to login if not
+  set) and `loadCharacterSlot()` (loading an already-created character from
+  an already-logged-in account). There is no third path.
+
+CONCLUSION: no bypass exists. This gate was already correctly implemented
+before this phase - it is not something this pass "fixed," it is something
+this pass verified line-by-line and is now documenting so it does not need
+re-auditing from scratch next time. Per "don't add fixes for things that
+aren't broken," no code was changed for this item.
+
+
+2. SAVE SCHEMA / MIGRATION METADATA (the real gap found this phase)
+------------------------------------------------------------------------
+systems/world-serializer.js already has a mature migration system (Pass
+43): a supported-schema set, automatic backward migration, a capped
+migrationHistory, and quarantine-on-corruption. systems/save-system.js's
+account/character path did NOT have the equivalent - it worked, but with
+two silent gaps:
+
+a) `normalizeAccountsState()` never checked `payload.schema` at all. A
+   document written with an unrecognized/foreign schema would be
+   normalized on a best-effort basis with zero visibility that anything
+   was off.
+b) `normalizeAccountRecord()` silently dropped ("continue") any character
+   slot whose payload failed `normalizeCharacterPayload()` - a corrupted
+   or incompatible character slot would simply vanish from the account
+   with no log line, no history entry, nothing to tell a player or a
+   developer why a character disappeared.
+
+Both are now visible instead of silent, while keeping the exact same
+lenient, non-blocking behavior (a stale/foreign document still loads
+best-effort; a bad slot is still dropped rather than corrupting the whole
+account) - this preserves "preserve current local account system" while
+adding the "migration metadata and safe fallback paths" the brief asked
+for:
+
+- Added `ACCOUNT_SUPPORTED_SCHEMAS` / `CHARACTER_SUPPORTED_SCHEMAS` (Set-
+  based, mirroring world-serializer.js's SUPPORTED_SCHEMAS pattern) in
+  systems/save-system.js. Both currently contain only today's schema
+  string, so behavior is byte-for-byte identical to before for every
+  existing save - this only establishes the seam a future schema bump
+  should use.
+- `emptyAccountsState()` now includes `migrationHistory: []`.
+- `normalizeAccountsState()` now: logs + records a migration note when
+  `payload.schema` is present but not in `ACCOUNT_SUPPORTED_SCHEMAS`
+  (still normalizes best-effort, does not reject); threads a `migrations`
+  accumulator into `normalizeAccountRecord()`; and appends a capped (last
+  12, matching WorldSerializer's convention) history entry when anything
+  was noted, otherwise carries the previous history through unchanged.
+- `normalizeAccountRecord()` now logs + records a note (`console.warn` plus
+  a `migrationHistory` entry) when a character slot's payload fails to
+  bind/normalize, instead of dropping it with zero trace.
+- `serializeAccountsDocument()` required no change - it already threads
+  `normalizeAccountsState()`'s return value straight through, so
+  `migrationHistory` now round-trips through save/load for free.
+- `normalizeCharacterPayload()`'s schema check was switched from a single
+  string-equality comparison to `CHARACTER_SUPPORTED_SCHEMAS.has(...)` -
+  same accept/reject behavior today (one entry in the set), same "reject
+  outright" behavior for the character-payload path specifically (kept
+  as-is: an unrecognized character-save schema still returns
+  `{ok:false, error}` rather than guessing at a shape it doesn't
+  recognize - safer for a single character record than for the whole
+  account document).
+
+
+3. FILES CHANGED THIS PHASE
+------------------------------
+- systems/save-system.js (account/character migration metadata + safe
+  fallback logging; see section 2)
+- core/config.js (version bump + changelog comment)
+- VERSION.txt, README.txt (version bump, Phase 2 summary)
+- docs/PHASE_2_SAVE_MIGRATION_GATE_HARDENING.txt (this file - new)
+
+No other files were touched. game.js, systems/ui-system.js, and
+systems/steam-deck-system.js were read extensively for the gate audit in
+section 1 but were not modified, since the audit found no defect there.
+
+
+4. SYSTEMS INTENTIONALLY NOT TOUCHED
+----------------------------------------
+- systems/world-serializer.js - its migration system (Pass 43) is already
+  mature and was not the gap this phase found; left untouched.
+- game.js, systems/ui-system.js, systems/steam-deck-system.js - audited
+  (section 1) and found already correct; no bypass to fix.
+- Everything out of Phase 2's scope per the original brief: renderers,
+  Bogling locomotion, editor UI, combat/spell feel, party/mercenary/bot AI.
+- The account password hashing scheme (`fnv1a-local-v1`) - already
+  explicitly documented in the code as "local/offline save integrity only,"
+  not real cryptographic auth. Changing it would require a real migration
+  path for existing account passwords and is out of scope for "preserve
+  current local account system."
+
+
+5. VALIDATION RESULTS
+-----------------------
+- `node --check systems/save-system.js`: passes.
+- Full-project sweep (`find . -name "*.js" ... node --check`, excluding
+  vendor/three.min.js and the bundled blender/ tooling): 0 syntax errors.
+- Runtime dry run (Node harness stubbing `window`/`document`/
+  `localStorage`, loading the actual edited save-system.js and exercising
+  the real `Game.prototype.loadAccountsState` / `saveAccountsState` /
+  `createLocalAccount`):
+  - A brand-new/empty account store loads with `migrationHistory: []` and
+    zero warnings.
+  - A normal account created and saved through the real
+    `createLocalAccount()` API round-trips through save+reload with
+    `migrationHistory: []` and zero console warnings - confirms no false-
+    positive noise for the common case.
+  - A hand-crafted legacy document (foreign schema string, one valid
+    character slot, one deliberately unparseable character slot) loads
+    WITHOUT throwing: the valid account and its valid slot survive
+    untouched, the broken slot is dropped (same as before this phase) but
+    now logs `[Dream Realms Save] account "TestPlayer" slot 2: character
+    payload failed to normalize and was dropped.`, and both the schema-
+    drift note and the dropped-slot note are recorded in
+    `migrationHistory`.
+  - `migrationHistory` was confirmed to survive a save-then-reload cycle
+    (round-trips through `serializeAccountsDocument`/localStorage/
+    `normalizeAccountsState` correctly).
+- The gate audit in section 1 was verification-by-reading (grep + manual
+  trace of every keydown/pointerdown/gamepad call site and every call site
+  of `Game.prototype.start`), not a live browser session - see Known
+  Limitations.
+
+
+6. KNOWN LIMITATIONS / FOLLOW-UPS FOR A FUTURE PHASE
+--------------------------------------------------------
+- A live in-browser test of the gate (physically clicking/tapping/
+  pressing keys on the splash screen before logging in) was NOT performed
+  in this environment; section 1's conclusion is based on static code
+  tracing of every input path, which is thorough but not a substitute for
+  an actual browser session. Added to the test checklist below.
+- This phase did not change `ACCOUNT_PASSWORD_HASH_METHOD` or add real
+  authentication - by design, per "preserve current local account system."
+  If stronger credential protection is ever wanted, that is a separate,
+  larger decision (server-side auth would be a different system entirely)
+  and was not requested here.
+- `normalizeAccountsState()`'s schema-drift check only fires when
+  `payload.schema` is truthy but unrecognized; a payload with a missing
+  `schema` field entirely is treated the same as before (normalized
+  silently) since that has always been the case for hand-imported/legacy
+  documents and changing it now would add a warning to every legacy import
+  rather than just genuinely suspicious ones.
+- The character-payload schema check remains a hard reject (not a
+  lenient best-effort normalize) for unrecognized schemas, unlike the
+  account-document check. This is intentional (see section 2) but means a
+  single malformed character slot inside an otherwise-valid account
+  produces a dropped slot + warning (new, visible) rather than an attempt
+  to partially recover fields from an unknown shape (which risks
+  fabricating incorrect character data - judged worse than losing the
+  slot with a clear log line).
+
+
+7. TEST CHECKLIST (run in a real browser before shipping)
+--------------------------------------------------------------
+[ ] From a fresh page load, try clicking/tapping anywhere on the title
+    splash background (not the buttons) before logging in; confirm it
+    opens the login panel and does NOT reveal the game world.
+[ ] Try pressing Enter/A/Space on the splash before logging in; confirm it
+    opens the login panel and does NOT reveal the game world.
+[ ] If a gamepad is available, press the A/Start equivalent on the splash
+    before logging in; confirm the same login-panel behavior.
+[ ] Log in, then click/tap the character-slot screen background (not a
+    button); confirm the game world is still not entered.
+[ ] Complete login -> character slot -> character creation -> Enter Realm;
+    confirm the game starts normally exactly as before this phase.
+[ ] Load an existing pre-V0.15.80 account save; confirm all character
+    slots still load with no `[Dream Realms Save]` console warnings.
+[ ] Open DevTools console during the above; confirm no errors (warnings,
+    if any, should only appear for genuinely stale/foreign save data, not
+    normal saves).
+
+
+8. NEXT RECOMMENDED PHASE
+----------------------------
+Phase 3 per the original brief: combat/spell/status/projectile parity -
+extend systems/combat-system.js, systems/spell-system.js,
+systems/status-effect-system.js, systems/threat-system.js with Intersect-
+style target validators, projectile descriptors, spell categories, status
+contracts, and cooldown groups, while keeping Auto Attack on `1`, the
+action bar on `1-0`, and current combat feel unchanged.

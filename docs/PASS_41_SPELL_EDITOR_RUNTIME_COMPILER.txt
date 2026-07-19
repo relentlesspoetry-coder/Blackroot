@@ -1,0 +1,49 @@
+Pass 41 - Spell Editor Runtime Compiler
+=======================================
+
+Goal
+----
+Make editor spell drafts playable in the live game. Before this pass, the editor could create, edit, persist, and assign spell drafts, but the runtime hotbar still read the static CLASS_SPELL_BOOK path.
+
+Implemented
+-----------
+- Added systems/spell-compiler-system.js.
+- Compiles editorSpells into runtime spell objects.
+- Builds class spellbooks from classSpellSlots, with editor slotIndex fallback when no explicit slot assignment exists.
+- Runtime hotbar now reads the compiled spellbook.
+- Spell create/edit/duplicate/delete/assignment flows mark the compiled spellbook dirty, rebuild it, and refresh the hotbar.
+- Save/import/reset flows preserve spell drafts and slot assignments, then rebuild the compiled spellbook.
+- Casting validates cooldown, mana, target/range, and pet requirements before spending mana or applying cooldown.
+- Compiler normalizes common editor kind aliases:
+  - projectile/direct_damage/single_damage -> bolt
+  - area_damage/area -> aoe
+  - group_buff/party_buff -> groupBuff
+  - pet_heal -> petHeal
+  - pet_buff -> petBuff
+  - dash/teleport_strike -> dashStrike
+  - lifetap/life_tap -> drain
+  - mana_restore/restore_mana -> mana
+- Compiled spells preserve editor metadata:
+  - id/editorSpellId
+  - className
+  - slotIndex/hotkey
+  - role/target/kind
+  - cost/cooldown/range/radius/power/heal/duration
+  - buffName/mods/color
+  - animation/sound/description/effects
+
+Runtime ownership
+-----------------
+- Compiler ownership: systems/spell-compiler-system.js
+- Casting/hotbar ownership: systems/spell-system.js
+- Editor mutation ownership: systems/editor-system.js
+- Save/export/import ownership: systems/world-serializer.js and systems/save-system.js
+
+Acceptance
+----------
+COMPLETE
+- A spell created in the editor can be assigned to a class hotbar slot and cast by that class.
+- Edited spell cost/cooldown/power/range/kind values affect runtime casting after the edit.
+- Deleted spells disappear from assigned hotbar slots.
+- Exported/imported worlds keep editor spell data and rebuild playable spellbooks.
+- Invalid or aliased spell kinds normalize to a supported runtime kind instead of crashing.

@@ -1,0 +1,17 @@
+Dream Realms Modular Pass 27 - Spell Editor Foundation
+
+Baseline:
+- Built from Dream Realms V0.10.3 Modular Pass 26.
+
+Added:
+- data/spell-editor.js with editor spell draft definitions generated from the stable V0.10.3 class spellbook.
+- Spells editor tab.
+- Spell Browser, New Spell, Edit Spell, Duplicate Spell, Delete Spell, and Assign Class Slot tools.
+- editorSpells and classSpellSlots persistence in world save/export/import.
+- Editor validation for spell draft IDs, class ownership, slot indices, costs, cooldowns, and class slot references.
+
+Not changed:
+- Runtime spell casting still uses CLASS_SPELL_BOOK.
+- Combat, cave rendering, movement, party, multiplayer, fishing, loot execution, and quest playback are untouched.
+
+Runtime compile from editor spell drafts should be handled in a later pass after schema review.

@@ -1,0 +1,15 @@
+Dream Realms V0.13.16 - Role Specific Human NPC Renderer Upgrade Pass
+
+Scope:
+- Replaced the HumanNpcProceduralModel generic torso plus role overlay approach with role-specific human NPC body renderers.
+- Added dedicated renderer branches for merchant, cook, field cleric, miner, merc recruiter, guard, and villager fallback.
+- Preserved shared low-level helpers for pose, direction, legs, head, hands, shading, and drawing primitives.
+- Added stronger silhouettes: merchant backpack/satchel/pouches, cook chef cap/apron/big pan/towel, cleric layered robe/stole/staff/book, miner pickaxe/harness/gloves/helmet, recruiter formal purple-gold coat/contract board, guard armor/shoulders/spear/shield.
+- Improved faces with brow, nose, mouth, cheek shadow, and role personality treatment.
+- Rebuilt arms as segmented upper arm/forearm/cuff/hand with tool grips instead of tube limbs.
+- Kept the existing 8-direction facing profiles.
+
+Validation:
+- JavaScript syntax scan passed.
+- Human NPC renderer role probes passed for all major roles across all 8 directions.
+- No duplicate Game.prototype ownership introduced.

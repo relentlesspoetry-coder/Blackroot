@@ -1,0 +1,12 @@
+Dream Realms V0.16.08 - Ranger Bow Facing and White Stick Removal
+
+Summary
+- Fixed Ranger ranged auto-attack bow draw so it faces the current combat target side.
+- Added another defensive suppression layer to remove the stray white-stick weapon overlay from Ranger renders.
+
+Changed Files
+- render/class-identity-procedural-model.js
+- render/entity-renderer.js
+- Dream Realms V0.16.08.html
+- PATCH_NOTES.md
+- VERSION.txt

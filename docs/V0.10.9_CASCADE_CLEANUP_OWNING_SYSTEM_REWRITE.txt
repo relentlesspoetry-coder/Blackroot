@@ -1,0 +1,16 @@
+Dream Realms V0.10.9 - Cascade Cleanup and Owning-System Rewrite
+
+Audit goal:
+- Remove wrapper-style cascade patches and place behavior in owning systems/lifecycle calls.
+
+Rewritten areas:
+- Save system no longer wraps Game.generateMap, Game.bindEvents, or Game.start. The game lifecycle now calls save loading/control setup directly.
+- Mob spawn system no longer keeps fallback original spawn wrappers. It owns spawnEnemies, generateCaveEnemies, active enemy set rebuild, and respawn runtime directly.
+- Swimming no longer replaces game.isWalkable/game.tryMove at runtime. Water walkability and player swim movement now live in CollisionSystem.
+- Steam Deck support no longer wraps Game.start, Game.bindEvents, or Game.handleInput. It exposes controller polling/look/movement methods that the game lifecycle/input owner calls directly.
+- Turn combat no longer wraps Game.handleInput, Game.playerAttack, Game.useClassSpell, Game.damageEntity, Game.killEntity, Game.updateUI, or Game.update. The owning combat, spell, UI, and game update systems call turn-combat methods directly.
+
+Verification:
+- Full JavaScript syntax check passed across core, data, entities, systems, render, and game.js.
+- Cascade wrapper scan no longer reports original/wrapper prototype patches in gameplay systems.
+- Zip integrity test passed.

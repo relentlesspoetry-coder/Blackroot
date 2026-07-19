@@ -1,0 +1,17 @@
+Dream Realms V0.15.43 — Launch Validation Package Audit Pass
+
+Purpose:
+Add the final package/startup audit layer above the locked renderer/performance stack.
+
+Changes:
+- Added systems/launch-validation-package-audit-system.js.
+- Added Launch Validation Package Audit Settings section.
+- Added LaunchValidation F3 diagnostic line.
+- Added Launch Validation JSON/TXT export.
+- Added required-script and required-system validation.
+- Added renderer profile, Canvas fallback, WebGL availability, benchmark evidence, fallback pressure, and Hybrid frame-cost checks.
+- Added startup sanity repair for invalid renderer profile and rollout policy storage values.
+- Preserved Renderer: Auto as the release-facing default and Canvas Safe Mode as the compatibility fallback.
+
+No gameplay/content changes:
+- No class, spell, loot, mob, quest, dungeon, economy, combat, or zone values were changed.

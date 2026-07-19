@@ -1,0 +1,30 @@
+Dream Realms V0.13.81 — Premium Fighter Renderer Integration Repair Pass
+
+Summary
+- Integrated a real Premium Fighter renderer path into `render/class-identity-procedural-model.js`.
+- Replaced the failed shield-dominant Fighter composition with an explicit full-body Fighter drawing stack.
+- Preserved the improved overhead nameplate styling from the previous passes.
+
+Fighter renderer changes
+- Fighter class routing now uses `drawPremiumFighterModel()` inside the owning class identity renderer.
+- The renderer draws the Fighter in a controlled order: shadow, cape, legs, back arm, torso, shoulders, sword arm, shield arm, belt/skirt, head/face/hair, and front accents.
+- The shield is now anchored to the off-hand side and scaled as equipment, not the central body silhouette.
+- The sword is anchored to the weapon hand and remains readable.
+- The head, face, torso/chest armor, arms, lower body, legs, and feet are explicitly rendered.
+- Character creation preview and class-card preview use the same corrected class renderer path because they call the real class renderer.
+
+Appearance preservation
+- Hair color, hairstyle, eye color, skin tone, clothes primary color, and clothes secondary color still feed into the Fighter renderer.
+- The Fighter face includes visible eyes, eye color, brows, nose, and mouth.
+
+Nameplate preservation
+- `render/entity-renderer.js` was not changed for this pass.
+- Existing polished nameplate, HP bar, and level plate visuals remain intact.
+
+Validation
+- JavaScript syntax check passed for all `.js` files.
+- Main HTML script reference audit passed.
+- ZIP integrity passed.
+
+Manual browser-test caveats
+- Browser visual approval is still required for Fighter front idle, character creation main preview, Fighter class-card preview, side/diagonal/back facing, walk, attack, save/load, and click/Tab targeting.

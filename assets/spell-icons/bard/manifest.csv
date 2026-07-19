@@ -1,0 +1,21 @@
+level,spell_name,class,filename,grid_row,grid_col,crop_left,crop_top,crop_right,crop_bottom,source_image
+1,Quick Note,Bard,Quick Note - Bard - Level 1.png,1,1,22,20,236,234,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+2,Song of Mending,Bard,Song of Mending - Bard - Level 2.png,1,2,271,20,485,234,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+3,Mana Melody,Bard,Mana Melody - Bard - Level 3.png,1,3,521,20,735,234,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+4,Hymn of Courage,Bard,Hymn of Courage - Bard - Level 4.png,1,4,771,20,985,234,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+5,Dissonant Chord,Bard,Dissonant Chord - Bard - Level 5.png,1,5,1020,20,1234,234,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+6,Lullaby,Bard,Lullaby - Bard - Level 6.png,2,1,22,330,236,544,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+7,Battle Hymn,Bard,Battle Hymn - Bard - Level 7.png,2,2,271,330,485,544,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+8,Drumbeat Rush,Bard,Drumbeat Rush - Bard - Level 8.png,2,3,521,330,735,544,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+9,Mournful Note,Bard,Mournful Note - Bard - Level 9.png,2,4,771,330,985,544,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+10,Perfect Harmony,Bard,Perfect Harmony - Bard - Level 10.png,2,5,1020,330,1234,544,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+11,Blade Rhythm,Bard,Blade Rhythm - Bard - Level 11.png,3,1,22,640,236,854,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+12,Chorus of Clarity,Bard,Chorus of Clarity - Bard - Level 12.png,3,2,271,640,485,854,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+13,Dirge of Weakness,Bard,Dirge of Weakness - Bard - Level 13.png,3,3,521,640,735,854,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+14,Echoing Verse,Bard,Echoing Verse - Bard - Level 14.png,3,4,771,640,985,854,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+15,Resonant Shield,Bard,Resonant Shield - Bard - Level 15.png,3,5,1020,640,1234,854,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+16,Chorus of War,Bard,Chorus of War - Bard - Level 16.png,4,1,22,950,236,1164,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+17,Final Refrain,Bard,Final Refrain - Bard - Level 17.png,4,2,271,950,485,1164,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+18,Songweave,Bard,Songweave - Bard - Level 18.png,4,3,521,950,735,1164,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+19,Legendary Ballad,Bard,Legendary Ballad - Bard - Level 19.png,4,4,771,950,985,1164,/mnt/data/fantasy_music_themed_skill_icons_grid.png
+20,Dreamsong Crescendo,Bard,Dreamsong Crescendo - Bard - Level 20.png,4,5,1020,950,1234,1164,/mnt/data/fantasy_music_themed_skill_icons_grid.png

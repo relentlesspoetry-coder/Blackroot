@@ -1,0 +1,21 @@
+Dream Realms V0.12.44 - Auto Corpse Loot Window Pass
+
+Purpose
+- Make corpse loot windows open automatically once a mob dies, instead of requiring the player to click the corpse first.
+
+Changes
+- systems/combat-system.js now calls the loot owner when an enemy dies and has corpse loot.
+- systems/loot-system.js now owns death-triggered corpse loot opening with range-safe behavior.
+- game.js now checks pending corpse loot auto-open during the runtime update loop.
+
+Behavior
+- If a killed mob has loot and the player is close enough, the Corpse Loot window opens immediately.
+- If the player killed the mob from outside loot range, the corpse is flagged and the Corpse Loot window opens automatically when the player walks close enough.
+- Manual click-to-open still works as a fallback.
+- Empty corpses do not open a loot window.
+
+Ownership
+- No bottom-of-file hotfix layer was added.
+- Corpse loot behavior remains owned by systems/loot-system.js and the death event call remains in systems/combat-system.js.
+
+- Fixed corpse loot panel HTML escaping inside systems/loot-system.js so the auto-opened window renders safely.

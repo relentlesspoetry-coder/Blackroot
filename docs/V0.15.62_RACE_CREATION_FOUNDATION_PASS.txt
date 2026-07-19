@@ -1,0 +1,8 @@
+Dream Realms V0.15.62 — Race Creation Foundation Pass
+
+- Added canonical Human, Elf, Bogling, and Ratkin race definitions.
+- Rebuilt character creation around Race + Class + Appearance with combined live previews and non-blocking class recommendations.
+- Added distinct Canvas2D Bogling and Ratkin models routed before class-model fallbacks while retaining the existing animation and paperdoll stack.
+- Added runtime-derived race attribute modifiers, racial passives, active abilities, and cooldown persistence.
+- Added race-aware account slot summaries and safe migration of missing or invalid race IDs to Human.
+- Canvas2D remains the default renderer; the experimental 3D path was not expanded by this pass.

@@ -1,0 +1,29 @@
+Dream Realms V0.15.10 — UI Update Throttle DOM Cleanup Pass
+
+Baseline
+- Built from Dream Realms V0.15.09 Pathfinding Worker Pass.
+
+Goals
+- Reduce per-frame DOM and HTML rebuild cost without changing gameplay, class balance, zone data, art style, or controls.
+- Keep fast combat HUD values responsive while moving expensive UI rebuilding to dirty/slower intervals.
+
+Implemented
+- Split runtime UI refresh into fast HUD updates and slower full UI updates.
+- Added updateCoreHudFast() for player HP/mana/XP, target HP, merc HP/mana/XP, hotbar cooldown readouts, and companion resource bars.
+- Added configurable UI performance intervals under CONFIG.PERFORMANCE.
+- Added markUiDirty(reason) helper for clean future dirty-flag routing.
+- Added DOM write instrumentation for text/html/style/class writes made through UI helpers.
+- Added companion HUD structure signature so resource changes do not force full companion frame innerHTML rebuilds.
+- Added companion HUD resource-only updates for HP/mana/XP bars.
+- Throttled F3 debug overlay body refresh rate.
+- Expanded F3 overlay with UI timing and DOM write counters.
+
+Validation
+- JavaScript syntax validation passed across all JS files.
+- _script_order.json checked for missing files.
+- HTML script references checked for missing files.
+
+Notes
+- This pass keeps Canvas 2D.
+- This pass does not convert to WebGL.
+- Direct gameplay-triggered UI refresh calls are preserved for safety; the per-frame loop uses the new split update path.

@@ -1,0 +1,6 @@
+Dream Realms V0.15.114 - Custom Creator Class Backgrounds
+
+- Added custom full-background art for all 14 classes.
+- Wired these backgrounds into the character creation preview behind the class model.
+- Replaced the fragile cropped-icon backdrop rendering with a direct class-background renderer.
+- Normal class emblem icons elsewhere in the UI remain unchanged.

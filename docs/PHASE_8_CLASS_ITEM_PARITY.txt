@@ -1,0 +1,51 @@
+Dream Realms — PHASE 8: Class/Stat/Item Parity
+=================================================
+
+Scope: implementation phase following the read-only audit in
+docs/PHASE_7_CLASS_STAT_INVENTORY_AUDIT.txt. Closes a subset of that
+audit's "true gaps" list for the stat/class system and the item/inventory
+system. Ships as V0.15.85. Full Added/Validation/Known Limitations detail
+lives in PATCH_NOTES.md under "V0.15.85" - this file is the short technical
+rationale for *why* each change is safe, not a duplicate of that entry.
+
+Files changed: core/stats.js, systems/combat-system.js,
+systems/inventory-system.js, systems/item-compiler-system.js,
+entities/player.js, systems/save-system.js, data/items.js.
+
+Why each change is safe (no rebalance to existing content):
+- `magicResist` (core/stats.js) is purely additive from base/equipment/buffs
+  with zero attribute scaling, so it is 0 for every class and item that
+  doesn't explicitly set it - none do yet. Its mitigation
+  (`magicResistReductionFor`) is layered multiplicatively on top of the
+  pre-existing `armorReductionFor` in `damageEntity`
+  (systems/combat-system.js), never replacing it: `1-(1-armor)(1-magic)`
+  collapses to exactly `armor` when `magic=0`, which is every existing hit
+  today.
+- `'true'` damage type is a new branch that bypasses mitigation entirely.
+  No existing damage source passes `damageType: 'true'` (verified by grep
+  before this phase - see docs/PHASE_7_CLASS_STAT_INVENTORY_AUDIT.txt), so
+  the branch is unreachable for current content.
+- `hpRegen`/`manaRegen` are additive class-descriptor fields read in
+  `Game.prototype.regen`. No class sets them, so `hpRegen > 0` never
+  triggers and `manaRegen` adds zero to the pre-existing baseline mana-regen
+  rate - the regen loop's prior output is unchanged byte-for-byte.
+- `item.twoHanded` was already read (defensively) by
+  `isRogueDualWieldWeapon` before this phase but never set by any item
+  draft, so the name-regex fallback always did the real work. Making it
+  explicit (compiler now sets `Boolean(draft.twoHanded)`, plus one real
+  content fix - Blackroot Staff) does not change any dual-wield outcome
+  for existing gear, since the two agree on every currently-shipped weapon.
+- `cooldownMs`/`cooldownGroup`/`castsSpellId` on consumables are all
+  `0`/`null` unless a draft sets them; `useInventoryItem`'s new checks are
+  gated behind those truthy values, so no existing consumable's use flow
+  changes.
+
+Validation: full-project `node --check` sweep, 0 errors. See PATCH_NOTES.md
+"V0.15.85" for the full list.
+
+Known limitations: see PATCH_NOTES.md "V0.15.85" Known Limitations -
+per-class damage/crit/animation/facing fields, allocatable stat points, and
+a generic player/account variable store were all identified in Phase 7 but
+intentionally deferred (either as pending product decisions, or because the
+underlying mechanic already works through other means and adding parallel
+unconsumed fields would be dead data).

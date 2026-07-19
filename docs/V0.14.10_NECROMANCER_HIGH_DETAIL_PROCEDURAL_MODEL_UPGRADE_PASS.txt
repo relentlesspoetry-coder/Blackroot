@@ -1,0 +1,18 @@
+Dream Realms V0.14.10 — Necromancer High-Detail Procedural Model Upgrade Pass
+
+Summary
+- Upgraded the shared class-identity Necromancer renderer with a more detailed grim funerary silhouette while preserving the existing silhouette, proportions, and 8-direction behavior.
+- Improved the hood/crown read, robe shaping, bone shoulder regalia, chest phylactery/soul-vessel cues, belt relic gear, and lower hem details.
+- Upgraded the Necromancer bone staff with a clearer skull-topped ritual focus silhouette and added more visible class-specific identity details across the model.
+
+Files changed
+- Dream Realms V0.14.10.html
+- render/class-identity-procedural-model.js
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.10_NECROMANCER_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt
+
+Validation
+- Syntax check passed via node --check on all JS files.
+- ZIP integrity verified.

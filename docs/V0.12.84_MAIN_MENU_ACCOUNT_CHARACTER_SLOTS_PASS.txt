@@ -1,0 +1,21 @@
+Dream Realms V0.12.84 — Main Menu + Account Character Slots Pass
+
+Baseline:
+- Dream Realms V0.12.83 — Unified Player / Party / Merc / Pet HUD Pass
+
+Implemented:
+- Startup menu buttons under the logo in the requested order: Login, Create Account, Patch Notes, Settings, Exit Game.
+- Local offline account creation/login backed by browser localStorage.
+- Four character slots per local account.
+- Character slot screen with Play, Create, New, and Delete actions.
+- Slot-based character save routing through account + slot while preserving the legacy single-character save key for backup/export compatibility.
+- Legacy single-character save migration into the first slot of a new account when available.
+- Logout now returns to character slots instead of bypassing account state.
+
+Validation targets:
+- JS syntax check.
+- HTML script order check.
+- Account create/login method checks.
+- Character slot create/load/delete method checks.
+- No off-roadmap branch content.
+- No cascade patch layer.

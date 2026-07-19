@@ -1,0 +1,26 @@
+Dream Realms V0.14.18 — Character Window Gear Slot and Bone Servant Nameplate Fix Pass
+
+Summary
+- Fixed the Character Window model display so the center viewport only shows the player class model with equipped visual colors.
+- Removed visible equipment model labels/captions.
+- Cleaned gear slot formatting for empty and equipped states.
+- Added concise equipped item stat summaries inside gear slots.
+- Improved item icon family classification for actual starter gear types.
+- Raised the Necromancer Bone Servant pet nameplate/HP anchor.
+
+Files changed
+- systems/ui-system.js
+- systems/inventory-system.js
+- render/pet-identity-procedural-model.js
+- Dream Realms V0.14.18.html
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+
+Validation
+- node --check passed across all JS files.
+- ZIP integrity verified.

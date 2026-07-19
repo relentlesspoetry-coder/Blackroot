@@ -1,0 +1,39 @@
+Dream Realms V0.12.89 — Bot Player Social Economy World Presence Pass
+
+Baseline
+- Dream Realms V0.12.88 — Bot Player Quest Camp Dungeon Simulation Pass
+
+Goals
+- Make bot players feel less like mobs and more like simulated players with visible routines, economy behavior, social/status output, and persistent progression context.
+
+Implemented
+1. Bot Social Presence
+- Added throttled bot status chatter through party/system log messages.
+- Added Ask Status right-click action for nearby bots.
+- Bot inspect output now reports current activity, quest, supplies, dungeon state, and economy.
+
+2. Bot Economy
+- Added gold, junk value, upgrade fragments, reputation, and repair debt fields.
+- Quest objectives, XP rewards, and dungeon clears can generate sellable value and upgrade materials.
+- Camp visits now sell junk, buy supplies, pay repair debt, and upgrade gear when possible.
+
+3. World Presence Labels
+- Bots now maintain currentActivityLabel.
+- Nameplates show compact activity text next to level.
+- Party HUD bot frames show current activity and gold.
+
+4. Persistence
+- Bot save snapshot version raised to 3.
+- Save/load now preserves economy, social, and world-presence fields.
+
+Validation Targets
+- node --check on all active JS files.
+- HTML script order validation.
+- Bot economy methods exist: resolveBotCampEconomy, updateBotEconomyRoutine.
+- Bot social methods exist: botSocialLineFor, updateBotSocialRoutine.
+- Bot world-presence method exists: updateBotWorldPresence.
+- Bot snapshot includes gold, junkValue, upgradeFragments, reputation, currentActivityLabel.
+- Renderer nameplates consume currentActivityLabel.
+- Context menu exposes Ask Status.
+
+No cascade patch layer was added.

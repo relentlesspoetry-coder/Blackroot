@@ -1,0 +1,21 @@
+Dream Realms V0.13.13 — Encounter Balance Spawn Discipline Pass
+
+Scope:
+- Balanced Dark Woods spawn pack caps by distance band and spawn type.
+- Reduced overworld density multiplier from the post-expansion high-density behavior.
+- Added weighted mixed-pack mob selection so deep mixed anchors do not over-select high-tier elites before the outer band.
+- Added encounter ids/bands and assist radius metadata to spawned enemies.
+- Changed normal mob assist calls to local encounter packs instead of same-family chain pulls.
+- Let elites command a small nearby same-family assist without pulling the entire camp.
+- Made damaged idle enemies return home instead of freezing outside combat.
+- Made leash breaks immediately route mobs home and clear threat.
+
+Files touched:
+- systems/mob-spawn-system.js
+- entities/enemy.js
+- data/npcs.js
+- core/config.js
+  - Restored the canonical DR.CONFIG object while preserving V0.13.13 metadata.
+- systems/world-serializer.js
+
+No cascade patch layer was added.

@@ -1,0 +1,5 @@
+V0.13.39 — Esc Menu Save Exit Hotfix
+- Esc now opens the centered in-game menu instead of using the old pause-only flow.
+- Exit Game now saves world and character state before requesting the app/window close.
+- Browser-blocked window closes fall back to a saved-state overlay instead of silently pausing.
+

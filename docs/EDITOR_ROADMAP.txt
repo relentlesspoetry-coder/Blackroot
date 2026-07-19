@@ -1,0 +1,35 @@
+Dream Realms Editor Roadmap
+===========================
+
+Current pass: Modular Pass 45 - Full QA / Stabilization
+
+Implemented now:
+- Editor shell, painting, undo/redo, attributes, zones, caves, resources, events, quests, items, loot tables, spells, crafting, NPC/mob drafts, and dungeon/puzzle drafts.
+- Runtime quest playback, event execution, chests/loot tables, resource gathering, crafting, NPC interaction, mob spawning, dungeon entrance/instance loading, puzzle execution, boss/dungeon reward playback, spell editor compilation, and item editor compilation.
+- NPC markers render live and support dialogue, vendors, trainers, and quest-giver routing.
+- Mob spawn markers create live runtime enemy populations with caps, level ranges, loot tables, and respawn timers.
+- Dungeon entrance markers load generated runtime dungeon floors using dungeon draft metadata.
+- Puzzle rooms execute switches, keys, locks, sealed doors, and clear-room gates.
+- Boss rooms now spawn named bosses from dungeon bossIds, seal travel/rewards until boss defeat, and roll boss-specific loot.
+- Spell editor drafts now compile into live class hotbars using editorSpells and classSpellSlots.
+- Item editor drafts now compile into runtime equipment, stackable resources, quest/currency items, and consumables.
+- World saves now include schema versioning, v1->v2 migration, backup preservation, corrupted-save quarantine, and post-load runtime compiler rebuilding.
+- Editor palettes now support search/filtering, validation now has detailed category reports, and workflow shortcuts reduce panel friction.
+
+Not implemented yet:
+- Full QA/stabilization.
+
+Next recommended pass:
+Modular Pass 45 - Full QA / Stabilization
+
+Acceptance for Pass 44: COMPLETE
+Acceptance for Pass 45: COMPLETE
+- Editor palette entries can be filtered per tab with visible result counts.
+- Validation can run without repair or with repair from separate buttons.
+- Validation reports include categories and sample broken references.
+- Inspector/status panels expose current filter and last validation state.
+- Editor workflow shortcuts are available for search, brush sizing, and clearing selection.
+
+
+Pass 46 QoL completed: HUD bar text, bag bar, skills window, merc commands/meditation, party HUD merc support.
+Pass 46.1 QoL bugfix completed: movable UI windows no longer jump to the lower-left corner when dragging starts.

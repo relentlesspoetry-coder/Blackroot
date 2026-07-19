@@ -1,0 +1,13 @@
+Dream Realms V0.15.00 - Necromancer DoT Pet Rework Pass
+
+Summary:
+- Replaced the entire Necromancer class spellbook with the fixed level 1-20 DoT-first pet DPS caster table.
+- Implemented exact mana costs, cooldowns, cast times, ranges, durations, direct damage, DoT tick values, and pet values from the design table.
+- Necromancer DoTs tick every 2 seconds. Same spell refreshes duration without self-stacking; different Necromancer DoTs stack together.
+- Added Bone Servant and Skeleton Knight summon data. Skeleton Knight replaces Bone Servant and gains Shield Bash.
+- Added Plague Mark: +18% Necromancer DoT/drain damage taken and +10% Necromancer pet damage against the marked target.
+- Added Death Pact: sacrifices 20% pet HP, heals the Necromancer for 90, and empowers the next DoT within 8 seconds by +20% total damage.
+- Added Lich Form as a 30-second transformation with +20% DoT damage, +25% drain healing, +3 mana/sec, +10% pet damage, and -50% ally healing received.
+- Updated pet runtime, status runtime, combat healing/damage multipliers, spell compiler, spell tooltips, and spellbook metadata.
+
+No cascade patching: changes are made in the owning spell, status, pet, combat, save, and UI systems.

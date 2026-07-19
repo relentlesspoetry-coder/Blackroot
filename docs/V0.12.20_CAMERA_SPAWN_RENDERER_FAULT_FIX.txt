@@ -1,0 +1,15 @@
+Dream Realms V0.12.20 — Camera Spawn Recovery and Renderer Fault Fix
+
+Diagnosis
+- The V0.12.19 standing puppet renderer contained invalid capitalized boolean identifiers in the leg draw path.
+- Those identifiers are syntactically legal in JavaScript but fail at runtime as ReferenceError values when the character renders.
+- The frame recovery system kept the game alive, but repeated render faults made the camera/world appear warped after character selection.
+- The V0.12.19 package also contained a stale older HTML file, which could cause confusion about which build was being opened.
+
+Fix
+- Replaced invalid renderer boolean tokens with proper JavaScript booleans.
+- Added sanitizeWorldCamera() and recenterCameraOnPlayer() ownership to the main runtime.
+- Camera state is sanitized on render, on runtime recovery, and immediately after character start.
+- cameraCenter() now guards against invalid player coordinates and missing tile data.
+- Render depth collection now handles missing tile elevation defensively for entities, effects, and damage text.
+- Removed stale HTML from the package; V0.12.20 contains one current HTML entry.

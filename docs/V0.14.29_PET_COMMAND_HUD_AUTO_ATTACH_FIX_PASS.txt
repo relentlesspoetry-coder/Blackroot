@@ -1,0 +1,24 @@
+Dream Realms V0.14.29 — Pet Command HUD Auto Attach Fix Pass
+
+Summary
+- Fixed the missing pet command window regression introduced by solo party-HUD suppression.
+- Pet command controls now appear automatically when a Necromancer or Summoner pet exists, even while the player is solo.
+- The pet frame remains attached beneath the existing character HUD through the unified HUD anchor instead of using the old detached legacy pet panel.
+- Party frames remain hidden unless there is an actual party or party companion roster.
+
+Files Changed
+- systems/ui-system.js
+- Dream Realms V0.14.29.html
+- README.txt
+- VERSION.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.29_PET_COMMAND_HUD_AUTO_ATTACH_FIX_PASS.txt
+
+Validation
+- node --check passed across all JavaScript files.
+- HUD logic audit confirmed pets are no longer gated behind active party state.
+- ZIP integrity verified.

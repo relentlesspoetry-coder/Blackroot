@@ -1,0 +1,17 @@
+Dream Realms Final Performance/GPU Ship Notes
+
+Release-facing renderer behavior:
+- Renderer: Auto is the normal default.
+- Hybrid GPU is used when WebGL and runtime health checks are stable.
+- Canvas Safe Mode remains available as the compatibility fallback.
+- F3 opens diagnostics.
+- F6 runs the 60-second performance benchmark.
+
+Required manual QA before publishing:
+- Run F6 benchmark in normal gameplay.
+- Test camera rotation and zoom.
+- Test caves and Silk Web Cavern.
+- Test large mob fights, bots, mercs, pets, Necromancer pet/DoTs, damage text, and spell-heavy combat.
+- Confirm Auto renderer works.
+- Confirm Canvas Safe Mode works.
+- Export the Final Ship Report JSON/TXT from Settings.

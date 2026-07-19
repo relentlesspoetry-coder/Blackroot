@@ -1,0 +1,26 @@
+Dream Realms V0.14.28 — Movement Speed Regression Fix Pass
+
+Summary
+- Fixed the movement slowdown regression caused by overly strict frame-delta movement caps after heavier graphical passes.
+- Updated movement ownership in core config, keyboard player movement, click-to-walk movement, Steam Deck movement, entity movement, and companion movement.
+- Added controlled-player movement substeps so the corrected movement speed remains collision-safe.
+
+Files changed
+- core/config.js
+- game.js
+- entities/entity.js
+- systems/collision-system.js
+- systems/steam-deck-system.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- Dream Realms V0.14.28.html
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.28_MOVEMENT_SPEED_REGRESSION_FIX_PASS.txt
+
+Validation
+- node --check passed across all JavaScript files.
+- Verified old click-to-walk and companion dt caps were replaced.
+- ZIP integrity verified.

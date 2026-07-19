@@ -1,0 +1,3 @@
+Dream Realms V0.15.71 — Female Bogling Model Variant
+
+Added a female Bogling model variant with race-specific amphibian proportions, softer silhouette, refined head and eye shape, adjusted throat pouch, webbed hands and feet, full color variant support, character creation preview integration, runtime rendering support, and save/load compatibility.

@@ -1,0 +1,19 @@
+Dream Realms V0.15.02 - Necromancer Spell Icon Runtime Fix Pass
+
+Summary
+- Fixed the runtime icon binding bug that left Necromancer hotbar/spellbook slots on generated fallback icons.
+- Replaced CSS-variable-only image rendering with explicit <img>-based spell icon rendering.
+- Added runtime lookup by spell name so bound icon art still resolves even if class metadata is inconsistent.
+- Repaired missing necroSpellId metadata in existing saved editorSpells entries during spell data initialization.
+
+Files Updated
+- systems/spell-system.js
+- Dream Realms V0.15.02.html
+- core/config.js
+- systems/save-system.js
+- README.txt
+- VERSION.txt
+- Save/save-folder-manifest.json
+
+Expected Result
+- Necromancer spell icons now visibly use the imported art in the action bar and spellbook.

@@ -1,0 +1,19 @@
+Dream Realms V0.12.50 - Druid Humanoid Framework Pass
+
+Summary
+- Rebuilt the Druid class renderer on the reusable humanoid base added in V0.12.49.
+- Added render/druid-procedural-model.js as a class-overlay renderer, not a standalone body renderer.
+- Druid now resolves and displays all 8 humanoid directions through the shared humanoid animation system.
+- Added Druid class identity layers: moss robe, leaf mantle, shoulder leaves, vine sash, bark belt, leaf tabard, leaf crown, back totem, and living staff.
+- Added direction-aware Druid staff handling for idle, walk, cast, attack, back-facing, side-facing, and front-facing states.
+- Added action overlays for nature casting, thorn attacks, hit leaf burst, death leaves, and seated meditation aura.
+- Added debug-facing support through the existing humanoid debug flag.
+
+Integration
+- render/entity-renderer.js now routes Druid actors through DruidProceduralModel.
+- render/druid-procedural-model.js uses HumanoidAnimationSystem and HumanoidBaseRenderer directly.
+- Script load order updated so Druid loads after the shared humanoid base and before entity-renderer.
+
+Compatibility
+- No inventory, bag, vendor, corpse loot, dialogue, save/load, combat targeting, or UI behavior was intentionally changed.
+- No bottom-of-file patch wrapper was added.

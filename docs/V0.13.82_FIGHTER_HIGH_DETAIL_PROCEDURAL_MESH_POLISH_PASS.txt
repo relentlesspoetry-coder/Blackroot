@@ -1,0 +1,36 @@
+Dream Realms V0.13.82 — Fighter High-Detail Procedural Mesh Polish Pass
+
+Summary
+- Polished the working Premium Fighter renderer with higher-detail armor/weapon/shield/leg mesh styling while preserving the fixed humanoid composition from V0.13.81.
+
+Owning systems changed
+- render/class-identity-procedural-model.js
+- docs/MODULAR_HISTORY.txt
+- VERSION.txt
+- README.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+
+Implementation details
+- Increased Fighter torso readability with richer chest panel layering, bevel-style highlight bands, flank shading, and stronger fauld separation.
+- Upgraded pauldrons with layered shoulder plate construction, highlight passes, and stronger asymmetry while preserving correct front-view composition.
+- Added segmented arm/gauntlet treatment so sword/shield arms read as armored limbs instead of simple line strokes.
+- Reworked Fighter leg rendering with clearer thigh volume, knee plate shapes, greaves, sabaton/boot cap definition, and stronger metal/cloth separation.
+- Improved sword rendering with fuller-like detailing, a clearer crossguard, better grip readability, and stronger bevel highlights.
+- Improved shield rendering with layered rim/interior facets, central emblem highlight, and better material separation without allowing the shield to dominate the body silhouette.
+- Refined belt/tabard/front detail passes to support a denser premium procedural mesh look while keeping performance stable.
+
+Behavior preserved
+- Fighter remains a readable humanoid armored class with visible head, torso, shield, weapon, legs, and feet.
+- Nameplate visuals remain unchanged.
+- Character creation previews and class cards continue using the same corrected Fighter renderer path.
+- No gameplay, targeting, save/load, inventory, map, sprite pipeline, or party systems were intentionally changed.
+
+Validation performed
+- node --check render/class-identity-procedural-model.js
+- find . -name "*.js" -print0 | xargs -0 -n1 node --check
+
+Manual test caveats
+- Browser-side visual confirmation is still recommended for in-game Fighter, class-card preview, and character creation preview parity across front/side/back facings.

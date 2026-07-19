@@ -1,0 +1,18 @@
+Dream Realms V0.13.12 — Combat Loot UI AI Stability Pass
+
+Scope
+- Stabilized group corpse loot merge rules.
+- Added stack-aware corpse bag item merging.
+- Improved buff/debuff tray tooltip detail and overflow handling.
+- Tightened bot inspection panel sizing.
+- Tuned bot healer AI priority order.
+- Fixed enemy idle patrol regression when no valid combat target exists.
+- Reduced redundant mob tactical status reapplication.
+
+Ownership
+- systems/loot-system.js owns corpse loot cluster and item stacking behavior.
+- systems/status-effect-system.js owns buff/debuff tooltip content and tray overflow output.
+- systems/bot-player-system.js and entities/bot-player.js own bot inspection and bot AI priority behavior.
+- entities/enemy.js owns mob tactical/patrol AI.
+
+No appended global hotfix script or duplicate prototype owner was added.

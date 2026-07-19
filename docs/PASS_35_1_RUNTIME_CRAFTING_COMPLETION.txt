@@ -1,0 +1,21 @@
+Dream Realms V0.10.3 Modular Pass 35.1 — Runtime Crafting Completion
+
+Baseline:
+- Dream Realms V0.10.3 Modular Pass 35.
+
+Completed in this redo:
+- Runtime crafting now enforces recipe unlock state and recipe prerequisites.
+- Tier-1 starter recipes are explicitly unlocked by default.
+- Successful crafts mark the crafted recipe as known and grant recipe unlocks listed by the recipe.
+- Failed crafts consume ingredients and grant partial profession XP, but do not unlock downstream recipes.
+- Variant equipment outputs now create usable crafted equipment instead of material-only placeholders.
+- Craft results now carry rarity metadata for rare-craft tracking.
+- Crafting HUD shows profession XP toward the next level.
+- Editor object palette now includes Forge, Loom, and Herbalist Table props.
+- Crafting editor now supports Place Station, Erase Station, and Eyedropper Station tools.
+- The crafting editor hint no longer claims runtime crafting is deferred.
+
+Owner rules:
+- Runtime behavior is implemented in systems/crafting-system.js.
+- Editor station placement behavior is implemented in systems/editor-system.js.
+- No bottom-of-file patch layer, delayed wrapper, or setTimeout repair was added.

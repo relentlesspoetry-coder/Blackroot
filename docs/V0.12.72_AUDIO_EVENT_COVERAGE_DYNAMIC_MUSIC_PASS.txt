@@ -1,0 +1,56 @@
+Dream Realms V0.12.72 — Audio Event Coverage + Dynamic Music Pass
+
+Scope:
+- Expand audio beyond base footsteps/combat into gameplay, UI, loot, quest, mercenary, and meditation events.
+- Add a semantic event layer so systems can request named audio events instead of hardcoding SFX file names.
+- Add more music states while preserving standalone procedural fallback audio.
+
+Changed:
+- systems/audio-system.js
+- systems/runtime-qa-system.js
+- systems/inventory-system.js
+- systems/loot-system.js
+- systems/quest-system.js
+- systems/mercenary-system.js
+- systems/chest-system.js
+- systems/combat-system.js
+- game.js
+- sound-effects/
+- music/
+- VERSION.txt
+- README.txt
+- docs/MODULAR_HISTORY.txt
+- Dream Realms V0.12.72.html
+
+New sound-effect assets:
+- ui_open.wav
+- ui_close.wav
+- ui_error.wav
+- target_select.wav
+- bag_open.wav
+- chest_open.wav
+- loot_item.wav
+- coin_pickup.wav
+- item_equip.wav
+- quest_accept.wav
+- quest_complete.wav
+- merc_hire.wav
+- merc_command.wav
+- meditation_start.wav
+- meditation_stop.wav
+
+New music assets:
+- music/town_lantern_loop.wav
+- music/combat_pulse_loop.wav
+
+Runtime behavior:
+- Game.playAudioEvent routes semantic event IDs into SFX playback.
+- Town music is used near the starting camp.
+- Cave ambience remains active in caves.
+- Combat pulse music takes priority while the player is in combat.
+- External WAV assets are used when fetchable; standalone HTML still uses procedural WebAudio fallback.
+
+Cascade status:
+- No bottom-of-file override layer.
+- No delayed setTimeout repair layer.
+- No monkey-patch wrapper layer.

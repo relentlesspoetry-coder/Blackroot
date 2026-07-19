@@ -1,0 +1,20 @@
+Dream Realms V0.14.81 — Mob Balance Elite Rare Scaling Pass
+
+Implemented:
+- Applied a slight universal mob stat increase through the central Enemy constructor:
+  - Standard mob health: +18% over the prior global health multiplier.
+  - Standard mob damage: +12% over the prior global damage multiplier.
+- Added an elite/rare/named/boss damage tier:
+  - Elite/rare/named/boss damage: additional +30% multiplier beyond the standard damage buff.
+- Preserved existing elite health pacing and spawn-table differentiation.
+- Passed rare/named/boss flags through mob spawn type creation so authored special mobs participate in central scaling.
+- Scaled hardcoded mob tactical DoT effects through the same damage helper:
+  - Venom Bite
+  - Rending Bite
+- Adjusted player incoming-damage caps so the new damage tiers are visible without removing safety bounds.
+- Health bars, damage text, and threat values reflect the new live max HP and actual damage output automatically.
+
+Validation:
+- Runtime JavaScript syntax validated with node --check.
+- Zip integrity validated with unzip -t.
+- No cascade patch layer added.

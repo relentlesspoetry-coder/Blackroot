@@ -1,0 +1,30 @@
+Dream Realms V0.14.05 — Rogue Class Asset + Dual Wield Expansion Pass
+
+Summary
+- Re-cut all class icons into a cleaner high-resolution emblem sprite sheet.
+- Updated Rogue visual weapons to render as clear dual high-detail daggers.
+- Enabled Rogue off-hand dual wield for daggers, swords, and fist weapons.
+- Added Rogue off-hand auto-attack damage support.
+
+Files Changed
+- assets/ui/class-emblems.png
+- render/class-identity-procedural-model.js
+- systems/inventory-system.js
+- systems/combat-system.js
+- data/items.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- Dream Realms V0.14.05.html
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.05_ROGUE_CLASS_ASSET_DUAL_WIELD_EXPANSION_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- Rogue renderer smoke-tested across all key animation states and all 8 facings.
+- Rogue dual-wield inventory slot logic and combat off-hand hit logic smoke-tested.
+- Class emblem sprite sheet verified at 2048x1024.
+- ZIP integrity verified with `unzip -t`.

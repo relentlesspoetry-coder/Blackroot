@@ -1,0 +1,32 @@
+Dream Realms V0.13.58 — Dark Woods Wolf Model Revamp Pass
+
+Systems changed
+- render/wolf-procedural-model.js is now the dedicated wolf-family renderer with explicit canDraw/draw/drawLocal/anchorHeight helpers, 8-direction facing, action coverage, palette/variant resolution, and dedicated nameplate metadata.
+- render/dark-woods-mob-procedural-model.js now routes all wolf-family Dark Woods visuals through WolfProceduralModel instead of the older inline Dark Woods drawWolf path.
+- render/entity-renderer.js now passes walk/attack/hit/death/howl state, visual keys, family metadata, and corrected wolf anchor data into the dedicated wolf model for both Dark Woods and non-Dark-Woods wolf enemies.
+- data/npcs.js, data/enemies.js, and the editor fallback mob draft now keep wolf-family mobs explicitly tagged with rendererId/mobVisualKey/family metadata.
+
+Wolf visual revamp
+- Rebuilt wolves around a true wolf-specific silhouette: lowered predator head, muzzle, nose, pointed ears, neck ruff, chest/shoulder mass, long torso, hindquarter mass, digitigrade legs, paws, visible tail, and fur breakup.
+- Added 8-direction profile handling for north/northeast/east/southeast/south/southwest/west/northwest facing.
+- Added idle breathing, alert ear motion, tail motion, stalking walk gait, shoulder/hip motion, bite/lunge attack pose, hit recoil, howl/cast presence ring, and collapsed side-body death pose.
+- Added grounded Dark Woods palettes: gloom, cave gloom, dire, and Mossfang/named alpha.
+- Rare/elite/named wolves now get visible upgrades: stronger shoulder/chest mass, brighter eyes, aura ring, fur ridge emphasis, scar details, and named Mossfang palette treatment.
+
+Gameplay systems preserved
+- This is a renderer/model pass only. Mob stats, aggro, pathfinding, collision, attack ranges, loot tables, quest links, targeting, corpse handling, save/load, and spawn rules were not redesigned.
+- Non-wolf Dark Woods mob renderers remain on their existing renderer paths.
+- Silk Web Cavern spider rendering, terrain/water passes, auto-attack tuning, Spirit Healer visuals, inventory/paper doll/currency, Purify/resurrection, Esc menu, and save/load are preserved.
+
+Tests run
+- node --check passed for all JavaScript files.
+- Main HTML local script references were audited: all referenced scripts exist.
+- Wolf renderer static audit verified canDraw, draw, drawLocal, anchorHeight, supportedActions, supportedDirections, and palette metadata.
+- Dark Woods wolf routing audit verified wolf-family visuals now set _darkWoodsMobRenderer to wolfDedicated.
+- Render smoke test completed with a mocked canvas context for idle, walk, attack, hit, death, and howl states across multiple directions.
+- Metadata audit verified V0.13.58 across config, save system, world serializer, default zones, README, VERSION, HTML, patch notes, and modular history.
+- ZIP integrity passed.
+
+Manual browser-test caveats
+- A full interactive browser visual/combat test was not completed in this container.
+- Manually verify Gloom Wolf packs, Mossfang Alpha, click/Tab targeting, health bar/nameplate anchors, combat animation timing, corpse loot markers, save/load, and performance with multiple wolves visible.

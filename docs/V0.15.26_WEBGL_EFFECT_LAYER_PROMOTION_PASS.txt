@@ -1,0 +1,20 @@
+Dream Realms V0.15.26 — WebGL Effect Layer Promotion Pass
+
+Scope
+- Promotes a safe subset of high-frequency combat effects through the Hybrid WebGL renderer when enabled.
+- Keeps Canvas 2D as fallback for unsupported effects, failed WebGL groups, UI, nameplates, damage text, and complex spell visuals.
+
+Changes
+- Updated build metadata to V0.15.26.
+- Added Visible WebGL Effects setting.
+- Added effect sprite cache for simple effect types: ring, spark, slash, cast cue, combat impact, combat spark, and status pulse.
+- Added visible WebGL effect queue/flush path with group-complete validation.
+- Added Canvas fallback drawing for queued effects when WebGL promotion fails, is incomplete, or is inactive.
+- Added WebGL effect cache counters, queue counters, draw/composite timing, fallback counters, and last-error reporting to F3.
+- Added renderer watchdog accounting for visible WebGL effect fallback/draw pressure.
+
+Validation
+- JavaScript syntax validation passed across the modular runtime.
+- _script_order.json checked for missing files.
+- HTML script references checked for missing files.
+- Zip integrity checked after packaging.

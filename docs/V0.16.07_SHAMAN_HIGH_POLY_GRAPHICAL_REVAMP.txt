@@ -1,0 +1,15 @@
+Dream Realms V0.16.07 - Shaman High-Poly Graphical Revamp
+
+Summary
+- Revamped the Shaman procedural class model into a much stronger storm / earth / spirit visual identity.
+- Added a dedicated storm staff, fetish shrine back gear, headdress / horn details, fur mantle, copper ritual gear, and elemental spirit VFX.
+
+Changed Files
+- render/class-identity-procedural-model.js
+- Dream Realms V0.16.07.html
+- PATCH_NOTES.md
+- VERSION.txt
+
+Notes
+- This pass preserves the existing base humanoid proportions / coordinate space while increasing class-specific visual fidelity.
+- No gameplay systems or spell rules were altered in this revamp.

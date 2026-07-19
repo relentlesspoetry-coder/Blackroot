@@ -1,0 +1,28 @@
+Dream Realms V0.10.3 Modular Pass 32
+Runtime Dialogue / Event Execution
+
+Baseline: Modular Pass 31.
+
+Implemented in owning systems, without bottom-of-file patches.
+
+Files changed:
+- Added systems/event-system.js
+- Updated Dream Realms V0.10.3.html load order
+- Updated systems/world-serializer.js
+- Updated game.js event runtime placeholders
+- Updated VERSION.txt / README.txt
+
+Runtime behavior:
+- E executes nearby editor event markers.
+- Quest-hook events route into the Pass 31 quest runtime.
+- Dialogue events open a dialogue window.
+- Chest events roll editor loot tables and persist opened state.
+- Shop events open a buy window using editor item drafts.
+- Warp events support target zone/coordinate/spawn handling.
+- Touch warp markers auto-fire with cooldown.
+
+Deferred:
+- Full script command graph editor.
+- Advanced conditional event branching.
+- Shop inventory editor data file.
+- Event cutscenes / multi-page dialogue chains.

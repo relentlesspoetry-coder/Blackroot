@@ -1,0 +1,51 @@
+Dream Realms V0.13.52 — Edge Outline Cleanup + Organic Terrain Boundary Pass
+
+SYSTEMS CHANGED
+- render/terrain-renderer.js owns the new cached organic edge geometry for material transitions, paths, shoreline occlusion, and the legacy non-cached fallback.
+- The existing terrain/water chunk architecture, composition phases, invalidation, and gameplay map data remain unchanged.
+- Runtime, save, world, README, HTML, and version metadata identify V0.13.52.
+
+ORGANIC MATERIAL BOUNDARIES
+- Grass/dirt, forest/path, camp/grass, stone/soil, cave, ruin, and other walkable material boundaries now use shared cubic contour geometry.
+- Broad low-contrast strokes interleave both neighboring material colors, replacing isolated transition blobs and exposing less of the square source boundary.
+- A restrained inner highlight keeps roads and paths readable without restoring a hard outline.
+- World-coordinate control points and endpoint offsets are deterministic; consecutive boundary segments share exact endpoints.
+- Transition geometry is built into the existing ground elevation canvas once per dirty chunk.
+
+SHORELINE OUTLINE CLEANUP
+- Rectangular shore-cap fill strips were removed.
+- Straight tile-length underside contact lines were removed.
+- Shore caps now use a curved dark underside, material-colored land cap, and subtle highlight along one organic contour.
+- Curves shift slightly over the logical water boundary to preserve V0.13.51 ground-over-water-wall occlusion.
+- Rounded curve joins reduce half-block stairs at straight banks, corners, inlets, ponds, and rivers.
+- Ground and water remain visually distinct, and shoreline depth faces still render before cached surfaces.
+
+FALLBACK / HARD EDGES
+- The legacy drawWaterEdgeHalfBlock helper was removed and replaced by a restrained curved shore-depth fallback.
+- Legacy material edge strips now use curved low-alpha strokes instead of rectangular half-tile polygons.
+- Cave walls, cliffs, elevation drops, and other real blockers keep their structural faces and stronger readability.
+
+PERFORMANCE / COMPATIBILITY
+- No new render loop, per-frame boundary scan, full-map redraw, blur filter, or overlay system was added.
+- Organic boundaries are cached inside the existing 16×16 terrain chunks and share camera culling, signatures, editor invalidation, bounded retention, and seam bleed.
+- Logical terrain/water cells remain the sole source for collision, pathfinding, water rules, spawn/placement checks, combat distance, loot, quests, and dungeon validation.
+- Existing saves load without migration; cache geometry remains transient.
+- Seamless ground/water, shore depth layering, actors, props, autonomous parties, pets, targeting, inventory, paper doll, currency, Purify, resurrection, ranged attacks, Silk Web Cavern, Dark Woods, and Esc save/exit remain intact.
+
+TESTS RUN
+- All JavaScript files pass node --check.
+- Main HTML references 88 existing ordered scripts.
+- Fighter start plus update/render smoke passes.
+- Cached material contours and shoreline contours are generated.
+- Adjacent vertical and horizontal segments share exact endpoints.
+- Organic boundary geometry is cached rather than generated each frame.
+- Legacy half-block helper is absent and the curved fallback is present.
+- V0.13.51 water-depth/water/ground/shore composition order still passes.
+- Ground/water cache reuse and waterDepth/type invalidation pass.
+- Full prior gameplay regression smoke passes.
+- ZIP compressed-data integrity is validated after packaging.
+
+MANUAL BROWSER CAVEATS
+- Review subjective contour width and path readability across overworld roads, forest-floor transitions, camps, lake edges, rivers, and small ponds.
+- Review tight concave/convex corners, cross-chunk boundaries, free camera rotation, extreme zoom, and high-DPI displays.
+- Confirm hard cliffs/walls remain sufficiently distinct from intentionally softened material boundaries on target Electron/AppImage hardware.

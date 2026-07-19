@@ -1,0 +1,10 @@
+Dream Realms V0.13.7 — Runtime Zone Companion Persistence Fix Pass
+
+- Fixed dead/downed bot restore so bot HP remains 0 after normalization, gear recalculation, and base stat recalculation.
+- Hardened BotPlayer.updateBaseStatsFromLevel so stat refreshes cannot revive downed bots into invalid alive=false/hp=1 state.
+- Fixed dungeon character save/load so saved dungeon identity/floor/runtime state is restored through the dungeon system when possible.
+- Added a safe dungeon fallback that returns the character to the dungeon entrance/start position instead of applying dungeon x/y coordinates onto the overworld.
+- Cleared stale cave and dungeon metadata during character-session reset.
+- Stopped serializing stale cave id/floor metadata while the active runtime zone is overworld.
+- Fixed duplicated player-position declaration in save/load runtime code.
+

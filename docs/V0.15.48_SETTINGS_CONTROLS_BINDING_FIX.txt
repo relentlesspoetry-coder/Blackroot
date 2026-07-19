@@ -1,0 +1,16 @@
+Dream Realms V0.15.48 — Settings Controls Binding Fix Pass
+
+Bug fixed:
+- Settings window opened and displayed options, but buttons/toggles/sliders inside the Settings body did not work. Only the Close button still worked.
+
+Root cause:
+- The Settings menu was repeatedly re-rendered and extended by renderer/performance/DPS/QA sections. Some controls were bound directly to transient DOM nodes. After the Settings body was rebuilt or appended, parts of the panel could display without durable input handlers.
+
+Fix:
+- Updated the owning Settings UI path in systems/ui-system.js.
+- Added durable delegated click/input/change handling on #settingsList.
+- Added direct support for HUD toggles, audio controls, keybind controls, performance/renderer controls, DPS Meter Add-Ons controls, and the existing renderer QA/release controls.
+- Updated settings-panel-regression-fix-system.js to use the durable Settings binding when fallback content renders.
+
+No gameplay/content changes:
+- No class, spell, loot, mob, quest, dungeon, economy, XP, mana, cooldown, or combat-balance values were changed.

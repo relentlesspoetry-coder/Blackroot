@@ -1,0 +1,44 @@
+Dream Realms V0.15.20 — Hybrid Renderer Toggle Stability Pass
+
+Scope
+- Stabilize the experimental hybrid WebGL renderer controls without replacing the visible Canvas 2D renderer.
+- Keep Canvas 2D as the safe gameplay renderer.
+- Keep WebGL sprite and terrain prototypes diagnostic/shadow-rendered behind the Settings renderer toggle.
+
+Changes
+- Updated version metadata to V0.15.20.
+- Added hybrid renderer watchdog controls to CONFIG.PERFORMANCE:
+  - enableRenderBackendWatchdog
+  - renderBackendAutoFallback
+  - renderBackendCooldownMs
+  - renderBackendFailureTripCount
+  - renderBackendMaxFrameUploadMs
+  - renderBackendMaxFrameDrawMs
+  - renderBackendMaxFallbacksPerFrame
+- Added renderer mode normalization so invalid/old stored modes fall back to Canvas 2D safely.
+- Added WebGL mode entry validation:
+  - denies Hybrid mode if WebGL is unavailable
+  - denies Hybrid mode while context is lost
+  - denies Hybrid mode during watchdog cooldown
+- Added automatic Canvas fallback when Hybrid mode shows sustained WebGL pressure:
+  - excessive texture upload cost
+  - excessive draw cost
+  - excessive fallback count
+  - unavailable/lost WebGL context
+- Added cooldown before retrying Hybrid mode after watchdog fallback.
+- Added Settings panel renderer watchdog status.
+- Expanded F3 backend diagnostics with:
+  - watchdog enabled state
+  - safe-mode state
+  - failure score
+  - watchdog trips
+  - auto-fallback count
+  - cooldown remaining
+  - denied request reason
+  - last fallback reason
+
+Validation
+- JavaScript syntax validation passed across modular runtime files.
+- _script_order.json has no missing files.
+- HTML script references have no missing files.
+- Canvas 2D remains the visible stable renderer.

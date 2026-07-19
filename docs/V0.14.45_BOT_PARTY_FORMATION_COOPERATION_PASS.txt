@@ -1,0 +1,17 @@
+Dream Realms V0.14.45 Bot Party Formation Cooperation Pass
+
+This build implements autonomous bot party formation, bot-to-player party invites, and party-scoped bot cooperation.
+
+Changes:
+- Added autonomous bot party formation: nearby available bots can create parties and invite compatible nearby bots.
+- Added bot-to-player party invitations through the existing party invite UI. Accepting a bot party invite moves that bot party into the player's active party/HUD.
+- Added clean bot invite acceptance between bots using shared formation/composition scoring.
+- Restricted bot healing, buffing, and combat assist logic to explicit party membership. Solo bots no longer heal, buff, or assist unrelated friendly bots.
+- Converted legacy bot squad cooperation into explicit autonomous bot-party ownership while preserving compatibility function names.
+- Removing a bot from the player's party now clears stale cooperation/targeting state and immediately returns the bot to solo behavior.
+- Updated save/runtime bot state to preserve autonomous bot party IDs and invitation cooldowns.
+
+Validation:
+- JavaScript syntax checked with node --check.
+- Bot party smoke test passed: bot party formation, party-scoped healing candidates, assist targeting, bot-party invite accept, and remove/revert-to-solo behavior.
+- ZIP integrity verified.

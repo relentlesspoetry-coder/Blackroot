@@ -1,0 +1,35 @@
+Dream Realms V0.12.74 — Ambient Mixer + Audio Runtime Budget Pass
+
+Scope:
+- Finish the current audio foundation by adding ambient-specific controls and runtime budget protection.
+- Keep music, SFX, and ambient audio separately controllable.
+- Prevent runaway sound overlap from footsteps, ambient events, combat one-shots, and UI events.
+
+Changed:
+- systems/audio-system.js
+- systems/ambient-audio-system.js
+- systems/ui-system.js
+- systems/runtime-qa-system.js
+- VERSION.txt
+- README.txt
+- docs/MODULAR_HISTORY.txt
+- Dream Realms V0.12.74.html
+
+New Settings controls:
+- Ambient Mute
+- Ambient Volume
+- Ambient Density
+- Ambient test sound
+- Audio runtime summary
+
+Runtime budget:
+- Total voice limit
+- SFX channel voice limit
+- Ambient channel voice limit
+- Voice cleanup based on expected sound duration
+- Dropped-voice counter for diagnostics
+
+Cascade status:
+- No bottom-of-file override layer.
+- No delayed repair layer.
+- No wrapper/monkey patch layer.

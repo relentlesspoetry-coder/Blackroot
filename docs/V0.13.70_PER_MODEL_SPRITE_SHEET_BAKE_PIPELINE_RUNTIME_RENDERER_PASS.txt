@@ -1,0 +1,47 @@
+Dream Realms V0.13.70 — Per-Model Sprite Sheet Bake Pipeline + Runtime Renderer Pass
+
+Summary
+- Corrected the sprite pipeline direction from one shared entity atlas to per-model sprite sheets.
+- Added runtime support for assets/sprites/sprite-index.json, per-model PNG/JSON loading, and on-demand sprite sheet drawImage() rendering.
+- Added a SpriteSheetSystem that tries per-model sheets before the older shared atlas path and falls back procedurally whenever a sheet, metadata file, image, or frame is missing.
+- Updated the sprite baker to export each class or mob model as its own PNG/JSON pair instead of only entities_*.png/entities.json.
+
+Systems changed
+- systems/sprite-sheet-system.js: new runtime owner for sprite-index loading, model sheet loading, frame lookup, anchor/click-bound application, debug stats, warning suppression, and procedural fallback accounting.
+- systems/sprite-bake-system.js: added per-model grouping, per-model packing, local frame keys, per-model metadata JSON, sprite-index.json export, selected-model/class/mob/all export APIs, and model metadata script fallback export.
+- tools/sprite-baker.html / tools/sprite-baker.js: replaced the old atlas-only controls with Load Renderers, Validate Definitions, Bake Selected Model, Bake Classes, Bake Mobs, Bake All Per-Model Sheets, and Bake Boar + Wolf Smoke Sheets.
+- render/entity-renderer.js: attempts SpriteSheetSystem rendering before the older SpriteAtlasSystem and procedural fallback paths.
+- game.js: initializes SpriteSheetSystem and loads assets/sprites/sprite-index.json.
+- _script_order.json / HTML: added systems/sprite-sheet-system.js before the bake system.
+
+Per-model output model
+- Class sheets export as assets/sprites/classes/<Model>.png and assets/sprites/classes/<Model>.json.
+- Mob sheets export as assets/sprites/mobs/<Model>.png and assets/sprites/mobs/<Model>.json.
+- The master index exports as assets/sprites/sprite-index.json.
+- Placeholder per-model JSON/index files are included so runtime loading is stable before generated PNGs are copied in.
+
+Bake coverage
+- Classes: Fighter, Cleric, Druid, Bard, Summoner, Necromancer, Rogue, Enchanter.
+- Trainer variants: included under each class model sheet using the trainer variant.
+- Mobs: GloomWolf, BriarBoar, Rotling, Spider, Skeleton, Bandit, SpiritHealer.
+- Variants are stored inside each model sheet JSON using local frame keys such as briarBoar.walk.south.0 and trainer.idle.south.0.
+
+Runtime fallback behavior
+- Missing sprite-index.json: procedural fallback remains active.
+- Missing per-model metadata: procedural fallback remains active.
+- Missing PNG: procedural fallback remains active.
+- Missing frame: warns once per frame key and uses procedural fallback.
+- The previous shared SpriteAtlasSystem remains available for compatibility, but per-model sheets are tried first.
+
+Validation
+- All JavaScript files passed node --check.
+- Main HTML local script references were audited.
+- SpriteSheetSystem static audit completed.
+- Per-model bake APIs and tool controls were verified statically.
+- Metadata/version/docs updated.
+- Zip integrity passed.
+
+Manual browser-test caveats
+- Browser bake/export was not executed in the container.
+- Manually test tools/sprite-baker.html: Load Renderers, Bake Selected Model for Fighter, Bake Selected Model for BriarBoar, Bake Classes, Bake Mobs, and Bake All Per-Model Sheets.
+- Copy exported PNG/JSON files to assets/sprites/classes or assets/sprites/mobs and sprite-index.json to assets/sprites, then launch the game and compare game.spriteSheetSystem.getStats().

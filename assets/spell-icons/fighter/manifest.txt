@@ -1,0 +1,23 @@
+Fighter Spell Icons Manifest
+Naming format: {Spell Name} - Fighter - Level {Level}.png
+
+Level 01: Heavy Swing - Fighter - Level 1.png
+Level 02: Cleave - Fighter - Level 2.png
+Level 03: Battle Rush - Fighter - Level 3.png
+Level 04: Crushing Blow - Fighter - Level 4.png
+Level 05: Momentum - Fighter - Level 5.png
+Level 06: Groundbreaker - Fighter - Level 6.png
+Level 07: Reckless Strike - Fighter - Level 7.png
+Level 08: Heavy Riposte - Fighter - Level 8.png
+Level 09: Weapon Flow - Fighter - Level 9.png
+Level 10: Armor Splitter - Fighter - Level 10.png
+Level 11: Savage Momentum - Fighter - Level 11.png
+Level 12: Bonebreaker - Fighter - Level 12.png
+Level 13: Whirlwind Cleave - Fighter - Level 13.png
+Level 14: Final Swing - Fighter - Level 14.png
+Level 15: Bloodrush - Fighter - Level 15.png
+Level 16: Shatter Guard - Fighter - Level 16.png
+Level 17: Titan Chop - Fighter - Level 17.png
+Level 18: Unstoppable Footwork - Fighter - Level 18.png
+Level 19: Berserker's Roar - Fighter - Level 19.png
+Level 20: Perfect Masterstroke - Fighter - Level 20.png

@@ -1,0 +1,52 @@
+Dream Realms V0.13.45 — Dungeon Death Visibility, Resurrection, Currency + Placement Fix Pass
+
+Systems changed
+- Actor lifecycle now owns one shared live-state restoration path used by player respawn, bot recovery, resurrection, and character load normalization. It clears stale corpse/ghost/death animation and opacity state without forcing the renderer to draw dead actors.
+- Spell data, compiler, runtime targeting, combat, and autonomous support AI now support dead-friendly resurrection targets.
+- Mob loot now rolls canonical copper value by level and rank, converts it through the existing C/S/G/P wallet model, and remains additive with item drops.
+- Dungeon placement now validates bounds, walkable floor, blockers, solid props, reachability from the entrance, occupied tiles, and reserved entrance positions before placing actors.
+- Silk Web Cavern now owns an interior entrance staging area for the quest giver, Spirit Healer, player, companions, respawns, and placement fallbacks.
+
+Death visibility and resurrection
+- Respawn restores visible/renderable flags, alpha/opacity, idle animation, movement readiness, targeting, combat, path, meditation, and death-cleared status state before camera and UI refresh.
+- Character load also normalizes the player to a live render state, preventing stale visibility fields from surviving a post-respawn save.
+- Cleric Resurrection unlocks at level 5, has six-tile friendly range, and revives a dead party member with 35% HP and 25% mana.
+- Druid Rebirth unlocks at level 6, has six-tile friendly range, and revives a dead party member with 30% HP and 20% mana.
+- Revive rejects living, hostile, missing, out-of-range, and blocked-line-of-sight targets. Revived actors resume idle live state with invalid combat, pathing, meditation, and death-cleared effects removed.
+- Cleric and Druid bots scan all six party members, prioritize the player and critical party roles, require a safe cast opportunity, and use class-specific revive speech without adding a new update loop.
+
+Currency loot
+- Normal low-level mobs primarily drop copper. Level and rank scaling increases total coin value into silver, gold, and eventually rare future platinum drops.
+- Elite, rare, named, and boss multipliers apply in the owning loot roll while leaving item tables, quest drops, and mob combat values unchanged.
+- Corpse windows, pickup messages, chat summaries, bot looting, take-all, corpse cleanup, wallet display, and save/load all use the existing coinCopper source of truth.
+- The C/S/G/P formatter now uses the wallet's existing 100:1 conversion at every tier; the previous platinum divisor mismatch was corrected.
+- Legacy transient corpse gold values are normalized to copper when encountered. Existing player currency and unrelated save data are preserved.
+
+Silk Web Cavern placement
+- Fixed the NPC zone-grid resolver that incorrectly treated dungeon floors as Dark Woods, which caused outdoor camp NPCs to render over cavern walls.
+- Added a reachable interior Floor 1 entrance cluster containing the Silk Web quest giver and Spirit Healer without blocking the exit.
+- Runtime dungeon actor placement validates reachable floor tiles and retries nearby positions; exhausted retries fall back to the entrance staging area and emit throttled actor/coordinate warnings.
+- Silk Web mobs, elites, minibosses, bosses, player transitions, party transitions, respawns, and revive recovery use the same dungeon-owned validation and reserved-slot model.
+- Living bots are placed only during controlled zone/floor transition. No per-frame teleport or duplicate placement loop was added.
+
+Save/load compatibility
+- Save build metadata is V0.13.45. Existing world, character, wallet, spell, equipment, and party data remain compatible.
+- Older spell saves merge missing Resurrection, Rebirth, and Purify defaults without replacing saved spell drafts or occupied action slots.
+- Short-lived death, corpse, visibility, cast, path, meditation, speech, and dungeon placement caches are normalized from authoritative live state rather than persisted as new save requirements.
+- Existing coinCopper remains authoritative; no second currency store was introduced.
+
+Tests run
+- All JavaScript files passed node --check.
+- Main HTML loaded all 88 existing script references with no missing file and completed Fighter boot/update/render smoke.
+- Runtime integrity audit completed with no failures or warnings.
+- Player respawn restored visibility, opacity, idle animation, movement, camera following, HUD state, and save/load visibility.
+- Cleric Resurrection and Druid Rebirth revived valid player/bot party targets, restored render state, rejected living/hostile targets, and were selected safely by autonomous bot AI.
+- Deterministic loot rolls verified low copper, mid-level silver, higher gold, future rare platinum, rank multipliers, item-plus-currency drops, formatted pickup, and wallet save/load.
+- Silk Web Floor 1 verified only dungeon-local entrance NPCs, valid quest giver/healer placement, reachable mob/boss placement, valid six-member entrance slots, checkpoint validity, and invalid-position recovery.
+- Prior regression smoke passed for ranged auto-attacks, Purify, poison, right-click targeting, paper doll, transactional ground drops, item comparison, autonomous party HUD/AI/speech, pathing, meditation, Dark Woods rendering, Esc menu, and save/load.
+- ZIP entry integrity and packaged HTML script-reference validation passed.
+
+Manual browser caveats
+- Manually verify the visible death-panel-to-respawn transition and both resurrection cast effects with real pointer/action-bar input.
+- Manually inspect Silk Web entrance spacing and NPC interaction readability at unusual zoom levels and with a full six-member party.
+- Manually sample live currency pickup pacing across normal, elite, named, and boss encounters; deterministic tests validate tier logic but not long-session economy feel.

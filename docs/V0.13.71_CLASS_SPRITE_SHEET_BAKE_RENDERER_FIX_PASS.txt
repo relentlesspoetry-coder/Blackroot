@@ -1,0 +1,26 @@
+Dream Realms V0.13.71 — Class Sprite Sheet Bake Renderer Fix Pass
+
+Systems changed:
+- systems/sprite-bake-system.js
+- tools/sprite-baker.js
+- version metadata and build docs
+
+Fixes:
+- Routed Bard and Druid class sprite baking through their dedicated runtime renderers.
+- Preserved ClassIdentityProceduralModel routing for Fighter, Cleric, Summoner, Necromancer, Rogue, and Enchanter.
+- Added transparent-frame/opaque-pixel validation to block blank class sheet exports.
+- Improved renderer validation for per-model sprite sheet baking.
+
+Preserved:
+- Procedural renderers remain source of truth.
+- Per-model sprite sheet runtime fallback remains safe.
+- Gameplay, targeting, anchors, nameplates, health bars, and footstep FX were unchanged.
+
+Tests run:
+- JS syntax check.
+- Main HTML script reference audit.
+- Static audit for Bard/Druid renderer routing and blank-frame rejection.
+- ZIP integrity validation.
+
+Manual browser-test caveats:
+- Browser-side bake/export validation was still required.

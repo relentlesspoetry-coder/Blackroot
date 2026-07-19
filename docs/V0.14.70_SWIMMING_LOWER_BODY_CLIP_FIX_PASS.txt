@@ -1,0 +1,13 @@
+Dream Realms V0.14.70 — Swimming Lower Body Clip Fix Pass
+
+Changed:
+- Added a Canvas 2D water-surface clipping plane to the shared humanoid renderer so swimming actors render only from the waist up.
+- Added the same lower-body clipping behavior to the premium Fighter swim renderer.
+- Kept water ripple/surface overlays outside the body clip so the surface visually masks the cut line.
+- Restricted submersion hiding to the authoritative swim action/state; shallow inWater flags alone no longer trigger lower-body hiding.
+- Updated companion swim render state for bots, mercenaries, pets, and friendly class-model actors when they enter water.
+- Added NPC class-model swim/tread render flags when an NPC stands in deep water.
+
+Validation:
+- node --check across runtime JavaScript files.
+- ZIP integrity checked with unzip -t.

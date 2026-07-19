@@ -1,0 +1,74 @@
+Dream Realms V0.15.07 — Runtime Sprite Cache and AI Throttle Pass
+
+Goal
+- Reduce runtime CPU cost without removing features, changing gameplay balance, changing zone layouts, or reducing the intended art style.
+
+Implemented
+- Added systems/runtime-sprite-cache-system.js.
+- Added RuntimeSpriteCacheSystem using OffscreenCanvas when available, with regular canvas fallback.
+- Cached procedural model frames for high-frequency entity render paths:
+  - Dark Woods mob visual models
+  - Silk Web spider models
+  - wolf-specific enemy models
+  - class identity renderers
+  - Bard and Druid class renderers
+  - merc identity models
+  - pet identity models
+  - NPC class/human/camp renderers where safe
+- Kept dynamic overlays outside the cache where they already live:
+  - nameplates
+  - HP bars
+  - target rings
+  - quest markers
+  - floating combat text
+  - spell/world effects
+- Added cache keying by renderer, class, visual key, role, facing direction, action, animation buckets, flags, palette, and equipment signature.
+- Added LRU-style cache budget cleanup through spriteCacheMaxEntries.
+- Converted hardcoded enemy AI budgeting into CONFIG.PERFORMANCE-controlled tiers:
+  - nearAiRadius
+  - midAiRadius
+  - farAiRadius
+  - midAiInterval
+  - farAiInterval
+  - sleepAiInterval
+  - eliteAiIntervalMultiplier
+- Added F3 performance overlay implementation with:
+  - FPS
+  - frame/update/render ms
+  - DPR and render pad
+  - render queue counts
+  - AI awake/throttled/sleeping counts
+  - runtime sprite cache entries, hits, misses, and per-frame generation stats
+
+Config Added
+- enableSpriteCache
+- spriteCacheMaxEntries
+- spriteCacheIdleFrameMs
+- spriteCacheActionFrameMs
+- spriteCacheMovingFrameMs
+- enableAiThrottling
+- nearAiRadius
+- midAiRadius
+- farAiRadius
+- midAiInterval
+- farAiInterval
+- sleepAiInterval
+- eliteAiIntervalMultiplier
+- showPerformanceOverlay
+
+Files changed
+- core/config.js
+- game.js
+- entities/enemy.js
+- systems/npc-system.js
+- systems/runtime-sprite-cache-system.js
+- render/entity-renderer.js
+- render/terrain-renderer.js
+- _script_order.json
+- Dream Realms V0.15.05.html
+- VERSION.txt
+- README.txt
+- Save/save-folder-manifest.json
+
+Validation
+- JavaScript syntax validation passed for core, data, entities, systems, render, and game.js.

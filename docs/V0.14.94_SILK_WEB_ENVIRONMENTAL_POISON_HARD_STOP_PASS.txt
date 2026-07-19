@@ -1,0 +1,24 @@
+Dream Realms V0.14.94 - Silk Web Environmental Poison Hard Stop Pass
+
+Scope
+- Critical Silk Web Cavern poison regression fix.
+- Root-owner changes only; no cascade patch scripts.
+
+Changes
+- Added a status-effect owner gate for Silk Web Cavern poison-like effects on friendly/player entities.
+- Allowed poison sources in Silk Web Cavern are now restricted to:
+  1. Venom Sack objects.
+  2. Silk Web elite spider enemies.
+  3. Silk Web miniboss/boss spider enemies.
+- Blocked poison from generic dungeon/environmental sources, including tile/fog/gas/runoff/pool/web/null sources.
+- Added a dungeon hazard scrub to clear old environmental poison effects from player, party bots, hired mercenary, and owned pet during active Silk Web Cavern sessions.
+- Marked venomPool and venomRunoff dressing objects as visual-only/non-damaging.
+- Preserved Venom Sack Poison: 15 seconds, 15 damage per second, player-only trigger, single-use sack consumption, stackable effect.
+- Preserved spider elite/miniboss/boss poison combat abilities.
+
+Validation
+- Static audit confirms no poisonDrip damage path remains.
+- Status-effect gate blocks non-combat Silk Web Cavern poison on friendly/player entities.
+- Venom Sack Poison remains valid and stackable.
+- Spider elite/miniboss/boss poison remains valid.
+- JS syntax and local script reference checks passed.

@@ -1,0 +1,15 @@
+Pass 46 - HUD / Bag / Skills / Merc / Party QoL
+
+Implemented:
+- Character HUD bar text: HP, Mana, and EXP now render inside their bars.
+- Money display moved into the Bags window.
+- Currency display uses Copper/Silver/Gold/Platinum conversion: 100C=1S, 100S=1G, 100G=1P.
+- Added six-slot bag bar. Slot 1 is the non-removable 12-slot Starter Satchel.
+- Inventory now renders per equipped bag section and capacity is based on equipped bags.
+- Added bag item runtime support for future loot/vendor/crafting containers.
+- Added Skills window on K with Fishing, Herbalore, Mining, Blacksmithing, Meditating, and crafting skills.
+- Added movable UI window dragging through window headers/title rows.
+- Player meditation now visibly heals HP and restores Mana.
+- Mercenary HUD has Follow, Assist, Guard, Passive, and Meditate commands.
+- Mercenaries meditate out of combat to recover HP/Mana.
+- Party HUD supports local player, invited mercenary, and browser-local player party members.

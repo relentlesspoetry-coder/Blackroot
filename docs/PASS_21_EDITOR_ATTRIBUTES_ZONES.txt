@@ -1,0 +1,15 @@
+Dream Realms V0.10.3 Modular Pass 21
+
+Editor attribute and zone marker pass.
+
+Added:
+- Attribute palette for Block, Unblock Override, NPC Avoid, No Mob Spawn, Safe Zone, Warp / Zone Exit, and Spawn Point.
+- Zone target palette for Dark Woods and Mossfang Cave.
+- Zone Exit and Spawn Point placement tools.
+- Clear Attribute tool.
+- Attribute marker overlay while editor mode is active.
+- Attribute metadata included in undo/redo snapshots.
+- Attribute metadata saved/exported/imported with world JSON.
+- Zone properties and spawn point metadata saved with world JSON.
+
+No cave rendering, combat, movement, party, multiplayer, fishing, or gameplay balance changes were made.

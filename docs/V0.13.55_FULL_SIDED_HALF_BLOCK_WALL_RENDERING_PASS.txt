@@ -1,0 +1,52 @@
+Dream Realms V0.13.55 — Full-Sided Half-Block Wall Rendering Pass
+
+Systems Changed
+- render/terrain-renderer.js
+  - Added a centralized half-block terrain exposure resolver for north, east, south, and west sides.
+  - Updated structural-pass eligibility so cached ground tiles still emit depth faces when any exposed side borders lower terrain, water, or map void.
+  - Reworked depth-face descriptor generation to use explicit edge geometry for northFace, eastFace, southFace, and westFace instead of relying on one-off bottom-point conditionals.
+  - Added systematic corner joins for adjacent exposed side faces.
+  - Added corner occlusion caps to keep the V0.13.53 ground-over-depth-face seam fix intact at exposed corners.
+
+Full-Sided Half-Block Wall Rendering
+- Raised/walkable terrain now resolves all four cardinal exposure directions independently.
+- North-exposed terrain draws a north-facing vertical depth face.
+- South-exposed terrain draws a south-facing vertical depth face.
+- East-exposed terrain draws an east-facing vertical depth face.
+- West-exposed terrain draws a west-facing vertical depth face.
+- Land bordering water is treated as a visual exposure even when legacy map data stores land and water at the same elevation.
+- Map bounds are treated as recessed/void exposure for edge tiles.
+
+Edge / Corner Adjacency Handling
+- The resolver now treats lower terrain, water, cave-wall-to-floor boundaries, and void as exposed boundaries where appropriate.
+- Corner joins are generated for:
+  - north + east
+  - east + south
+  - south + west
+  - west + north
+- Joins close anti-aliased gaps on isolated platforms, narrow bridges, convex terrain points, concave inlets, and stepped shorelines without adding a global dark outline.
+
+Chunk Composition Changes
+- Terrain chunk caching remains intact.
+- Neighbor sampling from prior terrain-cache passes is preserved.
+- Structural eligibility now uses lightweight adjacency checks before cached chunk drawing, avoiding a full-map redraw or a duplicate render loop.
+- Depth faces still render in the terrain-depth-underlay phase.
+- Cached water/ground surfaces still draw above the depth underlay.
+- Ground occlusion lips and corner caps still draw above the cached ground surface.
+
+Gameplay Systems Preserved
+- This is a rendering-only pass.
+- Collision, pathfinding, spawn validation, water blocking, mob placement, loot placement, quests, combat distance, ranged auto attacks, Purify, Resurrection, autonomous bots, pets, dungeon logic, save/load, and Esc menu behavior were not intentionally changed.
+- V0.13.54 auto-attack speed tuning was preserved.
+
+Tests Run
+- JavaScript syntax check passed for all .js files with node --check.
+- Main HTML local script references were audited and all referenced local scripts were present.
+- Version metadata was audited in VERSION.txt, README.txt, core/config.js, data/default-zones.js, systems/save-system.js, systems/world-serializer.js, and Dream Realms V0.13.55.html.
+- Static terrain ownership audit confirmed the new resolver is used by terrainTileNeedsStructuralPass() and drawTile().
+- Static coverage checks confirmed northFace, eastFace, southFace, westFace, and all four corner join combinations are present.
+- ZIP integrity passed.
+
+Manual Browser-Test Caveats
+- A real interactive browser pass is still required to visually confirm cap thickness, corner join subtlety, camera-rotated wall readability, chunk-border seams, and actor/prop layering near terrain edges.
+- Manually verify Fighter start, shoreline walls from every side, isolated raised tiles, narrow bridges, Silk Web Cavern encounters, right-click targeting, paper doll, bag-to-ground drag/drop, item compare, currency drops, Purify/resurrection/ranged auto attacks, save/load, and Esc menu behavior.

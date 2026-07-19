@@ -1,0 +1,23 @@
+Dream Realms V0.12.34 — Pathfinding, Mob Density, Merc Progression, Tree Variety Pass
+
+Pathfinding
+- Added Game.prototype.findPath(), hasLineWalkPath(), smoothPath(), and nextPathStepForActor() to systems/collision-system.js.
+- Entity.moveToward() now attempts direct movement first, then falls back to cached path AI when blocked.
+- Click-to-walk now creates and follows clickMovePath waypoints, with automatic repathing when blocked.
+- Diagonal pathing prevents corner cutting around trees and other blocked objects.
+
+Mob Density and Combat Pace
+- Dark Woods spawn groups now use a 3x density multiplier at runtime.
+- Spawn search radius was expanded slightly to support denser placement without stacking.
+- Enemy swing delay was reduced to roughly 2.0-3.05 seconds depending on profile and speed.
+
+Mercenary Progression
+- Mercenaries now have xp, nextXp, base stats, equipment, and level scaling.
+- Enemy kills award the active mercenary 72% of the kill XP.
+- Mercenaries level up, heal to full on level-up, and gain HP/MP/attack/defense.
+- Added Merc EXP UI and Merc Gear button.
+- Added renderMercGearWindow() with mainHand/offHand/head/chest/legs/feet/trinket slots.
+
+Tree Variety
+- Tree placement now assigns 9 variants, per-tree scale, and foliage hue data.
+- drawTree() now renders different trunk widths/heights, canopy layouts, scales, trunk colors, and foliage palettes.

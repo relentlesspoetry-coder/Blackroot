@@ -1,0 +1,21 @@
+Dream Realms V0.16.09 - Class Renderer Ownership Cleanup
+
+Summary
+- Fixed Shaman duplicate/overlay model artifacts by stopping generic paperdoll layers from drawing over full class-owned Shaman art.
+- Removed Ranger/Warden stray white-stick weapon artifacts at the renderer ownership boundary.
+- Ranger bow draw now uses combat-owned target-facing data so ranged auto-attack visuals mirror toward the target.
+- Ranger secondary blades now render as sheathed sidearms instead of exposed bright blades.
+
+Changed Files
+- render/paperdoll-equipment-renderer.js
+- render/class-identity-procedural-model.js
+- render/entity-renderer.js
+- systems/combat-system.js
+- entities/entity.js
+- Dream Realms V0.16.09.html
+- PATCH_NOTES.md
+- VERSION.txt
+
+Root Cause
+- Three render owners were drawing over each other: class identity, generic paperdoll equipment, and standing fallback weapon visuals.
+- Classes with owned visual identities need explicit renderer ownership rules so incompatible fallback weapon/body art cannot leak into the same model.

@@ -1,0 +1,31 @@
+Dream Realms V0.10.3 Modular Pass 38
+=====================================
+Runtime Dungeon Entrance / Instance Loading
+
+Completed:
+- Added systems/dungeon-system.js.
+- Editor dungeon entrance markers now appear in the live world as runtime portals.
+- Press E near a dungeon entrance to load a generated dungeon instance floor.
+- Dungeon draft fields now drive runtime loading:
+  - id/name/theme
+  - minLevel/maxLevel
+  - floors
+  - roomPlan
+  - eliteMultiplier
+  - lootTableId
+- Runtime dungeon floors generate with entrance, combat, puzzle, boss, and treasure room layouts.
+- Dungeon stairs load the next floor without returning to the overworld/cave.
+- Dungeon exits return the player, merc, and pet to the original entrance location.
+- Final-floor treasure markers roll the assigned dungeon loot table.
+- Dungeon runtime state is included in world save/export/import as dungeonRuntime.
+- Older worlds with no dungeon entrance markers receive starter entrances:
+  - Gloom's Crypt near the Old Ruins in Dark Woods.
+  - Silk Web Depths inside Mossfang Cave.
+- Added renderer support for dungeon exits, stairs, and treasure objects.
+- Minimap/world-map labeling now reflects active dungeon instances.
+- Updated stale dungeon editor text that still said runtime dungeon playback was deferred.
+
+Notes:
+- Pass 38 intentionally handles entrance and floor instance loading only.
+- Puzzle execution is implemented in Pass 39.
+- Boss-special behavior and dungeon-specific reward tables are implemented in Pass 40.

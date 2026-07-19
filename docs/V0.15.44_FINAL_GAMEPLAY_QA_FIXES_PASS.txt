@@ -1,0 +1,15 @@
+Dream Realms V0.15.44 — Final Gameplay QA Fixes Pass
+
+Purpose:
+Add the final gameplay-route QA layer above the release-locked renderer/performance stack.
+
+Changes:
+- Added systems/final-gameplay-qa-fixes-system.js.
+- Added gameplay QA scoring for camera rotation, zoom changes, cave/fringe contexts, large combat loads, Hybrid fallback pressure, Hybrid frame cost, blocked layers, and benchmark evidence.
+- Added conservative Canvas Safe Mode enforcement only for repeated critical renderer risk.
+- Added Settings controls for Gameplay QA Gate, benchmark, JSON/TXT export, summary copy, sample clearing, and Canvas Safe Mode forcing.
+- Added F3 FinalGameplayQA diagnostic line.
+- Updated VERSION, README, save manifest, script order, HTML, and build metadata.
+
+No gameplay/content changes:
+- No class, spell, loot, mob, quest, dungeon, economy, combat, or zone layout values were changed.

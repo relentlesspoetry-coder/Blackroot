@@ -1,0 +1,22 @@
+Dream Realms V0.13.78 — Fighter Shield Layering + Model Proportion Fix Pass
+
+Scope
+- Corrects the V0.13.77 Fighter visual regression where the upgraded heater shield could render oversized and centered over the body/head at gameplay scale.
+- Preserves the V0.13.77 overhead nameplate visual improvements because those were confirmed good.
+
+Changes
+- Updated render/class-identity-procedural-model.js directly in the Fighter/class renderer ownership path.
+- Added a Fighter-specific front prop placement helper so the sword and shield are positioned as real hand props instead of a body-covering overlay.
+- Reduced shield scale, lowered shield placement, and offset it toward the shield arm.
+- Reworked shield geometry to keep the crisper heater-shield style while preventing it from becoming the entire torso silhouette.
+- Preserved sharper Fighter armor, face/hair, sword, stance, and nameplate work from V0.13.77.
+- No gameplay systems, combat timing, targeting, save/load, sprite-sheet systems, or UI flows were changed.
+
+Validation
+- JavaScript syntax checks passed.
+- Main HTML script references audited.
+- Version metadata, README, save metadata, world serializer metadata, and modular history updated.
+- Zip integrity passed.
+
+Manual Browser-Test Caveat
+- Visual confirmation is still required in browser for Fighter front/side/back directions, idle/walk/attack states, character creation preview, and sprite-baker output if the Fighter sheet is regenerated.

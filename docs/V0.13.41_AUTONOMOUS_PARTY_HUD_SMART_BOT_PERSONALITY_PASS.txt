@@ -1,0 +1,37 @@
+Dream Realms V0.13.41 — Autonomous Party HUD + Smart Bot Personality Pass
+
+SYSTEMS CHANGED
+- Party capacity and party-order state continue to use the centralized six-member limit: one player plus five companions.
+- The responsive party HUD renders six possible frames with name, class/role, level, health, mana where applicable, status effects, selection, death, meditation, combat, and current AI activity.
+- Party-frame left click selects any living friendly member for healing and buffs. Bot/merc right click is limited to Inspect, Talk where supported, and Remove From Party.
+- Bot AI remains autonomous. No Follow, Guard, Assist, Passive, Attack, Meditate, or Dismiss bot command panel, command dispatcher, saved stance, or command-target state is present.
+
+AUTONOMOUS BOT BEHAVIOR
+- Invite evaluation now checks shared party capacity, duplicate membership, bot availability, other-party membership, level range, and current tank/healer/support coverage.
+- Existing class-role AI continues to own follow spacing, target choice, healing, buffing, protection, ranged/melee positioning, obstacle routing, combat, and safe recovery.
+- Role-aware formation offsets keep tanks forward, healers and casters behind, support near the group, and melee damage on a flank without teleporting.
+- Bot healer/support candidate collection and friendly spell targeting use the complete active party roster.
+
+PERSONALITY AND CHAT BUBBLES
+- Added short line banks for Fighter, Cleric, Druid, Bard, Summoner, Necromancer, Rogue, and Enchanter.
+- Covered joining, invite refusal/full party, combat, kills, low health/mana, healing, buffing, protection, rare enemies, loot, meditation start/interruption, cave/dungeon entry, and player/bot death events.
+- A central speech queue applies party-wide, per-bot, and per-event cooldowns with event priorities to prevent five-bot spam.
+- Renderer-owned bubbles follow the speaking bot, stay above the nameplate, wrap and clamp to the viewport, then fade. Existing chat logging is reused where appropriate.
+
+SAVE / LOAD COMPATIBILITY
+- Party order and bot personality identity persist through existing save ownership.
+- Speech bubbles and cooldowns are transient and restart safely after load.
+- Old four-member saves load normally; stale saved capacity metadata cannot reduce the current cap.
+- Over-cap saves retain the player and first five valid companions, deactivate extras, and emit a warning without deleting unrelated save data.
+- Existing meditation cleanup still removes stale rest/slow/path state during restoration.
+
+VALIDATION
+- Every JavaScript file passed node --check.
+- All 88 main-HTML script references existed and matched the canonical load-order manifest.
+- Node VM smoke passed Fighter start, update, render, six-member capacity, player plus five bot recruitment, over-cap rejection, six HUD frames, friendly selection, non-command context menus, role-aware invite/spacing behavior, all-member healer/support scans, personality save/load, speech line coverage, cooldown blocking, moving/fading bubble rendering, old-save/over-cap normalization, Esc menu centering, Dark Woods renderer coverage, obstacle pathing, meditation cleanup, equipment aliases, and paper doll rendering.
+- ZIP archive integrity passed.
+
+MANUAL BROWSER CAVEATS
+- Verify bubble/nameplate placement during crowded moving combat and at unusual display scales/aspect ratios.
+- Verify real pointer left/right-click placement and responsive HUD coexistence with chat, minimap, action bar, dialogue, inventory, and Esc menu.
+- Verify browser-blocked window.close fallback in the target browser/Electron package.

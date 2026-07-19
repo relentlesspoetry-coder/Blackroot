@@ -1,0 +1,18 @@
+Dream Realms V0.14.72 — Auto Attack Melee Caster Split Pass
+
+Scope:
+- Auto-attack animation role selection is class-owned instead of weapon-inferred.
+- Melee animation classes: Bard, Rogue, Fighter.
+- Caster animation classes: Enchanter, Druid, Necromancer, Cleric, Summoner.
+
+Runtime behavior:
+- Key 1/manual auto-attack remains the only player auto-attack toggle.
+- Melee classes loop weapon swing animation in sync with the attack timer.
+- Caster classes loop cast pose, buildup, and release visuals in sync with the same attack timer.
+- Special ability/cast/hit/death/meditation/gathering/fishing/swimming states keep higher priority.
+- Pet auto-attack behavior was not changed.
+
+Implementation:
+- systems/combat-system.js owns class-based auto-attack identity and visual-state data.
+- render/humanoid-animation-system.js carries role/class state into the pose.
+- render/humanoid-base-renderer.js draws class-themed melee/caster overlays and pose differences.

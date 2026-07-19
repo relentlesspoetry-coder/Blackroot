@@ -1,0 +1,24 @@
+Pass 39 — Runtime Puzzle System
+================================
+
+Owner modules:
+- systems/puzzle-system.js
+- systems/dungeon-system.js
+- render/object-renderer.js
+- systems/world-serializer.js
+
+Implemented:
+- Runtime puzzle state persistence as puzzleRuntime.
+- Dungeon floor generation now places puzzleSwitch, puzzleKey, puzzleLock, and puzzleDoor objects in generated puzzle rooms.
+- E interaction handles puzzle switches, keys, locks, and doors.
+- Sequence puzzles enforce switch order and reset progress on failure when resetOnFail is true.
+- Symbol-style puzzles support switch completion without strict sequence failure.
+- kill_and_unlock puzzles open sealed doors after the assigned room enemies are cleared.
+- Key and lock objects open linked doors.
+- Closed puzzle doors block their tile; opened puzzle doors unblock it.
+- Editor-placed key/lock/door/puzzle dungeon markers now get live runtime interactions outside generated dungeon instances.
+
+Notes:
+- This pass keeps dungeon travel ownership in systems/dungeon-system.js.
+- Puzzle interaction ownership is isolated in systems/puzzle-system.js.
+- No bottom-of-file patch layer was added.

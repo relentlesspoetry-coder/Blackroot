@@ -1,0 +1,4 @@
+Dream Realms V0.15.109 - Creator Class Icon Centering Fix
+
+- Centered the new large class icon backdrops in the character creator preview.
+- Uses per-class visual bounds so the visible icon art is centered behind the model instead of the raw sprite cell.

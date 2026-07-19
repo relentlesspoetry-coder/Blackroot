@@ -1,0 +1,23 @@
+Dream Realms Modular Pass 24 - Event Editor Foundation
+
+Added editor event marker placement and saved event metadata.
+
+New file:
+- data/events.js
+
+Editor event tools:
+- Place Event
+- Erase Event
+- Eyedropper Event
+- Event Marker
+- Dialogue
+- Chest
+- Quest Hook
+- Shop Event
+- Warp Event
+
+Saved metadata:
+- editorEvents.dark_woods
+- editorEvents.mossfang_cave
+
+This pass stores event definitions and map markers only. Runtime event execution, dialogue windows, quest execution, shops, and scripted command playback are reserved for later passes.

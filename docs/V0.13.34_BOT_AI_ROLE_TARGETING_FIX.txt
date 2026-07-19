@@ -1,0 +1,11 @@
+Dream Realms V0.13.34 — Bot AI Role Targeting Fix
+
+- Added shared bot role classification helpers in core/utils.js.
+- Updated legacy BotPlayer fallback AI to recognize new class roles: hybrid_healer_damage, support_control, control_support, pet_caster, and pet_dot_caster.
+- Updated party combat role classification and bot formation offsets so new class bots no longer fall back to melee positioning.
+- Updated bot dungeon/squad support checks to recognize healer, hybrid healer, support, and control-support roles.
+- Updated offensive class bot spell validation to accept valid hostile combat actors beyond kind === "enemy" when they are hostile or present in game.enemies.
+- Updated bot pet attack command validation to use the same hostile target predicate.
+- Fixed single-target buff priority so bots scan party/squad allies before skipping a buff already active on themselves.
+- Moved bot spell mana/cooldown/attack lock commitment until after a spell effect branch succeeds.
+- Synchronized DEFAULT_WORLD version/build metadata with runtime config.

@@ -1,0 +1,11 @@
+Dream Realms V0.12.19 — Standing and Walking Layered Humanoid Puppet Pass
+
+Summary
+- Regular humanoid rendering no longer draws as a flat torso blob with stick legs.
+- Standing and walking now use a layered draw order: back equipment, legs, boots, torso, chest panels, arms, hands, weapons, neck, head, hair/helmet, then class details.
+- Added 8-direction standing profiles with different silhouette offsets.
+- Added modular class overlays and hand-attached weapon rendering.
+
+Implementation Notes
+- Existing drawStandingBody was preserved as drawStandingBodyLegacy for fishing fallback.
+- New methods own the regular standing/walking renderer: standingDirectionProfile, getStandingPuppetPose, standingHumanoidContext, drawStandingBackEquipment, drawStandingLegs, drawStandingBoots, drawStandingTorsoBase, drawStandingChestPanels, drawStandingArms, drawStandingHeldWeapons, drawStandingHead, drawStandingHairOrHelmet, and drawStandingClassDetails.

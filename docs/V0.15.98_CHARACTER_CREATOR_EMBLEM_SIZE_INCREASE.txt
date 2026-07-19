@@ -1,0 +1,4 @@
+Dream Realms V0.15.98 - Character Creator Emblem Size Increase
+
+- Increased the character creation class-emblem backdrop to occupy most of the preview background.
+- Preserved the working canvas render path and full-body model framing.

@@ -1,0 +1,23 @@
+{
+  "js_files": 70,
+  "script_refs": 70,
+  "syntax_failures": [],
+  "duplicate_game_prototype_owners": {},
+  "cascade_or_hotfix_markers": [],
+  "missing_script_refs": [],
+  "missing_game_ui_ids": [],
+  "string_literal_capital_words_checked": "Existing 'None' matches are UI/resource string values, not runtime identifiers.",
+  "checks": {
+    "single_html": true,
+    "action_bar_bind": true,
+    "action_bar_events": true,
+    "hotbar_static_data": true,
+    "steam_deck_button_html": true,
+    "steam_deck_button_css": true,
+    "steam_deck_button_binding": true,
+    "world_context_menu_markup": true,
+    "bag_legacy_ids_restored": true,
+    "patch_notes_v01235": true,
+    "load_order_current": true
+  }
+}

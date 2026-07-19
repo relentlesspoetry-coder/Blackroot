@@ -1,0 +1,19 @@
+Dream Realms V0.15.31 — Hybrid Renderer QA and Bug Fix Pass
+
+Purpose:
+- Harden Hybrid WebGL renderer promotion before making it the default runtime renderer.
+- Keep Canvas 2D authoritative fallback behavior intact.
+
+Changes:
+- Added systems/hybrid-renderer-qa-system.js.
+- Added per-layer Hybrid QA monitoring for terrain, sprites, effects, and damage text.
+- Added temporary per-layer holdoff windows when fallback pressure, draw/composite cost, or backend errors repeat across frames.
+- Holdoffs disable only the unhealthy WebGL layer; other healthy Hybrid layers continue running.
+- Added missed-draw and mixed fallback/double-draw risk counters.
+- Added F3 diagnostics for Hybrid QA state, held layers, fallback pressure, holdoff timers, worst layer, and QA reason.
+- Added Settings control to clear Hybrid QA layer holdoffs.
+- Added CONFIG.PERFORMANCE controls for Hybrid QA thresholds.
+
+Validation:
+- Canvas fallback remains available and authoritative.
+- No gameplay, class, spell, mob, loot, quest, dungeon, economy, or UI layout values were intentionally changed.

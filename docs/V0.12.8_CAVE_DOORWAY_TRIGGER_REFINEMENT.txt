@@ -1,0 +1,17 @@
+Dream Realms V0.12.8 — Cave Doorway Trigger Refinement
+
+Scope
+- Remove the remaining cave-mouth look from interior cave exits.
+- Render cave exits as simple bright doorways attached directly to the cave wall.
+- Move cave exit transition behavior to the exact doorway threshold tile.
+- Move overworld cave entrance transition behavior to the exact cave doorway tile.
+
+Implementation
+- systems/cave-system.js now treats cave entrance and exit transitions as exact-tile thresholds instead of broad radius checks.
+- systems/cave-system.js preserves large exterior cave entrance visuals while separating those visuals from a small trigger radius/door tile.
+- render/object-renderer.js drawCaveExit now draws only a luminous wall doorway, thin wall seam, threshold light, and daylight spill. It no longer draws a cave mouth prop, rock arch, or freestanding entrance decoration inside caves.
+
+Result
+- Interior cave exits read as daylight breaking through the cave wall.
+- Players must step onto the actual doorway threshold to transition.
+- Standing near the glow/light spill no longer exits by mistake.

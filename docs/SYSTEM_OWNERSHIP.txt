@@ -1,0 +1,81 @@
+Dream Realms System Ownership
+=============================
+
+Golden rules:
+- No bottom-of-file patch stacks.
+- No wrapper hotfixes.
+- No delayed setTimeout repair layers.
+- Write changes into the owner system.
+
+Owners:
+
+core/
+- registry.js: external system registration and shared namespace
+- config.js: global balance/config constants
+- constants.js: enum-style IDs and constant groups
+- utils.js: shared math/random/color helpers
+- globals.js: compatibility bridge for classic script loading
+
+data/
+- tiles.js: tile definitions
+- classes.js: class data and class identity data
+- spells.js: spell data
+- mercs.js: mercenary role data
+- enemies.js: enemy templates
+- loot.js: loot/rarity tables
+
+entities/
+- entity.js: base movement/facing/animation state
+- player.js: player-specific entity data
+- enemy.js: enemy-specific entity data
+- mercenary.js: mercenary entity data
+- pet.js: pet entity data
+- remote-player.js: synced browser-tab player entity data
+
+systems/
+- world-system.js: overworld map generation and landmarks
+- cave-system.js: cave generation, cave enemies, enter/exit transitions
+- collision-system.js: walkability, tile queries, spawn checks
+- combat-system.js: auto attack, damage, death, healing, respawn, leveling
+- spell-system.js: spell hotbar and class spell execution
+- effects-system.js: gameplay effect spawning/updating
+- loot-system.js: randomized loot generation
+- inventory-system.js: inventory, equipment, bags, stats
+- mercenary-system.js: merc hiring/dismissal
+- multiplayer-system.js: BroadcastChannel local peer sync
+- party-system.js: party invites, party members, party panel runtime
+- fishing-system.js: fishing skill and fishing interaction
+- ui-system.js: HUD updates, logging, map/party panel toggle, splash close
+
+render/
+- render-utils.js: polygon/point helpers used by renderers
+- terrain-renderer.js: floor/wall/water/ground tile drawing
+- object-renderer.js: trees, rocks, props, cave entrance/exit art
+- entity-renderer.js: player, mobs, mercs, pets, nameplates
+- effects-renderer.js: combat/effect drawing and screen overlays
+- minimap-renderer.js: minimap and world map drawing
+
+game.js
+- Game class constructor
+- game loop
+- input binding
+- camera/projection
+- high-level update/render orchestration
+- bootstrap
+V0.12.49 Renderer Ownership
+- render/humanoid-animation-system.js owns humanoid direction resolution and reusable animation state math.
+- render/humanoid-base-renderer.js owns shared humanoid rig anchors, proportions, draw order, and base body rendering.
+- render/bard-procedural-model.js owns Bard-specific clothing, instrument, palette, and class overlays only.
+
+
+
+V0.12.50 Renderer Ownership
+- render/humanoid-animation-system.js owns reusable humanoid direction/action pose math.
+- render/humanoid-base-renderer.js owns shared humanoid body rig, anchors, and draw order.
+- render/bard-procedural-model.js owns Bard class overlays.
+- render/druid-procedural-model.js owns Druid class overlays.
+- render/entity-renderer.js owns routing class actors to their appropriate renderer.
+
+V0.12.51 Renderer Ownership
+- render/humanoid-animation-system.js owns the canonical 8-direction row format: 0 Up, 1 Down, 2 Left, 3 Right, 4 Up Right, 5 Down Right, 6 Up Left, 7 Down Left.
+- render/entity-renderer.js owns camera-relative humanoid row resolution before class overlay renderers are called.

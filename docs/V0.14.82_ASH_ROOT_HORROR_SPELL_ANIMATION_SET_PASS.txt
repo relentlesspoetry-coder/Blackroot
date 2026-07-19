@@ -1,0 +1,35 @@
+Dream Realms V0.14.82 — Ash Root Horror Spell Animation Set Pass
+
+Implemented:
+- Created a dedicated procedural spell animation set for the Ash Root Horror's six abilities:
+  - Ashroot Crush
+  - Ash Cloud
+  - Death Bloom
+  - Cinderroot Snare
+  - Blightwood Pulse
+  - Ashen Regrowth
+- Added burned plant horror visual identity across all six effects:
+  - heavy ash
+  - ember glow
+  - charred roots
+  - sickly green corruption
+  - choking smoke
+  - cracked earth
+  - smoldering regrowth armor
+- Added Ashroot-specific effect spawning ownership in systems/effects-system.js.
+- Added Ashroot effect renderer branches in render/effects-renderer.js:
+  - drawAshrootCrushEffect
+  - drawAshrootAshCloudEffect
+  - drawAshrootDeathBloomEffect
+  - drawAshrootCinderrootSnareEffect
+  - drawAshrootBlightwoodPulseEffect
+  - drawAshrootAshenRegrowthEffect
+- Added owned enemy combat hooks in entities/enemy.js so Ashroot Horror can cast its six abilities through the normal AI layer.
+- Updated Ashroot Horror enemy data with elite/family/ability metadata.
+- Added animation-ready geometry documentation:
+  - assets/effects/ash_root_horror_spell_effect_geometry_v0.14.82.json
+
+Validation:
+- Runtime JavaScript syntax validated with node --check.
+- Zip integrity validated with unzip -t.
+- No cascade patch layer added.

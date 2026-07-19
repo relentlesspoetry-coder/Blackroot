@@ -1,0 +1,19 @@
+Dream Realms V0.12.82 — Camp, Companion HUD, and Merc Command Fix Pass
+
+Baseline:
+- Dream Realms V0.12.81 — Mercenary + Party Runtime QA Bugfix Pass
+
+Scope implemented:
+- Merc command menu now routes Follow, Assist, Guard, Passive, Attack, Meditate, Gear, Dismiss, and Revive/Recover through an owning action handler.
+- Merc hiring moved to the camp Mercenary Recruiter NPC contract buttons while retaining H as a debug quick-hire/dismiss key.
+- Mercs receive randomized display names using: Name - Class Role - Lvl X.
+- Starting camp NPC population expanded with class trainers, merchants/service NPCs, mercenary recruiter, and Dream Spirit.
+- Runtime NPC renderer now has a safe detailed-renderer fallback so a failed detailed draw cannot leave only floating legs visible.
+- Dream Spirit NPC added as a ghostly angelic respawn marker and player death respawns to the Dream Spirit when available.
+- Necromancer and Summoner pets now have command HUD support with Follow, Assist, Guard, Passive, Attack, and Dismiss.
+- Pet AI now obeys command state instead of always chasing nearest targets.
+- Corpse loot bag marker visually rebuilt with a deeper pouch, shadow, highlight, and loot sparkle.
+- Dark Woods music placeholder replaced with a softer melodic ambient loop.
+
+No discarded off-roadmap branch systems were used.
+No cascade patch layer was added.

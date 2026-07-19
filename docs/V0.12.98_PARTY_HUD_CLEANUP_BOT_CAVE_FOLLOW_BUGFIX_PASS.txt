@@ -1,0 +1,20 @@
+Dream Realms V0.12.98 — Party HUD Cleanup Bot Cave Follow Bugfix Pass
+
+Baseline: Dream Realms V0.12.97 — Bot Inspect Trade Window NPC Class Model Bugfix Pass
+
+Implemented:
+- Compact player HUD icon rail: the large player class icon is reduced and the wasted left column is removed.
+- Unified party/companion frames now use smaller row icons so the panel reads as a roster instead of a huge empty sidebar.
+- Party HP/mana/EXP bars now have dark red, dark blue, and dark purple missing-value backgrounds.
+- Added XP fill styling for unified party bars.
+- Added shared party bot formation offsets.
+- Party bots now follow/snap into cave floors, cave exits, dungeon floor loads, dungeon stairs, and dungeon exits.
+- Party bot zone state is synchronized with the player zone so they render and fight in caves/dungeons instead of staying in the overworld.
+- Dungeon boss ability targeting now includes party bots that are physically present in the dungeon.
+
+Validation:
+- JS syntax check on all active JavaScript files.
+- HTML script order check.
+- Static checks for compact HUD CSS, dark party bar tracks, bot zone sync method, cave transition sync, and dungeon transition sync.
+
+No cascade patch layer was added.

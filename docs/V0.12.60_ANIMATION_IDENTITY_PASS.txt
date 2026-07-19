@@ -1,0 +1,31 @@
+Dream Realms V0.12.60 — Animation Identity Pass
+
+Owning files updated
+- render/class-identity-procedural-model.js
+- render/camp-npc-procedural-model.js
+- render/bard-procedural-model.js
+- render/druid-procedural-model.js
+
+Summary
+- This pass adds stronger motion/posture identity without adding a new gameplay system.
+- It keeps all class, merc, and NPC rendering on the shared humanoid framework.
+
+Class animation identity
+- Fighter: heavier grounded motion, shield brace, footfall dust.
+- Rogue: lower stealth posture, faster hands, subtle movement afterimage.
+- Cleric: calmer prayer posture, blessing pulse, halo idle/cast read.
+- Summoner: ritual orbit and floating focus motion.
+- Necromancer: restrained eerie motion and dark mote idle/cast flavor.
+- Bard: performance pose shaping.
+- Druid: rooted casting / nature meditation shaping.
+
+Merc/NPC animation identity
+- Smith: hammer-spark idle.
+- Cook: stirring/steam cue.
+- Fisher: rod movement cue.
+- Merchant: coin glint.
+- Bard Trainer: musical note idle.
+- Scout: low motion trace.
+- Warden/Guardian: grounded guard stance.
+- Healer/Field Cleric: healing glow.
+- Arcane Adept: orbiting arcane focus.

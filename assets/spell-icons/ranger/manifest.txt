@@ -1,0 +1,25 @@
+Ranger Spell Icons Manifest
+Naming format: {Spell Name} - Ranger - Level {Level}.png
+Source image: fantasy_ranger_skill_icon_grid.png
+Crop method: exact source icon block bounds from non-background pixel profile; labels excluded; full frames preserved.
+
+Level 01: Quick Shot - Ranger - Level 1.png | crop=[16, 15, 284, 242]
+Level 02: Ranger's Mark - Ranger - Level 2.png | crop=[318, 15, 584, 242]
+Level 03: Bleeding Arrow - Ranger - Level 3.png | crop=[621, 15, 891, 242]
+Level 04: Beast Call - Ranger - Level 4.png | crop=[927, 15, 1198, 242]
+Level 05: Swiftstep - Ranger - Level 5.png | crop=[1235, 15, 1505, 242]
+Level 06: Snare Trap - Ranger - Level 6.png | crop=[16, 279, 284, 485]
+Level 07: Hawk Eye - Ranger - Level 7.png | crop=[318, 279, 584, 485]
+Level 08: Piercing Volley - Ranger - Level 8.png | crop=[621, 279, 891, 485]
+Level 09: Evasive Roll - Ranger - Level 9.png | crop=[927, 279, 1198, 485]
+Level 10: Companion Bond - Ranger - Level 10.png | crop=[1235, 279, 1505, 485]
+Level 11: Barbed Rain - Ranger - Level 11.png | crop=[16, 522, 284, 722]
+Level 12: Predator's Focus - Ranger - Level 12.png | crop=[318, 522, 584, 722]
+Level 13: Crippling Shot - Ranger - Level 13.png | crop=[621, 522, 891, 722]
+Level 14: Camouflage - Ranger - Level 14.png | crop=[927, 522, 1198, 722]
+Level 15: Dire Companion - Ranger - Level 15.png | crop=[1235, 522, 1505, 722]
+Level 16: Volley Trap - Ranger - Level 16.png | crop=[16, 758, 284, 971]
+Level 17: Kill Shot - Ranger - Level 17.png | crop=[318, 758, 584, 971]
+Level 18: Survival Instinct - Ranger - Level 18.png | crop=[621, 758, 891, 971]
+Level 19: Falcon Dive - Ranger - Level 19.png | crop=[927, 758, 1198, 971]
+Level 20: Wild Hunt - Ranger - Level 20.png | crop=[1235, 758, 1505, 971]

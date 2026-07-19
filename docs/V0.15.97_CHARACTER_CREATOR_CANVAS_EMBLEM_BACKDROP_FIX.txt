@@ -1,0 +1,5 @@
+Dream Realms V0.15.97 - Character Creator Canvas Emblem Backdrop Fix
+
+- Class emblem backdrop is now drawn directly into the character preview canvas.
+- Removed reliance on the DOM image backdrop that was not appearing behind the model.
+- Full-body preview framing from V0.15.95 is preserved.

@@ -1,0 +1,336 @@
+{
+  "version": "0.14.01",
+  "type": "dream-realms-sprite-index",
+  "models": {
+    "Fighter": {
+      "type": "class",
+      "modelId": "Fighter",
+      "image": "assets/sprites/classes/Fighter.png",
+      "metadata": "assets/sprites/classes/Fighter.json"
+    },
+    "Cleric": {
+      "type": "class",
+      "modelId": "Cleric",
+      "image": "assets/sprites/classes/Cleric.png",
+      "metadata": "assets/sprites/classes/Cleric.json"
+    },
+    "Druid": {
+      "type": "class",
+      "modelId": "Druid",
+      "image": "assets/sprites/classes/Druid.png",
+      "metadata": "assets/sprites/classes/Druid.json"
+    },
+    "Bard": {
+      "type": "class",
+      "modelId": "Bard",
+      "image": "assets/sprites/classes/Bard.png",
+      "metadata": "assets/sprites/classes/Bard.json"
+    },
+    "Summoner": {
+      "type": "class",
+      "modelId": "Summoner",
+      "image": "assets/sprites/classes/Summoner.png",
+      "metadata": "assets/sprites/classes/Summoner.json"
+    },
+    "Necromancer": {
+      "type": "class",
+      "modelId": "Necromancer",
+      "image": "assets/sprites/classes/Necromancer.png",
+      "metadata": "assets/sprites/classes/Necromancer.json"
+    },
+    "Rogue": {
+      "type": "class",
+      "modelId": "Rogue",
+      "image": "assets/sprites/classes/Rogue.png",
+      "metadata": "assets/sprites/classes/Rogue.json"
+    },
+    "Enchanter": {
+      "type": "class",
+      "modelId": "Enchanter",
+      "image": "assets/sprites/classes/Enchanter.png",
+      "metadata": "assets/sprites/classes/Enchanter.json"
+    },
+    "GloomWolf": {
+      "type": "mob",
+      "modelId": "GloomWolf",
+      "image": "assets/sprites/mobs/GloomWolf.png",
+      "metadata": "assets/sprites/mobs/GloomWolf.json"
+    },
+    "BriarBoar": {
+      "type": "mob",
+      "modelId": "BriarBoar",
+      "image": "assets/sprites/mobs/BriarBoar.png",
+      "metadata": "assets/sprites/mobs/BriarBoar.json"
+    },
+    "Rotling": {
+      "type": "mob",
+      "modelId": "Rotling",
+      "image": "assets/sprites/mobs/Rotling.png",
+      "metadata": "assets/sprites/mobs/Rotling.json"
+    },
+    "Spider": {
+      "type": "mob",
+      "modelId": "Spider",
+      "image": "assets/sprites/mobs/Spider.png",
+      "metadata": "assets/sprites/mobs/Spider.json"
+    },
+    "Skeleton": {
+      "type": "mob",
+      "modelId": "Skeleton",
+      "image": "assets/sprites/mobs/Skeleton.png",
+      "metadata": "assets/sprites/mobs/Skeleton.json"
+    },
+    "Bandit": {
+      "type": "mob",
+      "modelId": "Bandit",
+      "image": "assets/sprites/mobs/Bandit.png",
+      "metadata": "assets/sprites/mobs/Bandit.json"
+    },
+    "SpiritHealer": {
+      "type": "mob",
+      "modelId": "SpiritHealer",
+      "image": "assets/sprites/mobs/SpiritHealer.png",
+      "metadata": "assets/sprites/mobs/SpiritHealer.json"
+    },
+    "Tree_Oak": {
+      "type": "prop",
+      "modelId": "Tree_Oak",
+      "image": "assets/sprites/props/Tree_Oak.png",
+      "metadata": "assets/sprites/props/Tree_Oak.json"
+    },
+    "Tree_Dead": {
+      "type": "prop",
+      "modelId": "Tree_Dead",
+      "image": "assets/sprites/props/Tree_Dead.png",
+      "metadata": "assets/sprites/props/Tree_Dead.json"
+    },
+    "Tree_Evil": {
+      "type": "prop",
+      "modelId": "Tree_Evil",
+      "image": "assets/sprites/props/Tree_Evil.png",
+      "metadata": "assets/sprites/props/Tree_Evil.json"
+    },
+    "Brush": {
+      "type": "prop",
+      "modelId": "Brush",
+      "image": "assets/sprites/props/Brush.png",
+      "metadata": "assets/sprites/props/Brush.json"
+    },
+    "Grass_Clump": {
+      "type": "prop",
+      "modelId": "Grass_Clump",
+      "image": "assets/sprites/props/Grass_Clump.png",
+      "metadata": "assets/sprites/props/Grass_Clump.json"
+    },
+    "Flower_Patch": {
+      "type": "prop",
+      "modelId": "Flower_Patch",
+      "image": "assets/sprites/props/Flower_Patch.png",
+      "metadata": "assets/sprites/props/Flower_Patch.json"
+    },
+    "Mushroom_Brown": {
+      "type": "prop",
+      "modelId": "Mushroom_Brown",
+      "image": "assets/sprites/props/Mushroom_Brown.png",
+      "metadata": "assets/sprites/props/Mushroom_Brown.json"
+    },
+    "Mushroom_Glow": {
+      "type": "prop",
+      "modelId": "Mushroom_Glow",
+      "image": "assets/sprites/props/Mushroom_Glow.png",
+      "metadata": "assets/sprites/props/Mushroom_Glow.json"
+    },
+    "Ash_Stump": {
+      "type": "prop",
+      "modelId": "Ash_Stump",
+      "image": "assets/sprites/props/Ash_Stump.png",
+      "metadata": "assets/sprites/props/Ash_Stump.json"
+    },
+    "Root_Arch": {
+      "type": "prop",
+      "modelId": "Root_Arch",
+      "image": "assets/sprites/props/Root_Arch.png",
+      "metadata": "assets/sprites/props/Root_Arch.json"
+    },
+    "Rock": {
+      "type": "prop",
+      "modelId": "Rock",
+      "image": "assets/sprites/props/Rock.png",
+      "metadata": "assets/sprites/props/Rock.json"
+    },
+    "Crystal_Node": {
+      "type": "prop",
+      "modelId": "Crystal_Node",
+      "image": "assets/sprites/props/Crystal_Node.png",
+      "metadata": "assets/sprites/props/Crystal_Node.json"
+    },
+    "Mining_Vein": {
+      "type": "prop",
+      "modelId": "Mining_Vein",
+      "image": "assets/sprites/props/Mining_Vein.png",
+      "metadata": "assets/sprites/props/Mining_Vein.json"
+    },
+    "Tent_Small": {
+      "type": "prop",
+      "modelId": "Tent_Small",
+      "image": "assets/sprites/props/Tent_Small.png",
+      "metadata": "assets/sprites/props/Tent_Small.json"
+    },
+    "Tent_Large_Camp": {
+      "type": "prop",
+      "modelId": "Tent_Large_Camp",
+      "image": "assets/sprites/props/Tent_Large_Camp.png",
+      "metadata": "assets/sprites/props/Tent_Large_Camp.json"
+    },
+    "Vendor_Stall": {
+      "type": "prop",
+      "modelId": "Vendor_Stall",
+      "image": "assets/sprites/props/Vendor_Stall.png",
+      "metadata": "assets/sprites/props/Vendor_Stall.json"
+    },
+    "Crate": {
+      "type": "prop",
+      "modelId": "Crate",
+      "image": "assets/sprites/props/Crate.png",
+      "metadata": "assets/sprites/props/Crate.json"
+    },
+    "Banner": {
+      "type": "prop",
+      "modelId": "Banner",
+      "image": "assets/sprites/props/Banner.png",
+      "metadata": "assets/sprites/props/Banner.json"
+    },
+    "Lantern_Post": {
+      "type": "prop",
+      "modelId": "Lantern_Post",
+      "image": "assets/sprites/props/Lantern_Post.png",
+      "metadata": "assets/sprites/props/Lantern_Post.json"
+    },
+    "Merc_Post": {
+      "type": "prop",
+      "modelId": "Merc_Post",
+      "image": "assets/sprites/props/Merc_Post.png",
+      "metadata": "assets/sprites/props/Merc_Post.json"
+    },
+    "Camp_Stall": {
+      "type": "prop",
+      "modelId": "Camp_Stall",
+      "image": "assets/sprites/props/Camp_Stall.png",
+      "metadata": "assets/sprites/props/Camp_Stall.json"
+    },
+    "Forge": {
+      "type": "prop",
+      "modelId": "Forge",
+      "image": "assets/sprites/props/Forge.png",
+      "metadata": "assets/sprites/props/Forge.json"
+    },
+    "Fire": {
+      "type": "prop",
+      "modelId": "Fire",
+      "image": "assets/sprites/props/Fire.png",
+      "metadata": "assets/sprites/props/Fire.json"
+    },
+    "Loom": {
+      "type": "prop",
+      "modelId": "Loom",
+      "image": "assets/sprites/props/Loom.png",
+      "metadata": "assets/sprites/props/Loom.json"
+    },
+    "Herbalist_Table": {
+      "type": "prop",
+      "modelId": "Herbalist_Table",
+      "image": "assets/sprites/props/Herbalist_Table.png",
+      "metadata": "assets/sprites/props/Herbalist_Table.json"
+    },
+    "Cave_Entrance": {
+      "type": "prop",
+      "modelId": "Cave_Entrance",
+      "image": "assets/sprites/props/Cave_Entrance.png",
+      "metadata": "assets/sprites/props/Cave_Entrance.json"
+    },
+    "Cave_Web": {
+      "type": "prop",
+      "modelId": "Cave_Web",
+      "image": "assets/sprites/props/Cave_Web.png",
+      "metadata": "assets/sprites/props/Cave_Web.json"
+    },
+    "Cave_Herb": {
+      "type": "prop",
+      "modelId": "Cave_Herb",
+      "image": "assets/sprites/props/Cave_Herb.png",
+      "metadata": "assets/sprites/props/Cave_Herb.json"
+    },
+    "Cave_Mushrooms": {
+      "type": "prop",
+      "modelId": "Cave_Mushrooms",
+      "image": "assets/sprites/props/Cave_Mushrooms.png",
+      "metadata": "assets/sprites/props/Cave_Mushrooms.json"
+    },
+    "Bones": {
+      "type": "prop",
+      "modelId": "Bones",
+      "image": "assets/sprites/props/Bones.png",
+      "metadata": "assets/sprites/props/Bones.json"
+    },
+    "Mine_Support": {
+      "type": "prop",
+      "modelId": "Mine_Support",
+      "image": "assets/sprites/props/Mine_Support.png",
+      "metadata": "assets/sprites/props/Mine_Support.json"
+    },
+    "Broken_Cart": {
+      "type": "prop",
+      "modelId": "Broken_Cart",
+      "image": "assets/sprites/props/Broken_Cart.png",
+      "metadata": "assets/sprites/props/Broken_Cart.json"
+    },
+    "Torch": {
+      "type": "prop",
+      "modelId": "Torch",
+      "image": "assets/sprites/props/Torch.png",
+      "metadata": "assets/sprites/props/Torch.json"
+    },
+    "Dungeon_Gate": {
+      "type": "prop",
+      "modelId": "Dungeon_Gate",
+      "image": "assets/sprites/props/Dungeon_Gate.png",
+      "metadata": "assets/sprites/props/Dungeon_Gate.json"
+    },
+    "Dungeon_Treasure": {
+      "type": "prop",
+      "modelId": "Dungeon_Treasure",
+      "image": "assets/sprites/props/Dungeon_Treasure.png",
+      "metadata": "assets/sprites/props/Dungeon_Treasure.json"
+    },
+    "Web_Anchor": {
+      "type": "prop",
+      "modelId": "Web_Anchor",
+      "image": "assets/sprites/props/Web_Anchor.png",
+      "metadata": "assets/sprites/props/Web_Anchor.json"
+    },
+    "Silk_Cocoon": {
+      "type": "prop",
+      "modelId": "Silk_Cocoon",
+      "image": "assets/sprites/props/Silk_Cocoon.png",
+      "metadata": "assets/sprites/props/Silk_Cocoon.json"
+    },
+    "Egg_Cluster": {
+      "type": "prop",
+      "modelId": "Egg_Cluster",
+      "image": "assets/sprites/props/Egg_Cluster.png",
+      "metadata": "assets/sprites/props/Egg_Cluster.json"
+    },
+    "Chitin_Column": {
+      "type": "prop",
+      "modelId": "Chitin_Column",
+      "image": "assets/sprites/props/Chitin_Column.png",
+      "metadata": "assets/sprites/props/Chitin_Column.json"
+    },
+    "Venom_Pool": {
+      "type": "prop",
+      "modelId": "Venom_Pool",
+      "image": "assets/sprites/props/Venom_Pool.png",
+      "metadata": "assets/sprites/props/Venom_Pool.json"
+    }
+  }
+}

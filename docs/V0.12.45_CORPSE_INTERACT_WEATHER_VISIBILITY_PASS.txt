@@ -1,0 +1,23 @@
+Dream Realms V0.12.45 - Corpse Interact Weather Visibility Pass
+
+Scope:
+- Corpse looting control fix.
+- Fog/rain visual readability pass.
+
+Implemented:
+- Corpse Loot now opens from the Interact key: stand near a lootable corpse and press E.
+- Death-time auto-open was disabled to avoid unreliable or disruptive window spawning.
+- Lootable corpses still retain their visible marker and click fallback.
+- The E-key handler runs in capture phase and only consumes the key if a lootable corpse is actually nearby.
+- Combat logs and startup logs now describe the E-key corpse-loot flow.
+- Fog profiles are denser and use stronger screen/world overlays.
+- Rain profiles are denser and use brighter/thicker streaks, rain curtain sheets, and ground splash accents.
+- Weather sky influence, darkness, and visibility loss are stronger so weather reads against Dark Woods terrain.
+
+Verification:
+- JavaScript syntax checked across all modules.
+- HTML script references checked.
+- Duplicate script loads checked.
+- Duplicate Game.prototype ownership checked.
+- Cascade/hotfix scan checked.
+- Standalone HTML generated from the modular source.

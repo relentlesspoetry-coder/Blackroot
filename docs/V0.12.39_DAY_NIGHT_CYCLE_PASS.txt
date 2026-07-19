@@ -1,0 +1,28 @@
+Dream Realms V0.12.39 - Day Night Cycle Pass
+
+Ownership
+- New owner: systems/time-cycle-system.js.
+- The system owns worldTime state, time normalization, phase labels, light-state calculation, UI clock updates, and save-safe serialization.
+- Rendering consumers query getWorldLightState() instead of duplicating phase math.
+
+Runtime changes
+- Full in-game day length is 24 real minutes by default: one real second equals one in-game minute.
+- Game starts at Day 1, 07:30 AM.
+- Phases: Dawn, Morning, Day, Afternoon, Dusk, Night, Deep Night.
+- Sky colors, canopy tint, sun shafts, dust, fog, fireflies, stars, moon glow, night darkness, and vignette strength all respond to the current phase.
+
+Persistence
+- WorldSerializer now stores worldTime in world saves.
+- Character save runtime data now stores worldTime.
+- Old saves migrate by initializing worldTime to the default morning start.
+
+Cascade audit
+- No delayed hotfix, wrapper patch, or bottom-of-file cascade layer was added.
+- Changes were made directly in the owning systems:
+  - systems/time-cycle-system.js
+  - game.js
+  - systems/atmosphere-system.js
+  - render/effects-renderer.js
+  - systems/world-serializer.js
+  - systems/save-system.js
+  - Dream Realms V0.12.39.html

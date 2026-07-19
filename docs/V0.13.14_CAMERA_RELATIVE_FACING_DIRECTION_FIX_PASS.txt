@@ -1,0 +1,15 @@
+Dream Realms V0.13.14 — Camera Relative Facing Direction Fix Pass
+
+Scope:
+- Fixed humanoid actor visual direction selection so dynamic actors use camera-projected screen motion instead of raw world-facing names.
+- Moving toward the bottom of the screen now resolves to the front-facing Down row at every camera yaw.
+- Moving toward the top of the screen now resolves to the back-facing Up row at every camera yaw.
+- Left/right and diagonal movement remain screen-relative, using the canonical 8-row humanoid format.
+- Static/explicit NPC rendering remains owned by the NPC renderer path.
+
+Files touched:
+- render/entity-renderer.js
+- core/config.js
+- README.txt / VERSION.txt / HTML patch notes
+
+No cascade patch layer was added.

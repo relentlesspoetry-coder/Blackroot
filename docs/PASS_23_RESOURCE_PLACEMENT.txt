@@ -1,0 +1,52 @@
+Dream Realms V0.10.3 Modular Pass 23
+Resource Placement Tools
+
+Scope
+- Adds editor placement support for profession/resource nodes.
+- Does not change combat, cave rendering, entity rendering, movement, party, multiplayer, or fishing runtime behavior.
+
+New files
+- data/resources.js
+
+Updated files
+- Dream Realms V0.10.3.html
+- core/globals.js
+- systems/editor-system.js
+- systems/world-serializer.js
+- systems/save-system.js
+
+Editor additions
+- New Resources editor tab.
+- New resource tools:
+  - Place Resource
+  - Erase Resource
+  - Eyedropper Resource
+  - Herb Node
+  - Mining Node
+  - Fishing Spot
+  - Chest Spawn
+
+Resource types
+- Gloomleaf Herb
+- Mooncap Mushroom
+- Copper Vein
+- Darkstone Vein
+- Blackwater Fishing Spot
+- Cave Pool Fishing Spot
+- Common Chest Spawn
+- Dungeon Chest Spawn
+
+Saved metadata
+- editorResources.dark_woods
+- editorResources.mossfang_cave
+
+World save/export additions
+- Dark Woods resources
+- Mossfang Cave resources
+
+Undo/redo
+- Resource node placement/erase is included in editor history.
+- Resource nodes restore correctly during undo/redo.
+
+Validation
+- Validate Map now checks resource coordinates and resource type IDs.

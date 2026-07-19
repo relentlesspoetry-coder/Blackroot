@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "blackroot-nocache",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-u", ".claude/no_cache_server.py", "8899"],
+      "port": 8899
+    },
+    {
+      "name": "blackroot-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8817"],
+      "port": 8817
+    }
+  ]
+}

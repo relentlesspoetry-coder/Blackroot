@@ -1,0 +1,53 @@
+Dream Realms V0.13.79 — Fighter Front-View Renderer Repair Pass
+
+Purpose
+- Repair the Fighter renderer after the prior visual revamp caused the Fighter to read as a giant shield/wedge with legs.
+- Preserve the improved overhead nameplate/HP plate styling from the previous pass.
+
+Root Cause Addressed
+- The Fighter visual stack was too dependent on the generic class hook order after the armor/shield revamp.
+- Fighter front-facing composition became shield/plate-dominant, hiding the intended humanoid silhouette in gameplay and character creation previews.
+
+Renderer Changes
+- Added a Fighter-owned repaired composition path inside render/class-identity-procedural-model.js.
+- Fighter rendering now explicitly draws a full character in a safe order:
+  1. ground shadow
+  2. back cape silhouette
+  3. legs and boots
+  4. compact torso/chest armor
+  5. arms and pauldrons
+  6. side-biased shield and sword
+  7. head, hair, face, and brow band
+  8. front accent details and existing Fighter effects
+- The shield is now treated as an off-hand side prop rather than a body-center replacement.
+- The sword remains on the weapon-hand side.
+- Head, face, torso, arms, legs, and feet are always explicitly rendered for Fighter.
+
+Preview Parity
+- The corrected Fighter renderer is used by the same ClassIdentityProceduralModel path consumed by:
+  - in-game Fighter/player rendering
+  - character creation main preview
+  - Fighter class card preview
+  - any Fighter-like renderer consumer using the class identity renderer
+
+Nameplate Preservation
+- No nameplate visual changes were made in this pass.
+- The improved V0.13.77/V0.13.78 nameplate styling is preserved.
+
+Gameplay Preservation
+- No combat, targeting, save/load, inventory, sprite sheet runtime, map, party, or UI flow changes were made.
+- Existing Fighter appearance fields continue to be consumed: hairStyle, hairColor, eyeColor, faceStyle, skinTone, clothesPrimary, and clothesSecondary.
+
+Validation
+- JS syntax check passed for all JavaScript files.
+- HTML script reference audit passed: all referenced scripts exist.
+- ZIP integrity passed.
+
+Manual Browser-Test Caveats
+- Live browser visual verification is still required for:
+  - Fighter front idle
+  - Fighter side/diagonal/back facing
+  - Fighter walk and attack animation
+  - character creation main preview
+  - Fighter class card preview
+  - nameplate positioning/readability

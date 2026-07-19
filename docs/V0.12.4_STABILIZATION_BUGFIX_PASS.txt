@@ -1,0 +1,20 @@
+Dream Realms V0.12.4 - Stabilization Bugfix Pass
+
+Scope:
+- Item hover tooltips.
+- Revamped generated item icon presentation.
+- Meditation EXP label restoration.
+- Necromancer Bone Servant skeleton visual correction.
+- Cave exit wall-mounted daylight breach visual correction.
+- Right-click profession action menu for water, resources, and crafting stations.
+
+Implementation notes:
+- Tooltip/icon work is owned by systems/inventory-system.js and CSS in the shipped HTML.
+- Equipped-slot tooltip binding is owned by systems/ui-system.js.
+- Bone Servant rendering is owned by render/entity-renderer.js.
+- Cave exit rendering is owned by render/object-renderer.js and remains interaction-safe through systems/cave-system.js placement.
+- Resource action selection is owned by systems/resource-gathering-system.js.
+- Fishing action selection is owned by systems/fishing-system.js.
+- World right-click menu dispatch is owned by game.js input handling.
+
+No cascade patching, wrapper overrides, or hotfix modules were added.

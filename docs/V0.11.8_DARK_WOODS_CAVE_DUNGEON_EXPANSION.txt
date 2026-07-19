@@ -1,0 +1,52 @@
+Dream Realms V0.11.8 — Dark Woods Cave + Dungeon Expansion
+
+Scope implemented
+- Added named Dark Woods cave definitions with individual identities, level bands, entrance positions, themes, enemy families, resources, loot tables, and optional dungeon hooks.
+- Added small, medium, and large cave generation using deterministic room/tunnel assembly instead of identical one-off cave maps.
+- Added multi-floor cave support with stair-up/stair-down objects, floor-specific enemy scaling, persistent in-memory floor state, and correct return handling after dungeon exits.
+- Added cave-specific resources: mushrooms, cave herbs, ore veins, crystal nodes, cave pools, and treasure chests backed by runtime resource/chest systems.
+- Added cave-specific loot identity through new mob loot tables, treasure tables, resource items, mining materials, spider drops, crystal drops, and rare cave gear.
+- Improved Dark Woods cave entrance visuals by placing named entrances, terrain clearings, access trails, themed props, rock framing, and object metadata.
+- Added dungeon entrance hooks for Silk Web Depths and Gloom's Crypt on deeper cave floors.
+
+Named caves
+- Mossfang Cave: small, 1 floor, level 1-3 starter cave.
+- Silk Web Cavern: medium, 2 floors, level 3-5 spider cave with a deeper dungeon hook.
+- Ashroot Hollow: medium, 2 floors, level 4-6 undead/corruption cave.
+- Crystal Grotto: large, 3 floors, level 6-8 crystal and elemental-style cave.
+- Forgotten Mine: large, 3 floors, level 7-9 mining-focused cave.
+- Blackroot Catacombs: large, 4 floors, level 9-10 late Dark Woods dungeon-route cave.
+
+Owning systems modified
+- systems/cave-system.js
+- systems/world-system.js
+- systems/resource-gathering-system.js
+- systems/chest-system.js
+- systems/dungeon-system.js
+- systems/loot-system.js
+- systems/fishing-system.js
+- systems/quest-system.js
+- systems/event-system.js
+- systems/crafting-system.js
+- systems/mob-spawn-system.js
+- systems/npc-system.js
+- systems/puzzle-system.js
+- systems/swimming-system.js
+- systems/combat-system.js
+- render/object-renderer.js
+- data/enemies.js
+- data/items.js
+- data/resources.js
+- data/loot-tables.js
+
+Verification
+- Project-wide JavaScript syntax check passed across all JS modules.
+- Version metadata, README, patch notes, and modular history updated to V0.11.8.
+
+
+Post-audit corrections:
+- Silk Web Cavern enemy family is now spider-only; Cave Bat was removed from that cave's spawn family.
+- Gloom's Crypt no longer has an old direct Dark Woods shortcut marker; it is gated behind Blackroot Catacombs final-floor cave hook.
+- Silk Web Depths no longer uses the old Mossfang default marker path; it is reached from Silk Web Cavern floor 2.
+- LOAD_ORDER.txt was regenerated from the HTML script tags.
+- Cave exit return placement now lands outside the entrance trigger radius and uses a short transition cooldown to prevent exit/re-enter loops.

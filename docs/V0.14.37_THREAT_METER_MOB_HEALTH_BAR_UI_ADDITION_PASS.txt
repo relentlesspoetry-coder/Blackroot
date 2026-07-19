@@ -1,0 +1,23 @@
+Dream Realms V0.14.37 — Threat Meter Mob Health Bar UI Addition Pass
+
+Summary
+- Added a player-relative threat meter directly beneath hostile mob health bars.
+- Added a threat query helper in the threat system so UI rendering reads normalized player threat from the owning threat table rather than duplicating combat logic.
+- Rendered the meter in the existing entity nameplate/health-bar path, aligned to the same width as the mob health bar.
+
+Files changed
+- systems/threat-system.js
+- render/entity-renderer.js
+- Dream Realms V0.14.37.html
+- README.txt
+- VERSION.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.37_THREAT_METER_MOB_HEALTH_BAR_UI_ADDITION_PASS.txt
+
+Validation
+- Syntax check passed via node --check across all JavaScript files.
+- ZIP integrity verified.

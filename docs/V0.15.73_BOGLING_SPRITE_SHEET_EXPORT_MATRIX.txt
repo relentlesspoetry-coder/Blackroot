@@ -1,0 +1,3 @@
+Dream Realms V0.15.73 — Bogling Sprite Sheet Export Matrix
+
+Added a Bogling sprite-sheet export pipeline for male and female Bogling models across all color variants and supported animation states. The runtime sprite renderer can now select Bogling sheets by gender, color variant, and animation state while preserving procedural fallback behavior, character creation previews, and save/load compatibility.

@@ -1,0 +1,20 @@
+Dream Realms V0.15.52 — Nameplate Clearance Weather Restore Pass
+
+Fixes:
+- Nameplates and attached HP/threat/meditation bars now sit above the actor/model head with a clear vertical gap.
+- Applies to players, bots, mercenaries, pets, NPCs, and mobs.
+- Shared nameplate stacking now resolves upward first and prevents the bottom of the nameplate stack from being pushed into the actor model.
+- Weather rendering is restored for rain, snow, fog, thunder/lightning, sand/dust storms, and ambient dust.
+- Weather world overlays and particles now render in screen space after the world camera transform, preventing camera-transform/weather visibility regressions.
+- Performance/adaptive modes no longer fully suppress weather visuals outside caves.
+
+Changed owning files:
+- render/entity-renderer.js
+- systems/weather-system.js
+- systems/performance-verification-system.js
+- systems/adaptive-performance-system.js
+- game.js
+- core/config.js
+
+No gameplay/content changes:
+- No class, spell, mob, loot, quest, dungeon, economy, XP, mana, cooldown, DPS, or combat-balance values were changed.

@@ -1,0 +1,21 @@
+Dream Realms V0.13.4 — Companion Combat Role AI and Encounter Polish Pass
+
+Baseline:
+- Dream Realms V0.13.3 — Companion Zone Transition QA and World Interaction Polish Pass
+
+Implemented:
+- Role-aware companion combat anchor helper in party-system.js.
+- Companion combat index/role helper for tanks, melee, ranged, healers, mercs, bots, and pets.
+- Companion separation helper to reduce clumping around enemies.
+- Bot combat now uses role anchors, stronger tank threat, and safer ranged/healer positioning.
+- Mercenary combat now uses role anchors for Guardian, Scout, Cleric, and Arcane Adept behavior.
+- Pet assist/guard now uses party combat state and protects party actors.
+- Pet combat now anchors correctly instead of piling onto the target.
+- Party XP recipient helper now defines bot roster IDs locally before filtering remote members.
+
+Validation:
+- JS syntax check on all active JavaScript files.
+- HTML script order/missing-file check.
+- Static checks for companion role anchors, separation, bot/merc/pet combat integration, and party XP helper fix.
+
+No cascade patch layer was added.
