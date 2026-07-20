@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Blackroot - Sprite Atlas Baker</title>
+<style>
+  :root { color-scheme: dark; }
+  body {
+    margin: 0; padding: 22px 26px; font: 14px/1.5 system-ui, sans-serif;
+    background: #14121a; color: #e6dcc8;
+  }
+  h1 { margin: 0 0 4px; font-size: 19px; color: #e2c270; letter-spacing: .02em; }
+  p.sub { margin: 0 0 18px; color: #9c9280; max-width: 78ch; }
+  fieldset { border: 1px solid rgba(226,194,112,.28); border-radius: 10px; padding: 14px 16px; margin: 0 0 16px; max-width: 78ch; }
+  legend { color: #e2c270; padding: 0 6px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+  button {
+    font: inherit; font-weight: 600; padding: 9px 15px; margin: 0 8px 0 0; cursor: pointer;
+    background: rgba(255,255,255,.07); color: #ece2cf;
+    border: 1px solid rgba(255,255,255,.16); border-radius: 8px;
+  }
+  button:hover:not(:disabled) { filter: brightness(1.25); }
+  button:disabled { opacity: .45; cursor: default; }
+  button#btnFull { background: linear-gradient(180deg, rgba(126,176,96,.95), rgba(74,118,54,.95)); border-color: rgba(170,214,138,.5); }
+  label { color: #b8ad97; margin-right: 14px; }
+  input { font: inherit; background: #0d0b12; color: #e6dcc8; border: 1px solid rgba(255,255,255,.18); border-radius: 6px; padding: 5px 8px; width: 108px; }
+  #bakeLog {
+    height: 300px; overflow-y: auto; background: #0b0910; border: 1px solid rgba(255,255,255,.12);
+    border-radius: 8px; padding: 10px 12px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px;
+  }
+  #bakeLog .ok { color: #9fe07a; } #bakeLog .warn { color: #f0c674; } #bakeLog .err { color: #ff8a80; }
+  #preview { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  #preview canvas { background: #221d2c; border: 1px solid rgba(255,255,255,.12); border-radius: 4px; }
+  ol { max-width: 78ch; color: #b8ad97; } code { color: #e2c270; }
+</style>
+</head>
+<body>
+
+<h1>Blackroot — Sprite Atlas Baker</h1>
+<p class="sub">
+  Bakes the procedural character/prop renderers into PNG sprite atlases. The runtime
+  (<code>SpriteAtlasSystem</code>) loads <code>assets/atlases/entities.json</code> and blits frames with a
+  single <code>drawImage</code> per actor instead of re-drawing ~140 vector operations every frame.
+  While that folder holds only the placeholder manifest, everything falls back to procedural drawing.
+</p>
+
+<fieldset>
+  <legend>Must be served over http</legend>
+  <p style="margin:0;color:#b8ad97">
+    Opening this from <code>file://</code> blocks <code>fetch()</code> of the script list. From the project
+    root run <code>python3 -m http.server 8899</code>, then open
+    <code>http://localhost:8899/tools/sprite-baker.html</code>.
+  </p>
+</fieldset>
+
+<fieldset>
+  <legend>1 · Load</legend>
+  <button id="btnLoad">Load Renderers</button>
+  <span style="color:#9c9280">Injects the game's renderer scripts (skips <code>game.js</code> so no game boots).</span>
+</fieldset>
+
+<fieldset>
+  <legend>2 · Smoke test (optional)</legend>
+  <label>Model <input id="smokeModel" value="Paladin"></label>
+  <button id="btnSmoke">Bake One Model</button>
+  <div id="preview"></div>
+</fieldset>
+
+<fieldset>
+  <legend>3 · Full bake</legend>
+  <label>Atlas page size <input id="atlasSize" type="number" value="4096" step="1024" min="1024" max="8192"></label>
+  <button id="btnFull">FULL BAKE &amp; DOWNLOAD</button>
+  <p style="margin:10px 0 0;color:#f0c674">
+    Bakes every definition (~10k frames). The tab will freeze for a while — that is expected. Your browser
+    will then save several PNG pages plus <code>entities.json</code>; you may need to allow
+    <em>automatic multiple downloads</em> for this site.
+  </p>
+</fieldset>
+
+<fieldset>
+  <legend>4 · Install</legend>
+  <ol>
+    <li>Copy every downloaded <code>entities_*.png</code> into <code>assets/atlases/</code>.</li>
+    <li>Copy <code>entities.json</code> there too, replacing the placeholder.</li>
+    <li>Reload the game. Verify with <code>DarkWoodsGame.spriteAtlasSystem.getStats()</code> —
+        <code>framesLoaded</code> should be non-zero and <code>proceduralFallbacks</code> should stop climbing.</li>
+  </ol>
+</fieldset>
+
+<div id="bakeLog"></div>
+
+<!-- Some renderer scripts expect a canvas to exist; provide a hidden one so nothing throws on load. -->
+<canvas id="game" width="64" height="64" style="display:none"></canvas>
+
+<script src="./sprite-baker.js"></script>
+</body>
+</html>

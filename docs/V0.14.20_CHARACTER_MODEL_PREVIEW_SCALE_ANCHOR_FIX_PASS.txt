@@ -1,0 +1,17 @@
+Dream Realms V0.14.20 — Character Model Preview Scale Anchor Fix Pass
+
+Summary
+- Corrected the Character Window model preview scaling and anchoring.
+- The live equipped class model now renders much larger and fills the center model viewport instead of sitting small at the bottom.
+
+Files changed
+- systems/inventory-system.js
+- Dream Realms V0.14.20.html
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.20_CHARACTER_MODEL_PREVIEW_SCALE_ANCHOR_FIX_PASS.txt
+
+Validation
+- JavaScript syntax validated with node --check.
+- ZIP integrity verified with unzip -t.

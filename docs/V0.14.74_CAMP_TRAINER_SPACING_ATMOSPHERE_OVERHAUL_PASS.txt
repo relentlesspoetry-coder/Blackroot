@@ -1,0 +1,13 @@
+Dream Realms V0.14.74 — Camp Trainer Spacing Atmosphere Overhaul Pass
+
+Implemented:
+- Expanded the starting camp footprint and rewrote its layout as an organic lived-in settlement instead of a tight NPC cluster.
+- Spread class trainers into logical areas: combat/performance yard, magic study arc, spiritual/nature corner.
+- Repositioned quest NPCs, restored service NPCs, Dream Spirit, and the Mercenary Master so no required NPC overlaps another.
+- Added visual camp atmosphere: tents, lean-tos, central campfire, seating logs, cooking spit, supply crates, bedrolls, lanterns, study tables, ritual circles, sparring dummies, weapon racks, forge/loom, grass tufts, flowers, and cleared dirt paths.
+- Added new procedural prop draw methods in the owning object renderer.
+
+Validation:
+- Runtime JavaScript syntax validated with node --check.
+- Zip integrity validated with unzip -t.
+- No cascade patch layer added.

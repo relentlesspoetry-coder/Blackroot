@@ -1,0 +1,32 @@
+Dream Realms V0.15.49 — Dark Woods Camp Revamp Pass
+
+Purpose:
+Revamp the Dark Woods camp into a smaller, cleaner starter outpost and fix tiny generic camp NPC visuals.
+
+Root-code changes:
+- Edited systems/world-system.js camp generation directly.
+- Edited systems/npc-system.js NPC placement/render ownership directly.
+- Edited data/npcs.js camp NPC model metadata directly.
+
+Camp layout changes:
+- Reduced the camp footprint by more than half compared to the previous wide Dead Lantern camp clearing.
+- Removed the old outer settlement-scale layout.
+- Removed camp fences entirely.
+- Removed the old nearby secondary hamlet/watch-camp clutter so the reduced starter outpost is not visually extended by houses, stalls, crates, banners, or fences.
+- Removed odd/extra structures: vendor stalls, camp stalls, lean-tos, crates, sparring clutter, forge/loom/table clutter, banners, merc posts, and old camp edge props.
+- Left exactly five spaced tents in the compact camp.
+- Kept only small non-building dressing: central campfire, cooking spit, log seats, lanterns, bedroll, and small ground dressing.
+
+NPC placement changes:
+- Moved all class trainers into the smaller camp.
+- Repositioned trainers around the compact camp ring with clear approach spacing.
+- Repositioned camp service/quest NPCs inside the reduced footprint.
+- Retained the mercenary master and Spirit Healer inside/near the compact outpost.
+
+NPC model/scale changes:
+- Non-trainer camp NPCs now use player-sized class model bases first.
+- Role-specific clothing/palette metadata keeps them visually distinct from playable class uniforms.
+- Human/camp NPC renderers remain fallback paths only.
+
+No gameplay/balance changes:
+- No class, spell, mob, loot, quest, dungeon, economy, XP, mana, cooldown, DPS, or combat-balance values were changed.

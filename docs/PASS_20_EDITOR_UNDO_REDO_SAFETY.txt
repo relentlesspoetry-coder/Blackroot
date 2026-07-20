@@ -1,0 +1,27 @@
+Dream Realms V0.10.3 Modular Pass 20
+Editor Undo / Redo + Safety Tools
+
+Built from: Dream Realms V0.10.3 Modular Pass 19
+
+Scope:
+- Added editor undo stack.
+- Added editor redo stack.
+- Added Ctrl+Z / Ctrl+Y keyboard support while editor mode is active.
+- Added Undo and Redo buttons to the editor panel.
+- Added map validation/repair button.
+- Added clear selection button.
+- Added guarded paint transactions so brush, rectangle, fill, elevation, object, and attribute edits can be reversed.
+- Added editor history counters in the status/inspector panels.
+
+No gameplay, combat, renderer, cave, party, multiplayer, or fishing behavior was intentionally changed.
+
+Controls:
+- F10: Toggle editor.
+- Ctrl+Z: Undo editor action.
+- Ctrl+Y: Redo editor action.
+- Ctrl+Shift+Z: Redo editor action.
+
+Safety rules:
+- History is capped at 80 editor actions.
+- Redo clears when a new edit is made after undo.
+- Validate Map repairs invalid tiles, missing object rows, invalid object types, invalid elevation values, and blocked player spawn positions.

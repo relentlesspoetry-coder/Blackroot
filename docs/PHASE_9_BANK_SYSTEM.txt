@@ -1,0 +1,46 @@
+Dream Realms — PHASE 9: Bank System
+======================================
+
+Scope: implementation phase following docs/PHASE_7_CLASS_STAT_INVENTORY_
+AUDIT.txt, which confirmed (via project-wide grep) that no bank/vault/
+personal-storage system existed anywhere in the codebase. Ships as
+V0.15.86. Full Added/Design-notes/Validation/Known-Limitations detail lives
+in PATCH_NOTES.md under "V0.15.86" - this file is the short ownership/
+integration rationale.
+
+Files changed: systems/bank-system.js (new), Dream Realms V0.15.52.html,
+game.js, systems/ui-system.js, systems/inventory-system.js,
+systems/save-system.js, systems/party-system.js (unrelated bugfix-adjacent:
+none - not touched here, see Phase 10 for its party-system.js changes),
+_script_order.json.
+
+Ownership: systems/bank-system.js is the single owner of `this.bank` (a
+flat array, same item shape as `this.inventory`), its UI panel, and its
+save-system integration points (`serializeBankState`/`importBankState`).
+The one intentional cross-file touch is a single added line inside
+systems/inventory-system.js's existing bag-slot click handler (`renderBag`)
+that forwards a click to `this.depositItemToBank` when the bank window is
+open - this mirrors the pattern already used two lines above it
+(contextmenu forwards to `equipInventoryItem`, dblclick forwards to
+`useInventoryItem`), so it does not introduce a new pattern or a duplicate
+owner.
+
+Why it's safe: the bank container is entirely new state (`this.bank`,
+defaulted to `[]`), so no pre-existing inventory/equipment/bag data is
+touched. Save-system integration follows the exact three-touch-point
+pattern already used for `racialCooldowns`/`itemCooldowns` (normalize-on-
+load guard, serialize-on-save, restore-on-load), each guarded so an old
+save with no `bank` field loads with an empty bank rather than erroring.
+
+Validation: full-project `node --check` sweep, 0 errors; verified no
+duplicate HTML element ids; manually traced the deposit -> withdraw ->
+save -> load round trip through the actual edited functions. See
+PATCH_NOTES.md "V0.15.86" for full detail.
+
+Known limitations: menu-accessible rather than NPC-gated (Intersect banks
+are typically opened via a Banker NPC, matching how this project's own
+vendors are NPC-gated); no cross-character/guild-shared bank; no drag-and-
+drop between Bags and Bank (click-based only - the existing
+`bindItemDragHandlers` machinery is wired specifically for its current drop
+targets, and extending it to a new container type was scoped out as a
+separate, larger change). See PATCH_NOTES.md for full detail.

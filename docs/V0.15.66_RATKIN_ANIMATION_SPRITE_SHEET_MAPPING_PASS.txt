@@ -1,0 +1,7 @@
+Dream Realms V0.15.66 — Ratkin Animation Sprite Sheet Mapping Pass
+
+- Maps Ratkin idle, walk, attack, cast, hit, death, meditate, and swim states to Blender-rendered transparent PNG sprite sheets.
+- Preserves the existing Canvas2D renderer and procedural Ratkin model as a per-state fallback.
+- Uses the existing actor state and movement fields; no new animation or movement state system was introduced.
+- Keeps the eight-direction row contract and state-specific frame counts.
+- Missing optional sheets warn once and do not block startup or character creation.

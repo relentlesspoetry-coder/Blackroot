@@ -1,0 +1,73 @@
+Dream Realms World Save Pipeline
+================================
+
+Purpose
+-------
+Modular Pass 17 adds the foundation needed for an in-game world editor.
+It does not add the visual editor yet. It adds the save/load/export/import
+pipeline that the editor will use later.
+
+Runtime Load Order
+------------------
+1. systems/world-system.js generates the default Dark Woods overworld.
+2. systems/cave-system.js generates the default Mossfang Cave.
+3. systems/save-system.js checks browser storage for a saved world.
+4. If a saved world exists, systems/world-serializer.js applies it.
+5. The game starts using the saved map state instead of only the default generator.
+
+World Save Storage
+------------------
+Current browser foundation:
+- localStorage key: dream-realms.world.v1
+- export/import JSON file support
+
+Future packaged app target:
+Dream Realms/
+  Saves/
+    character-slot-1.json
+  Worlds/
+    Dream-Realms-World-Save.json
+  Settings/
+    settings.json
+
+Developer Controls
+------------------
+F9 = Save current world state
+F8 = Load saved world state
+F7 = Reset saved world and restore default Dark Woods
+F6 = Export world JSON
+F4 = Import world JSON
+
+World Payload
+-------------
+Schema: dream-realms-world-save-v1
+
+Saved world data currently includes:
+- Dark Woods tile grid
+- Dark Woods object grid
+- cave entrance records
+- Mossfang Cave tile grid
+- Mossfang Cave object grid
+- cave exit record
+- metadata/version info
+
+Not saved yet:
+- live mob states
+- player character save
+- quests
+- chests opened/closed
+- resource depletion states
+- dungeon state
+
+Those should be added in later systems.
+
+
+Pass 43 save safety
+-------------------
+- Active localStorage key remains dream-realms.world.v1 for existing browser compatibility.
+- Payload schema is now dream-realms-world-save-v2.
+- saveFormatVersion is now 2.
+- buildPass is now 43.
+- Backups are stored under dream-realms.world.backup.v1 before overwrite/reset/import/migration.
+- Corrupted or unsupported boot saves are stored under dream-realms.world.corrupt.v1 and removed from the active slot.
+- WorldSerializer.migrate() handles v1 -> v2 migration and backfills missing sections.

@@ -1,0 +1,25 @@
+Dream Realms V0.14.98 - Broodwarden Skirr Graphical Upgrade Pass
+
+Scope:
+- Upgraded Broodwarden Skirr's owned Silk Web spider procedural renderer without changing combat, AI, encounter timing, loot, quests, pathing, spawn data, or boss balance.
+- Preserved the existing boss silhouette, proportions, coordinate orientation, and dungeon encounter behavior.
+
+Runtime visual changes:
+- Broodwarden Skirr now uses a heavier boss profile with larger egg-heavy abdomen, stronger armored cephalothorax, wider corridor-spanning stance, larger venom fangs, and stronger boss scale.
+- Added boss carapace detailing: raised central keel, crown/hourglass dorsal marking, reinforced leg socket collars, sutures, scars, cracked/healed armor plates, and iridescent accent highlights.
+- Added broodmother details: stretched abdominal egg silhouettes, pale striations, silk-wrapped brood bundles, riding broodlings, enlarged spinnerets, and visible silk residue.
+- Added weapon detail: venom-channel fang highlights, venom tip droplets, clawed pedipalps, tarsal claws, and extra defensive leg barbs/spines.
+- Added lair detail: embedded chainmail/bone/gold debris, cave fungus glow patches, mineral/dust flecks, and old scar tissue.
+
+High-poly bake/reference asset:
+- Added assets/models/highpoly/broodwarden_skirr_highpoly_quadmesh_v0.14.98.obj.
+- Mesh export contains 16,452 vertices and 13,813 quad faces.
+- All OBJ faces are quads; no triangles or n-gons are emitted.
+- Geometry includes carapace plates, eye lenses/sockets, chelicerae, venom-grooved fangs, pedipalps, abdomen, egg silhouettes, brood bundle, spinnerets, eight segmented legs, spines, claws, broodlings, web strands, fungus, and trophy debris.
+
+Validation:
+- JS syntax checked.
+- HTML local script references checked.
+- Save manifest JSON validated.
+- High-poly OBJ validation passed: quad faces only.
+- Zip integrity checked.

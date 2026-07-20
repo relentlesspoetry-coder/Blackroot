@@ -1,0 +1,49 @@
+Dream Realms V0.13.42 — Bot Personality + Party Behavior Deepening Pass
+
+SYSTEMS CHANGED
+- Bot AI and personality: stable lightweight personality profiles now modify autonomous decisions without replacing class roles.
+- Bot speech: expanded class event lines, deterministic personality-biased selection, layered cooldowns, and party banter arbitration.
+- Combat and support hooks: real casts, threat changes, pet events, rare targets, kills, recovery interrupts, and deaths drive speech.
+- Party and invite logic: composition analysis now covers tank, healer, support/control, melee, ranged, player class, duplicate classes, availability, level range, and shared capacity.
+- Entity renderer: the existing bot bubble draw path now handles viewport clamping, action-bar clearance, wrapping, fading, and crowded overlap offsets.
+- Party HUD: bot state text is derived from actual AI activity instead of command or stance state.
+- Save/load: personality identity persists; transient bubbles/cooldowns reset safely.
+
+PERSONALITY BEHAVIOR
+- Steady bots are calm, protective, and recover at standard thresholds.
+- Bold bots tolerate more risk and react strongly to important enemies.
+- Cautious bots recover earlier and give greater weight to threatened allies.
+- Grim bots speak less and use darker line selection, while retaining normal role duties.
+- Witty bots comment more often and show greater interest in loot without bypassing cooldowns.
+- Assignment is deterministic from stable bot identity when a profile is missing. Bram, Talia, Riven, Luma, Elowen, Orin, Fenn, and Varek also have explicit baseline profiles.
+
+CLASS / PARTY REFINEMENTS
+- Fighters score enemies threatening the player, healers, and low-health allies more strongly, prioritize dangerous enemies, and refuse distant chases.
+- Cleric/Druid/Bard support thresholds adjust safely by personality; emergency heals, group danger, buffs, roots, and control have distinct intents and reactions.
+- Rogues retain flank priority and defensively reposition toward formation when critically hurt.
+- Summoner/Necromancer pet creation, low pet health, and pet death use reliable existing pet/combat hooks.
+- Enchanters warn about nearby engaged adds and announce real control effects.
+- Rare, named, and boss-like target reactions use target acquisition plus cooldown state rather than an added per-frame world scan.
+
+SPEECH / BANTER
+- Supported events include joinParty, partyFull, combatStart, rareEnemySeen, namedEnemySeen, bossLikeEnemySeen, protectAlly, healAlly, emergencyHeal, buffAlly, controlEnemy, enemyKilled, lowHealth, lowMana, manyAlliesHurt, petSummoned, petLowHealth, petDied, lootFound, chestOpened, startRecovery, stopRecoveryToFollow, enterCave, enterDungeon, playerDeath, and botDeath.
+- Party banter is eligible when the roster grows, chests open, dangerous enemies appear, several allies are hurt, adds arrive, or cave/dungeon transitions occur.
+- Per-bot global, per-bot event, party-wide, and party-event cooldowns prevent five-bot flooding. Urgent speech can supersede low-priority chatter but remains event-throttled.
+
+SAVE / LOAD COMPATIBILITY
+- Bot personalityId is saved with existing bot state; bot save schema advances to version 10.
+- V0.13.41 saves whose personalityId contained a class key are deterministically normalized to a valid personality.
+- Missing personality data receives a stable default; short-lived speech bubbles and cooldowns are not persisted.
+- Existing party order, HP/mana, class/role, gear, alive/dead state, four-member saves, six-member capacity, over-cap trimming, and meditation cleanup remain intact.
+
+VALIDATION
+- Every JavaScript file passed node --check.
+- All 88 scripts referenced by the main HTML existed and matched the canonical load manifest.
+- Node VM smoke passed Fighter creation, update/render, six-member capacity, player plus five bot recruitment, additional-companion rejection, six HUD frames, autonomous intents, friendly targeting, allowed context actions, and absence of bot stance commands.
+- Personality assignment for the full bot roster, save round-trip, legacy personality normalization, complete class/event speech resolution, per-bot cooldown, party flood prevention, one-shot rare reactions, moving/fading/clamped/overlap-offset bubbles, autonomous combat/recovery, old party saves, and over-cap normalization passed.
+- Esc menu centering, obstacle routing, interrupted meditation cleanup, Dark Woods procedural rendering, equipment aliases, all paper-doll slots, loot references, and ZIP integrity passed.
+
+MANUAL BROWSER CAVEATS
+- Verify bubble/nameplate spacing during dense moving combat and at unusual aspect ratios or browser UI scales.
+- Verify the HUD and world bubbles alongside chat, minimap, action bar, dialogue, inventory, and Esc menu using real pointer input.
+- Verify browser-blocked window.close fallback and Electron/AppImage behavior in the intended packaged runtime.

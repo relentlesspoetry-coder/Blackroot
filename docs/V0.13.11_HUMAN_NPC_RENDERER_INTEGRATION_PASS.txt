@@ -1,0 +1,14 @@
+Dream Realms V0.13.11 — Human NPC Renderer Integration Pass
+
+Scope:
+- Added render/human-npc-procedural-model.js using the supplied HumanNpcProceduralModel renderer.
+- Exposed the renderer through DreamRealms.render.HumanNpcProceduralModel and window.HumanNpcProceduralModel.
+- Updated NPC rendering to prefer the human renderer for human/camp/town NPCs before falling back to the existing CampNpcProceduralModel and class-model pipeline.
+- Preserved detailed nameplate anchor output from the human renderer.
+- Added species/npcRole metadata to camp NPC definitions and seeded NPC placements.
+
+Validation:
+- JS syntax scan.
+- HTML script load-order check.
+- Duplicate Game.prototype ownership scan.
+- Renderer integration probe.

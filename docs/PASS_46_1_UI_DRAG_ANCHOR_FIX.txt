@@ -1,0 +1,24 @@
+Pass 46.1 - UI Drag Anchor Fix
+================================
+
+Scope
+-----
+Focused bug fix for the movable UI window system added in Pass 46.
+
+Bug
+---
+Dragging a movable window could make it jump to the lower-left corner when movement started. The drag code cleared fixed-position anchors before measuring the panel's current viewport rectangle, so panels that were originally anchored with bottom/right/transform could be measured from the wrong layout position.
+
+Fix
+---
+- Measure the panel with getBoundingClientRect() before mutating style anchors.
+- Normalize the panel to explicit fixed left/top coordinates from that measured rectangle.
+- Clear right, bottom, and transform only after left/top are set.
+- Preserve the pointer offset within the title/header so the window remains under the cursor.
+- Clamp by actual panel width/height instead of small fallback constants.
+- Support pointercancel cleanup.
+- Add touch-action none to draggable headers/title rows.
+
+Ownership
+---------
+Implemented in systems/ui-system.js, the owning runtime UI system. No bottom-of-file patch layer was added.

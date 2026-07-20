@@ -1,0 +1,27 @@
+Dream Realms V0.14.89 — Second Performance and Full Bug Audit Pass
+
+Baseline
+- Dream Realms V0.14.88 Big Performance and Full Bug Audit Pass
+
+Scope
+- Follow-up root-owner performance and stability pass across pathfinding, line-of-sight/line-walk checks, companion movement, combat feedback allocation, bot support targeting, and render culling.
+- No mobs, NPCs, quests, abilities, loot tables, classes, portals, bag systems, icons, visual quality, or balance values were removed or reduced.
+
+Changed Systems
+- systems/collision-system.js: rewrote findPath() to use numeric tile keys and a binary heap instead of string keys plus open-list scanning; added per-frame hasLineWalkPath() cache; cached active map size per map; removed per-step companion movement attempt-array allocation; kept only the best combat-position candidates instead of sorting every candidate tile.
+- game.js: cached runtime frame time for systems that need current time; removed per-tile projection object allocation in render culling; inlined render-depth calculations for entity/effect/damage ordering; removed duplicate unreachable return from world context menu.
+- systems/effects-system.js: added bounded damage-text pooling and recycled expired/trimmed floating text entries instead of discarding them into GC every combat burst.
+- systems/combat-system.js: routed damage and healing floaters through the pooled damage-text owner.
+- systems/bot-player-system.js: changed bot healing, mana recovery, cleanse, and revive target selection from map/filter/sort chains to single-pass best-candidate scans.
+- entities/enemy.js: reused the frame runtime clock for AI budget timing and removed short-lived home-position objects from enemy leash/patrol checks.
+- systems/ui-system.js: replaced JSON.stringify-based unified companion HUD signatures with a compact reusable string signature builder.
+- core/config.js, VERSION.txt, README.txt, Save manifest, and patch notes updated to V0.14.89.
+
+Validation
+- JavaScript syntax check passed across runtime JS files.
+- Local HTML script/link integrity check passed.
+- Static audit confirmed no cascade hotfix blocks were added; changes were made in owning systems.
+- Zip integrity test passed.
+
+Notes
+- Browser FPS cannot be measured from this headless environment. This pass removes major remaining CPU/GC hot spots that directly affect 60 FPS stability: A* open-list scans, string-key path nodes, repeated line-walk recomputation, combat-position full sorts, floating combat-text allocation churn, and render-culling projection allocation.

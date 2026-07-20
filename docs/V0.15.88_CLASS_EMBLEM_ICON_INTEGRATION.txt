@@ -1,0 +1,30 @@
+Dream Realms V0.15.88 — Class Emblem Icon Integration
+
+Scope:
+- Imported the new transparent class emblem art as a 7x2 sprite sheet at assets/ui/class-emblems.png.
+- Preserved individual transparent 512x512 source assets under assets/ui/class-emblems/.
+- Added assets/ui/class-emblems.json with class key, display name, row, column, and source path metadata.
+- Updated systems/ui-system.js so DR.classEmblemMarkup(), DR.applyClassEmblem(), and DR.classEmblemMeta() support the full 14-class roster.
+- Updated character creation class cards to use emblem art instead of placeholder glyphs.
+- Updated render/entity-renderer.js so player/bot/pet nameplate emblems use the shared 14-class sheet dimensions and metadata.
+- Updated systems/npc-system.js so trainer nameplates use the same sheet dimensions and canonical class lookup.
+
+Canonical order:
+1. Paladin
+2. Warden
+3. Fighter
+4. Rogue
+5. Ranger
+6. Assassin
+7. Wizard
+8. Shaman
+9. Summoner
+10. Necromancer
+11. Cleric
+12. Druid
+13. Bard
+14. Enchanter
+
+Compatibility:
+- The current class creation screen still filters against DR.CLASSES, so it only shows implemented playable classes. Future classes can be added to DR.CLASSES without needing another emblem metadata pass.
+- Fallback glyphs remain in place for failed image loads.

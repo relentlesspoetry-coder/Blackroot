@@ -1,0 +1,16 @@
+Dream Realms V0.11.1 - Dark Woods Quest + Combat Integration
+
+Owning-system changes only:
+- systems/quest-system.js: added active kill-objective quest target detection and fallback quest-source routing for Road Warden Cael and Deepwood Surveyor Iren.
+- systems/npc-system.js: required default NPCs are now seeded individually into old saved worlds instead of only when the NPC grid is empty.
+- systems/ui-system.js: target HUD displays Quest Target and objective progress when the selected mob advances an active quest.
+- render/entity-renderer.js: quest mobs render a small gold quest marker, ring, and Quest Target nameplate label.
+- systems/turn-combat-system.js: turn enemy rows show quest progress; Dark Woods content mobs use role-specific turn actions.
+- systems/world-system.js: starter/deep-road route readability markers were added directly to world landmark generation.
+- data/enemies.js: simple enemy fallback list includes Briar Boar, Duskwisp, and Ashroot Horror.
+
+No cascade patching:
+- No bottom-of-file hotfix layer.
+- No late wrapper functions.
+- No setTimeout patching.
+- No duplicate combat or quest systems.

@@ -1,0 +1,49 @@
+Dream Realms V0.12.87 — Bot Player Behavior + Integration Polish Pass
+
+Baseline
+- Dream Realms V0.12.86 — Bot Player Foundation Pass
+
+Purpose
+- Make bot players behave more like player-like actors instead of ambient spawned mobs.
+- Keep the work inside bot-player, combat, party, UI, and runtime-QA ownership.
+
+Changes
+1. Bot squad behavior
+- Non-party bots now form small autonomous squads.
+- Squads share active combat targets.
+- Squad state is cleaned up when bots join the player party.
+
+2. Assist targeting discipline
+- Party bots resolve party assist targets without pulling idle selected enemies.
+- Autonomous bots prefer squad combat targets and damaged/hostile enemies.
+- Bot pull cooldown reduces random chain-pulling.
+
+3. Rest and movement behavior
+- Party bots cancel meditation and follow when the player moves.
+- Party bots rest only when combat is clear and they are close enough to the party anchor.
+- Autonomous bots still rest out of combat.
+
+4. XP and loot ownership
+- Solo bot kills reward the bot, not the player.
+- Non-party nearby bots no longer receive party XP by proximity.
+- Party bot XP only applies when bots are actually in the party.
+- Party loot eligibility excludes non-party bots.
+
+5. Combat integration
+- Bot outgoing damage now marks enemy combat/threat through the combat owner.
+- Bot combat cooldown is treated like other allied actors.
+- Bot kills still progress bot quest goals.
+
+6. UI and interaction
+- Right-clicking a bot now supports Inspect in addition to Invite/Remove Party.
+- Party bot frames show bot state more clearly in the unified HUD.
+
+Validation Targets
+- All JS files pass node --check.
+- HTML script order matches _script_order.json.
+- BotPlayerSystem exposes ensureBotSquads, resolveBotAssistTarget, inspectBotPlayer.
+- Solo bot kill does not grant player XP.
+- Party bot kill grants party-shared XP correctly.
+- Non-party bot is excluded from party loot eligibility.
+- Party bot meditation cancels when the player moves.
+- No cascade patches or bottom-of-file wrappers.

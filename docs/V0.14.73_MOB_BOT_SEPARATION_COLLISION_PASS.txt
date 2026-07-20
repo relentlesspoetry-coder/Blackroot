@@ -1,0 +1,16 @@
+Dream Realms V0.14.73 — Mob Bot Separation Collision Pass
+
+Scope
+- Prevent hostile mobs and bot actors from stacking on top of each other during combat and meditation.
+- Keep separation as a movement/collision layer, not a replacement for AI behaviors.
+
+Runtime changes
+- Added actorSeparationRole(), actorSeparationRadius(), collectSeparatedNpcActors(), tryActorSeparationNudge(), and updateActorSeparation() to the collision system owner.
+- The separation pass covers enemies, bot players, mercenaries, and pets with lower pet pressure.
+- The pass uses a spatial hash so dense zones avoid expensive full O(n²) scans.
+- Actors that are too close receive small clamped nudges on walkable terrain only.
+- Nudge movement preserves active AI behavior and does not cancel bot/merc meditation.
+
+Validation
+- Runtime JavaScript syntax checked with node --check.
+- ZIP integrity verified with unzip -t.

@@ -1,0 +1,23 @@
+Dream Realms V0.14.36 — Necromancer Pet Assist Mode Discipline Fix Pass
+
+Summary
+- Fixed assist-mode Bone Servant behavior so the pet no longer wanders off and starts fights independently while the player is meditating, resting, gathering, or out of combat.
+- Applied the same assist discipline to Azure Shard Familiar because both pets share the owning pet AI path.
+- Kept Attack and Guard command behavior separate; this pass specifically corrects Assist command rules.
+
+Files Changed
+- entities/pet.js
+- Dream Realms V0.14.36.html
+- README.txt
+- VERSION.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.36_NECROMANCER_PET_ASSIST_MODE_DISCIPLINE_FIX_PASS.txt
+
+Validation
+- node --check passed across all JavaScript files.
+- Direct pet-assist smoke test passed selected-target idle, meditation idle, owner auto-attack, owner-threat response, and resting sustain-release cases.
+- ZIP integrity verified.

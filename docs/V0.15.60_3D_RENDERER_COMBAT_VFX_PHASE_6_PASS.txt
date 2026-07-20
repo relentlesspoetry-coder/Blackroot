@@ -1,0 +1,99 @@
+Dream Realms V0.15.60 — 3D Renderer Combat VFX Phase 6
+
+Scope: Phase 6 (3D Combat and Spell Visuals) of the 3D conversion, building
+on Phase 1-5 (V0.15.56-59). Still fully opt-in via Settings > Renderer >
+"3D Prototype"; Canvas 2D remains the default and is unaffected. All
+changes are inside systems/render3d-system.js.
+
+This is a pure visualization pass over existing data - systems/effects-
+system.js remains the sole owner of spawning, aging, and removing combat/
+spell effect objects (game.effects). The 3D system never creates an
+effect, never mutates a gameplay field on one, and never removes one from
+the array itself; it only reads `type`, `x`/`y` (+`fromX`/`fromY`/`x2`/
+`y2` where present), `color`, `radius`, `t`, and `life` each frame to
+decide what to draw. Damage/duration/balance logic is completely
+untouched by this pass, by construction.
+
+Added:
+- classifyEffectType(type) maps the ~20 distinct effect type strings found
+  across effects-system.js/combat-system.js into 6 visual categories:
+  projectile (bolt, spiderWebProjectile), beam (necroLifeTap,
+  necroSoulLeech drain tethers), aoe (ring, ashroot*/necroRotCloud/bard*
+  ground-radius effects), impact (slash/claw, combatImpact, combatSpark,
+  corpseBurst melee feedback), heal (bardRefrain), and pulse (statusPulse,
+  castCue, and the catch-all default for anything unrecognized - verified
+  in testing that an unmapped type like the existing footstep-dust
+  `terrainStep` effect still renders as a small readable marker instead of
+  silently having no 3D representation at all).
+- Per-category 3D representations, each built fresh per effect instance
+  (never a shared/cached material, unlike Phase 4's class/family meshes -
+  effect fade/scale animation is inherently unique per instance, so reusing
+  a cached material here would incorrectly animate every effect of that
+  category at once):
+  - projectile: a small emissive sphere interpolated from source to target
+    position using the effect's own t/life progress (the same formula the
+    2D renderer already uses for its one true interpolated projectile),
+    with elevation looked up and interpolated at both ends exactly as
+    entities already do.
+  - beam: a thin cylinder stretched and oriented between live source/target
+    world positions every frame (recomputed, not fixed at spawn), so a
+    tether between two moving entities stays correctly anchored.
+  - aoe: a flat ground ring sized to the effect's real radius field, with
+    the same fade-in (first 18% of life) / fade-out (last 24% of life)
+    windows the 2D renderer already uses for these effects.
+  - impact/heal: a small sphere at the target with a brief scale-up/fade
+    (impact) or gentle rise/fade (heal).
+  - pulse (status/cast/default): a billboarded THREE.Sprite (camera-facing
+    by construction, satisfying the "billboarding for readability"
+    requirement) rising slightly above the entity and fading out.
+- Effect object identity is tracked by object reference (a Map keyed by the
+  live effect object, not a stable id field, since none exists) because
+  effects-system.js pools/recycles these objects; classification and all
+  visual parameters are re-derived every frame rather than cached at
+  first-sight, so a recycled object correctly and immediately picks up a
+  new type/color/position if reused for a different effect.
+
+Verified this pass (Playwright + headless Chromium, live game state):
+spawned real effects via the actual gameplay spawner functions (spawnRing,
+spawnSlash, spawnBolt, spawnCastCue, spawnCombatImpact, spawnStatusPulse -
+not synthetic objects), confirmed:
+- All 26 live effects present at the time (including pre-existing footstep
+  particles and the impact's own auto-spawned spark burst) got exactly one
+  3D visual each, with the correct category for every recognized type and
+  a graceful fallback for the one unrecognized type present.
+- Forcing a bolt effect to 50% of its life and reading back the resulting
+  3D position gave an exact match to the expected interpolated
+  world-space X coordinate (102.5 in both cases) - confirms the
+  source-to-target interpolation math is correct, not just visually
+  plausible.
+- Forcing every live effect past its life threshold and letting the real
+  game loop run its own expiry/removal logic (unmodified) showed the 3D
+  mesh count tracking the real effects-array count exactly as it shrank
+  (26 to 22), with each removed effect's Three.js object properly disposed
+  - no leaked meshes.
+- No console errors or exceptions throughout. node --check passes on all
+  180 .js files; all .json files validate.
+
+Known limitations (unchanged in kind from Phase 1-5, still scoped for
+later phases):
+- Visual fidelity is intentionally simple (spheres, rings, a billboard
+  sprite) at the same block-out tier as prior phases, not the detailed art
+  a shipped release would use - the classification/rendering architecture
+  is built to have richer per-category visuals swapped in later without
+  changing how effects are read or tracked.
+- No raycast-based click/Tab targeting integration yet; input still flows
+  entirely through the existing 2D screen-space picking, unaffected -
+  Phase 7.
+- Camera pitch is still fixed, no terrain-collision-safe arc yet -
+  Phase 7.
+- Fishing rod/line/bobber 3D visuals (listed under the original Phase 4
+  scope but not built there) are still outstanding; the fishing animation
+  pose added in Phase 5 reuses a generic weapon-tilt rather than an actual
+  rod/line mesh.
+
+Files changed:
+- systems/render3d-system.js
+- core/config.js
+- VERSION.txt
+- README.txt
+- Dream Realms V0.15.52.html (title + both patch notes panels)

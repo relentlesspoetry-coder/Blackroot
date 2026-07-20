@@ -1,0 +1,45 @@
+Dream Realms V0.13.43 — Core Gameplay Bugfix + Item Compare Pass
+
+SYSTEMS CHANGED
+- Mob spawn system: shared terrain, object, entrance, attribute, occupancy, bounds, retry, respawn, and warning validation.
+- Combat/input targeting: centralized hostile selection for left-click, right-click, and Tab.
+- Inventory/paper doll: normalized 15-slot visual state and existing character-panel refresh ownership.
+- Inventory/ground loot: transactional HTML5 drag/drop, dry-ground resolution, provisional spawn rollback, stack preservation, pickup, and despawn.
+- Item tooltip system: class-weighted equipment scores, stat deltas, fixed-slot and dual-slot comparisons, and colored summaries.
+
+BUGS FIXED
+1. Mobs no longer spawn or respawn on water/deep-water tiles. Invalid anchors retry nearby valid ground; no-result searches skip and warn.
+2. Right-clicking a hostile canvas hitbox targets that exact mob and updates the target UI. Empty-world context menus and friendly party-frame menus remain independent.
+3. The paper doll renders one marker for every equipment slot and regenerates equipped/empty visual state after equip, unequip, reopening, and character save restoration.
+4. Dragging a bag item onto valid world ground creates recoverable ground loot. Inventory is not committed until ground creation succeeds, and provisional loot is removed if source removal fails.
+5. Equippable tooltips show the compared equipped item, slot, stat deltas, and an overall Upgrade, Downgrade, Sidegrade, or No equipped item result.
+
+ITEM COMPARISON
+- Supported scoring uses actual item data including armor, damage ranges, attack/defense, primary attributes, HP/mana, physical/spell/healing power, crit, haste/speed, cooldown rating, and resistances.
+- Primary-stat weights follow the active player class while universal survival/offense weights remain intentionally simple and display-only.
+- Rings compare ring1 and ring2; earrings compare earring1 and earring2. An empty slot is preferred, otherwise the lower-scoring item is the recommendation target.
+- Non-equipment items show no comparison section. Missing or empty stats resolve safely.
+
+DROP TRANSACTION / COMPATIBILITY
+- Existing inventory item objects and stack quantities are cloned into temporary ground loot with the existing 45,000 ms lifetime.
+- Failed validation or failed ground creation leaves the source item untouched.
+- Failed source removal destroys provisional loot, preventing duplication.
+- Successful pickup uses the existing runtime item grant path and removes the ground entity.
+- Save formats and unrelated data are unchanged. Existing equipment alias normalization remains active for old saves.
+
+VALIDATION
+- Every JavaScript file passed node --check.
+- All 88 scripts referenced by the main HTML existed and matched the canonical load manifest.
+- Node VM smoke passed Fighter start/update/render and verified existing runtime QA without warnings.
+- Spawn tests verified existing spawned mobs were dry, water anchors were rejected, nearby dry retry succeeded, and an all-water search skipped with a clear warning.
+- Pointer tests verified right-click exact targeting, empty-world safety, UI click-through prevention, left-click targeting, and Tab targeting.
+- Paper-doll tests verified all 15 slots, no duplicate markers after rerender, equip updates, unequip updates, and save/load updates.
+- Ground-drop tests verified stack removal/spawn, double-event protection, pickup, invalid-ground preservation, spawn-failure preservation, and 45-second despawn.
+- Tooltip tests verified shoulder upgrade deltas, rendered comparison blocks, weaker ring/earring selection, non-equipment suppression, and empty/missing-stat safety.
+- Six-member party, autonomous bot behavior/bubbles, Dark Woods models, Esc menu, obstacle pathing, meditation cleanup, equipment aliases, loot references, and ZIP integrity passed.
+
+MANUAL BROWSER CAVEATS
+- Verify native drag image/drop events across Chromium, Firefox, and Electron/AppImage surfaces.
+- Verify mob right-click hitbox feel at minimum/maximum camera zoom and with overlapping mobs.
+- Verify comparison tooltip placement and paper-doll colors at unusual aspect ratios, browser zoom, and UI scale.
+- Verify browser-blocked window.close fallback in the intended runtime.

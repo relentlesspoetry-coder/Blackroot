@@ -1,0 +1,1339 @@
+{
+  "asset": "warden_class_highpoly_quadmesh_v0.16.04.obj",
+  "generator": "tools/generate-warden-highpoly.js",
+  "coordinateSystem": "+Y up, +Z forward",
+  "intendedUse": "high-poly source for normal-map baking and detail projection onto the existing Warden low-poly runtime model",
+  "vertices": 32632,
+  "quadFaces": 31284,
+  "triangles": 0,
+  "ngons": 0,
+  "groups": [
+    {
+      "name": "torso_living_bark_core",
+      "material": "warden_bark_outer",
+      "vertices": 866,
+      "quads": 864
+    },
+    {
+      "name": "pelvis_root_mesh",
+      "material": "warden_root_dark",
+      "vertices": 602,
+      "quads": 600
+    },
+    {
+      "name": "chest_bark_plate_-3",
+      "material": "warden_bark_outer",
+      "vertices": 216,
+      "quads": 150
+    },
+    {
+      "name": "chest_growth_grain_-3",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "chest_bark_plate_-2",
+      "material": "warden_bark_outer",
+      "vertices": 216,
+      "quads": 150
+    },
+    {
+      "name": "chest_growth_grain_-2",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "chest_bark_plate_-1",
+      "material": "warden_bark_outer",
+      "vertices": 216,
+      "quads": 150
+    },
+    {
+      "name": "chest_growth_grain_-1",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "chest_bark_plate_0",
+      "material": "warden_bark_new",
+      "vertices": 216,
+      "quads": 150
+    },
+    {
+      "name": "chest_growth_grain_0",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "chest_bark_plate_1",
+      "material": "warden_bark_outer",
+      "vertices": 216,
+      "quads": 150
+    },
+    {
+      "name": "chest_growth_grain_1",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "chest_bark_plate_2",
+      "material": "warden_bark_outer",
+      "vertices": 216,
+      "quads": 150
+    },
+    {
+      "name": "chest_growth_grain_2",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "chest_bark_plate_3",
+      "material": "warden_bark_outer",
+      "vertices": 216,
+      "quads": 150
+    },
+    {
+      "name": "chest_growth_grain_3",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "sternum_knot_eye",
+      "material": "warden_moonstone_glow",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "sternum_growth_ring_0",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "sternum_growth_ring_1",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "sternum_growth_ring_2",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "sternum_growth_ring_3",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "sternum_growth_ring_4",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "sternum_growth_ring_5",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "sternum_growth_ring_6",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "sternum_growth_ring_7",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "sternum_growth_ring_8",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "sternum_growth_ring_9",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "abdomen_root_lattice_a_-3",
+      "material": "warden_root_dark",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "abdomen_root_lattice_b_-3",
+      "material": "warden_root_dark",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "abdomen_root_lattice_a_-2",
+      "material": "warden_root_dark",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "abdomen_root_lattice_b_-2",
+      "material": "warden_root_dark",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "abdomen_root_lattice_a_-1",
+      "material": "warden_root_dark",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "abdomen_root_lattice_b_-1",
+      "material": "warden_root_dark",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "abdomen_root_lattice_a_0",
+      "material": "warden_root_dark",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "abdomen_root_lattice_b_0",
+      "material": "warden_root_dark",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "abdomen_root_lattice_a_1",
+      "material": "warden_root_dark",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "abdomen_root_lattice_b_1",
+      "material": "warden_root_dark",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "abdomen_root_lattice_a_2",
+      "material": "warden_root_dark",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "abdomen_root_lattice_b_2",
+      "material": "warden_root_dark",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "abdomen_root_lattice_a_3",
+      "material": "warden_root_dark",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "abdomen_root_lattice_b_3",
+      "material": "warden_root_dark",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "dorsal_bark_spine_0",
+      "material": "warden_bark_outer",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "dorsal_granite_shield_stone_0",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "dorsal_bark_spine_1",
+      "material": "warden_bark_outer",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "dorsal_bark_spine_2",
+      "material": "warden_bark_outer",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "dorsal_granite_shield_stone_2",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "dorsal_bark_spine_3",
+      "material": "warden_bark_outer",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "dorsal_bark_spine_4",
+      "material": "warden_bark_outer",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "dorsal_granite_shield_stone_4",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "dorsal_bark_spine_5",
+      "material": "warden_bark_outer",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "dorsal_bark_spine_6",
+      "material": "warden_bark_outer",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "dorsal_granite_shield_stone_6",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "grey_green_lower_jaw",
+      "material": "warden_bark_new",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "living_bark_mask",
+      "material": "warden_bark_outer",
+      "vertices": 866,
+      "quads": 864
+    },
+    {
+      "name": "bark_crown_spear_-3",
+      "material": "warden_bark_outer",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "bark_crown_spear_-2",
+      "material": "warden_bark_outer",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "bark_crown_spear_-1",
+      "material": "warden_bark_outer",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "bark_crown_spear_0",
+      "material": "warden_bark_outer",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "bark_crown_spear_1",
+      "material": "warden_bark_outer",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "bark_crown_spear_2",
+      "material": "warden_bark_outer",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "bark_crown_spear_3",
+      "material": "warden_bark_outer",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "left_glowing_eye",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_glowing_eye",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "neck_moss_ruff_0",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "neck_moss_ruff_1",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "neck_moss_ruff_2",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "neck_moss_ruff_3",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "neck_moss_ruff_4",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "neck_moss_ruff_5",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "neck_moss_ruff_6",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "neck_moss_ruff_7",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "neck_moss_ruff_8",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "neck_moss_ruff_9",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "neck_moss_ruff_10",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "neck_moss_ruff_11",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "neck_moss_ruff_12",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "neck_moss_ruff_13",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "dominant_giant_burl_pauldron",
+      "material": "warden_bark_outer",
+      "vertices": 602,
+      "quads": 600
+    },
+    {
+      "name": "smaller_bark_scale_pauldron",
+      "material": "warden_bark_outer",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "burl_moss_drape_0",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "burl_moss_drape_1",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "burl_moss_drape_2",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "burl_moss_drape_3",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "burl_moss_drape_4",
+      "material": "warden_moss",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "burl_thorn_0",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "burl_thorn_1",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "burl_thorn_2",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "burl_thorn_3",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "burl_thorn_4",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "burl_thorn_5",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "left_upper_arm_root_core",
+      "material": "warden_root_dark",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "left_forearm_vambrace",
+      "material": "warden_bark_outer",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "left_spiral_vine_arm_0",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_spiral_vine_arm_1",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_spiral_vine_arm_2",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_spiral_vine_arm_3",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_spiral_vine_arm_4",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_thorn_elbow_cluster",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "left_elbow_spike_a",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "left_bark_scaled_hand",
+      "material": "warden_bark_outer",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "left_sap_claw_finger_0",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_sap_claw_finger_1",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_sap_claw_finger_2",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_sap_claw_finger_3",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_upper_arm_root_core",
+      "material": "warden_root_dark",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "right_forearm_vambrace",
+      "material": "warden_bark_outer",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "right_spiral_vine_arm_0",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_spiral_vine_arm_1",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_spiral_vine_arm_2",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_spiral_vine_arm_3",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_spiral_vine_arm_4",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_thorn_elbow_cluster",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "right_elbow_spike_a",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "right_bark_scaled_hand",
+      "material": "warden_bark_outer",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "right_sap_claw_finger_0",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_sap_claw_finger_1",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_sap_claw_finger_2",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_sap_claw_finger_3",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_bark_cuisse",
+      "material": "warden_bark_outer",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "left_stone_bark_greave",
+      "material": "warden_bark_outer",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "left_knee_burl_poleyn",
+      "material": "warden_bark_outer",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "left_knee_thorn",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "left_vertical_greave_fissure_0",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "left_vertical_greave_fissure_1",
+      "material": "warden_moonstone_glow",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "left_vertical_greave_fissure_2",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "left_vertical_greave_fissure_3",
+      "material": "warden_moonstone_glow",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "left_root_cage_sabaton",
+      "material": "warden_root_dark",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "left_moss_stone_toe_cap",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "left_ground_anchor_root_0",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_ground_anchor_root_1",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_ground_anchor_root_2",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_ground_anchor_root_3",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_ground_anchor_root_4",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_bark_cuisse",
+      "material": "warden_bark_outer",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "right_stone_bark_greave",
+      "material": "warden_bark_outer",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "right_knee_burl_poleyn",
+      "material": "warden_bark_outer",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "right_knee_thorn",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "right_vertical_greave_fissure_0",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "right_vertical_greave_fissure_1",
+      "material": "warden_moonstone_glow",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "right_vertical_greave_fissure_2",
+      "material": "warden_root_dark",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "right_vertical_greave_fissure_3",
+      "material": "warden_moonstone_glow",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "right_root_cage_sabaton",
+      "material": "warden_root_dark",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "right_moss_stone_toe_cap",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "right_ground_anchor_root_0",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_ground_anchor_root_1",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_ground_anchor_root_2",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_ground_anchor_root_3",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_ground_anchor_root_4",
+      "material": "warden_root_dark",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "heart_bramble_main",
+      "material": "warden_root_dark",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "heart_bramble_return",
+      "material": "warden_root_dark",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "heart_bramble_glow_bud",
+      "material": "warden_moonstone_glow",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "spore_cluster_0",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_1",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_2",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_3",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_4",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_5",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_6",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_7",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_8",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_9",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_10",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_11",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_12",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_13",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_14",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_15",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_16",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "spore_cluster_17",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "amber_sap_shoulder_gouge",
+      "material": "warden_amber_sap",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "leaf_growth_0",
+      "material": "warden_leaf",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "leaf_growth_1",
+      "material": "warden_leaf",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "leaf_growth_2",
+      "material": "warden_leaf",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "leaf_growth_3",
+      "material": "warden_leaf",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "leaf_growth_4",
+      "material": "warden_leaf",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "leaf_growth_5",
+      "material": "warden_leaf",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "leaf_growth_6",
+      "material": "warden_leaf",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "leaf_growth_7",
+      "material": "warden_leaf",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "leaf_growth_8",
+      "material": "warden_leaf",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "leaf_growth_9",
+      "material": "warden_leaf",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "leaf_growth_10",
+      "material": "warden_leaf",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "leaf_growth_11",
+      "material": "warden_leaf",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "leaf_growth_12",
+      "material": "warden_leaf",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "leaf_growth_13",
+      "material": "warden_leaf",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "leaf_growth_14",
+      "material": "warden_leaf",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "leaf_growth_15",
+      "material": "warden_leaf",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "woven_root_belt",
+      "material": "warden_root_dark",
+      "vertices": 216,
+      "quads": 150
+    },
+    {
+      "name": "geode_belt_buckle",
+      "material": "warden_moonstone_glow",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "gourd_canteen",
+      "material": "warden_bark_new",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "seed_pouch",
+      "material": "warden_bark_outer",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "stone_totem_rune",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "bone_feather_ward_0",
+      "material": "warden_bone_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "bone_feather_ward_1",
+      "material": "warden_bone_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "bone_feather_ward_2",
+      "material": "warden_bone_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "bone_feather_ward_3",
+      "material": "warden_bone_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "bone_feather_ward_4",
+      "material": "warden_bone_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "bone_feather_ward_5",
+      "material": "warden_bone_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "living_tree_cross_section_shield",
+      "material": "warden_bark_outer",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "shield_growth_ring_0",
+      "material": "warden_bark_new",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_growth_ring_1",
+      "material": "warden_bark_new",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_growth_ring_2",
+      "material": "warden_bark_new",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_growth_ring_3",
+      "material": "warden_bark_new",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_growth_ring_4",
+      "material": "warden_bark_new",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_rim_thorn_0",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "shield_rim_thorn_1",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "shield_rim_thorn_2",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "shield_rim_thorn_3",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "shield_rim_thorn_4",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "shield_rim_thorn_5",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "shield_rim_thorn_6",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "shield_rim_thorn_7",
+      "material": "warden_stone",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "petrified_hammer_handle",
+      "material": "warden_root_dark",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "geode_hammer_head",
+      "material": "warden_stone",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "hammer_crystal_point_-2",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "hammer_crystal_point_-1",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "hammer_crystal_point_0",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "hammer_crystal_point_1",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "hammer_crystal_point_2",
+      "material": "warden_moonstone_glow",
+      "vertices": 98,
+      "quads": 96
+    }
+  ],
+  "validation": {
+    "allFacesAreQuads": true,
+    "noTriangles": true,
+    "noNgons": true,
+    "realGeometryDetail": [
+      "living bark mask and crown",
+      "moss neck ruff",
+      "interlocking bark breastplate",
+      "root-fiber abdomen lattice",
+      "stone dorsal ridge",
+      "asymmetric burl pauldron",
+      "thorned vines and brambles",
+      "bark-scaled hands and root sabatons",
+      "spore clusters and amber sap regeneration sites",
+      "root belt accessories",
+      "living tree cross-section shield",
+      "petrified geode hammer"
+    ]
+  }
+}

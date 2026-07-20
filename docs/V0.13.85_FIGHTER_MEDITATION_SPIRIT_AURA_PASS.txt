@@ -1,0 +1,19 @@
+Dream Realms V0.13.85 — Fighter Meditation Spirit Aura Pass
+
+Summary
+- Enhanced the Fighter meditate animation with a blue aura effect rendered below the Fighter.
+- Added layered glow rings, upward energy ribbons, rising motes, and a spirit silhouette that slowly ascends during meditation.
+- Kept the existing Fighter high-detail procedural armor model, meditate pose, fishing pose, and auto-attack readiness pose intact.
+
+Files Changed
+- render/class-identity-procedural-model.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.13.85_FIGHTER_MEDITATION_SPIRIT_AURA_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- ZIP integrity verified with `unzip -t`.

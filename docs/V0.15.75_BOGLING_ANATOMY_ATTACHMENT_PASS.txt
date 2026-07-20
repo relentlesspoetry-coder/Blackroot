@@ -1,0 +1,3 @@
+Dream Realms V0.15.75 — Bogling Anatomy Attachment Pass
+
+Refined Bogling anatomy with sharper amphibian foot detail, readable toes and webbing, corrected arm and leg attachment points, improved frog-leg structure, updated male/female Bogling limb profiles, and adjusted equipment/tool anchors while preserving all color variants, character creation, runtime rendering, sprite fallback behavior, and save/load compatibility.

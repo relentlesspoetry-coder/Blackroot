@@ -1,0 +1,4 @@
+Dream Realms V0.15.112 - Creator Icon Visible-Art Centering Fix
+
+- The character creator now crops each class icon to its visible art before drawing it as the model background.
+- This fixes the icons appearing too small and not truly centered when using the new spaced creator icon sheet.

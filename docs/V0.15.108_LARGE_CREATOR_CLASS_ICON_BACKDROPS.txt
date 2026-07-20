@@ -1,0 +1,5 @@
+Dream Realms V0.15.108 - Large Creator Class Icon Backdrops
+
+- The character creator backdrop now uses the newly generated larger class icon art.
+- Added a dedicated large creator emblem sheet and cropped per-class backdrops from it in the preview renderer.
+- Normal UI class emblems elsewhere are unchanged.

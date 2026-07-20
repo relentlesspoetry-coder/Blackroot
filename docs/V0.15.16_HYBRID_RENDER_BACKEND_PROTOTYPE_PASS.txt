@@ -1,0 +1,28 @@
+Dream Realms V0.15.16 — Hybrid Render Backend Prototype Pass
+
+Scope
+- Adds a safe render-backend scaffold without replacing the current Canvas 2D renderer.
+- Probes and records WebGL/WebGL2 prototype capability data for future renderer migration.
+- Adds cached screen-space overlays for expensive vignette and day/night transition gradients.
+- Keeps gameplay, combat, AI, zones, loot, class balance, UI layout, and art direction unchanged.
+
+Files changed
+- core/config.js
+- systems/render-backend-system.js
+- game.js
+- _script_order.json
+- Dream Realms V0.15.16.html
+- VERSION.txt
+- README.txt
+- Save/save-folder-manifest.json
+
+Implementation details
+- Canvas 2D remains the active renderer.
+- WebGL is initialized only as a prototype/capability context; it is not used for gameplay drawing yet.
+- Vignette and world-light transition gradients are cached into scratch canvases with LRU trimming.
+- F3 diagnostics now expose backend state, WebGL prototype readiness, maximum texture size, overlay cache entries, hits, misses, evictions, and draw/build cost.
+- The cached overlay path has direct Canvas fallbacks if scratch canvas creation or drawImage fails.
+
+Validation
+- JavaScript syntax validation should be run across the modular runtime.
+- _script_order.json and HTML script references should include systems/render-backend-system.js.

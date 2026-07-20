@@ -1,0 +1,14 @@
+Dream Realms V0.13.19 - Bot Merc Obstacle Aware Combat Pathing Fix Pass
+
+Scope:
+- Integrated companion walkability into collision/pathfinding owner.
+- Added obstacle-aware companion movement helpers for bot/merc follow, combat, heal range, and roam movement.
+- Added reachable combat-position selection instead of pathing to an enemy exact tile.
+- Added partial-path fallback and throttled path recalculation.
+- Added bot/merc stuck detection that clears stale paths and forces alternate path selection.
+- Replaced direct combat movement calls in bot and merc AI with path-aware helpers.
+
+Rules preserved:
+- No bottom-of-file monkey patch.
+- No duplicate movement loop.
+- Existing leash teleport/catch-up remains only as last-resort follow recovery.

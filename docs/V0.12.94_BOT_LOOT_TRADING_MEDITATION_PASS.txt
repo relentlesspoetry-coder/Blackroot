@@ -1,0 +1,32 @@
+Dream Realms V0.12.94 — Bot Loot Trading Meditation Pass
+
+Purpose
+Make bot players behave more like real players after combat: they loot gear, evaluate upgrades by class/role, trade gear with other bots and the player, and meditate under the same restrictions as player/merc companions.
+
+Changes
+- Added bot-owned inventory and equipment normalization.
+- Added bot class/role gear scoring.
+- Added bot gear equip/upgrade logic.
+- Added bot loot handling from enemy kills.
+- Added bot-to-bot gear trading.
+- Added player-to-bot / bot-to-player gear trade action in the bot right-click context menu.
+- Updated bot inspection output to include equipment/inventory counts and meditation state.
+- Updated bot snapshots to version 5 with inventory/equipment/trade/meditation fields.
+- Tightened bot meditation behavior so bots rest to full, cancel on combat, and party bots follow instead of meditating while the player is moving.
+
+Files Changed
+- entities/bot-player.js
+- systems/bot-player-system.js
+- systems/combat-system.js
+- README.txt
+- VERSION.txt
+- Dream Realms V0.12.94.html
+
+Validation Targets
+- node --check on all active JS files.
+- HTML script order check.
+- Bot kill -> bot loot/equip check.
+- Bot kill -> bot-to-bot trade check.
+- Bot context menu includes Trade Gear with Bot.
+- Bot snapshot version 5 contains inventory/equipment.
+- Bot meditation starts out of combat and continues to full HP/mana.

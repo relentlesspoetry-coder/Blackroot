@@ -1,0 +1,15 @@
+Dream Realms V0.13.8 — Vendor Sell Flow Camp NPC Model Fix Pass
+
+Implemented in owning systems only.
+
+Touched files:
+- systems/inventory-system.js
+- systems/event-system.js
+- systems/npc-system.js
+- data/npcs.js
+
+Fixes:
+1. Vendor Sell no longer opens a second legacy confirmation window. The existing shop panel owns Buy/Sell tabs and one click on Sell performs the sale.
+2. Legacy renderVendorSellWindow/openVendorSellWindow compatibility methods now redirect into the shop Sell tab and remove stale #vendorPanel.
+3. Camp/town NPC rendering now prefers CampNpcProceduralModel, giving role-specific silhouettes, props, headgear, robes/aprons/gear, and readable detail.
+4. Camp Merchant and Camp Cook now carry explicit starterCampDetailed renderer metadata and visualRole identifiers.

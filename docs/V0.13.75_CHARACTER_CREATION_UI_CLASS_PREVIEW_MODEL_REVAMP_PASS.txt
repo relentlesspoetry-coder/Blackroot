@@ -1,0 +1,51 @@
+Dream Realms V0.13.75 — Character Creation UI + Class Preview Model Revamp Pass
+
+Systems changed:
+- systems/ui-system.js
+- render/humanoid-base-renderer.js
+- render/class-identity-procedural-model.js
+- render/bard-procedural-model.js
+- render/druid-procedural-model.js
+- entities/player.js
+- systems/save-system.js
+- game.js
+- Dream Realms V0.13.75.html
+- core/config.js
+- data/default-zones.js
+- systems/world-serializer.js
+
+Character creation UI changes:
+- Replaced the old CSS-only creator portrait with a live canvas-rendered actual class model preview.
+- Added real class model previews inside class cards.
+- Improved class card framing, preview windows, selected-card presentation, and main preview panel hierarchy.
+- Added Eye Color as a creation option and included it in preview/summary text.
+
+Class model preview changes:
+- Main character preview now renders the selected class through the same class model families used in-game.
+- Bard and Druid previews route through their dedicated renderers.
+- Fighter, Cleric, Rogue, Summoner, Necromancer, and Enchanter route through ClassIdentityProceduralModel.
+- Selected hair style, hair color, skin tone, face style, eye color, and clothing colors feed the preview actor.
+
+Model appearance changes:
+- Humanoid face rendering now includes colored eyes, eye highlights, brows/lids, nose detail, and mouth line.
+- Humanoid base renderer exposes shared hairstyle drawing for class renderers.
+- ClassIdentity, Bard, and Druid model paths use the shared hairstyle-capable hair renderer so creation hairstyles affect actual class models instead of only UI fields.
+
+Creation/save preservation:
+- Player entities now store eyeColor.
+- Character save payloads persist eyeColor.
+- Character load reapplies eyeColor.
+- Existing appearance fields remain preserved.
+
+Gameplay preserved:
+- Character creation flow, slot flow, save/load, in-game spawning, class rendering, trainer class models, sprite-sheet runtime fallback, combat, targeting, map UI, inventory, and Esc menu behavior were not intentionally changed.
+
+Tests run:
+- JavaScript syntax check across project files.
+- HTML local script reference audit.
+- Version metadata audit.
+- Static audit for live preview renderer hooks, eyeColor persistence, and shared hairstyle renderer usage.
+- ZIP integrity check.
+
+Manual browser-test caveats:
+- Manual browser verification is still required for visual spacing, class card preview clipping, live appearance updates, actual character creation, save/load persistence, and long-session performance.

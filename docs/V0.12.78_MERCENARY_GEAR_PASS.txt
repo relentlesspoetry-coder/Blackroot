@@ -1,0 +1,42 @@
+Dream Realms V0.12.78 — Mercenary Gear Pass
+
+Scope:
+- Make mercenary equipment functional.
+- Allow compatible inventory gear to be assigned to mercenary slots.
+- Apply role-aware restrictions and stat bonuses.
+- Keep merc equipment persistent through the existing save state.
+
+Changed:
+- entities/mercenary.js
+- systems/mercenary-system.js
+- Dream Realms V0.12.78.html
+- VERSION.txt
+- README.txt
+- docs/MODULAR_HISTORY.txt
+
+Merc gear slots:
+- Main Hand
+- Off Hand
+- Head
+- Chest
+- Legs
+- Feet
+- Trinket
+
+Role compatibility:
+- Guardian: Fighter/Cleric-style martial gear.
+- Field Cleric: Cleric/Druid-style healer gear.
+- Arcane Adept: Summoner/Enchanter/Necromancer/Druid/Cleric-style caster gear.
+- Blade Scout: Rogue/Bard/Fighter-style light melee gear.
+
+Runtime behavior:
+- Compatible bag gear appears in the merc gear window.
+- Clicking compatible gear equips it to the correct merc slot.
+- Existing slot gear is returned to the player's inventory when replaced.
+- Remove buttons return merc gear to the player's bags if capacity allows.
+- Merc stats recalculate immediately after gear changes.
+
+Cascade status:
+- No bottom-of-file override layer.
+- No delayed repair layer.
+- No monkey-patch wrapper.

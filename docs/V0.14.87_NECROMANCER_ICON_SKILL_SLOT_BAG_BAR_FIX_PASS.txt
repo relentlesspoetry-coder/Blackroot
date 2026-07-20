@@ -1,0 +1,19 @@
+Dream Realms V0.14.87 — Necromancer Icon Skill Slot Bag Bar Fix Pass
+
+Changed:
+- Expanded the owned spell icon descriptor with a full-color Necromancer icon theme map so Necromancer abilities never fall back to generic monochrome spell icons.
+- Updated spell icon HTML to expose both primary and accent colors for richer procedural icon rendering.
+- Changed the hotbar skill-slot CSS so ability icons fill the entire slot frame while preserving hotkeys, labels, and cooldown overlays.
+- Rebuilt the bag bar icon owner to render satchel, pouch, and backpack silhouettes with quality-aware color treatment instead of generic placeholder art.
+
+Files changed:
+- Dream Realms V0.14.87.html
+- systems/spell-system.js
+- systems/inventory-system.js
+- core/config.js
+- systems/save-system.js
+- data/default-zones.js
+- README.txt
+- VERSION.txt
+- Save/README.txt
+- Save/save-folder-manifest.json

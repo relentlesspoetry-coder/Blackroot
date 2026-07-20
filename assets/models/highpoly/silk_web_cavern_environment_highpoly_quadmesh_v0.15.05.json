@@ -1,0 +1,23 @@
+{
+  "asset": "silk_web_cavern_environment_highpoly_quadmesh_v0.15.05.obj",
+  "source": "systems/dungeon-system.js SILK_WEB_FLOOR_CONFIG",
+  "floors": {
+    "1": {
+      "rooms": 13,
+      "links": 17
+    },
+    "2": {
+      "rooms": 14,
+      "links": 17
+    },
+    "3": {
+      "rooms": 12,
+      "links": 18
+    }
+  },
+  "vertices": 622224,
+  "quadFaces": 160136,
+  "triangles": 0,
+  "ngons": 0,
+  "notes": "Single OBJ contains all three Silk Web Cavern floors offset along Z for bake/reference separation. Gameplay layout, room centers, dimensions, corridor links, and boss arena bounds are unchanged."
+}

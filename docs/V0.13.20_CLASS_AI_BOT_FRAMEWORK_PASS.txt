@@ -1,0 +1,22 @@
+Dream Realms V0.13.20 - Class AI Bot Framework Pass
+
+Implemented a shared class-authentic bot AI framework with profile-driven behavior for every playable class currently defined by the class/spell systems.
+
+Key ownership changes:
+- BotPlayer.update now routes through Game.updateBotAI before legacy fallback.
+- Bot class profiles are owned by systems/bot-player-system.js.
+- Bot spell casting uses real class spell books, level requirements, mana costs, cooldowns, target validation, and existing combat/status effect systems.
+- Bot pets for Summoner/Necromancer use the existing Pet entity and companion pathing.
+- Bot class runtime fields persist through bot save/load snapshots.
+
+Supported profiles:
+- Fighter: tank / taunt / melee threat
+- Cleric: healer / holy support
+- Druid: hybrid healer / nature damage / roots
+- Summoner: pet caster
+- Bard: support songs / control / backup healing
+- Necromancer: undead pet / DoT / drain caster
+- Rogue: melee burst DPS
+- Enchanter: crowd-control / caster support
+
+No patch-cascade layer was added.

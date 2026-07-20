@@ -1,0 +1,23 @@
+Dream Realms V0.14.14 — Azure Shard Familiar High-Detail Procedural Model Upgrade Pass
+
+Summary
+- Upgraded the Summoner Azure Shard Familiar pet renderer with a high-detail crystalline entity pass.
+- Preserved the original floating shard silhouette, proportions, orientation assumptions, action hooks, and pet gameplay.
+- Added faceted crystal readables, chipped edge detail, internal luminous core rings, fracture planes, energy veins, inclusions, orbiting satellite shards, tether lines, planar aura, and caustic glow cues.
+
+Files changed
+- render/pet-identity-procedural-model.js
+- Dream Realms V0.14.14.html
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.14_AZURE_SHARD_FAMILIAR_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt
+
+Validation
+- JavaScript syntax verified with node --check.
+- Direct Azure Shard Familiar smoke render passed across key actions and all 8 facings.
+- ZIP integrity verified.

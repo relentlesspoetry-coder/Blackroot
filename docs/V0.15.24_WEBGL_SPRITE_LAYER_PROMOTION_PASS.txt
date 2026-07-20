@@ -1,0 +1,48 @@
+Dream Realms V0.15.24 — WebGL Sprite Layer Promotion Pass
+
+Goal
+- Promote the next safest renderer layer after terrain: cache-backed actor/NPC/mob/pet/player sprites.
+- Keep Canvas 2D as the stable fallback for anything that is dynamic, uncached, or unsafe to batch.
+
+Changes
+- Added Visible WebGL Sprites toggle in Settings.
+- Added persistent localStorage setting: dreamRealmsWebglVisibleSpriteLayer.
+- Added conservative visible sprite promotion path:
+  - only promotes entity renderables with a valid RuntimeSpriteCache frame;
+  - verifies the GPU texture exists before skipping Canvas drawEntity;
+  - flushes WebGL sprite groups in world depth order;
+  - falls back to Canvas drawEntity for uncached or over-budget sprites.
+- Added WebGL sprite group flushing:
+  - clears the WebGL scene surface per visible sprite group;
+  - draws queued sprite quads into WebGL;
+  - composites the group onto the main Canvas with identity transform;
+  - restores the active world transform before continuing normal Canvas rendering.
+- Kept Canvas authoritative for:
+  - dynamic spell effects;
+  - floating combat text;
+  - nameplates/health bars;
+  - selection rings and targeting indicators;
+  - UI/DOM/HUD;
+  - any actor without a valid cached sprite frame.
+- Added renderer watchdog accounting for visible WebGL sprite fallback/draw/composite pressure.
+- Scene preview overlay is suppressed while visible sprite promotion is using the shared WebGL scene surface unless explicitly allowed by config.
+
+New config controls
+- enableWebglVisibleSpriteLayer
+- webglVisibleSpriteLayerDefault
+- webglVisibleSpriteRequirePromotionReady
+- webglVisibleSpritePromotePlayer
+- webglVisibleSpriteMaxQueuedPerFrame
+- webglVisibleSpriteMaxGroupSize
+- webglVisibleSpriteCompositeOpacity
+- webglVisibleSpriteAllowPreviewOverlay
+
+F3 metrics added
+- WebGLSpriteVisible enabled/active/promoted
+- visible sprite candidates/queued/draws/quads/flushes
+- visible sprite draw/composite cost
+- visible sprite fallback count and last error
+
+Validation
+- JavaScript syntax validation passed for the patched runtime files.
+- Canvas fallback remains available for all promoted sprite cases.

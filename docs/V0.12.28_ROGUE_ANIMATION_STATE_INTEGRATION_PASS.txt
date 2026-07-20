@@ -1,0 +1,16 @@
+Dream Realms V0.12.28 — Rogue Animation State Integration Pass
+
+Summary
+- The Rogue-specific renderer from V0.12.26 now owns Rogue meditation, fishing, and auto-attack visuals.
+- Rogue no longer falls back to the generic humanoid meditation path.
+
+Implementation
+- render/rogue-procedural-model.js now supports actor.meditating, actor.fishing, actor.attackAnim, fishingAction, and fishingCastTimer.
+- Added drawMeditatingRogue(), drawMeditationAura(), drawAttackSlash(), and drawFishingRodOverlay().
+- Rogue fishing sets sourceEntity.fishingRodTipScreen so the existing fishing line/bobber renderer remains compatible.
+- render/entity-renderer.js now routes Rogue actors through drawRogueClassModel for idle, walk, attack, fishing, and meditation.
+
+Visual changes
+- Meditation: seated Rogue silhouette, crossed legs, hood/mask intact, relaxed arms, daggers lowered, blue aura rings, and floating orbs.
+- Fishing: Rogue body remains the same class model; rod/reel attach to hand anchors.
+- Auto attack: visible dual-dagger swing extension plus blue-white slash arcs.

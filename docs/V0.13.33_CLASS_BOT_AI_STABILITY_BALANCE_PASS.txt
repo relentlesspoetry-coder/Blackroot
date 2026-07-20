@@ -1,0 +1,10 @@
+Dream Realms V0.13.33 — Class Bot AI Stability Balance Pass
+
+Scope:
+- Hardened class bot AI after the recruiter pass.
+- Added real pending cast state for bot spells with non-instant cast times.
+- Added role-aware mana conservation so healers/support/casters do not spend themselves dry on low-priority actions.
+- Prevented bot pets from being commanded onto ambient/non-combat targets.
+- Added auditClassBotAiStability() for QA.
+
+No cascade patch layer, duplicate AI loop, or fake bot spell system was added.

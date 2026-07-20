@@ -1,0 +1,22 @@
+Dream Realms V0.14.15 — Dirt Floor Layer High-Detail Procedural Upgrade Pass
+
+Summary
+- Upgraded the dirt floor rendering layer with a high-detail procedural ground pass.
+- Preserved terrain footprint, boundaries, terrain type IDs, collision, map layout, and chunk-cache behavior.
+- Added high-detail readables for natural soil, erosion, embedded stones, roots, organic debris, animal/insect signs, moisture variation, and organic transitions.
+
+Files changed
+- render/terrain-renderer.js
+- Dream Realms V0.14.15.html
+- README.txt
+- VERSION.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.15_DIRT_FLOOR_LAYER_HIGH_DETAIL_PROCEDURAL_UPGRADE_PASS.txt
+
+Validation
+- Syntax check passed via `node --check` on all JavaScript files.
+- ZIP integrity verified.

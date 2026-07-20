@@ -1,0 +1,24 @@
+Dream Realms V0.15.22 — WebGL Scene Alignment Diagnostics Pass
+
+Purpose:
+Validate the Hybrid WebGL scene preview before allowing any future visible renderer promotion.
+
+Changes:
+- Updated version metadata to V0.15.22.
+- Added persistent WebGL scene-preview layer controls for terrain, sprites, and alignment guides.
+- Added preview overlay crosshair/alignment guide drawing with layer/status readout.
+- Added scene-preview alignment/readiness metrics:
+  - alignment score
+  - coverage percentage
+  - fallback pressure
+  - readiness state
+  - promotion-ready flag
+  - next-step recommendation
+- Added Settings panel controls for preview terrain/sprite/guides toggles.
+- Added F3 diagnostics for preview layers, score, coverage, fallback pressure, readiness, and next-step recommendation.
+- Kept Canvas 2D as the authoritative gameplay renderer.
+
+Safety:
+- No gameplay, combat, quest, loot, class, AI, or zone data changes.
+- Hybrid WebGL remains experimental and watchdog-protected.
+- Canvas fallback remains the stable path.

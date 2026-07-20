@@ -1,0 +1,24 @@
+Dream Realms V0.12.27 — Seamless Terrain, Roaming Mobs, Cave Density, EQ Pace Rebalance
+
+Terrain Rendering
+- Removed the heavy per-tile stroke outline from drawTile().
+- Added tileTerrainFamily(), terrainTransitionColor(), drawEdgeStrip(), and drawTerrainEdgeTransitions().
+- Terrain edge strips now render only when adjacent visual terrain families differ.
+- Reduced tile bevel alpha to avoid the stamped diamond-grid look.
+- Reduced grass/dirt micro-detail frequency so ground details no longer repeat every tile.
+- Added drawContinuousWaterSurface() as a connected water overlay pass.
+- Game.render() now draws terrain first, then water surface overlays, then sorted objects/entities/effects/damage.
+
+Mob Behavior
+- Enemy entities now have patrol targets, patrol wait timers, and patrol radii.
+- Out-of-combat enemies roam around their home point instead of standing still.
+- Respawn resets patrol state.
+
+Cave Density
+- Cave room spawn budgets were increased to roughly triple the prior pass.
+- openCellsNear() search budget was increased for cave placement.
+- Minimum-distance spacing remains active so cave mobs spread through rooms instead of stacking.
+
+Combat Pace
+- Enemy HP multiplier was increased in the Enemy constructor.
+- Player auto-attack damage was reduced to stretch fights toward EverQuest pacing.

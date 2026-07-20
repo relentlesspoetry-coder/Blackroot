@@ -1,0 +1,30 @@
+Dream Realms V0.15.46 — DPS Meter Party Damage Tracker Pass
+
+Feature Added:
+- Real-time DPS meter with centralized combat damage reporting.
+
+Root integration:
+- systems/combat-system.js now reports final applied damage from Game.prototype.damageEntity through Game.prototype.recordDamageEvent.
+- DoT ticks are detected through options.isPeriodic.
+- Pet damage is attributed to the pet owner.
+- Mercenary damage is attributed to the hiring owner.
+- Player, bot, and party-member direct damage is tracked as owner damage.
+- Dungeon fresh runs and player death can reset DPS totals.
+
+UI:
+- Added systems/dps-meter-system.js.
+- Ctrl+D toggles the DPS meter.
+- Settings includes DPS Meter controls.
+- DPS meter window is movable and resizable.
+- Window modes: Last 10s, Last 30s, Current Fight.
+- Reset button clears current totals.
+- Party mode ranks party members by rolling DPS.
+- Solo mode shows player total plus direct/DoT/pet/merc breakdown.
+- Per-target totals are shown in the meter footer.
+
+Performance:
+- Damage is reported through one centralized event path.
+- The meter aggregates damage events and updates the display on a fixed interval, not on every tick.
+
+No gameplay/balance changes:
+- No class, spell, mob, loot, quest, dungeon, economy, XP, mana, cooldown, or damage-balance values were changed.

@@ -1,0 +1,31 @@
+Dream Realms Modular Pass 50 - Steam Deck Support
+
+Scope
+- Add Steam Deck 1280x800 UI layout rules.
+- Add browser Gamepad API control support.
+- Add click-to-walk while preserving click-to-target on mobs.
+
+Controls
+- Left stick: move in screen/camera-relative isometric directions.
+- Right stick: camera rotation and zoom assist.
+- A: jump.
+- B: interact/back.
+- X: attack.
+- Y: target nearest enemy.
+- LB/RB: class spells 1 and 2.
+- LT/RT: zoom out/in.
+- Select: map.
+- Start: menu.
+- L3: meditate.
+- R3: party panel.
+- D-pad up/down/left/right: bags, skills, character, spells.
+
+Click-to-walk
+- Left-click empty walkable ground to move there.
+- Clicking an enemy still targets instead of moving.
+- Manual WASD or left-stick input cancels the click-walk target.
+- Click-walk is disabled during turn-based combat.
+
+UI
+- Steam Deck mode activates on 1280x800-style screens or when a controller connects.
+- Panels, hotbar, log, minimap, turn-combat HUD, and major windows get smaller bounds for the Steam Deck screen.

@@ -1,0 +1,7 @@
+Dream Realms V0.10.6 - FPS Counter HUD
+
+Implemented directly in owning systems:
+- game.js: FPS sampling in the main loop and UI text update.
+- Dream Realms V0.10.6.html: FPS counter element and minimap-adjacent styling.
+
+No cascade patching or bottom-of-file hotfix layer was added.

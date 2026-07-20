@@ -1,0 +1,17 @@
+Dream Realms V0.12.29 — Logo Screen Boot Fix and Water-Edge Half Blocks Restore
+
+Bug Fix
+- The game could fail during boot before UI input binding, leaving the player stuck on the logo screen.
+- Root cause: createCaveEnemy() referenced an undefined elite variable while assigning cave enemy patrol radius.
+- Fix: patrol radius now uses options.elite.
+
+Splash QoL
+- Splash close handling now supports pointerdown, click, touchend, Enter, A, and Space.
+
+Water-edge half blocks
+- Added drawWaterEdgeHalfBlock() to terrain rendering.
+- Half-block ledges are drawn only when a non-water terrain edge touches water.
+- Flat-floor rules remain intact for ordinary Dark Woods, cave, and dungeon floor terrain.
+
+Patch Notes
+- Updated splash/menu patch notes to V0.12.29 and cleaned adjacent duplicate recent entries.

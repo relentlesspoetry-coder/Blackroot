@@ -1,0 +1,13 @@
+Pass 51.1 - Click-to-Walk Freeze Fix
+
+Fixes:
+- Hardened click-to-walk against invalid click targets and bad screen-to-world projection values.
+- Added finite-value guards before creating click movement targets.
+- Added maximum click movement range, movement lifetime, and stuck detection.
+- Changed click movement to one bounded movement attempt per frame instead of repeated fallback probes.
+- Clicks near blocked terrain now fail safely with "Path blocked" instead of leaving the player in a bad movement state.
+- Clicking enemies through the click-to-walk handler now targets them instead of also creating a walk target.
+
+Verification:
+- systems/steam-deck-system.js syntax check passed.
+- Full module syntax check passed.

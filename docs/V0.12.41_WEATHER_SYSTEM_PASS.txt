@@ -1,0 +1,37 @@
+Dream Realms V0.12.41 - Weather System Pass
+
+Implemented:
+- New owned weather runtime: systems/weather-system.js.
+- Biome definitions: temperate forest, desert, tundra, mountain, swamp, plains, cave.
+- Season modifiers: spring, summer, autumn, winter.
+- Graduated weather definitions:
+  - Clear / partly cloudy / overcast.
+  - Light fog / fog / heavy fog.
+  - Light rain / rain / heavy rain.
+  - Thunderstorm with light rain / rain / heavy rain.
+  - Light snow / snow / heavy snow.
+  - Light sandstorm / sandstorm / heavy sandstorm.
+- Climate state: temperature, humidity, wind speed, elevation.
+- Biome/elevation/weather gating:
+  - Caves suppress active weather visuals.
+  - Snow requires allowed biome/elevation/temperature.
+  - Sandstorms require sandstorm-enabled biomes.
+  - Low humidity suppresses fog/rain/thunder.
+  - Extreme cold suppresses rain/thunder.
+- Weather transitions and weighted automatic weather selection.
+- Weather HUD under the minimap with debug cycle control.
+- Save/load persistence through world saves and character runtime saves.
+- Day/night integration through TimeCycle light modifiers instead of competing sky owners.
+
+Rendering:
+- Weather-tinted sky overlay.
+- Foreground rain, snow, fog, sand, and storm particles.
+- Weather ground fog and visibility haze.
+- Thunder lightning flash and bolt rendering.
+- Weather-adjusted night darkness, fog density, firefly suppression, dust suppression, star visibility, and sun-shaft strength.
+
+Ownership:
+- No cascade patch layer.
+- No late setTimeout wrappers.
+- Weather logic is owned by systems/weather-system.js.
+- Time-of-day lighting remains owned by systems/time-cycle-system.js and consumes weather modifiers through a direct runtime query.

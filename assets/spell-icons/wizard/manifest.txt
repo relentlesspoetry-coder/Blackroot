@@ -1,0 +1,25 @@
+Wizard Spell Icons Manifest
+Naming format: {Spell Name} - Wizard - Level {Level}.png
+Source image: fantasy_spell_icons_grid_design.png
+Crop method: true source cuts; exact detected icon-card components; no reframing/resizing.
+
+Level 01: Arcane Bolt - Wizard - Level 1.png | crop=[34, 14, 277, 250] | size=[244, 237]
+Level 02: Fireball - Wizard - Level 2.png | crop=[314, 14, 559, 250] | size=[246, 237]
+Level 03: Frost Lance - Wizard - Level 3.png | crop=[597, 14, 841, 250] | size=[245, 237]
+Level 04: Mana Shield - Wizard - Level 4.png | crop=[877, 14, 1127, 250] | size=[251, 237]
+Level 05: Arcane Intellect - Wizard - Level 5.png | crop=[1170, 14, 1445, 250] | size=[276, 237]
+Level 06: Flame Wave - Wizard - Level 6.png | crop=[33, 267, 277, 497] | size=[245, 231]
+Level 07: Blink - Wizard - Level 7.png | crop=[314, 267, 558, 497] | size=[245, 231]
+Level 08: Ice Prison - Wizard - Level 8.png | crop=[597, 267, 841, 497] | size=[245, 231]
+Level 09: Arcane Barrage - Wizard - Level 9.png | crop=[877, 266, 1127, 497] | size=[251, 232]
+Level 10: Ignite - Wizard - Level 10.png | crop=[1170, 267, 1445, 497] | size=[276, 231]
+Level 11: Mana Spear - Wizard - Level 11.png | crop=[33, 513, 277, 735] | size=[245, 223]
+Level 12: Shatter - Wizard - Level 12.png | crop=[314, 514, 558, 735] | size=[245, 222]
+Level 13: Meteorfall - Wizard - Level 13.png | crop=[597, 511, 841, 735] | size=[245, 225]
+Level 14: Frost Nova - Wizard - Level 14.png | crop=[877, 514, 1127, 735] | size=[251, 222]
+Level 15: Overchannel - Wizard - Level 15.png | crop=[1170, 513, 1445, 735] | size=[276, 223]
+Level 16: Arcane Mirror - Wizard - Level 16.png | crop=[34, 751, 277, 988] | size=[244, 238]
+Level 17: Spellstorm - Wizard - Level 17.png | crop=[314, 744, 558, 988] | size=[245, 245]
+Level 18: Time Slip - Wizard - Level 18.png | crop=[597, 741, 841, 988] | size=[245, 248]
+Level 19: Prismatic Surge - Wizard - Level 19.png | crop=[877, 741, 1127, 988] | size=[251, 248]
+Level 20: Archwizard’s Cataclysm - Wizard - Level 20.png | crop=[1169, 748, 1445, 988] | size=[277, 241]

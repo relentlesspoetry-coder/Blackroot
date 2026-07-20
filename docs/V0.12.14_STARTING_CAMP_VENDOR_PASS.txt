@@ -1,0 +1,12 @@
+Dream Realms V0.12.14 — Starting Camp Scale and Vendor Pass
+
+Diagnosis
+- Starting camp props were visually close to character scale, making tents/buildings read like small decorations.
+- NPCs needed to stay at player scale, while camp structures needed a separate prop scale pass.
+- No dedicated starting camp vendor existed for selling inventory items.
+
+Fix
+- NPCs/players/mercs continue sharing the same humanoid character scale.
+- Added large camp tent and vendor stall rendering paths that scale much larger than characters.
+- Added Quartermaster Brann as a vendor NPC near the starting camp.
+- Added vendor sell window and sell-value calculation for bag items.

@@ -1,0 +1,28 @@
+Dream Realms V0.15.41 — Release Manifest and Benchmark Checklist Pass
+
+Scope
+- Add a final release manifest/checklist layer for the renderer/performance stack.
+- Provide JSON and TXT manifest export from Settings.
+- Summarize benchmark evidence, renderer mode, active promoted WebGL layers, Canvas fallback status, and release blockers.
+- Add F3 ReleaseManifest diagnostics.
+- Preserve all gameplay/content values.
+
+Changed Files
+- core/config.js
+- game.js
+- _script_order.json
+- Dream Realms V0.15.41.html
+- systems/release-manifest-checklist-system.js
+- VERSION.txt
+- README.txt
+- Save/save-folder-manifest.json
+
+Validation Checklist
+- Run F3 diagnostics.
+- Run F6 benchmark for 60 seconds.
+- Test Auto renderer mode.
+- Test Canvas Safe Mode.
+- Test camera rotation and zoom.
+- Test caves/Silk Web Cavern.
+- Test large fights with bots, mercs, pets, spell effects, and damage text.
+- Export Release Manifest JSON/TXT.

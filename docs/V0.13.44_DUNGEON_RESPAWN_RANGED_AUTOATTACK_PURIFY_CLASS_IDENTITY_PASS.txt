@@ -1,0 +1,49 @@
+Dream Realms V0.13.44 — Dungeon Respawn, Ranged Auto-Attack, Purify + Class Identity Pass
+
+Systems changed
+- Dungeon runtime now owns a safe Silk Web Cavern respawn checkpoint resolver. It derives the checkpoint from the active floor entrance, validates walkability and nearby enemy clearance, and preserves the active dungeon/floor context.
+- Combat death handling records dungeon death context. Player recovery uses the cavern checkpoint when applicable, clears combat/death/path/status state, recenters the camera, and otherwise retains the existing Dream Spirit fallback.
+- Bot recovery uses the same dungeon checkpoint while preserving party membership. It restores partial resources and clears targets, pending casts, combat, pathing, meditation, poison, root, and slow state before autonomous AI resumes.
+- Playable class definitions now explicitly own combatStyle, autoAttackRangeTiles, projectile use, and auto-attack damage type.
+- Combat now uses the class identity for player and bot auto-attacks, including range checks, line-of-sight checks, projectile/cast feedback, and damage type.
+- Status effects now normalize poison/dot/debuff tags, cleanse type, curability, and death-clearing behavior. A shared tag-based cleanse operation removes curable poison without touching unrelated debuffs.
+- Spell data/compiler/runtime now support targeted cleanse spells and nine existing action-bar slots. Old saved spell drafts merge missing default spells without replacing saved spell data or existing slot assignments.
+- Autonomous Cleric AI now scans the full friendly party for poisoned allies, prioritizes the player/tank and lower-health targets, casts Purify only when useful, and uses dedicated anti-spam speech.
+- The class spell review confirmed Rogue flank/poison/evasion, Bard song/control, Druid heal/root/nature damage, Summoner pet sustain, Necromancer pet/DoT/lifetap, and Enchanter control/buff coverage. Fighter gains the missing level-4 Iron Guard self-defense cooldown; existing spell IDs and abilities remain unchanged.
+
+Class range decisions
+- Fighter: melee, 1.25 tiles.
+- Rogue: melee, 1.25 tiles.
+- Bard: hybrid melee/support, 1.5 tiles.
+- Cleric, Druid, Summoner, Necromancer, and Enchanter: ranged caster, 6 tiles with projectile feedback and line-of-sight validation.
+- Ranged bot positioning was normalized to remain inside the 4–6 tile firing band. Existing class spell identities and autonomous role priorities remain intact.
+
+Poison and Purify
+- Normal spider Venom Bite has shorter duration and lower level scaling, uses one non-stacking/refreshing status, and is explicitly curable.
+- Elite poison remains stronger than normal poison. Silk Web Cavern poison uses slower ticks, limited stacking, and curable poison metadata; boss poison remains dangerous but has valid counterplay.
+- Cleric Purify unlocks at level 4, targets a friendly ally within 6 tiles, costs 12 mana, has an 8-second cooldown, and removes curable poison tags only.
+- Existing class ability IDs were not renamed. Purify uses the stable ID spell_cleric_purify.
+- Iron Guard uses the stable ID spell_fighter_iron_guard and is explicitly self-only for both player and bot casting.
+
+Save/load compatibility
+- Save build metadata is V0.13.44; existing character/world and party data remain compatible.
+- Missing Purify data from an older save is merged from current defaults. Saved custom spell drafts and occupied slots are preserved.
+- Dead bot snapshots now retain respawn timer and dungeon death/floor context so an interrupted save/load can still recover correctly.
+- Short-lived combat, cast, meditation, and speech state is reinitialized rather than persisted as authoritative state.
+
+Tests run
+- All JavaScript files passed node --check.
+- Main HTML loaded 88 existing script references with no missing file and completed Fighter boot/update/render smoke.
+- Runtime integrity audit passed with no failures or warnings.
+- Generated Silk Web Cavern Floor 2 checkpoint was walkable; player and party bot recovered inside Floor 2 at the entrance with dungeon state, party membership, resources, status cleanup, and camera state verified.
+- Fighter/Rogue/Bard melee limits and all five caster six-tile limits passed; beyond-range and blocked-line-of-sight attacks were rejected.
+- Player and Cleric-bot Purify removed spider/silk poison, preserved an unrelated armor debuff, selected the poisoned party ally, and exposed the action-bar spell with valid metadata.
+- Spider poison was verified curable, tagged, single-stack, and tuned to the intended normal-spider duration/tick envelope.
+- Spell IDs were unique and all Cleric spell metadata passed level/cost/cooldown/description validation.
+- Prior regression smoke passed for six-member party recruitment/HUD/targeting, autonomous AI and speech bubbles, meditation cleanup, obstacle pathing, Dark Woods rendering, Esc menu, save/load, dry mob spawning, right-click targeting, paper doll, transactional bag drops, ground-loot pickup/despawn, and item comparison.
+- ZIP entry integrity and packaged HTML script-reference validation passed.
+
+Manual browser caveats
+- Manually verify ranged projectile feel and camera/target feedback at unusual zoom levels.
+- Manually verify death-panel transition timing and checkpoint placement on all Silk Web Cavern floors during live combat.
+- Manually verify Purify action-bar targeting and status-icon removal with real pointer input and a full six-member party.

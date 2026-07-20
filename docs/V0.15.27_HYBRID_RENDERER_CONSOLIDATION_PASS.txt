@@ -1,0 +1,37 @@
+Dream Realms V0.15.27 — Hybrid Renderer Consolidation Pass
+
+Goal
+- Consolidate the promoted WebGL terrain, sprite, and effect paths into one safer visible-frame lifecycle.
+- Preserve Canvas 2D fallback for every promoted layer.
+- Improve diagnostics so layer switching, ordered flushes, and fallback pressure are measurable in F3.
+
+Changes
+- Updated build metadata to V0.15.27.
+- Added hybrid visible-frame consolidation controls in CONFIG.PERFORMANCE.
+- Added shared hybrid visible-frame lifecycle:
+  - beginHybridVisibleFrame()
+  - queueHybridVisibleRenderable()
+  - flushHybridVisibleQueues()
+  - endHybridVisibleFrame()
+- Routed entity/effect WebGL promotion through a single ordered queue boundary instead of ad-hoc sprite/effect flush calls.
+- Preserved depth correctness by flushing sprite queues before Canvas effects and flushing effect queues before Canvas/entity boundaries.
+- Added aggregate hybrid visible-layer metrics:
+  - promoted layer mask
+  - visible-frame cost
+  - flush count
+  - boundary flush count
+  - layer switch count
+  - Canvas fallback draw count
+  - aggregate fallback count
+  - last flush reason
+- Expanded F3 diagnostics with HybridVisible, HybridVisibleFlush, and HybridVisibleFallback rows.
+- Expanded Settings performance status with consolidated hybrid-frame state.
+
+Validation
+- JavaScript syntax validation passed across core, data, entities, systems, render, and game.js.
+- _script_order.json checked with no missing entries.
+- HTML script references checked with no missing files.
+
+Notes
+- Canvas 2D remains the safe fallback and still owns UI/HUD, nameplates, damage text, and any unsupported renderer path.
+- This pass is intentionally a consolidation/stability pass before promoting additional overlay layers.

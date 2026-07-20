@@ -1,0 +1,19 @@
+Dream Realms V0.12.38 - Core Stats Scaling Pass
+
+Implemented:
+- Armor mitigation now uses diminishing returns with a 68% hard cap.
+- Cooldown reduction now uses the same diminishing-return curve family with a 40% hard cap.
+- Physical crit chance, magic crit chance, physical crit damage, and magic crit damage now have explicit hard caps.
+- Class attributes now drive derived combat stats:
+  - Strength: physical damage and physical crit damage.
+  - Dexterity: physical crit chance, speed, and minor physical output.
+  - Stamina: HP, defense, and armor rating.
+  - Intelligence: mana, magic damage, and magic crit damage.
+  - Wisdom: healing output, magic crit chance, mana, and support scaling.
+- Player equipment, training bonuses, buffs, combat damage, healing, CDR, and character sheet display now use the same stat model.
+
+Ownership:
+- core/stats.js owns formula constants and stat math.
+- systems/inventory-system.js owns equipment/stat aggregation.
+- systems/combat-system.js owns final outgoing/incoming damage and healing resolution.
+- systems/spell-system.js owns spell cooldown application and spell damage typing.

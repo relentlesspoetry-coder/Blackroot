@@ -1,0 +1,8 @@
+Dream Realms V0.15.65 — Ratkin Idle Sprite Sheet Pass
+
+- Added assets/characters/races/ratkin/ratkin_idle.png.
+- Registered the 2048x2048 RGBA sheet as 8 direction rows by 8 idle columns.
+- Ratkin idle uses RaceSpriteSheetRenderer in the creator and Canvas2D world.
+- Non-idle Ratkin states continue using RaceIdentityProceduralModel.
+- Missing or invalid Ratkin sheets warn once and retain procedural rendering.
+- No races, classes, save fields, gameplay systems, or 3D renderer behavior changed.

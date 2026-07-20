@@ -1,0 +1,28 @@
+Dream Realms V0.14.92 — Town Portal Animation Graphical Upgrade Pass
+
+Scope
+- Upgraded the existing Town Portal effect without changing the portal spell behavior, activation key, round-trip use rules, player-only trigger behavior, party/merc/pet following, or arrival spread logic.
+- The owning implementation remains systems/portal-system.js. No cascade patch, late wrapper, timeout hotfix, or replacement overlay was added.
+
+Runtime Renderer Changes
+- Rebuilt renderPortalVortexAt with a higher-fidelity safe-passage visual language: warm blues, soft golds, bright white core, and clean arcane power.
+- Added braided/woven outer ring strands with circumference-following energy loops.
+- Added crystalline facet highlights around the ring edge and a crisp outer rim-light pass.
+- Added layered portal interior: fast foreground ribbons, slower mid-layer swirls, and a nearly-stationary bright central point.
+- Added faint safe-haven interior silhouettes/lights in the deeper swirl layers.
+- Added deliberate orbiting rune geometry around the ring.
+- Added more numerous lazy outward motes and occasional micro-flashes.
+- Added ground interaction: warm light pool, precise runic circle, shimmer, and subtle field distortion.
+- Added idle breathing pulse while preserving the existing portal lifecycle.
+- Added entry ripple/corona and gentle collapse shimmer as transient visual effects with no gameplay delay.
+
+High-Poly Projection Asset
+- Added assets/effects/town_portal_high_poly_mesh_v0.14.92.json.
+- Asset contains an all-quad braided portal ring, concentric radial interior spiral surface, all-quad ground annulus, and modeled floating rune quad strips.
+- Mesh reference is bound to the original portal coordinate footprint and runtime timing for normal-map/detail projection workflows.
+
+Compatibility
+- Save format unchanged.
+- Balance unchanged.
+- Spell/cooldown/targeting behavior unchanged.
+- No content removed or reduced.

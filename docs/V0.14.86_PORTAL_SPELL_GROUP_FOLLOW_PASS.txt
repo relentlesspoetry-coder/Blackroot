@@ -1,0 +1,30 @@
+Dream Realms V0.14.86 — Portal Spell Group Follow Pass
+
+Files changed:
+- systems/portal-system.js
+- core/config.js
+- systems/save-system.js
+- data/default-zones.js
+- Dream Realms V0.14.86.html
+- README.txt
+- VERSION.txt
+- Save/README.txt
+- Save/save-folder-manifest.json
+- docs/MODULAR_HISTORY.txt
+
+Portal changes:
+- Portal visual scale increased to 1.4x while preserving the bluish-purple spinning vortex, orbiting particles, rim strokes, ground rune, and screen flash.
+- Player activation radius increased to align with the larger portal footprint.
+- T-key portal creation now anchors the portal at the player location, with the previous forward offset kept only as a fallback if the current tile cannot host the portal.
+- Existing behavior remains intact: one active pair, T replaces the old pair, first entry sends the player to Dead Lantern Camp, return portal sends the player back once, then the link collapses.
+
+Follower changes:
+- Party bots follow only when they are actually in the player's bot party set.
+- The hired mercenary follows portal travel even when treated as an auxiliary follower rather than a party-size slot.
+- The owned summoned pet/familiar follows portal travel.
+- Followers are moved in the same portal use as the player and do not consume additional uses.
+- Followers are placed around the arrival point with spacing and walkability checks so they do not stack directly on the player or portal.
+- Bots, mercenaries, pets, mobs, and NPCs still cannot independently trigger the portal; activation remains player-only.
+
+Save compatibility:
+- Account, character, and world save schemas are unchanged.

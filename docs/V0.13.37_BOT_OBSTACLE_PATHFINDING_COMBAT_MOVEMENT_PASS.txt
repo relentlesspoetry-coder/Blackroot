@@ -1,0 +1,22 @@
+V0.13.37 — Bot Obstacle Pathfinding Combat Movement Pass
+
+Scope
+- Fixed class bot combat positioning so blocked melee/ranged lines force pathing instead of direct-line pushing.
+- Added companion combat-line validation; bots no longer treat an in-range target as attackable when trees, water, rocks, walls, or blocked props are between them.
+- Reworked shared companion path following to use route-aware stepping with direct, axis-slide, and local avoidance attempts before forcing a clean repath.
+- Combat positioning now validates line of sight / melee clearance before holding position.
+- Reachable combat-position search now rejects candidate tiles that cannot actually attack/cast through the obstacle layout.
+- Stuck detection still resolves by clearing paths and forcing recalculation; no teleporting or speed hacks were added.
+
+Files Modified
+- systems/collision-system.js
+- systems/bot-player-system.js
+- entities/bot-player.js
+- core/config.js
+- data/default-zones.js
+
+Verification
+- Syntax check passed for all JS files.
+- Runtime VM smoke passed.
+- Previous bot targeting, gear slot, paper doll, and meditation movement tests passed.
+- Targeted obstacle tests passed for follow pathing, melee line blocking, combat repositioning, and ranged line-of-sight hold validation.

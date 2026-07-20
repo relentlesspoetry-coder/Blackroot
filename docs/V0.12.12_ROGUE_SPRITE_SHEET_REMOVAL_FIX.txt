@@ -1,0 +1,12 @@
+Dream Realms V0.12.12 — Rogue Sprite Sheet Removal Fix
+
+Diagnosis
+- The V0.12.11 rogue sprite-sheet integration drew the whole sheet frame region as a large image card in-world.
+- The source sheet still contained checkerboard background pixels and was not ready for direct runtime sprite slicing.
+- The result was visually worse than the procedural model and blocked gameplay readability.
+
+Fix
+- Removed rogue sprite-sheet asset loading from game.js.
+- Removed rogue sprite-sheet rendering helpers from render/entity-renderer.js.
+- Removed the assets/classes/rogue-sprite-sheet.png runtime asset.
+- Rogue now falls back to the internal procedural class model.

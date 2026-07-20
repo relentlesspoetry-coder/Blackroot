@@ -1,0 +1,113 @@
+Dream Realms V0.15.61 — 3D Renderer Camera & Targeting Phase 7
+
+Scope: Phase 7 (Camera, Input, and Targeting) of the 3D conversion, building
+on Phase 1-6 (V0.15.56-60). Still fully opt-in via Settings > Renderer >
+"3D Prototype"; Canvas 2D remains the default and is unaffected.
+
+The core problem this phase fixes: click-to-move and click-to-target were
+still being resolved entirely through the 2D isometric projection math
+(worldToScreen/screenToWorld) even while the 3D renderer was the active
+visual mode, because those functions have no awareness of render mode.
+Since the 3D camera (perspective, adjustable pitch/zoom) and the 2D
+isometric camera (fixed-tilt, yaw+zoom only) are mathematically different
+projections, a click could visually land on one thing in the 3D scene but
+resolve to a different tile/entity under the old 2D math - the exact gap
+Phase 7 calls out.
+
+Added to systems/render3d-system.js:
+- raycastEntityAt(sx, sy): a real THREE.Raycaster hit-test against every
+  live entity's actual mesh Group, walking up the parent chain to the
+  Group's userData.entityId (newly tagged at mesh-creation time) and
+  returning the live game.entities member. Respects true visual occlusion
+  (whatever mesh is actually in front along the ray wins), unlike the 2D
+  picker's depth-blind ellipse-distance scoring.
+- projectEntityToScreen(entity): projects a live entity's real 3D position
+  through the actual 3D camera to a 2D screen pixel point - used as a
+  forgiving click-tolerance fallback, since a raw raycast alone requires
+  the cursor to land exactly on a fairly small capsule mesh. Verified this
+  fallback is doing real work in practice (direct raycast missed a live
+  target in testing; the reprojection+radius fallback caught it and the
+  click still correctly resolved end-to-end).
+- raycastGroundPoint(sx, sy): a real raycast against the terrain mesh (and
+  the cliff/wall InstancedMesh, so clicking a wall face still resolves to
+  a point) returning tile-space (x, y) via the existing scene3DToWorld
+  mapping.
+- Camera terrain-clipping prevention: updateCamera() now looks up the
+  ground elevation directly beneath the computed camera position each
+  frame and raises the camera above it with a fixed clearance if needed,
+  cheap enough for a heightmap terrain (no need for a full downward
+  raycast).
+- Camera pitch is now actually clamped every frame to [minPitch, maxPitch]
+  (fields that existed since Phase 1 but were unused) rather than trusting
+  whatever value happened to be set - verified by forcing an out-of-range
+  pitch and confirming it read back clamped.
+
+Added to game.js/systems/loot-system.js (the actual input entry points,
+NOT the shared worldToScreen/screenToWorld primitives used by ~20 other
+files including the map editor - deliberately not touched, to keep this
+change scoped to gameplay click handling only):
+- pickTargetableEntityAtScreen(): branches to a new
+  pickTargetableEntityAtScreen3D() when the 3D renderer is active (raycast
+  first, reprojection-fallback second); the existing 2D ellipse-scoring
+  path is completely unmodified and only reachable when 3D mode is off.
+  This single shared helper is what pickEnemyAtScreen, pickFriendlyAtScreen,
+  and pickSpiderWebAtScreen all already call, so all three correctly
+  inherit 3D-aware picking without being touched individually.
+- safeScreenToWorld(): branches to render3DSystem.raycastGroundPoint() when
+  3D mode is active; this is the function behind click-to-move, right-click
+  targeting, and inventory ground-item drop (all three benefit).
+- pickCorpseAtScreen() (loot-system.js): had its own inline 2D projection
+  logic rather than routing through the shared helper, so it needed its
+  own small branch to reproject through the 3D camera.
+
+Verified this pass (Playwright + headless Chromium, live game state):
+- 2D mode is provably unaffected: every 2D code path change is gated
+  behind an `if (3D mode active) return ...` guard at the top of each
+  function: the original 2D logic below is byte-for-byte unchanged and
+  unreachable unless the 3D renderer is the active mode.
+- Forcing pitch to 0.05 (below the 0.28 minimum) and zoom to 3.5 (a very
+  close distance) and reading back the camera state after a render:
+  pitch correctly clamped to exactly 0.28; camera height stayed at 2.13
+  world units, comfortably above the terrain-clip floor (0.6) even under
+  this extreme setting.
+- raycastGroundPoint at the screen center resolved to a sensible in-bounds
+  world coordinate.
+- Full end-to-end click-to-target: positioned the player next to a live
+  enemy, computed its actual 3D-projected screen position, and dispatched
+  a real mouse click there through the actual pointerdown handler -
+  player.targetId ended up set to that exact enemy's id.
+- Full end-to-end click-to-move: clicked an open-ground screen point and
+  confirmed the player's world x/y actually changed over the next 1.5s
+  (real movement, not just a flag).
+- Tab targeting still selects the closest hostile correctly while the 3D
+  renderer is active (unmodified combat-system.js logic, unaffected by
+  which renderer is drawing).
+- No console errors or exceptions in any of the above. node --check passes
+  on all 180 .js files; all .json files validate.
+
+Known limitations (unchanged in kind from Phase 1-6, still scoped for
+later phases):
+- No dedicated camera pitch input control was added (e.g. right-drag to
+  tilt) - pitch is clamped and terrain-safe but not yet player-adjustable
+  via a new input gesture; adding one was judged out of scope for this
+  pass given the risk of touching the shared canvas pointer/drag handlers
+  that also drive the existing yaw/zoom controls.
+- The map editor's own screenToWorld() calls (systems/editor-system.js,
+  layered-map-editor-system.js) were deliberately left untouched; opening
+  the editor while the 3D renderer is active was not part of this pass's
+  verification and may not resolve clicks against the 3D scene correctly.
+- Entity raycasting requires the cursor to be reasonably close to an
+  entity's projected screen position (see projectEntityToScreen fallback);
+  this is intentionally forgiving but is not identical in feel to the 2D
+  picker's per-kind ellipse sizing.
+- Fishing rod/line 3D visuals are still outstanding from Phase 4's
+  original scope.
+
+Files changed:
+- systems/render3d-system.js
+- game.js
+- systems/loot-system.js
+- core/config.js
+- VERSION.txt
+- README.txt
+- Dream Realms V0.15.52.html (title + both patch notes panels)

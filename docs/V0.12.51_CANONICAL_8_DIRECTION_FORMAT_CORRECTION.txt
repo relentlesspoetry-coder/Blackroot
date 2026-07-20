@@ -1,0 +1,18 @@
+Dream Realms V0.12.51 - Canonical 8-Direction Format Correction Pass
+
+Changes:
+- Corrected the humanoid model framework to use the required public row format:
+  0 Up / back-facing / North
+  1 Down / front-facing / South
+  2 Left / camera-left / West
+  3 Right / camera-right / East
+  4 Up Right / away + right / Northeast
+  5 Down Right / toward + right / Southeast
+  6 Up Left / away + left / Northwest
+  7 Down Left / toward + left / Southwest
+- Added canonical row labels and debug labels to render/humanoid-animation-system.js.
+- Added math and lookup row mappers using characterWorldAngle - cameraAngle.
+- Updated render/entity-renderer.js so Bard and Druid humanoid renderers receive camera-relative canonical row direction aliases.
+- Debug-facing labels now show sheet-row directions like UP, DOWN RIGHT, and UP LEFT instead of N/NE/E order.
+
+No cascade patches or bottom-of-file wrappers added.

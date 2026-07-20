@@ -1,0 +1,43 @@
+Dream Realms V0.12.52 — Full Class Identity Humanoid Revamp Pass
+
+Summary
+- Added a shared class identity humanoid renderer for Fighter, Rogue, Cleric, Summoner, and Necromancer/Enchanter-style actors.
+- Fixed humanoid-base back-facing arm occlusion so arms no longer appear drawn on top of the back/robe for Up, Up Right, and Up Left rows.
+- Preserved the canonical 8-row model format:
+  0 Up
+  1 Down
+  2 Left
+  3 Right
+  4 Up Right
+  5 Down Right
+  6 Up Left
+  7 Down Left
+- Kept Bard and Druid on the shared humanoid base while correcting the shared base draw-order problem that affected Druid back-facing rows.
+- Migrated Rogue class rendering to the shared humanoid class-identity path when available; the legacy Rogue renderer remains as a fallback.
+
+Humanoid Base Changes
+- Added per-row back-facing arm occlusion data.
+- Added tucked arm anchors for back-facing rows.
+- Added direction-aware back-arm layering before torso/robe rendering.
+- Up-facing characters now hide hands/forearms behind torso and robe body.
+- Up Right / Up Left profiles now suppress the near/front arm while allowing limited far-arm silhouette.
+
+Class Identity Renderer
+- New file: render/class-identity-procedural-model.js
+- Supports:
+  - Fighter: heavier steel/martial silhouette, shield and sword.
+  - Rogue: lean hooded silhouette, daggers, pouches, low contrast stealth palette.
+  - Cleric: ivory/gold robe, holy stole, mace/seal, blessing effects.
+  - Summoner/Enchanter: teal/violet robe, floating crystal, rune/orbit effects.
+  - Necromancer: dark robe, bone staff, skull charm, shadow motes.
+
+Entity Renderer Integration
+- New class identity routing added directly to render/entity-renderer.js.
+- Merc role aliases route through class identity when appropriate.
+- Existing systems preserved: bags, corpse loot, vendors, dialogue windows, combat targeting, save/load, UI flow.
+
+Verification
+- JS syntax check across all modules.
+- HTML script reference check.
+- Duplicate script check.
+- No bottom-of-file hotfix wrapper added.

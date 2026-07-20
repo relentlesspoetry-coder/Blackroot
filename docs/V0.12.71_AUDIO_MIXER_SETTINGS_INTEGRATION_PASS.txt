@@ -1,0 +1,39 @@
+Dream Realms V0.12.71 — Audio Mixer + Settings Integration Pass
+
+Scope:
+- Build on V0.12.70 audio folders and playback foundation.
+- Add user-facing audio controls in Settings.
+- Persist audio preferences locally.
+- Keep external WAV loading and procedural standalone fallback intact.
+
+Changed:
+- systems/audio-system.js
+- systems/ui-system.js
+- systems/runtime-qa-system.js
+- VERSION.txt
+- README.txt
+- docs/MODULAR_HISTORY.txt
+- Dream Realms V0.12.71.html
+
+Audio controls added:
+- Master Mute
+- Music Mute
+- SFX Mute
+- Master Volume
+- Music Volume
+- SFX Volume
+- Test Sound
+- Reset Audio
+
+Technical notes:
+- Audio settings are stored under dreamRealms.audioSettings.v1 in localStorage.
+- Effective SFX volume now combines master volume, SFX volume, mute state, local sound volume, and distance falloff.
+- Effective music volume now combines master volume, music volume, and mute state.
+- Live slider changes update active music gain without requiring reload.
+- Muting music fades/stops active music and unmuting can restart zone music after audio is unlocked.
+- Procedural fallback audio remains available for standalone/file:// execution.
+
+Cascade status:
+- No bottom-of-file override layer.
+- No delayed setTimeout repair layer.
+- No monkey patch wrapper.

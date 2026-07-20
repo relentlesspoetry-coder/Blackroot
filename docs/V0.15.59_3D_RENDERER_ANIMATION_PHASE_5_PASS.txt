@@ -1,0 +1,105 @@
+Dream Realms V0.15.59 — 3D Renderer Animation Phase 5
+
+Scope: Phase 5 (Animation System) of the 3D conversion, building on Phase
+1-4 (V0.15.56-58). Still fully opt-in via Settings > Renderer > "3D
+Prototype"; Canvas 2D remains the default and is unaffected. All changes
+are inside systems/render3d-system.js.
+
+Added a real animation state resolver and pose driver:
+
+- resolveAnimAction(entity, hitActive) mirrors render/humanoid-animation-
+  system.js's resolveAction() priority chain and field names exactly:
+  death > meditate > hit > gather > cast > attack > (auto-attack) > fishing
+  > swim > walk/idle - reading entity.dead, entity.meditating, entity.
+  gathering, entity.spellCastAnim, entity.attackAnim, entity.
+  autoAttackVisualActive/Type, entity.fishing, entity.swimming/inWater,
+  entity.moveBlend/vx/vy - the same fields the already-shipping 2D renderer
+  trusts, so the 3D pose is driven by real gameplay state, not a
+  reinvented heuristic.
+- One deliberate improvement over the 2D system, not a blind copy: the 2D
+  resolveAction also checks actor.hitAnim/hitReaction/damageAnim for the
+  "hit" state, but live combat code never populates any of those three -
+  it only sets entity.hitFlash once to 0.22 on damage, and never decays it
+  anywhere. Trusting hitFlash directly would leave an entity stuck showing
+  a permanent hit-reaction after its first hit ever. Instead, hitActive is
+  computed independently from a real, always-current, unambiguous signal -
+  an actual HP decrease between frames (entityHpTrack, one entry per live
+  entity) - so the 3D hit reaction is genuinely functional rather than
+  inheriting the 2D system's disconnected wiring for this one sub-state.
+- applyEntityPose(group, entity, action, animState, now) poses each entity
+  purely via per-instance transforms (position/rotation/scale on that
+  entity's own Group and named child meshes, stored in group.userData
+  during construction - body/head/weapon/orb references and their rest
+  positions/rotations/scales). This is a hard rule, not a convenience:
+  materials are cached/shared per class/family (Phase 4), so animating a
+  shared material's color or emissive would incorrectly flash every entity
+  of that class/family at once; only per-Mesh transforms are safe to
+  animate per-entity, and every pose in this pass only touches those.
+  - idle: small sine bob, phase-offset per entity (by id) so entities don't
+    bob in visible unison.
+  - walk: faster/larger bob + a slight side-to-side roll.
+  - attack: weapon (sword/dagger/staff/lute) swings through an arc driven
+    directly by entity.attackAnim's live 0-1 value, so the swing is always
+    in sync with the real attack timing/cooldown, never a fixed-length
+    canned animation that could drift out of sync.
+  - cast: the class's orb (staff tip or floating orb) scales up/pulses and
+    lifts slightly, driven by entity.spellCastAnim.
+  - hit: a quick asymmetric flinch (drop + roll) using the new HP-drop
+    detector described above.
+  - death: the whole Group eases into a collapsed, rotated pose over
+    ~0.6-1s (not an instant snap) and eases back upright over a similar
+    window if the entity is no longer dead (e.g. a corpse-loot/respawn
+    flow) - verified numerically frame-by-frame, not just visually.
+  - meditate: lowers into a seated-height pose with a slow sway.
+  - fishing/gather/swim: simple forward-lean/rod-angle poses.
+- Fixed a real bug uncovered while wiring this in: updateEntities() was
+  excluding entity.dead from the very first frame ever rendered (a Phase 1
+  filter written before animation existed), which made the entire 'death'
+  branch of resolveAnimAction dead code - a killed entity would just
+  vanish from the 3D scene instead of visibly collapsing. Confirmed via
+  systems/combat-system.js's killEntity() that dead entities are
+  deliberately kept visible (hidden/visible/renderable are explicitly left
+  true) for a corpse window and are only removed later via a separate
+  despawned flag - so the fix is simply to stop filtering on `dead` and
+  keep filtering on `hidden`/`despawned`, which is what actually governs
+  presence.
+
+Verified this pass (Playwright + headless Chromium, live game state, real
+character in Dark Woods): rather than relying on wall-clock waits (which
+raced against real per-tick decay of attackAnim and an unrelated
+precondition in the real startMeditation() that reverted the flag almost
+immediately when called out-of-flow), verification called
+render3DSystem.renderFrame() synchronously right after setting each
+documented field, isolating this system's own logic from timing noise in
+other systems. Confirmed exact formula matches:
+- meditate: y eased to -0.305 (target -0.32).
+- attack: weapon rotation.x = -1.1 for attackAnim=0.5, matching
+  sin(0.5*PI)*1.1 exactly, and correctly returns to rest when cleared.
+- death: after 8 synchronous frames, y=-0.256 and rotation.z=0.896, matching
+  a deathBlend of 0.64 (8 frames x 0.08/frame) against the -0.4/1.4 targets
+  exactly; after clearing dead and 8 more frames, fully eased back to the
+  idle baseline.
+No console errors or exceptions in any of the above. node --check passes
+on all 180 .js files; all .json files validate.
+
+Known limitations (unchanged in kind from Phase 1-4, still scoped for
+later phases):
+- These are procedural transform-based poses on block-out geometry, not a
+  skeletal/bone animation system - a true rig would require re-authoring
+  the Phase 4 meshes around an armature, which is a larger undertaking a
+  later pass can build on this same action-resolution layer without
+  redoing it.
+- Quadruped/spider leg poses don't yet articulate during walk (only the
+  whole-group bob/roll applies) - a four-legged/eight-legged walk cycle is
+  a natural next refinement on top of the same resolveAnimAction output.
+- No 3D combat/spell VFX (projectiles, beams, AoE rings) yet - Phase 6.
+- No raycast-based click targeting yet; input still flows entirely through
+  the existing 2D screen-space picking, unaffected - Phase 7.
+- Camera pitch is still fixed, no terrain-collision-safe arc yet - Phase 7.
+
+Files changed:
+- systems/render3d-system.js
+- core/config.js
+- VERSION.txt
+- README.txt
+- Dream Realms V0.15.52.html (title + both patch notes panels)

@@ -1,0 +1,15 @@
+Dream Realms V0.14.76 — Real Paperdoll Equipment Visual Pass
+
+Implemented:
+- Added render/paperdoll-equipment-renderer.js as the shared visual paperdoll owner.
+- Equipment visuals now read directly from existing equipment data instead of duplicating gear state.
+- Added visual overlays/attachments for head, shoulders, chest, legs, hands, feet, cape, amulet/charm, earrings, rings, weapon, and off-hand.
+- Weapon visuals attach to the current hand anchor and follow attack/cast/fishing/swim/emote pose data from the humanoid rig.
+- Off-hand visuals support shields, books/grimoires, orbs/foci/skulls/totems/symbols, and secondary blade props.
+- Character Window paperdoll preview now passes live equipped gear into the same class model renderer used by the world.
+- Player, bots, mercenaries, and remote actors with equipment data can render distinct visual gear.
+
+Validation:
+- Runtime JavaScript syntax validated with node --check.
+- Zip integrity validated with unzip -t.
+- No cascade patch layer added.

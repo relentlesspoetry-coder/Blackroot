@@ -1,0 +1,14 @@
+Pass 49.3 - Verified Menu Patch Notes / Meditation Bar / Turn Combat
+
+Fixed the actual packaged build instead of only documenting changes.
+
+Included:
+- Main menu Patch Notes button under the logo.
+- Main menu Patch Notes panel with recent updates.
+- In-game Menu Patch Notes button and panel.
+- Rounded meditation EXP capsule bar with text inside: Exp current/needed.
+- Turn combat HUD and runtime system script loaded in HTML.
+- Turn combat starts from player attacks, player spell casts, or enemy aggro.
+- Player movement is locked while turn combat is active.
+- Enemy real-time attacks are bypassed while turn combat is active.
+- Dark Woods level range set to 1-10 with distance-based spawn level selection.

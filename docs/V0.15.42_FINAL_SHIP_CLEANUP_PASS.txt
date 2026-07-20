@@ -1,0 +1,18 @@
+Dream Realms V0.15.42 — Final Ship Cleanup Pass
+
+Purpose:
+Finalize the renderer/performance project as a ship-candidate stack without changing gameplay content.
+
+Changes:
+- Added systems/final-ship-cleanup-system.js.
+- Added Final Ship Cleanup Settings section.
+- Added FinalShip F3 diagnostic line.
+- Added Final Ship JSON/TXT export.
+- Added renderer storage sanity repair for invalid/corrupt renderer profile and rollback values.
+- Added final ship scoring over StableLock, ReleaseManifest, FinalPerfQA, Hybrid health, FinalQA, fallback pressure, Hybrid frame cost, benchmark evidence, WebGL availability, and Canvas fallback readiness.
+- Preserved Renderer: Auto as the release-facing default.
+- Preserved Canvas Safe Mode as hard compatibility fallback.
+- Kept F3/F6 benchmark tooling available for live QA.
+
+No gameplay/content changes:
+- No class, spell, loot, mob, quest, dungeon, economy, combat, or zone values were changed.

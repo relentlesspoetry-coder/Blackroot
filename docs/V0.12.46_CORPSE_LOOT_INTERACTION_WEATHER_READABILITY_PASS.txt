@@ -1,0 +1,19 @@
+Dream Realms V0.12.46 - Corpse Loot Interaction Fix / Weather Readability Pass
+
+Fixed:
+- Corpse looting now registers lootable corpses when enemies die.
+- Pressing E opens the nearest lootable corpse bag within interaction range.
+- Corpse lookup now checks a persistent corpse registry plus active enemy arrays.
+- Interaction range increased to reduce missed E presses while standing on/near a corpse.
+- Corpse Loot window now confirms it was opened from E.
+
+Weather polish:
+- Fog definitions are denser and more visible.
+- Rain definitions are denser with stronger intensity values.
+- Rain streaks are brighter, thicker, and longer.
+- Rain curtain and splash overlays are stronger.
+- Fog bands, ground haze, and visibility haze are stronger over the Dark Woods palette.
+
+Implementation notes:
+- No bottom-of-file hotfix or wrapper layer was added.
+- Changes were made in owning systems: loot-system, combat-system, game input, and weather-system.

@@ -1,0 +1,27 @@
+Dream Realms V0.12.35 — Steam Deck Action Bar Fix, Deck Meditation Button, Code Audit Pass
+
+Action Bar Fix
+- systems/spell-system.js now owns action-bar activation through bindActionBarInput().
+- updateSpellHotbar() assigns role/button semantics and dataset metadata to every ability slot.
+- #hotbar now handles pointerup, click, touchend, and keyboard Enter/Space.
+- Auto Attack uses data-action-slot="autoAttack" and calls playerAttack().
+- Spell slots use data-action-slot="spell" plus data-spell-index and call useClassSpell(index).
+
+Steam Deck Meditation Button
+- Added #steamDeckMeditateBtn inside the hotbar.
+- CSS hides the button by default and shows it only under body.steamDeckMode.
+- systems/steam-deck-system.js binds pointerup, click, and touchend for the button and calls toggleMeditate().
+
+No-Cascade Review
+- All changes were made in owning systems:
+  - spell-system owns action bar spell activation.
+  - steam-deck-system owns Steam Deck-only meditation button input.
+  - HTML owns static button markup and data attributes.
+- No bottom-of-file hotfix/wrapper/cascade script was added.
+
+Audit Results
+- JS syntax check passed across all game JavaScript files.
+- Duplicate Game.prototype owner scan found no duplicate prototype method owners.
+- Cascade/hotfix keyword scan found no hotfix/cascade markers in JS files.
+- HTML script reference scan confirmed every referenced script file exists.
+- UI id scan confirmed every document.getElementById() id used by game.js has matching HTML markup.

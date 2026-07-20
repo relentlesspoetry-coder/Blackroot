@@ -1,0 +1,7 @@
+Dream Realms V0.16.05 - Stable Baseline
+
+- Promoted V0.15.115 to V0.16.05.
+- Treat this as the stable baseline going forward.
+- Character creator custom class backgrounds are preserved.
+- Main menu runtime fix is preserved.
+- Future updates must include patch notes in PATCH_NOTES.md.

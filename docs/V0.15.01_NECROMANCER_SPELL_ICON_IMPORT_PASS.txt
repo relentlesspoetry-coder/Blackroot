@@ -1,0 +1,33 @@
+Dream Realms V0.15.01 - Necromancer Spell Icon Import Pass
+
+Summary
+- Imported the user-provided Necromancer spell icon sheet.
+- Cropped all 20 spell icons into individual PNG assets.
+- Added runtime spell icon support for imported image icons.
+- Bound the imported icons to the Necromancer spellbook and action bar.
+
+Assets
+- assets/spell-icons/necromancer/raise_bone_servant.png
+- assets/spell-icons/necromancer/life_tap.png
+- assets/spell-icons/necromancer/bone_spear.png
+- assets/spell-icons/necromancer/grave_rot.png
+- assets/spell-icons/necromancer/rot_cloud.png
+- assets/spell-icons/necromancer/bone_shackles.png
+- assets/spell-icons/necromancer/grave_armor.png
+- assets/spell-icons/necromancer/siphon_strength.png
+- assets/spell-icons/necromancer/corpse_mender.png
+- assets/spell-icons/necromancer/soul_leech.png
+- assets/spell-icons/necromancer/fear_the_living.png
+- assets/spell-icons/necromancer/bone_storm.png
+- assets/spell-icons/necromancer/plague_mark.png
+- assets/spell-icons/necromancer/summon_skeleton_knight.png
+- assets/spell-icons/necromancer/death_pact.png
+- assets/spell-icons/necromancer/withering_curse.png
+- assets/spell-icons/necromancer/grave_nova.png
+- assets/spell-icons/necromancer/soul_harvest.png
+- assets/spell-icons/necromancer/army_of_bones.png
+- assets/spell-icons/necromancer/lich_form.png
+
+Notes
+- Preserved existing V0.15.00 Necromancer mechanics and action bar order.
+- Spell icon rendering now supports imported image icons while retaining the generated icon fallback path for all other spells.

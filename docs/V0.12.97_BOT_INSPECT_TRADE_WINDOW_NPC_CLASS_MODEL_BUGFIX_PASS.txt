@@ -1,0 +1,15 @@
+Dream Realms V0.12.97 — Bot Inspect Trade Window NPC Class Model Bugfix Pass
+
+Scope
+- Bot Inspect opens centered like a real character/equipment window.
+- Bot Trade now opens an explicit give/take gear window.
+- Right-click Trade Gear with Bot opens trade UI.
+- Camp/town NPCs render through player class model methods first.
+- Old NPC billboard/fallback is emergency-only.
+- Camp NPC placement is normalized to reduce crowding around vendors/trainers.
+
+Validation
+- JS syntax check on all active JavaScript files.
+- HTML script order check.
+- Missing script check.
+- Static checks for bot inspect centering, bot trade window, NPC class-model routing, and camp layout normalization.

@@ -1,0 +1,51 @@
+Dream Realms V0.13.50 — Seamless Water Rendering + Water Surface Chunk Cache Pass
+
+SYSTEMS CHANGED
+- render/terrain-renderer.js extends the existing terrain cache with water layers and owns water material, depth, shoreline, shimmer, invalidation, and cache statistics.
+- game.js activates the shared ground/water cache before the existing structural terrain and world-entity passes.
+- Existing editor tile/elevation invalidation and per-chunk terrain signatures now cover water type, elevation, and depth changes.
+- Runtime, save, world, README, HTML, and version metadata identify V0.13.50.
+
+SEAMLESS WATER
+- Logical TILE.WATER cells remain unchanged. Only their visible top surfaces changed.
+- Adjacent water tiles are rendered as one continuous top-down material field and affine-projected with the shared terrain chunks.
+- Broad world-anchored blue-green fields cross tile and chunk boundaries without tile rims, bevels, checker tint, or repeated box textures.
+- Shallow water uses lighter, calmer teal values; deep water uses darker attenuated values; cave and dungeon water use restrained underground palettes.
+- Soft radial depth fields blend waterDepth differences without replacing the existing depth data.
+- Shore tiles receive inward soft color fades while the existing structural deep-water faces continue to define blocked shorelines and vertical depth.
+- Two-texel deterministic chunk overlap prevents raster cracks between adjacent projected water chunks.
+
+ANIMATION / PERFORMANCE
+- Each water elevation layer contains a cached base surface and a cached transparent shimmer surface.
+- Wave bands are generated from world coordinates during chunk build, clipped to the water mask, and align across adjacent chunks.
+- Runtime animation changes one global shimmer opacity phase per frame. It does not scan water tiles, allocate ripple objects, or rebuild chunks.
+- Interior water tiles are excluded from the structural tile draw and depth-sort pass; only shoreline tiles retain structural depth work.
+- The previous visible-water per-tile animation loop and unused per-tile water detail renderer were removed from the owning terrain module.
+- Water shares the existing 16×16 chunks, 24-pixel material scale, camera culling, 72-entry bound, map identity, editor invalidation, and terrain signatures.
+- waterDepth is included in signatures, so shallow/deep mutation rebuilds only affected chunks.
+
+GAMEPLAY / SAVE COMPATIBILITY
+- Collision, pathfinding, water blocking/swimming, fishing, spawn rejection, placement validation, combat distance, loot, NPC/mob placement, quests, dungeons, and saves continue to use logical water tiles.
+- No volatile canvas, shimmer, cache, or signature state is serialized.
+- Existing V0.13.49 and older saves load without migration.
+- Ground chunks, walls, cliffs, props, actors, loot, nameplates, health bars, and chat bubbles retain their existing layering.
+- Autonomous parties, bot pets, targeting, paper doll, inventory drops, item comparison, currency, Purify, resurrection, ranged attacks, Silk Web encounters, Dark Woods visuals, and Esc save/exit remain intact.
+
+TESTS RUN
+- All JavaScript files pass node --check.
+- Main HTML references 88 existing ordered scripts.
+- Fighter start plus update/render smoke passes.
+- Shared water chunks build cached base and shimmer surfaces.
+- Player movement and free camera yaw reuse water chunks without rebuild.
+- waterDepth mutation changes the terrain signature and rebuilds the affected chunk.
+- Interior water bypasses structural per-tile drawing while shoreline water retains it.
+- Shallow and deep water resolve distinct materials.
+- Logical water type, depth, and blocked state remain unchanged by rendering.
+- The obsolete per-tile animated water loop is absent.
+- Full prior regression smoke covers seamless ground, party/HUD/bots/chat/pets, targeting/combat, spawn safety, save/load, paper doll, bag ground drops, item compare, currency, Purify, resurrection, ranged attacks, dungeon placement/quests/loot, Dark Woods rendering, and Esc menu.
+- ZIP contents and compressed-data integrity are validated after packaging.
+
+MANUAL BROWSER CAVEATS
+- Review subjective shoreline shape, depth readability, shimmer speed, and chunk seams while moving/rotating around overworld lakes and rivers.
+- Review cave/dungeon water, very high/low zoom, high-DPI displays, props near shores, and editor water painting directly across chunk boundaries.
+- Browser profiling remains recommended for long-session GPU memory and frame-time comparison on target Electron/AppImage hardware.

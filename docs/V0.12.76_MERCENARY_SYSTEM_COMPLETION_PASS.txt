@@ -1,0 +1,40 @@
+Dream Realms V0.12.76 — Mercenary System Completion Pass
+
+Scope:
+- Complete the runtime mercenary behavior layer after the renderer/audio work.
+- Improve role AI, stances, meditation, healing, tanking, DPS behavior, death/revive recovery, command display, and audio feedback.
+
+Changed:
+- entities/mercenary.js
+- systems/mercenary-system.js
+- systems/combat-system.js
+- systems/ui-system.js
+- systems/runtime-qa-system.js
+- VERSION.txt
+- README.txt
+- docs/MODULAR_HISTORY.txt
+- Dream Realms V0.12.76.html
+
+Role behavior:
+- Guardian: tank stance, taunt, shield strike, high threat generation.
+- Field Cleric: emergency heal, normal heal, ranged support, healing priority for player/merc/pet.
+- Arcane Adept: ranged DPS, spacing control, mana-aware arcane bolts.
+- Blade Scout: melee assist, flank positioning, faster blade strikes.
+
+Command behavior:
+- Follow: stays with owner and only reacts to direct threats.
+- Assist: supports the player target or nearby active threats.
+- Guard: protects the player and intercepts nearby hostile enemies.
+- Passive: follows only and does not attack.
+- Attack: aggressively engages the player target or nearest valid enemy.
+- Meditate: rests to full HP/mana when out of combat.
+
+Recovery behavior:
+- Mercenaries are now marked downed instead of silently falling into an unusable state.
+- Downed mercs recover near the player after combat is safe and the recovery timer completes.
+- Revive resets combat state, restores partial HP/mana, returns the merc to assist unless passive was active, and refreshes party/UI state.
+
+Cascade status:
+- No bottom-of-file override layer.
+- No delayed setTimeout repair layer.
+- No monkey-patch wrapper.

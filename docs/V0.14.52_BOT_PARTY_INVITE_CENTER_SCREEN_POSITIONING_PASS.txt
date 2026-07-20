@@ -1,0 +1,16 @@
+Dream Realms V0.14.52 Bot Party Invite Center Screen Positioning Pass
+
+Purpose:
+- Move the bot party invite popup from the side HUD area to the center of the screen.
+- Keep the popup visible above other UI while preserving existing invite functionality.
+
+Changes:
+- Updated the shared HTML popup stylesheet so #partyInvitePopup uses fixed left/top 50% positioning with translate(-50%, -50%).
+- Increased popup stacking to z-index 12000 so the centered Accept/Decline prompt remains above normal HUD panels and item tooltips.
+- Kept the popup container pointer-transparent and the invite cards pointer-active, preserving movement/combat input outside the prompt.
+- Added bounded invite-list scrolling for stacked pending invites.
+- Did not add a late script patch or duplicate invite logic; behavior remains owned by PartySystem and the shared popup UI.
+
+Validation:
+- node --check passed across all JavaScript runtime files.
+- ZIP integrity verified.

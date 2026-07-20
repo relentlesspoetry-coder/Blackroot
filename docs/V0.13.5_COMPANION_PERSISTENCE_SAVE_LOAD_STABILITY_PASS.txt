@@ -1,0 +1,35 @@
+Dream Realms V0.13.5 — Companion Persistence Save Load Stability Pass
+
+Baseline
+- Dream Realms V0.13.4 — Companion Combat Role AI and Encounter Polish Pass
+
+Purpose
+- Stabilize save/load ownership for companions before adding more AI features.
+- Pets were the remaining weak link: mercs, bots, and party state already had explicit runtime snapshots, but active Summoner/Necromancer pets were not serialized as first-class companion state.
+
+Implemented
+- Added SaveSystem-owned pet serialization:
+  - active flag
+  - name
+  - pet type
+  - class/visual model
+  - HP/mana
+  - attack/defense/speed/range
+  - level
+  - command and command state
+  - zone
+  - status effects
+- Added SaveSystem-owned pet restore path.
+- Character runtime payload now saves runtime.pet beside mercenary, party, and botPlayers.
+- Character load now restores pet state before party state reconciliation.
+- Added companion zone reconciliation after character load so party merc, pet, and party bots stay in the player's active zone and active entity list.
+- Pet summon initialization now stamps level, zone, and command state.
+- Pet runtime now keeps its zone aligned to the owner.
+- Runtime QA now checks pet save/restore owner methods.
+
+Validation
+- JS syntax check on all active JavaScript files.
+- HTML script order / missing script check.
+- Static checks for runtime.pet serialization, restorePetState, companion zone reconciliation, and Runtime QA coverage.
+
+No cascade patch layer was added.

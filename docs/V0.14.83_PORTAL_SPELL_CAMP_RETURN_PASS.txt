@@ -1,0 +1,37 @@
+Dream Realms V0.14.83 — Portal Spell Camp Return Pass
+
+Implemented:
+- Added a new owned portal spell system:
+  - systems/portal-system.js
+- Added keybinding support:
+  - T = Portal to Camp / Return
+- Portal behavior:
+  - Pressing T creates one active portal link.
+  - The origin portal spawns in front of the player.
+  - Walking into the origin portal teleports the player to the Dead Lantern Camp arrival point.
+  - A linked return portal opens at the arrival/destination point.
+  - Walking into the return portal sends the player back to the original location.
+  - After the return trip, the portal link collapses and both endpoints disappear.
+  - Pressing T again destroys any older portal pair and replaces it with a new one.
+- Camp behavior:
+  - If the player is already at camp, Portal uses the last recorded wilderness/cave location as the destination.
+  - If no wilderness anchor exists yet, casting fails cleanly.
+- Trigger rules:
+  - Player-only trigger checks.
+  - Mobs, bots, mercenaries, and pets cannot activate the portal.
+- Visuals:
+  - Bluish-purple spinning vortex.
+  - Bright rim.
+  - Swirling internal energy.
+  - Rune base.
+  - Orbiting particles.
+  - Quick screen flash on teleport.
+- Integration:
+  - Uses existing map/current-zone ownership.
+  - Uses existing walkability/camp safety checks.
+  - Does not replace movement, cave, combat, bot, or mob systems.
+
+Validation:
+- Runtime JavaScript syntax validated with node --check.
+- Zip integrity validated with unzip -t.
+- No cascade patch layer added.

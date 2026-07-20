@@ -1,0 +1,11 @@
+Dream Realms V0.13.23 - Dark Woods Spawn QA Performance Stability Pass
+
+Scope:
+- Hardened Dark Woods 3x population pass with owned spawn audit/repair helpers.
+- Added local density checks and invalid fallback prevention so mobs do not fall back to unsafe 1,1 placement.
+- Throttled mob-spawn respawn scans for high-population zones.
+- Added enemy AI budget bands for full/light/sleep updates around the player.
+- Tightened roaming group cohesion and patrol target validation so groups do not drift into unsafe/town/cave-entry spaces.
+- Added game-level audit and repair entry points for Dark Woods population QA.
+
+No bottom-of-file patch layer or duplicate spawn manager was added.

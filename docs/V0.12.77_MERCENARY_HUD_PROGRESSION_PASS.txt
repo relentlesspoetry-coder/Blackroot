@@ -1,0 +1,39 @@
+Dream Realms V0.12.77 — Mercenary HUD + Progression Pass
+
+Scope:
+- Improve mercenary HUD readability and progression feedback after the V0.12.76 role-AI completion pass.
+- Keep downed mercenaries visible with recovery information.
+- Add character-save persistence for mercenary progression data.
+
+Changed:
+- entities/mercenary.js
+- systems/mercenary-system.js
+- systems/ui-system.js
+- systems/save-system.js
+- systems/runtime-qa-system.js
+- VERSION.txt
+- README.txt
+- docs/MODULAR_HISTORY.txt
+- Dream Realms V0.12.77.html
+
+HUD changes:
+- Role portrait/icon.
+- Role archetype badge.
+- Command/recovery state badge.
+- Level and XP percent summary.
+- ATK / DEF / RNG / SPD stat tiles.
+- Downed/recovery countdown remains visible in the HUD.
+
+Progression changes:
+- Mercenary XP awards now track latest gain/source metadata.
+- Level-up feedback triggers ring/status pulse, audio hook, UI refresh, and save-dirty marking.
+- Mercenary HP/mana are restored on level-up.
+
+Save changes:
+- Character saves now include runtime.mercenary.
+- Restore flow can rebuild the active mercenary from saved role, level, XP, command, equipment, HP/mana, and downed/revive state.
+
+Cascade status:
+- No bottom-of-file override layer.
+- No delayed repair layer.
+- No wrapper/monkey patch layer.

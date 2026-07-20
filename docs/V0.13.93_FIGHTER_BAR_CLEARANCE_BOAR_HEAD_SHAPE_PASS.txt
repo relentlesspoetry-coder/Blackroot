@@ -1,0 +1,21 @@
+Dream Realms V0.13.93 — Fighter Meditation Bar Clearance + Boar Head Shape Pass
+
+Summary
+- Moved the Fighter meditation EXP bar farther below the model for clear separation.
+- Adjusted generic fallback meditation EXP bar placement downward as a safety net.
+- Reworked the Boar head shape to improve silhouette and anatomy.
+
+Files Changed
+- render/class-identity-procedural-model.js
+- render/entity-renderer.js
+- render/boar-procedural-model.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.13.93_FIGHTER_BAR_CLEARANCE_BOAR_HEAD_SHAPE_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- ZIP integrity verified with `unzip -t`.

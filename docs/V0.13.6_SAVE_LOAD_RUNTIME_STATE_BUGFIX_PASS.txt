@@ -1,0 +1,21 @@
+Dream Realms V0.13.6 — Save Load Runtime State Bugfix Pass
+
+Baseline
+- Dream Realms V0.13.5 — Companion Persistence Save Load Stability Pass
+
+Implemented
+- Fixed character load so saved activeRuntimeZone, active cave id/floor, and player x/y are restored through the SaveSystem-owned load transaction.
+- Added a character/session reset owner used by slot loading and logout so stale cave/dungeon/session actors do not leak into the next character.
+- Fixed bot player restore so saved hp, mana, alive/downed state, botState, command, x/y, zone, and AI timers are reapplied after construction.
+- Extended mercenary persistence with x/y/zone save and restore instead of always recreating the merc beside the player.
+- Preserved water metadata in world tile serialization and normalization: waterDepth, waterSurfaceElev, waterBottomElev, waterBodySize, and waterBodyKind.
+- Updated character/world save metadata to the current bugfix pass instead of stale V0.12.x strings.
+
+Validation
+- JS syntax check passed across all active JavaScript files.
+- Prototype ownership scan found zero duplicate Game.prototype method assignments.
+- Targeted serializer test confirmed water metadata survives clone/normalize paths.
+- Targeted character save/load probe confirmed saved cave metadata and x/y restoration.
+- Targeted bot restore probe confirmed downed bots stay downed with saved hp/mana/state/position.
+
+No cascade patch layer was added.

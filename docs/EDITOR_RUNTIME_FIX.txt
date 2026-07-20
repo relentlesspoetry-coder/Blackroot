@@ -1,0 +1,12 @@
+Modular Pass 18.2
+=================
+
+This pass keeps the editor shell active but fixes the blank/green world screen risk.
+
+Changes:
+- Strictly validates saved world grid dimensions before applying browser world saves.
+- Invalid/corrupt saved worlds are ignored and cleared during boot instead of replacing the map with empty data.
+- Game render path now detects invalid active world grids and restores default Dark Woods instead of leaving a blank screen.
+- Game render path now shows a clear module-load error if a required render module is missing.
+
+No rollback: systems/editor-system.js remains loaded.

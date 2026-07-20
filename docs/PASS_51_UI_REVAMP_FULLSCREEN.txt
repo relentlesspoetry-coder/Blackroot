@@ -1,0 +1,10 @@
+Dream Realms Modular Pass 51 - UI Revamp + Fullscreen Support
+
+Scope:
+- Full visual UI revamp with richer panel texture, beveled borders, glow accents, improved buttons, rounded bars, styled hotbar, detailed windows, and enhanced menu/chat surfaces.
+- Fullscreen support through the main splash screen, in-game menu, and F11 key handling.
+- Fullscreen state updates menu/splash labels and reapplies canvas sizing.
+
+Verification:
+- JS syntax check across all modules.
+- Zip integrity test.

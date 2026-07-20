@@ -1,0 +1,27 @@
+Dream Realms V0.15.09 — Pathfinding Worker Pass
+
+Goal
+- Reduce main-thread CPU spikes caused by repeated synchronous A* pathfinding while preserving existing movement, collision, leash, combat, and companion behavior.
+
+Changes
+- Added systems/pathfinding-worker-system.js.
+- Added a Blob-backed Web Worker pathfinding service, so it works from the extracted local folder without needing a separate worker URL.
+- Serialized the current non-player walkability grid to the worker and rebuilt it when the active map/object references change or after a configured audit interval.
+- Routed high-volume actor movement path requests through the worker for enemies, bots, mercs, and pets when possible.
+- Preserved the existing synchronous findPath implementation as the fallback path for unsupported browsers, worker failures, request budget exhaustion, and direct player click-to-walk path requests.
+- Added request budgets and pending request limits to prevent worker flooding.
+- Added timeout cleanup for stale worker requests.
+- Expanded the F3 overlay with path worker state, pending count, request rate, completions, failures, sync fallbacks, grid version, grid builds, and grid cell count.
+
+Config
+- CONFIG.PERFORMANCE.enablePathfindingWorker
+- CONFIG.PERFORMANCE.pathWorkerMaxPending
+- CONFIG.PERFORMANCE.pathWorkerMaxRequestsPerFrame
+- CONFIG.PERFORMANCE.pathWorkerGridAuditFrames
+- CONFIG.PERFORMANCE.pathWorkerTimeoutMs
+- CONFIG.PERFORMANCE.pathWorkerMinDistance
+- CONFIG.PERFORMANCE.pathWorkerActorKinds
+
+Validation
+- JavaScript syntax validation was run across the build.
+- The worker path is additive and guarded; if worker startup fails, the old pathfinder remains active.

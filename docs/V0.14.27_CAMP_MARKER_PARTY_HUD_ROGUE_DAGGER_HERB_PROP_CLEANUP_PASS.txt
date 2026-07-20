@@ -1,0 +1,28 @@
+Dream Realms V0.14.27 — Camp Marker Party HUD Rogue Dagger Herb Prop Cleanup Pass
+
+Summary
+- Removed remaining camp/trainer overhead role circles.
+- Hid the party/companion HUD while solo and prevented it from showing a redundant player-only frame.
+- Re-anchored Rogue daggers so the grip centers are held by the hand anchors instead of floating low/outside the fists.
+- Replaced flat herb/resource circles with physical harvestable prop visuals.
+- Removed crafting-station marker circles while preserving interaction behavior.
+
+Files Changed
+- systems/npc-system.js
+- systems/ui-system.js
+- systems/resource-gathering-system.js
+- systems/crafting-system.js
+- render/class-identity-procedural-model.js
+- render/object-renderer.js
+- Dream Realms V0.14.27.html
+- README.txt
+- VERSION.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+
+Validation
+- JavaScript syntax verified with node --check.
+- ZIP integrity verified with unzip -t.

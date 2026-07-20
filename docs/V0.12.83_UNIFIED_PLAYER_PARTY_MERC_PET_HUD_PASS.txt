@@ -1,0 +1,17 @@
+Dream Realms V0.12.83 — Unified Player / Party / Merc / Pet HUD Pass
+
+Baseline:
+- Dream Realms V0.12.82 — Camp, Companion HUD, and Merc Command Fix Pass
+
+Scope implemented:
+- Player HUD is now the anchor for party, mercenary, and pet status.
+- Added #unifiedCompanionHud inside #hud.
+- Party member frames render into the unified player HUD.
+- Mercenary frame renders into the unified player HUD with HP, mana, EXP, command state, and command buttons.
+- Pet frame renders into the unified player HUD with HP and command buttons.
+- Suppressed the old floating #partyHud, #mercPanel, and legacy #petCommandPanel in gameplay to avoid duplicate HUD windows.
+- Left #partyPanel intact as the optional party management/details panel for invites and nearby peers.
+- Existing merc and pet command handlers remain the owning action routes; this pass only changes their primary HUD surface.
+
+No discarded off-roadmap branch systems were used.
+No cascade patch layer was added.

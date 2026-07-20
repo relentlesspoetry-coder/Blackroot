@@ -1,0 +1,29 @@
+Dream Realms V0.12.65 — Pet Model Identity Revamp Pass
+
+Scope:
+- Revamp the Summoner and Necromancer pets so they visually match the newer class-model quality.
+- Add a shared pet renderer foundation instead of keeping pets as isolated one-off drawings.
+- Improve summon / idle / walk / attack / hit / death readability without adding bottom-of-file patch layers.
+
+Changed:
+- render/pet-identity-procedural-model.js
+- render/entity-renderer.js
+- entities/pet.js
+- systems/runtime-qa-system.js
+- VERSION.txt
+- README.txt
+- docs/MODULAR_HISTORY.txt
+- Dream Realms V0.12.65.html
+
+Highlights:
+- Shared PetIdentityProceduralModel module added.
+- Summoner pet now renders as a mystical spirit familiar with crystal fins, arcane core, and summon rune visuals.
+- Necromancer pet now renders as a bone-servitor / bone-knight silhouette with clearer skull, ribs, armor, ragged cloth, and necrotic glow.
+- Entity renderer now routes pets through the shared pet model first and falls back to the old drawing only if the module is missing.
+- Pet entities now expose a short spawnFx timer for summon presentation.
+- Runtime QA now validates PetIdentityProceduralModel.draw/canDraw.
+
+Cascade status:
+- No bottom-of-file override layer.
+- No delayed setTimeout repair layer.
+- Changes were made in the owning entity / renderer / QA modules directly.

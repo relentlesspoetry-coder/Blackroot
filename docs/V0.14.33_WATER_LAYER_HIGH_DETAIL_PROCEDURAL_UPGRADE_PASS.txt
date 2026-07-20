@@ -1,0 +1,21 @@
+Dream Realms V0.14.33 — Water Layer High-Detail Procedural Upgrade Pass
+
+Summary
+- Upgraded the water floor/terrain layer visual renderer with higher-detail procedural water surface readables.
+- Preserved the original water footprint, map layout, tile IDs, collision, fishing behavior, swimming/water validation, and cached terrain chunk behavior.
+
+Files changed
+- render/terrain-renderer.js
+- Dream Realms V0.14.33.html
+- README.txt
+- VERSION.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.33_WATER_LAYER_HIGH_DETAIL_PROCEDURAL_UPGRADE_PASS.txt
+
+Validation
+- JavaScript syntax verified with node --check.
+- ZIP integrity verified with unzip -t.

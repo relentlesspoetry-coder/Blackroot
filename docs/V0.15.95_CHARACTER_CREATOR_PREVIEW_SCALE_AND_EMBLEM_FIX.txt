@@ -1,0 +1,5 @@
+Dream Realms V0.15.95 - Character Creator Preview Scale and Emblem Fix
+
+- Fixed the creator model framing so the full body is visible.
+- Kept the model large enough to read by using full-body fit math instead of the previous aggressive zoom/crop.
+- Made the selected class emblem a clearly visible oversized background behind the character model.

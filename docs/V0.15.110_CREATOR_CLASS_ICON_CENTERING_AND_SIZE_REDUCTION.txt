@@ -1,0 +1,4 @@
+Dream Realms V0.15.110 - Creator Class Icon Centering and Size Reduction
+
+- Kept each large creator class icon centered behind the model using visual-bounds centering.
+- Reduced the creator backdrop size by 40%.

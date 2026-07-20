@@ -1,0 +1,20 @@
+Dream Realms V0.11.3 - Dark Woods Loot and Progression
+
+Changes
+- Added family-specific Dark Woods loot tables for wolves, rotlings, briar boars, duskwisps, hollow stags, ashroot horrors, and named rares.
+- Added early, mid, deep, and outer-woods gear rewards.
+- Added named rare mobs: Old Tusk Briarback, Lumen-Wisp, Thorn-Crowned Stag, and Ashroot Elder.
+- Added named rare spawn markers to the existing Dark Woods spawn owner.
+- Upgraded quest rewards for Briars on the Road, Wisps at Dusk, and Ashroot Signs.
+- Improved combat loot messages to separate XP and loot lines.
+
+Ownership
+- Item data: data/items.js
+- Loot tables: data/loot-tables.js
+- Mob/rare definitions: data/npcs.js
+- Spawn placement and live mob loot roll metadata: systems/mob-spawn-system.js
+- Quest rewards: data/quests.js
+- Loot result formatting: systems/loot-system.js
+- Combat loot messages: systems/combat-system.js
+
+No cascade patches were added.

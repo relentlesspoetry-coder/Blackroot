@@ -1,0 +1,19 @@
+Dream Realms V0.15.23 — WebGL Terrain Layer Promotion Pass
+
+Primary goal:
+Promote the safest renderer layer first: cached terrain/background chunk surfaces can now be drawn through the Hybrid WebGL backend while actors, effects, nameplates, UI, and gameplay logic remain Canvas 2D.
+
+Changes:
+- Added a Visible WebGL Terrain toggle in Settings.
+- Added persistent localStorage state for the promoted terrain layer.
+- Added WebGL full-screen terrain compositing from existing cached terrain chunk surfaces.
+- When the promoted terrain draw succeeds, Canvas terrain-surface chunk drawing is skipped for that frame.
+- Preserved Canvas fallback when WebGL is unavailable, context-lost, over budget, or returns no terrain quads.
+- Kept actors, pets, bots, NPCs, spell effects, damage text, structural overlays, and UI on the existing Canvas path.
+- Expanded F3 metrics with visible WebGL terrain active/promoted status, draw/composite cost, quads, fallback count, and last error.
+- Updated renderer backend status labels to distinguish Canvas, scene-preview, and visible terrain promotion modes.
+
+Safety:
+- Hybrid mode is still optional.
+- Canvas 2D remains the stable fallback.
+- No gameplay balance, loot, quests, class data, mob data, map layout, or UI layout was changed.

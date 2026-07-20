@@ -1,0 +1,36 @@
+Dream Realms V0.12.81
+Mercenary + Party Runtime QA Bugfix Pass
+
+Baseline:
+- Dream Realms V0.12.80 — Party Combat Integration Pass.
+- V0.12.81 Mount/Class/Fishing off-roadmap branch is not included and must not be treated as mainline.
+
+Scope:
+- Audit and harden only the V0.12.76–V0.12.80 mercenary and party systems.
+- Fix mercenary role AI, stance reliability, meditation/recovery behavior, party healing priority, assist targeting, loot eligibility, and save/load edge cases.
+
+Implemented fixes:
+- Mercenary meditation no longer starts while the player is moving.
+- Mercenary meditation now cancels immediately if the player starts moving, combat begins, or the merc falls outside follow range.
+- Commanded meditation now waits in a follow state until the player stops instead of interrupting movement.
+- Assist and guard stances no longer acquire random nearby idle enemies.
+- Assist targets only resolve to the player's selected target when that target is actually engaged through auto attack, aggro, damage, or combat cooldown.
+- Passive and meditate commands cannot leak into combat target selection.
+- Guardian tank AI now uses a tank anchor between the protected owner and the target so it holds the front line instead of standing randomly on top of the enemy.
+- Field Cleric healing priority now uses explicit order and HP-ratio sorting: local player, self, party player, other merc, pet.
+- Party loot eligibility now excludes mercenaries from party loot policy unless the merc has actually been invited to the party.
+- Party restore now drops stale merc party inclusion if no mercenary exists and normalizes empty saved parties back to solo.
+
+Validation target:
+- Merc AI behaves by role without generic random combat acquisition.
+- Stances remain reliable: Follow, Guard, Assist, Passive, Attack, Meditate.
+- Field Cleric heals the correct target under mixed player/self/party/pet damage.
+- Guardian stays forward, taunts, and holds threat.
+- Shared XP and loot metadata do not break solo or merc-only play.
+- Mercenary and party runtime state remain serializable and restorable.
+
+Cascade status:
+- No bottom-of-file override layer.
+- No delayed setTimeout repair layer.
+- No wrapper monkey patches.
+- Changes are in owning runtime files only: entities/mercenary.js and systems/party-system.js.

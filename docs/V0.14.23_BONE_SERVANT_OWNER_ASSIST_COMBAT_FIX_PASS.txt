@@ -1,0 +1,16 @@
+Dream Realms V0.14.23 — Bone Servant Owner Assist Combat Fix Pass
+
+Summary
+- Fixed the actual Necromancer pet bug where Bone Servant stands idle after the player begins attacking.
+- Changes are integrated directly in the owning systems: `entities/pet.js` and `systems/combat-system.js`.
+- No bottom-of-file cascade patching or setTimeout wrappers were added.
+
+Technical Fixes
+- Bone Servant melee attack range now accounts for large target body spacing and procedural sprite width.
+- Pet.update now has a direct combat movement fallback when shared companion pathing declines to move but the pet is not in valid attack range.
+- Combat stale-state cleanup no longer clears an owner-assist pet while the owner is actively attacking the same hostile target.
+
+Validation
+- `node --check` passed across all JavaScript files.
+- Direct Bone Servant smoke test confirmed repeated attacks with the owner target engaged.
+- ZIP integrity verified.

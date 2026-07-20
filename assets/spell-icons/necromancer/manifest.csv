@@ -1,0 +1,21 @@
+level,spell,key,asset
+1,Bone Splinter,bone_splinter,assets/spell-icons/necromancer/bone_splinter.png
+2,Raise Skeleton,raise_skeleton,assets/spell-icons/necromancer/raise_skeleton.png
+3,Grave Rot,grave_rot,assets/spell-icons/necromancer/grave_rot.png
+4,Life Tap,life_tap,assets/spell-icons/necromancer/life_tap.png
+5,Command Undead,command_undead,assets/spell-icons/necromancer/command_undead.png
+6,Bone Armor,bone_armor,assets/spell-icons/necromancer/bone_armor.png
+7,Plague Mark,plague_mark,assets/spell-icons/necromancer/plague_mark.png
+8,Corpse Mender,corpse_mender,assets/spell-icons/necromancer/corpse_mender.png
+9,Fear the Living,fear_the_living,assets/spell-icons/necromancer/fear_the_living.png
+10,Rot Cloud,rot_cloud,assets/spell-icons/necromancer/rot_cloud.png
+11,Summon Bone Servant,summon_bone_servant,assets/spell-icons/necromancer/summon_bone_servant.png
+12,Soul Harvest,soul_harvest,assets/spell-icons/necromancer/soul_harvest.png
+13,Bone Shackles,bone_shackles,assets/spell-icons/necromancer/bone_shackles.png
+14,Withering Curse,withering_curse,assets/spell-icons/necromancer/withering_curse.png
+15,Army of Bones,army_of_bones,assets/spell-icons/necromancer/army_of_bones.png
+16,Death Pact,death_pact,assets/spell-icons/necromancer/death_pact.png
+17,Bone Storm,bone_storm,assets/spell-icons/necromancer/bone_storm.png
+18,Lich Veil,lich_veil,assets/spell-icons/necromancer/lich_veil.png
+19,Soul Leech,soul_leech,assets/spell-icons/necromancer/soul_leech.png
+20,Grave Sovereign,grave_sovereign,assets/spell-icons/necromancer/grave_sovereign.png

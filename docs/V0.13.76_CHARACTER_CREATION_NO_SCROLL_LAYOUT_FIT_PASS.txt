@@ -1,0 +1,34 @@
+Dream Realms V0.13.76 — Character Creation No-Scroll Layout Fit Pass
+
+Goal
+- Keep the complete character creation screen visible in the viewport so the player does not need to scroll down just to press Create Character.
+
+Changes
+- Converted the character creation modal to a fixed viewport-fit flex layout with hidden page-level overflow.
+- Reduced title/logo/header height and constrained the class modal to the visible browser height.
+- Tightened the left customization panel by reducing field gaps, control heights, preview height, summary height, and action spacing.
+- Kept the Create Character action area inside the visible left panel, with margin-top:auto so it stays anchored near the bottom without relying on page scroll.
+- Reduced the main creator preview canvas from 142x178 to 112x136 and reduced class-card preview canvases from 82x98 to 72x86.
+- Compacted the creator summary from five lines to three lines while keeping all important appearance data visible.
+- Tightened the class card grid, class cards, class preview windows, statline spacing, and text rhythm so all class cards remain visible.
+- Added a max-height responsive rule for shorter screens to further compress header, form controls, preview, summary, class cards, and action text.
+
+Preserved
+- Live class-card model previews.
+- Live main character preview.
+- Hair style, hair color, eye color, skin tone, face, and clothing color syncing.
+- Class selection and selected-card highlighting.
+- Character create flow.
+- Character save/load appearance persistence.
+- Sprite baker/runtime systems.
+- Combat, targeting, party, inventory, map, terrain, dungeon, and Esc menu systems.
+
+Validation
+- JavaScript syntax validation passed.
+- Main HTML script reference audit passed.
+- Version metadata updated to V0.13.76.
+- Patch notes and modular history updated.
+- Zip integrity passed.
+
+Manual browser caveat
+- Browser viewport-fit validation should still be checked at the user's actual desktop resolution. The intended result is that the Create Character button remains visible without scrolling while the class cards and live previews remain readable.

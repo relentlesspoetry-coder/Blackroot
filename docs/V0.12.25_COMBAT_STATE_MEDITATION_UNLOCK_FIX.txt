@@ -1,0 +1,16 @@
+Dream Realms V0.12.25 — Combat State Cleanup and Meditation Unlock Fix
+
+Diagnosis
+- The combat system could leave the player in a stale combat state after a fight ended.
+- Enemy aggro sight checks could repeatedly call beginAutoAttack(), refreshing player combat cooldown even when the mob was not actively hitting the player.
+- Meditation checked isEntityInCombat() directly, so stale cooldown/target state blocked meditation.
+
+Fix
+- Added activeThreatsForEntity() to distinguish real active threats from stale aggro/cooldown residue.
+- Added clearStaleCombatState() to clear combat cooldown, target, and auto-attack when no active threat remains.
+- Overrode isEntityInCombat() through the combat owner so meditation only blocks on real active threats.
+- startMeditation() now attempts stale-combat cleanup before rejecting meditation.
+- Enemy aggro no longer refreshes player combat cooldown every frame unless the enemy is in real engagement range or recent combat exists.
+
+Result
+- After combat ends, the player should be able to meditate normally.

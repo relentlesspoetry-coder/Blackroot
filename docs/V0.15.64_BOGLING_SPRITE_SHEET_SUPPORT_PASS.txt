@@ -1,0 +1,9 @@
+Dream Realms V0.15.64 — Bogling Sprite Sheet Support Pass
+
+- Added optional 8-direction Blender-rendered Bogling PNG sprite sheets.
+- Supports idle, walk, attack, cast, hit, death, meditate, and swim frame sets.
+- Uses the existing Canvas2D world and character-creator render paths.
+- Selects canonical direction rows and animation columns from live actor state.
+- Preloads assets without blocking startup and validates sheet dimensions.
+- Missing or invalid animation sheets warn once and use RaceIdentityProceduralModel.
+- Human, Elf, Ratkin, saves, classes, paperdoll logic, and the experimental 3D renderer are unchanged.

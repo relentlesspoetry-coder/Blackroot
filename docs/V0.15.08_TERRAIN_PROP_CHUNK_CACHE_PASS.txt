@@ -1,0 +1,33 @@
+Dream Realms V0.15.08 — Terrain and Prop Chunk Cache Pass
+
+Baseline: Dream Realms V0.15.07 Runtime Sprite Cache and AI Throttle Pass
+
+Goal
+- Reduce world-layer CPU cost without changing gameplay balance, graphics style, class/spell values, loot, quests, or zone layout.
+
+Changes
+1. Terrain cache controls
+- Increased terrain signature audit interval from 180 to 300 frames.
+- Added terrain dirty-chunk tracking so editor/world changes invalidate the affected chunk neighborhood instead of forcing broad cache churn.
+- Added viewport-level culling for terrain chunks before build/draw work is queued.
+
+2. Object/prop chunk indexing
+- Added objectChunkIndex to the runtime.
+- Objects/props are now indexed into chunk buckets and collected by visible object chunks instead of touching every object-grid cell during the terrain scan.
+- Object chunk index rebuilds when marked dirty, when the active zone/floor changes, or during a periodic audit.
+
+3. Render queue optimization
+- Removed per-frame object-grid lookup from the terrain tile scan.
+- Added object screen-space culling before inserting object renderables into the depth-sorted world queue.
+- Replaced several renderable count filter passes with one counter pass over the render queue.
+
+4. F3 performance overlay additions
+- Terrain surface counts.
+- Terrain cache entries/builds/invalidations.
+- Terrain chunks considered/culled.
+- Object chunks visited/cache entries/object count.
+- Objects culled before queue insertion.
+
+Validation
+- JavaScript syntax validation should pass across all runtime scripts.
+- No gameplay data or balance tables were intentionally changed.

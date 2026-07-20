@@ -1,0 +1,16 @@
+Dream Realms V0.12.47 - Corpse Loot Window Visibility Fix
+
+Bug fixed:
+- Pressing E near a lootable corpse logged "Opened Corpse Loot" but did not show the loot window.
+
+Root cause:
+- The Corpse Loot panel used the shared gameWindow class, whose CSS default is display:none. The E-key interaction path was correctly finding/opening the corpse, but the panel remained hidden.
+
+Owned-system fix:
+- Updated systems/loot-system.js so ensureCorpseLootWindow() and openCorpseLootWindow() explicitly set the panel to display:block, hidden=false, and focused/open whenever a corpse bag opens.
+- Added explicit Corpse Loot CSS so the bag remains visible and readable above existing HUD/windows.
+
+Rules:
+- No bottom-of-file cascade patch.
+- No temporary wrapper hotfix.
+- Corpse loot remains owned by systems/loot-system.js.

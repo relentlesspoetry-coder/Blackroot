@@ -1,0 +1,19 @@
+Dream Realms V0.10.3 Modular Pass 28
+Crafting / Resource Editors
+
+Base:
+- Built from Dream Realms V0.10.3 Modular Pass 27.
+
+Added:
+- data/crafting.js
+- Profession definitions for Gathering, Mining, Fishing, Cooking, Blacksmithing, and Tailoring.
+- Crafting station definitions for Campfire, Smithing Forge, Tailoring Loom, and Herbalist Table.
+- Crafting recipe drafts for cooking, blacksmithing, and tailoring.
+- Crafting editor tab with recipe browser, create, edit, duplicate, delete, and station assignment tools.
+- Resource definition editor actions: create, edit, duplicate, delete.
+- World save/export support for resourceTypes, professions, craftingStations, and recipes.
+
+Intentionally unchanged:
+- Runtime crafting execution is not active yet.
+- Runtime gathering/mining/fishing behavior is not changed.
+- Cave rendering, combat, spells, party, multiplayer, and entity rendering are not changed.

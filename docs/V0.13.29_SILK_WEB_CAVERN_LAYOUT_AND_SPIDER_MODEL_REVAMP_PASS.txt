@@ -1,0 +1,12 @@
+Dream Realms V0.13.29 — Silk Web Cavern Layout And Spider Model Revamp Pass
+
+Scope:
+- Rebuilt Silk Web Cavern floor plans around authored, floor-specific room networks instead of generic linear cave chains.
+- Floor 1 now emphasizes outer webworks, split hunting tunnels, cocoon storage, venom gallery, broken supports, bone yard, and staged Broodwarden approach.
+- Floor 2 now emphasizes cocoon maze navigation, multiple cocoon cells, bridge crossings, lock wings, Hollowfang den, and a Matron arena.
+- Floor 3 now emphasizes royal pylon wings, venom shrine, egg throne, silk reliquary, gauntlet wings, and a larger queen throne arena.
+- Added dungeon dressing objects: silk strands, egg clusters, chitin columns, brood growths, webbed bones, venom pools, royal pylons, and silk reliquary.
+- Added render/silk-web-spider-procedural-model.js with role-specific spider silhouettes for elites, mini-bosses, and bosses.
+- Routed Silk Web enemies through the dedicated spider renderer inside the existing entity renderer ownership path.
+
+No bottom-of-file patch layer, duplicate dungeon loader, duplicate renderer loop, or fake combat system was added.

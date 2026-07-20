@@ -1,0 +1,1778 @@
+{
+  "asset": "paladin_class_highpoly_quadmesh_v0.15.90.obj",
+  "generator": "tools/generate-paladin-highpoly.js",
+  "coordinateSystem": "+Y up, +Z forward",
+  "units": "meters (art reference scale)",
+  "intendedUse": "high-poly source for normal-map baking and detail projection onto the existing Paladin runtime model",
+  "vertices": 38304,
+  "quadFaces": 33646,
+  "triangles": 0,
+  "ngons": 0,
+  "groups": [
+    {
+      "name": "torso_breastplate_central_ridge",
+      "material": "paladin_polished_plate",
+      "vertices": 866,
+      "quads": 864
+    },
+    {
+      "name": "backplate_divine_seal_base",
+      "material": "paladin_dark_steel",
+      "vertices": 602,
+      "quads": 600
+    },
+    {
+      "name": "pelvis_faulds_core",
+      "material": "paladin_dark_steel",
+      "vertices": 602,
+      "quads": 600
+    },
+    {
+      "name": "fauld_lame_front_0",
+      "material": "paladin_polished_plate",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "fauld_lame_front_1",
+      "material": "paladin_polished_plate",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "fauld_lame_front_2",
+      "material": "paladin_polished_plate",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "fauld_lame_front_3",
+      "material": "paladin_polished_plate",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "fauld_lame_back_0",
+      "material": "paladin_dark_steel",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "fauld_lame_back_1",
+      "material": "paladin_dark_steel",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "fauld_lame_back_2",
+      "material": "paladin_dark_steel",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "fauld_lame_back_3",
+      "material": "paladin_dark_steel",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "front_split_tabard_heavy_wool_left",
+      "material": "paladin_tabard_wool",
+      "vertices": 486,
+      "quads": 384
+    },
+    {
+      "name": "front_split_tabard_heavy_wool_right",
+      "material": "paladin_tabard_wool",
+      "vertices": 486,
+      "quads": 384
+    },
+    {
+      "name": "back_tabard_panel_with_divine_seal",
+      "material": "paladin_tabard_wool",
+      "vertices": 486,
+      "quads": 384
+    },
+    {
+      "name": "thrown_back_deep_hood",
+      "material": "paladin_tabard_wool",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "visible_resolute_face",
+      "material": "paladin_skin_visible",
+      "vertices": 602,
+      "quads": 600
+    },
+    {
+      "name": "open_faced_armet_shell",
+      "material": "paladin_polished_plate",
+      "vertices": 866,
+      "quads": 864
+    },
+    {
+      "name": "helmet_central_ridge",
+      "material": "paladin_gold_trim",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "helmet_left_fluted_cheek_plate",
+      "material": "paladin_polished_plate",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "helmet_right_fluted_cheek_plate",
+      "material": "paladin_polished_plate",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "sunburst_helm_crest_core",
+      "material": "paladin_gold_trim",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "sunburst_helm_crest_ray_0",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "sunburst_helm_crest_ray_1",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "sunburst_helm_crest_ray_2",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "sunburst_helm_crest_ray_3",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "sunburst_helm_crest_ray_4",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "sunburst_helm_crest_ray_5",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "sunburst_helm_crest_ray_6",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "sunburst_helm_crest_ray_7",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "sunburst_helm_crest_ray_8",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "cross_vent_slit_0",
+      "material": "paladin_dark_steel",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "cross_vent_slit_1",
+      "material": "paladin_dark_steel",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "cross_vent_slit_2",
+      "material": "paladin_dark_steel",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "cross_vent_slit_3",
+      "material": "paladin_dark_steel",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "cross_vent_slit_4",
+      "material": "paladin_dark_steel",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "articulated_gorget_plate_0",
+      "material": "paladin_polished_plate",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "articulated_gorget_plate_1",
+      "material": "paladin_dark_steel",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "articulated_gorget_plate_2",
+      "material": "paladin_polished_plate",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "articulated_gorget_plate_3",
+      "material": "paladin_dark_steel",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "left_massive_layered_pauldron_outer",
+      "material": "paladin_polished_plate",
+      "vertices": 602,
+      "quads": 600
+    },
+    {
+      "name": "left_pauldron_overlapping_lame_0",
+      "material": "paladin_polished_plate",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "left_pauldron_overlapping_lame_1",
+      "material": "paladin_dark_steel",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "left_pauldron_overlapping_lame_2",
+      "material": "paladin_polished_plate",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "left_pauldron_overlapping_lame_3",
+      "material": "paladin_dark_steel",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "left_pauldron_order_rondel",
+      "material": "paladin_gold_trim",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "left_rerebrace_enclosed_plate",
+      "material": "paladin_polished_plate",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "left_sunburst_couter",
+      "material": "paladin_gold_trim",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "left_vambrace_hinged_plate",
+      "material": "paladin_polished_plate",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "left_articulated_gauntlet",
+      "material": "paladin_dark_steel",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "left_finger_lame_0",
+      "material": "paladin_polished_plate",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_finger_lame_1",
+      "material": "paladin_polished_plate",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_finger_lame_2",
+      "material": "paladin_polished_plate",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_finger_lame_3",
+      "material": "paladin_polished_plate",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_massive_layered_pauldron_outer",
+      "material": "paladin_polished_plate",
+      "vertices": 602,
+      "quads": 600
+    },
+    {
+      "name": "right_pauldron_overlapping_lame_0",
+      "material": "paladin_polished_plate",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "right_pauldron_overlapping_lame_1",
+      "material": "paladin_dark_steel",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "right_pauldron_overlapping_lame_2",
+      "material": "paladin_polished_plate",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "right_pauldron_overlapping_lame_3",
+      "material": "paladin_dark_steel",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "right_pauldron_order_rondel",
+      "material": "paladin_gold_trim",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "right_rerebrace_enclosed_plate",
+      "material": "paladin_polished_plate",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "right_sunburst_couter",
+      "material": "paladin_gold_trim",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "right_vambrace_hinged_plate",
+      "material": "paladin_polished_plate",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "right_articulated_gauntlet",
+      "material": "paladin_dark_steel",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "right_finger_lame_0",
+      "material": "paladin_polished_plate",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_finger_lame_1",
+      "material": "paladin_polished_plate",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_finger_lame_2",
+      "material": "paladin_polished_plate",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_finger_lame_3",
+      "material": "paladin_polished_plate",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_cuissse_shaped_thigh_plate",
+      "material": "paladin_polished_plate",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "left_poleyn_knee_guard_sun_rondel",
+      "material": "paladin_gold_trim",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "left_ridged_greave",
+      "material": "paladin_polished_plate",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "left_sabatons_toe_lame_0",
+      "material": "paladin_polished_plate",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "left_sabatons_toe_lame_1",
+      "material": "paladin_polished_plate",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "left_sabatons_toe_lame_2",
+      "material": "paladin_polished_plate",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "left_sabatons_toe_lame_3",
+      "material": "paladin_polished_plate",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "left_inner_thigh_mail_voider",
+      "material": "paladin_chainmail",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "right_cuissse_shaped_thigh_plate",
+      "material": "paladin_polished_plate",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "right_poleyn_knee_guard_sun_rondel",
+      "material": "paladin_gold_trim",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "right_ridged_greave",
+      "material": "paladin_polished_plate",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "right_sabatons_toe_lame_0",
+      "material": "paladin_polished_plate",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "right_sabatons_toe_lame_1",
+      "material": "paladin_polished_plate",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "right_sabatons_toe_lame_2",
+      "material": "paladin_polished_plate",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "right_sabatons_toe_lame_3",
+      "material": "paladin_polished_plate",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "right_inner_thigh_mail_voider",
+      "material": "paladin_chainmail",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_0_0",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_0_1",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_0_2",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_0_3",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_0_4",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_0_5",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_0_6",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_1_0",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_1_1",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_1_2",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_1_3",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_1_4",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_1_5",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_1_6",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_2_0",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_2_1",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_2_2",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_2_3",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_2_4",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_2_5",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_2_6",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_3_0",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_3_1",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_3_2",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_3_3",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_3_4",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_3_5",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_3_6",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_4_0",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_4_1",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_4_2",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_4_3",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_4_4",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_4_5",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_4_6",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_5_0",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_5_1",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_5_2",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_5_3",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_5_4",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_5_5",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_5_6",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_6_0",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_6_1",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_6_2",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_6_3",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_6_4",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_6_5",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_6_6",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_7_0",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_7_1",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_7_2",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_7_3",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_7_4",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_7_5",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_7_6",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_8_0",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_8_1",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_8_2",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_8_3",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_8_4",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_8_5",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "front_chainmail_ring_8_6",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_wrist_mail_ring_0",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_wrist_mail_ring_1",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_wrist_mail_ring_2",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_wrist_mail_ring_3",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_wrist_mail_ring_4",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_wrist_mail_ring_5",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_wrist_mail_ring_6",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_wrist_mail_ring_0",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_wrist_mail_ring_1",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_wrist_mail_ring_2",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_wrist_mail_ring_3",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_wrist_mail_ring_4",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_wrist_mail_ring_5",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_wrist_mail_ring_6",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "tooled_heavy_leather_belt",
+      "material": "paladin_oiled_leather",
+      "vertices": 294,
+      "quads": 216
+    },
+    {
+      "name": "order_crest_belt_buckle",
+      "material": "paladin_gold_trim",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "compact_holy_tome_case",
+      "material": "paladin_oiled_leather",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "hanging_gold_crystal_reliquary",
+      "material": "paladin_gold_trim",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "prayer_bead_0",
+      "material": "paladin_oiled_leather",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "prayer_bead_1",
+      "material": "paladin_oiled_leather",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "prayer_bead_2",
+      "material": "paladin_oiled_leather",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "prayer_bead_3",
+      "material": "paladin_oiled_leather",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "prayer_bead_4",
+      "material": "paladin_oiled_leather",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "prayer_bead_5",
+      "material": "paladin_oiled_leather",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "prayer_bead_6",
+      "material": "paladin_oiled_leather",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "prayer_bead_7",
+      "material": "paladin_oiled_leather",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "prayer_bead_8",
+      "material": "paladin_oiled_leather",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "prayer_bead_9",
+      "material": "paladin_oiled_leather",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "prayer_bead_10",
+      "material": "paladin_oiled_leather",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "prayer_bead_11",
+      "material": "paladin_oiled_leather",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "prayer_bead_12",
+      "material": "paladin_oiled_leather",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "prayer_bead_13",
+      "material": "paladin_oiled_leather",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "prayer_bead_14",
+      "material": "paladin_oiled_leather",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "prayer_bead_15",
+      "material": "paladin_oiled_leather",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "small_censer_chain",
+      "material": "paladin_chainmail",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "battlefield_blessing_censer",
+      "material": "paladin_dark_steel",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "large_kite_shield_body",
+      "material": "paladin_polished_plate",
+      "vertices": 550,
+      "quads": 548
+    },
+    {
+      "name": "large_kite_shield_gold_rim",
+      "material": "paladin_gold_trim",
+      "vertices": 418,
+      "quads": 416
+    },
+    {
+      "name": "shield_faceted_sunburst_boss_gem",
+      "material": "paladin_glow_gold",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "shield_radiant_crest_ray_00",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "shield_radiant_crest_ray_01",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "shield_radiant_crest_ray_02",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "shield_radiant_crest_ray_03",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "shield_radiant_crest_ray_04",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "shield_radiant_crest_ray_05",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "shield_radiant_crest_ray_06",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "shield_radiant_crest_ray_07",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "shield_radiant_crest_ray_08",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "shield_radiant_crest_ray_09",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "shield_radiant_crest_ray_10",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "shield_radiant_crest_ray_11",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "shield_radiant_crest_ray_12",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "shield_radiant_crest_ray_13",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "shield_left_rim_stud_0",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_left_rim_stud_1",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_left_rim_stud_2",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_left_rim_stud_3",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_left_rim_stud_4",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_left_rim_stud_5",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_left_rim_stud_6",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_left_rim_stud_7",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_left_rim_stud_8",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_left_rim_stud_9",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_left_rim_stud_10",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_right_rim_stud_0",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_right_rim_stud_1",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_right_rim_stud_2",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_right_rim_stud_3",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_right_rim_stud_4",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_right_rim_stud_5",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_right_rim_stud_6",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_right_rim_stud_7",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_right_rim_stud_8",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_right_rim_stud_9",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_right_rim_stud_10",
+      "material": "paladin_gold_trim",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "shield_reverse_padded_leather_arm_strap",
+      "material": "paladin_oiled_leather",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "shield_reverse_worn_wooden_grip",
+      "material": "paladin_oiled_leather",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "shield_reverse_tucked_prayer_scroll",
+      "material": "paladin_tabard_wool",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "blessed_mace_leather_wrapped_haft",
+      "material": "paladin_oiled_leather",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "mace_sunray_flanged_head_core",
+      "material": "paladin_gold_trim",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "mace_flange_sun_ray_0",
+      "material": "paladin_gold_trim",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "mace_flange_sun_ray_1",
+      "material": "paladin_gold_trim",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "mace_flange_sun_ray_2",
+      "material": "paladin_gold_trim",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "mace_flange_sun_ray_3",
+      "material": "paladin_gold_trim",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "mace_flange_sun_ray_4",
+      "material": "paladin_gold_trim",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "mace_flange_sun_ray_5",
+      "material": "paladin_gold_trim",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "mace_flange_sun_ray_6",
+      "material": "paladin_gold_trim",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "mace_flange_sun_ray_7",
+      "material": "paladin_gold_trim",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "mace_central_piercing_spike",
+      "material": "paladin_polished_plate",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "mace_holy_symbol_pommel",
+      "material": "paladin_glow_gold",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "breastplate_holy_sunburst_ray_00",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "breastplate_holy_sunburst_ray_01",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "breastplate_holy_sunburst_ray_02",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "breastplate_holy_sunburst_ray_03",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "breastplate_holy_sunburst_ray_04",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "breastplate_holy_sunburst_ray_05",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "breastplate_holy_sunburst_ray_06",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "breastplate_holy_sunburst_ray_07",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "breastplate_holy_sunburst_ray_08",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "breastplate_holy_sunburst_ray_09",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "breastplate_holy_sunburst_ray_10",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "breastplate_holy_sunburst_ray_11",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "breastplate_center_gem",
+      "material": "paladin_glow_gold",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "tabard_metallic_embroidery_sun_ray_00",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "tabard_metallic_embroidery_sun_ray_01",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "tabard_metallic_embroidery_sun_ray_02",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "tabard_metallic_embroidery_sun_ray_03",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "tabard_metallic_embroidery_sun_ray_04",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "tabard_metallic_embroidery_sun_ray_05",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "tabard_metallic_embroidery_sun_ray_06",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "tabard_metallic_embroidery_sun_ray_07",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "tabard_metallic_embroidery_sun_ray_08",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "tabard_metallic_embroidery_sun_ray_09",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "backplate_engraved_halo_seal_ray_00",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "backplate_engraved_halo_seal_ray_01",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "backplate_engraved_halo_seal_ray_02",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "backplate_engraved_halo_seal_ray_03",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "backplate_engraved_halo_seal_ray_04",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "backplate_engraved_halo_seal_ray_05",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "backplate_engraved_halo_seal_ray_06",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "backplate_engraved_halo_seal_ray_07",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "backplate_engraved_halo_seal_ray_08",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "backplate_engraved_halo_seal_ray_09",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "backplate_engraved_halo_seal_ray_10",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "backplate_engraved_halo_seal_ray_11",
+      "material": "paladin_gold_trim",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "shield_silver_repaired_gouge_0",
+      "material": "paladin_polished_plate",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "shield_silver_repaired_gouge_1",
+      "material": "paladin_polished_plate",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "shield_silver_repaired_gouge_2",
+      "material": "paladin_polished_plate",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "shield_silver_repaired_gouge_3",
+      "material": "paladin_polished_plate",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "shield_silver_repaired_gouge_4",
+      "material": "paladin_polished_plate",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "shield_silver_repaired_gouge_5",
+      "material": "paladin_polished_plate",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "shield_silver_repaired_gouge_6",
+      "material": "paladin_polished_plate",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "shield_silver_repaired_gouge_7",
+      "material": "paladin_polished_plate",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "shield_silver_repaired_gouge_8",
+      "material": "paladin_polished_plate",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "shield_silver_repaired_gouge_9",
+      "material": "paladin_polished_plate",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "shield_silver_repaired_gouge_10",
+      "material": "paladin_polished_plate",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "shield_silver_repaired_gouge_11",
+      "material": "paladin_polished_plate",
+      "vertices": 24,
+      "quads": 6
+    }
+  ],
+  "materialGroups": [
+    "paladin_polished_plate",
+    "paladin_dark_steel",
+    "paladin_tabard_wool",
+    "paladin_skin_visible",
+    "paladin_gold_trim",
+    "paladin_chainmail",
+    "paladin_oiled_leather",
+    "paladin_glow_gold"
+  ],
+  "anchors": {
+    "anchor_root": [
+      0,
+      0,
+      0
+    ],
+    "anchor_head_center": [
+      0,
+      2.03,
+      0.12
+    ],
+    "anchor_chest_center": [
+      0,
+      1.5,
+      0.06
+    ],
+    "anchor_back_center": [
+      0,
+      1.48,
+      -0.14
+    ],
+    "anchor_weapon_hand": [
+      0.58,
+      0.76,
+      0.18
+    ],
+    "anchor_shield_hand": [
+      -0.58,
+      1.05,
+      0.15
+    ],
+    "anchor_ground_left_foot": [
+      -0.2,
+      0.02,
+      0.12
+    ],
+    "anchor_ground_right_foot": [
+      0.2,
+      0.02,
+      0.12
+    ]
+  },
+  "validation": {
+    "allFacesAreQuads": true,
+    "noTriangles": true,
+    "noNgons": true,
+    "realGeometryDetail": [
+      "plate overlaps",
+      "tabard panels",
+      "shield rim/studs",
+      "sunburst symbols",
+      "mace flanges",
+      "chainmail rings",
+      "belt reliquary",
+      "prayer beads"
+    ]
+  }
+}

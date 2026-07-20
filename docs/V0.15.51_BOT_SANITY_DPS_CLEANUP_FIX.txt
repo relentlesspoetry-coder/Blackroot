@@ -1,0 +1,16 @@
+Dream Realms V0.15.51 — Bot Sanity DPS Cleanup Fix Pass
+
+Bug fixed:
+- A hidden/invalid bot such as "Luma Enchanter" could remain in bot, party, or DPS state even when it was not physically present in the current playable world.
+
+Root changes:
+- Bot spawning now validates explicit and generated spawn coordinates before creating the bot.
+- Bot restore/save-load now routes restored positions through the same spawn validation path.
+- Periodic bot sanity cleanup removes out-of-bounds, non-finite, or unreachable bot entities from botPlayers, entities, party membership, autonomous bot parties, pets, and DPS state.
+- DPS Meter contributor tracking now only accepts alive, valid, same-zone contributors.
+- DPS Meter snapshots prune stale rows/events for bots that have been despawned, removed, glitched, hidden, or moved out of the active zone.
+- Bot removal now directly clears matching DPS contributor rows/events.
+- Added /debug bots chat command for QA. It lists active bots, class, party/world state, zone, x/y, bot state, validity, and walkability.
+
+No gameplay/content changes:
+- No class, spell, mob, loot, quest, dungeon, economy, XP, mana, cooldown, DPS balance, or combat-balance values were changed.

@@ -1,0 +1,44 @@
+Dream Realms V0.13.67 — Sprite Atlas Bake Pipeline + Runtime Renderer Pass
+
+Systems changed:
+- Added systems/asset-system.js for cached JSON/image asset loading.
+- Added systems/sprite-atlas-system.js for runtime atlas manifest loading, PNG page loading, frame lookup, anchor application, drawImage rendering, frame-key resolution, and missing-frame warning suppression.
+- Added systems/sprite-bake-system.js as the shared dev-only bake/export pipeline for procedural model frames.
+- Added tools/sprite-baker.html and tools/sprite-baker.js for browser-based transparent PNG atlas export and JSON manifest export.
+- Added assets/atlases/entities.json as an empty default manifest and assets/atlases/README.txt documenting where generated atlas pages/manifests belong.
+- Updated render/entity-renderer.js so bake-enabled actors can render from atlas frames when available and fall back to procedural renderers when a frame is missing.
+- Updated game.js initialization to create AssetSystem and SpriteAtlasSystem and silently load the default atlas manifest.
+- Updated _script_order.json and main HTML script references.
+
+Sprite atlas bake pipeline:
+- Procedural renderers remain the source of truth.
+- The dev baker renders model frames onto transparent offscreen canvases.
+- The baker exports entities_*.png atlas pages and entities.json metadata.
+- The baker supports deterministic frame keys using modelId.variant.state.direction.frameIndex.
+- Initial bake definitions cover class model families, Gloom Wolf, Briar Boar, Rotling, Silk Web Spider, and Spirit Healer.
+
+Runtime atlas renderer:
+- Runtime loading is optional and safe.
+- If assets/atlases/entities.json is empty, missing, or fails to load, the game continues rendering procedurally.
+- Atlas frames render through drawImage when the frame exists and the atlas page is loaded.
+- Missing atlas frames warn once per frame key and use procedural fallback.
+- UI, nameplates, health bars, chat bubbles, target rings, quest markers, damage numbers, maps, and HUD are not baked.
+
+Frame metadata / anchors:
+- Metadata includes frame x/y/w/h, render anchor, foot anchor, nameplate anchor, shadow anchor, click bounds, model ID, variant, animation state, direction, and frame index.
+- Runtime frame rendering applies metadata anchors to preserve nameplate placement, footstep FX alignment, and click bounds.
+- Corpse/death frames use the same metadata path and fall back procedurally if missing.
+
+Gameplay preserved:
+- Movement, animation state machines, click targeting, Tab targeting, threat ownership, bots, pets, party HUD, chat bubbles, nameplates, health bars, footstep FX anchors, boar corpse rendering, Spirit Healer visuals, map UI, inventory, save/load, terrain/water rendering, half-block rendering, Silk Web Cavern, and Esc menu behavior were preserved.
+
+Validation run:
+- All JavaScript files passed node --check.
+- Main HTML local script references were audited.
+- V0.13.67 metadata was verified.
+- Sprite atlas runtime system static audit completed.
+- Sprite baker tool files were added and syntax checked.
+- ZIP integrity passed.
+
+Manual browser-test caveats:
+- Browser testing is still required for running tools/sprite-baker.html, downloading generated PNG/JSON files, placing generated atlas files into assets/atlases/, verifying runtime atlas loading, comparing FPS with atlas assets present, and confirming all baked frame anchors visually match the procedural fallback.

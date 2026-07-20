@@ -1,0 +1,59 @@
+Dream Realms V0.13.66 — Footstep FX Anchor Fix + Camp/Trainer Visual Revamp Pass
+
+Build Output
+- Dream Realms V0.13.66.html
+- Dream_Realms_V0.13.66_Footstep_FX_Anchor_Fix_Camp_Trainer_Visual_Revamp_Pass.zip
+
+Systems Changed
+- systems/terrain-footstep-system.js
+- render/effects-renderer.js
+- render/boar-procedural-model.js
+- systems/world-system.js
+- render/object-renderer.js
+- systems/npc-system.js
+- data/npcs.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- README.txt
+- VERSION.txt
+- Dream Realms V0.13.66.html
+
+Footstep FX Anchor Fix
+- Added a shared actor foot-contact anchor resolver for humanoid/class-family actors.
+- Terrain dust and grass interaction effects now use foot-contact screen offsets instead of spawning at the actor root/body origin.
+- The resolver accounts for movement direction, facing, class-model profiles, robe/cape-heavy silhouettes, and alternating step side.
+- Effects remain terrain-owned and do not alter actor shadows, hitboxes, collision, or movement behavior.
+
+Grass Interaction FX Anchor Fix
+- Grass-blade interaction events now receive the same foot-contact anchor offsets used by dust puffs.
+- Existing terrain material checks, cooldowns, and visual effect behavior are preserved.
+
+Boar Model Polish / Revamp Work
+- Refined the dedicated boar renderer again to reduce circular/oval placeholder reads.
+- Strengthened front-heavy silhouette, shoulder hump, neck/head connection, wedge head, snout/nose disk, tusk placement, hoof grounding, belly contour, and body-plane shading.
+- Preserved charge, attack, hit, death, rare/elite/named variant, Old Tusk Briarback, health/nameplate anchor, and corpse-rendering behavior.
+
+Starting Camp Layout / Prop Cleanup
+- Rebuilt starting camp placement with better tent spacing, clearer walk lanes, cleaner prop clusters, and less cramped NPC access.
+- Removed/replaced awkward MERC-style signage, ground flags, and placeholder camp clutter from the generated starter camp cleanup path.
+- Kept vendor, trainer, quest, Spirit Healer, and camp access behavior intact.
+
+Class Trainer Visual / Model Replacement
+- Trainer NPC definitions now include class-family renderer metadata such as className, playerClass, classId, rendererId: classTrainer, visualRole: class_trainer, and trainerVisualVariant.
+- NPC rendering now prioritizes matching class-family trainer models for trainers before falling back to generic human NPC rendering.
+- Trainer interaction, hover/click behavior, nameplates, and placement are preserved.
+
+Gameplay Systems Preserved
+- Movement, combat, targeting, threat ownership, boar behavior, trainer interactions, camp navigation, Spirit Healer, save/load, map systems, party/bot/pet systems, inventory, paper doll, item comparison, bag-to-ground drag/drop, seamless terrain/water, half-block rendering, and Esc menu behavior were not intentionally changed.
+
+Tests Run
+- All JavaScript files passed node --check.
+- Main HTML local script references were audited.
+- V0.13.66 metadata was verified across config/save/default-world/serializer/README/VERSION/HTML/docs.
+- Static checks confirmed foot-contact anchor helpers, screen FX offsets, class-trainer metadata/routing, starter-camp cleanup removal rules, and boar renderer polish paths.
+- Zip integrity passed.
+
+Manual Browser-Test Caveats
+- Live browser validation is still required for exact footstep/grass FX alignment on every class model, trainer visuals in camp, starting camp pathing feel, boar silhouette/corpse readability, click/Tab targeting, trainer interactions, save/load, and long-session FPS.

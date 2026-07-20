@@ -1,0 +1,22 @@
+Dream Realms V0.15.32 — Hybrid Renderer Default Rollout Pass
+
+Purpose
+- Move Hybrid WebGL from a manually armed default-candidate profile to the normal default rollout path when WebGL is healthy.
+- Keep Canvas 2D Stable as the compatibility fallback and rollback target.
+
+Changes
+- Added systems/hybrid-default-rollout-system.js.
+- Added automatic Hybrid default rollout policy with localStorage persistence.
+- Added rollout policy states: auto, hybrid, canvas.
+- Added startup/recovery apply path that arms the existing Hybrid Default Candidate profile when no compatibility rollback is active.
+- Added rollback to Canvas Stable after sustained high-risk Hybrid failures.
+- Added rollback timer persistence so unstable browsers/devices do not retry Hybrid every reload.
+- Added Settings controls for Default Rollout, policy, Force Hybrid Now, Rollback Canvas, and Clear Rollback.
+- Added F3 diagnostics for rollout state, risk, successful frames, unstable frames, rollback time, layer mask, and candidate/QA state.
+
+Safety
+- Does not remove Canvas 2D.
+- Does not force Hybrid when Canvas Compatibility Mode is active.
+- Does not retry Hybrid while rollback is active unless forced manually.
+- Uses the existing Hybrid Default Candidate, Renderer QA guard, watchdog, and per-layer fallback systems.
+- No class, spell, mob, quest, loot, zone, dungeon, economy, or UI layout balance values changed.

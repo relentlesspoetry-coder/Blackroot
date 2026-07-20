@@ -1,0 +1,5 @@
+Dream Realms V0.16.05 - Main Menu Runtime Fix
+
+- Fixed main menu buttons not working after the custom creator background pass.
+- Cause: ui-system startup hit a runtime ReferenceError because the export block still referenced getCreatorClassEmblemImage after the creator background renderer was renamed.
+- Fix: restored getCreatorClassEmblemImage as a compatibility alias and exported the new creator background helpers.

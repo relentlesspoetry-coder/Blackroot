@@ -1,0 +1,20 @@
+Dream Realms V0.14.61 — Class Meditation Animation Revamp Pass
+
+Summary
+- Reworked meditation animation ownership so each playable class has a distinct meditation pose/effect package.
+
+Implemented
+- Bard: seated performance meditation with the lute held across the lap and slow song-note motes.
+- Druid: grounded cross-legged nature communion with leaf orbit effects.
+- Fighter: braced weapon-rest meditation with warm martial focus rings.
+- Rogue: low stealth crouch meditation with shadow/teal haze and grounded hands.
+- Cleric: kneeling prayer meditation with clasped hands and holy halo rays.
+- Enchanter: levitating lotus meditation with charm rings and mind-wave effects.
+- Summoner: ritual focus meditation with orbiting summon motes.
+- Necromancer: hunched death-rite meditation with bone-focus posture and dark motes.
+
+Technical Notes
+- Meditation state remains owned by game.js.
+- Animation timing/progress is exposed through HumanoidAnimationSystem pose data.
+- Class meditation anchors are resolved in HumanoidBaseRenderer, with class overlays remaining in their owning renderers.
+- Existing cancellation behavior for movement, combat/damage, and interruption remains intact.

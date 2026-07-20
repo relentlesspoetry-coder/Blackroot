@@ -1,0 +1,13 @@
+Dream Realms V0.12.78.1 - Code Ownership Bugfix Carryover
+
+Changes:
+- Removed the stale Game.isEntityInCombat implementation from game.js. systems/combat-system.js is now the sole combat-state owner.
+- Added a dedicated Enchanter profile to ClassIdentityProceduralModel instead of aliasing Enchanter to Summoner.
+- Retired the legacy RogueProceduralModel load path. Rogue now routes through the shared class identity renderer only.
+- Added dirty/signature guards for mercenary gear and command UI so updateUI no longer rebuilds those DOM sections every frame.
+- Cleared the Steam Deck splash polling interval once gameplay starts.
+
+Validation:
+- Run node --check across all JavaScript modules.
+- Verify HTML script order matches _script_order.json.
+- Run existing Node boot/start/data smoke harnesses against V0.12.79.

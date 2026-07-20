@@ -1,0 +1,33 @@
+Dream Realms V0.15.03 - Spider Mob Web Attack Mechanic Pass
+
+Summary
+- Added a spider-type mob web projectile ability.
+- Spider mobs use Web on their current friendly target with an 8-12 second randomized cooldown.
+- Each cast has a 1-in-15 direct hit chance.
+- Direct hits apply a 3-second root wrapped in a 100 HP breakable web.
+- Misses create a visible ground web trap near the target.
+- Ground traps last 10 seconds, trigger on contact, and apply a 5-second 100 HP breakable web root.
+- Webbed actors keep combat/item/spell agency but cannot move until the web expires or is destroyed.
+- Nearby pets, mercenaries, and party bots automatically attack active webs to free trapped party members.
+- Tab targeting and click targeting can select active breakable webs.
+- Added web projectile, ground splat, wrapped actor overlay, web health bar, and web snap/dissolve feedback.
+
+Files Updated
+- systems/combat-system.js
+- entities/enemy.js
+- game.js
+- render/effects-renderer.js
+- render/entity-renderer.js
+- render/object-renderer.js
+- render/silk-web-spider-procedural-model.js
+- systems/dungeon-system.js
+- Dream Realms V0.15.03.html
+- core/config.js
+- systems/save-system.js
+- README.txt
+- VERSION.txt
+- Save/save-folder-manifest.json
+
+Balance / Content Notes
+- No mobs, quests, loot, spells, or dungeon content were removed.
+- The ability applies to spider-type mobs through the spider identity owner, not by hardcoding a single boss or dungeon room.

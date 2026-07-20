@@ -1,0 +1,1798 @@
+## V0.14.88 — Big Performance and Full Bug Audit Pass
+
+- Added batched HUD/UI refresh cadence through the UI owner so DOM work is minimized while combat/status readouts remain responsive.
+- Optimized terrain rendering by pre-sorting chunk layers at build time, reusing visible chunk entry records, expanding the terrain chunk cache, and removing per-frame Map LRU delete/set churn.
+- Reworked effects cleanup to compact active effects and damage text in place, build follow-target lookup once per frame, and enforce effect/damage-text budgets through the effects owner.
+- Optimized actor separation by throttling it to a stable cadence, reusing scratch maps/sets, removing repeated index lookups, and fixing the duplicate companion range condition.
+- Reduced bot scheduler allocation by reusing ordered scheduler records and sorting on a short cadence instead of allocating map/sort arrays every frame.
+- Reduced merc gear/UI churn by rendering the merc gear panel only when open or dirty and caching hotbar lookup state.
+- Updated README, VERSION, HTML patch notes, save metadata, config metadata, and docs to V0.14.88.
+
+## V0.14.87 — Necromancer Icon Skill Slot Bag Bar Fix Pass
+
+- Expanded Necromancer spell icon theming with full-color bone, rot, drain, ward, soul, curse, fear, grave, and pact visuals.
+- Changed hotbar skill-slot rendering so ability icons fill the full slot frame instead of floating as small centered images.
+- Rebuilt bag bar icons as procedural pouch/satchel/backpack art with quality-aware treatment.
+
+V0.14.86 — Portal Spell Group Follow Pass
+- Enlarged the owned bluish-purple portal vortex render path by 40% and widened the player trigger radius to match the larger doorway.
+- Changed portal spawning to open at the player's location instead of offsetting forward.
+- Added portal-owned follower collection for party bots, hired mercenaries, and owned summoned pets.
+- Player portal travel now teleports eligible followers simultaneously, spreads them around the arrival portal, resets movement/combat transition state, and keeps NPCs/followers unable to activate portals independently.
+- Updated README, VERSION, HTML patch notes, save metadata, config metadata, and docs to V0.14.86.
+
+V0.14.85 — Professions Skills Side By Side Window Fix Pass
+- Reworked the Professions/Skills paired window layout in the UI window owner.
+- Opening Professions now synchronously opens Skills, renders both panels, and places them as one centered side-by-side pair.
+- Professions is anchored to the left and Skills to the right, with no timeout/delayed cascade logic.
+- Existing Skills windows are repositioned next to Professions when Professions opens.
+- Closing Professions leaves Skills open independently.
+- Both windows remain normal movable UI windows after placement.
+
+V0.14.84 — Necromancer Spell Icons + Buff/Debuff Tooltip Pass
+- Added unique colored spell icons for the Necromancer hotbar and spellbook entries.
+- Replaced status tray generics with themed colored buff/debuff icons and buff-first tray sorting.
+- Added rich hover tooltips for action-bar status icons with effect name, description, duration, source, and periodic details.
+- Extended the shared tooltip owner for non-item HTML tooltip cards.
+- Updated README, VERSION, HTML patch notes, save metadata, config metadata, and docs to V0.14.84.
+
+V0.14.82 — Ash Root Horror Spell Animation Set Pass
+- Added owned Ash Root Horror spell effect spawning in systems/effects-system.js.
+- Added Canvas 2D procedural renderers for Ashroot Crush, Ash Cloud, Death Bloom, Cinderroot Snare, Blightwood Pulse, and Ashen Regrowth.
+- Hooked Ashroot Horror's combat AI into the six-effect set without replacing generic enemy AI, spawn ownership, loot, or global mob balance.
+- Updated Ashroot Horror data with elite/family/ability metadata so the central enemy systems identify it cleanly.
+- Added animation-ready effect component documentation under assets/effects/ash_root_horror_spell_effect_geometry_v0.14.82.json.
+
+V0.14.81 — Mob Balance Elite Rare Scaling Pass
+- Centralized the new mob balance pass in entities/enemy.js instead of editing individual spawn tables.
+- Standard mobs now get +18% HP and +12% damage over the existing global V0.14.43 mob multipliers.
+- Elite, rare, named, boss, champion, and unique mobs now receive an extra 30% damage multiplier beyond the standard mob damage buff.
+- Spawn-time mob type normalization now passes rare/named/boss flags into the Enemy constructor so authored elite/rare metadata participates in the same global stat formula.
+- Enemy tactical DoT effects such as Venom Bite and Rending Bite now use the central mob damage scaling path.
+- Player incoming-damage caps now allow the updated standard and elite/rare damage tiers to be visible while retaining safety bounds.
+
+V0.14.80 — Bard Spell Animation Set Pass
+- Added owned Bard-specific spell effect spawning in systems/effects-system.js.
+- Hooked War Hymn, Sonic Cut, Lullaby, Valor Chorus, Discordant Note, and Refrain from the existing spell resolver without changing Bard gameplay/cooldown/damage/healing/buff behavior.
+- Added Canvas 2D procedural geometry renderers for golden sound rings, musical glyphs, sonic crescent slashes, drowsy rose-purple wraps, grand harmonic chorus waves, discordant sound shrapnel, and healing melody ribbons.
+- Added animation-ready effect component documentation under assets/effects/bard_spell_effect_geometry_v0.14.80.json.
+
+V0.14.79 — Paperdoll Hardcoded Weapon Suppression Fix Pass
+- Added shared paperdoll equipment queries for equipped main weapon and offhand slots.
+- Class identity renderers now suppress their hardcoded default weapons when a real item is equipped, preventing duplicate swords, daggers, caster rods/staves, maces, shields, and class props.
+- Bard default lute visibility now toggles off while a real weapon/instrument is equipped and returns when the slot is empty.
+- Premium Fighter and legacy standing model paths now respect the same paperdoll weapon/offhand suppression owner.
+
+V0.14.78 — Necromancer Spell Animation Set Pass
+- Added owned Necromancer-specific spell effect spawning in systems/effects-system.js.
+- Hooked Raise Bone Servant, Life Tap, Bone Spear, Rot Cloud, Grave Armor, and Soul Leech from the existing spell resolver without changing spell gameplay/cooldown/damage behavior.
+- Added Canvas 2D procedural geometry renderers for ground rifts, rising bone vortices, drain tendrils, bone spear projectiles, miasma clouds, grave armor plates, bone dust, and soul leech tendril networks.
+- Added animation-ready effect component documentation under assets/effects/necromancer_spell_effect_geometry_v0.14.78.json.
+
+V0.14.77 — Bloody Dagger Cursor Visibility Fix Pass
+- Rebuilt the custom bloody dagger cursor PNGs as fully opaque high-contrast assets.
+- Added a bright silver/white outline, hard black shape edge, crimson-gold outer glow, stronger blood marks, and blade glint detail so the cursor remains visible on dark and light backgrounds.
+- Preserved the blade-tip hotspot coordinates and the existing shared CSS cursor ownership across world canvas, menus, HUD, windows, and editor UI.
+
+V0.14.76 — Real Paperdoll Equipment Visual Pass
+- Added a centralized paperdoll equipment renderer that reads the live equipment objects used by inventory, bot, and mercenary systems.
+- Added visual attachments/overlays for head, shoulders, chest, legs, hands, feet, cape, amulet/charm, earrings, rings, weapon, and off-hand slots.
+- Routed player, bot, mercenary, remote actor, and Character Window preview models through the same visual equipment source so gear appears consistently in world and UI.
+- Added equip/unequip spark timing for player gear changes without duplicating equipment state.
+
+V0.14.75 — Bloody Dagger Cursor Pass
+- Replaced the default browser cursor with a custom bloody dagger cursor across the world canvas, menus, HUD, windows, and runtime UI.
+- Added 64x64 and 32x32 cursor PNG assets with the hotspot aligned to the blade tip for accurate targeting/click input.
+- Updated shared HTML and editor-injected UI styles so the custom cursor remains consistent across game-owned interfaces.
+
+V0.14.74 — Camp Trainer Spacing Atmosphere Overhaul Pass
+- Expanded Dead Lantern Camp into a wider organic hub with perimeter tents, lean-tos, central campfire seating, cooking spit, supply props, lanterns, study tables, ritual circles, sparring yard props, bedrolls, paths, grass, and flowers.
+- Repositioned all required trainers, quest NPCs, restored camp service NPCs, Dream Spirit, and Mercenary Master into readable clusters with clear approach space.
+- Added camp prop renderers for lean-tos, bedrolls, log seats, cooking spits, sparring dummies, weapon racks, study tables, ritual circles, and supply stacks.
+
+V0.14.73 — Mob Bot Separation Collision Pass
+- Added shared NPC separation ownership in the collision/movement system.
+- Mobs, bots, mercenaries, and pets now maintain minimum spacing during combat, idle, and meditation states.
+- Added spatial-hash pair evaluation and small non-jitter nudge correction instead of replacing patrol/combat AI.
+- Updated package metadata and patch notes.
+
+V0.14.72 — Auto Attack Melee Caster Split Pass
+- Replaced weapon-inferred auto-attack animation selection with class-owned melee/caster role selection.
+- Bard, Rogue, and Fighter now use melee swing cycles; Enchanter, Druid, Necromancer, Cleric, and Summoner now use caster buildup/release cycles.
+- Preserved manual key-1 auto-attack toggle ownership and special ability animation priority.
+
+V0.14.71 — Class Meditation Aura Identity Revamp Pass
+- Reworked meditation poses and ground auras for Bard, Druid, Fighter, Rogue, Cleric, Enchanter, Summoner, and Necromancer.
+- Added class-specific meditation VFX/decal identities: music staff notes, nature roots/fireflies, cracked fighter battle-circle, rogue smoke/poison ring, cleric holy beam/feathers, enchanter geometric runes/crystals, summoner binding circle/tome/motes, and necromancer skeletal hands/soul wisps.
+- Added meditation aura fade-in data to the shared humanoid animation pose while keeping interrupt/completion cleanup immediate through the existing meditation state owner.
+- Preserved nameplate Meditating status, progress synchronization, and all existing cancellation behavior.
+
+V0.14.70 — Swimming Lower Body Clip Fix Pass
+- Added renderer-owned body clipping for swimming so the water surface hides submerged lower bodies while preserving upper-body swim animation.
+- Bound submersion visibility to the authoritative swimming state instead of generic shallow-water flags.
+- Extended swim render-state updates to bots, mercenaries, pets, and NPC class-model actors where applicable.
+
+V0.14.69 — Auto Attack Animation Pass
+- Added combat-owned auto-attack visual state synced to the player swing timer.
+- Melee weapons now loop a weapon-swing pose/effect while auto-attack is active.
+- Ranged/caster weapons and caster identities now loop cast/shoot poses and hand-glow effects during auto-attack.
+- Auto-attack animation state clears when auto-attack stops, target dies, combat state ends, or the player exits/death-cleans runtime state.
+- Special ability attack/cast animations remain higher priority and auto-attack visuals resume only while manual auto-attack remains toggled on.
+
+V0.14.68 — Chat Input Emote Animation Pass
+- Added Enter-to-chat focus and Send/Enter submission to the owned log/chat panel.
+- Suppressed gameplay hotkeys while chat input is focused by relying on the existing editable-input guard.
+- Added exact /dance, /sit, and /stand command parsing in the chat owner.
+- Added player emote runtime state, movement/damage/action cancellation, and class-aware dance/sit animation routing.
+- Disabled sprite-atlas fallback for active emotes so procedural class animations remain visible.
+
+V0.14.67 — Party Logout Disband Fix Pass
+- Added core party session-end cleanup for logout, Exit Game, browser beforeunload, and pagehide.
+- Party leaders disband parties on session end; non-leaders leave cleanly. Remote clients handle partyDisband and leader disconnects.
+- Prevented inactive/solo party runtime from being serialized after logout/exit while preserving mercenary and pet follower data outside party membership.
+
+V0.14.66 — Ash Root Horror Burned Tree Model Creation Pass
+- Corrected Ashroot Horror / Ashroot Elder from the previous root-mass direction into a burned walking-tree horror with stump head, split ember face, fused trunk torso, long branch arms, splintered fingers, awkward trunk legs, smoke, ash, char flakes, ember cracks, and no trailing vines/root mass.
+- Added assets/models/highpoly/ash_root_horror_highpoly_quadmesh_v0.14.66.obj as a new all-quad high-poly bake/reference mesh while preserving Ashroot gameplay, targeting, spawns, loot, visual keys, and sprite-bake routing.
+
+V0.14.65 — Swimming Animation Submersion Pass
+- Added renderer-facing swimming state from the existing swimming/water-depth owner instead of a duplicate terrain detector.
+- Added class-aware swim/tread pose routing for Bard, Druid, Fighter, Rogue, Cleric, Enchanter, Summoner, and Necromancer.
+- Added half-body submersion, waterline ripples, swim/tread movement timing, sprite bake swim definitions, and procedural fallbacks for missing swim atlas frames.
+- Preserved combat, casting, gathering, fishing, meditation, death, and hit overrides while in water.
+
+V0.14.64 — Save Folder File Picker Loading Pass
+- Added Load Game controls to the main splash, account panel, character-slot screen, and in-game menu.
+- Added multi-file JSON save import using showOpenFilePicker with a standard file input fallback.
+- Added Directory Picker Save-folder linking with IndexedDB-persisted directory handles, permission-safe auto-reload, and Save Game writes to Dream-Realms-Accounts.json.
+- Added import support for account-bound Dream-Realms-Accounts.json and legacy Dream-Realms-Character-<Name>-<timestamp>.json files without replacing browser-local account storage.
+- Updated README, VERSION, HTML patch notes, save/default-world metadata, save-folder manifest, patch notes, and modular history to V0.14.64.
+
+V0.14.63 — Ash Root Horror High Detail Model Creation Pass
+- Upgraded Ashroot Horror / Ashroot Elder rendering into a detailed smoldering plant horror with coiling taproot mass, charred bark, ember veins, split maw, sensory roots, grasping tendrils, ash fallout, smoke curls, captured debris, and regeneration shoots.
+- Preserved existing Ashroot Horror gameplay data, spawns, targeting/click behavior, combat behavior, loot progression, visual keys, and nameplate anchors.
+- Added AshRootHorror sprite-bake definitions and `assets/models/highpoly/ash_root_horror_highpoly_quadmesh_v0.14.63.obj` for bake/export workflows.
+- Updated README, VERSION, HTML patch notes, save/default-world metadata, patch notes, and modular history to V0.14.63.
+
+V0.14.62 — Party Auxiliary Slot Count Fix Pass
+- Fixed party capacity accounting so only player characters and bot party members consume party slots.
+- Excluded mercenaries and pets from member-limit checks, party-full messages, save restore pruning, and unified HUD slot totals.
+- Updated mercenary hiring/invite text so mercs are auxiliary followers rather than party-slot occupants.
+- Preserved party/companion UI visibility, combat helpers, XP/follower behavior, and save metadata while removing slot blocking.
+
+V0.14.61 — Class Meditation Animation Revamp Pass
+- Replaced shared generic meditation pose usage with class-specific meditation rig identities for every playable class.
+- Added meditation progress timing data so animation loops can stay synchronized with the meditation tick/progress cadence.
+- Added class-specific meditation effects without changing movement/damage cancellation ownership.
+- Updated metadata and patch notes.
+
+V0.14.60 — Account Character Binding Save Pass
+- Reworked save ownership so account documents own all character slots and full character payloads.
+- Added accountId/characterId binding, non-plaintext local credential hashes, Save folder Dream-Realms-Accounts.json persistence, active-account-only character selection, and legacy standalone character migration.
+
+V0.14.59 — Mercenary Master Hiring System Pass
+- Added a required Mercenary Master NPC to the Dark Woods hub with fighter-based rugged mercenary commander visuals.
+- Added a Mercenary Hiring UI listing contract name, class, level, role, and gold cost, with same-window dismissal.
+- Routed hiring through the existing Mercenary and Party systems with gold checks, active-merc checks, and party-capacity handling.
+- Added right-click NPC interaction support for the Mercenary Master and updated patch notes/metadata to V0.14.59.
+
+V0.14.58 — Hollow Stag High Detail Model Creation Pass
+- Upgraded the Hollow Stag / Thorn-Crowned Stag renderer with gaunt undead anatomy, exposed ribs, glowing hollow torso cavity, mummified skull/head detail, slack jaw, deadwood antlers, moss/lichen, vines, bone totems, fungal corruption, ichor drips, skeletal legs, cracked overgrown hooves, and ground deposition cues.
+- Preserved existing Hollow Stag spawn data, targeting/click behavior, combat behavior, nameplate anchors, and visual keys.
+- Added Hollow Stag sprite-bake definitions and `assets/models/highpoly/hollow_stag_highpoly_quadmesh_v0.14.58.obj` for bake/export workflows.
+- Updated README, VERSION, HTML patch notes, save/default-world metadata, patch notes, and modular history to V0.14.58.
+
+V0.14.57 — Dust Wisp High Detail Procedural Model Upgrade Pass
+- Upgraded the shared wisp-family renderer into a high-detail Dust Wisp procedural model with layered translucent dust density, helical vortex streamlines, soft arm streamers, suggested head/face hollows, and a turbulent ground-contact base.
+- Added inner consciousness details: warm core glow, darker nucleus, orbiting motes, containment energy threads, and static spark cues.
+- Added particulate/debris readables including mineral grains, sand motes, larger debris inclusions, dust fallout, and deposition rings while preserving runtime silhouette, anchors, targeting, and gameplay data.
+- Added explicit `dustWisp` palette/visual-key support, Wisp sprite-bake definitions, and `assets/models/highpoly/dust_wisp_highpoly_quadmesh_v0.14.57.obj` for bake/export workflows.
+- Updated README, VERSION, HTML patch notes, save/default-world metadata, patch notes, and modular history to V0.14.57.
+
+V0.14.56 — Click Target Tab Cycle Fix Pass
+- Fixed click-to-target ownership so hostile/friendly entity hits are consumed before click-to-move can create a movement path.
+- Expanded shared screen-space entity hit bounds for larger mob sprites, reducing missed clicks that fall through to terrain.
+- Changed live target overlap priority to target first, then corpse interaction, then ground movement.
+- Made Tab target cycling manual-only on fresh keydown input, with a stable visible left-to-right order and no held-key repeat cycling.
+- Updated README, VERSION, HTML patch notes, save/default-world metadata, patch notes, and modular history to V0.14.56.
+
+V0.14.55 — Professions Skills Layout Movable Windows Pass
+- Opening Professions now opens Skills and places both windows side-by-side as a centered combined block.
+- Shared movable-window ownership now covers Professions, Skills, Inventory, Character, Quest Log, Crafting, Bot Inspect, and other gameWindow panels through title/header drag handles.
+- Window positions clamp to reachable screen bounds and persist through open/close, with browser-local storage when available.
+- Updated README, VERSION, HTML patch notes, save/default-world metadata, patch notes, and modular history to V0.14.55.
+
+V0.14.54 — Bard Lute Hand Grip Position Fix Pass
+- Reworked `render/bard-procedural-model.js` so bard lute placement is derived from main-hand/off-hand rig anchors instead of the old chest/shoulder instrument anchor.
+- Preserved existing idle, combat, casting, meditation, and gathering animation ownership while keeping the instrument out of the shoulder-rest position.
+- Added subtle front-layer grip-finger readables over the lute so hand attachment is visible.
+- Updated README, VERSION, HTML patch notes, save/default-world metadata, patch notes, and modular history to V0.14.54.
+
+V0.14.53 — Auto Attack Manual Toggle Pass
+- Converted key 1 / action bar slot 1 into the owning player auto-attack toggle: press once to start, press again to stop immediately.
+- Removed automatic player auto-attack engagement from target selection, spell/outgoing damage, incoming enemy damage, enemy proximity, and enemy-death target chaining.
+- Preserved hostile targeting without starting auto-attacks; active manual auto-attack can still follow the selected hostile target.
+- Updated the hotbar active state/title/pressed state so Auto On/Auto Off clearly reflects the manual toggle state.
+- Updated README, VERSION, HTML patch notes, save/default-world metadata, patch notes, and modular history to V0.14.53.
+
+V0.14.52 — Bot Party Invite Center Screen Positioning Pass
+- Repositioned the bot party invite popup through the owning popup stylesheet so pending invites render centered on the viewport.
+- Raised the invite popup z-index above normal HUD, panels, and tooltips while preserving non-blocking pointer handling outside the card.
+- Added bounded scrolling for stacked invite cards so multiple pending bot invites remain usable from the centered popup.
+- Preserved existing bot leader identity, level, class emblem, Accept, and Decline functionality.
+- Updated README, VERSION, HTML patch notes, save/default-world metadata, patch notes, and modular history to V0.14.52.
+
+V0.14.51 — Chat Feed Chronology Scroll Fix Pass
+- Reworked the shared UI log owner so System, Combat, Chat, and Party entries append oldest-to-newest instead of newest-first.
+- Changed feed history trimming to retain the newest entries without reversing chronological order.
+- Updated feed rendering to auto-scroll to the bottom when a feed renders, including active feed updates and tab switches.
+- Bottom-aligned short log histories in the chat panel so new messages appear near the bottom even before the panel overflows.
+- Updated README, VERSION, HTML patch notes, save/default-world metadata, patch notes, and modular history to V0.14.51.
+
+V0.14.50 — Herb Gathering Kneel Cut Animation Pass
+- Replaced the generic herb gathering reach with a shared humanoid kneel/bend pose that reaches down to the node.
+- Added progress-synced pick/cut/pluck motion, cut flashes, and lifted herb sprig readables to the class identity harvesting effect.
+- Added a short completion hold in the resource gathering owner so the player briefly shows the gathered herb before returning to idle.
+- Preserved existing movement/damage cancellation ownership in ResourceGatheringSystem without adding cascade patches.
+- Updated README, VERSION, HTML patch notes, save/default-world metadata, patch notes, and modular history to V0.14.50.
+
+V0.14.49 — Death Visibility Bot Pet Parity Fix Pass
+- Added shared actor death-state ownership so player death keeps a visible renderable death/corpse state instead of disappearing.
+- Retained visible dead player/bot/merc actors during active-zone ally rebuilds so corpse/death-state rendering survives entity refreshes.
+- Removed the bot-owned pet target-selection special case and kept bot pets in the shared Pet assist/follow AI path used by player pets.
+- Reworked bot pet commands so bot masters expose combat targets while their pets inherit identical assist, leash, separation, rest, meditation, and pathfinding rules.
+- Updated README, VERSION, HTML patch notes, save/default-world metadata, patch notes, and modular history to V0.14.49.
+
+
+V0.14.48 — Bot Party Invite Popup Nameplate Icon Pass
+- Added a non-blocking bot party invite popup with leader name, level, class emblem, and Accept / Decline controls.
+- Retained party panel invite rows as secondary controls and added inline class emblem/level details.
+- Moved class emblems before names on player, bot, pet, and class trainer nameplates; pet nameplates resolve the master's class emblem.
+- Updated README, VERSION, HTML patch notes, save/default-world metadata, patch notes, and modular history to V0.14.48.
+
+
+V0.14.47 — Mining Animation Meditation Save Folder Pass
+- Added dedicated mining pickaxe swing pose/effect synced to gathering progress.
+- Improved Meditation skill EXP bar readability.
+- Added packaged Save folder and routed linked-folder saves into Save/.
+V0.14.46 - Pet Shadow Azure Shard Visual Cleanup Pass
+- Removed duplicate pet shadow rendering by letting identity pet models own their single ground shadow.
+- Removed the Azure Shard Familiar ground-plane ring/caustic visual that read like an unwanted target indicator while preserving other pet animations and behavior.
+
+
+V0.14.45 - Bot Party Formation Cooperation Pass
+- Added autonomous bot party formation through the bot AI owner path.
+- Bots can invite compatible nearby bots into explicit bot parties instead of unscoped friendly cooperation.
+- Bot parties can invite the player through the existing party invite UI; accepting moves the bot party into the player party/HUD.
+- Bot healing, buffing, assist targeting, and combat cooperation are now party-scoped only.
+- Removing a bot from party clears stale targets and cooperation state so former members stop assisting immediately.
+
+V0.14.44 - Player Nameplate HUD Rollback Meditation EXP Fix Pass
+- Corrected the V0.14.42 regression by restoring the fixed character HUD to character-vitals only.
+- Restored the player's regular EXP bar above the action bar and removed it from the fixed HUD.
+- Moved status text and the Meditation skill EXP bar to the player's world nameplate stack.
+- Preserved V0.14.43 mob balance, threat-meter border, and fishing proximity fixes.
+
+V0.14.42 - Player Nameplate EXP Reposition Pass
+- Redesigned the player HUD nameplate into a bot-style two-row layout: player name plus class emblem on top, level and live action/status on the bottom.
+- Moved the player EXP bar out of the hotbar and directly into the HUD stack beneath the health bar while keeping the dark purple background treatment.
+- Removed the separate world-space Meditating label above the meditation skill EXP bar so Meditating/Fighting/Idle appears only in the player nameplate status row.
+- Preserved HP/Mana/EXP fill behavior, darker background styling, companion HUD merge behavior, and existing status/buff trays.
+
+V0.14.41 - Player Gear Score Character Window Pass
+- Added player Gear Score to the Character gear window.
+- Introduced a shared actor gear score helper in the bot gear-score owner path so player and bot scoring reuse the same item scoring formula.
+- Player Gear Score recalculates from currently equipped gear and updates immediately on equip/unequip/stat refresh.
+- Added a prominent Gear Score badge and stat card in the Character panel without duplicating scoring logic.
+
+V0.14.40 - Shared Pet Assist Mode Discipline Fix Pass
+- Centralized Assist-mode combat gating for Necromancer and Summoner pets in entities/pet.js.
+- Assist pets now ignore selected/stale targets while the owner is meditating, resting, harvesting, fishing, or out of combat.
+- Assist pets join only when the owner attacks or is directly threatened, then clear stale pet threat and return to follow/idle after combat.
+
+## V0.14.39 — UI Bar Background Threat Text Polish Pass
+- Added darker purple EXP-bar background beneath the active player EXP fill.
+- Added darker health and mana background layers beneath player HUD fills to match party/pet HUD readability.
+- Added centered mob threat text inside the threat bar using the requested `Threat 12%` format.
+- Kept changes in owning HUD CSS and entity-renderer threat-bar drawing paths; no cascade patching.
+
+## V0.14.38 — Meditation UI Label Fix Pass
+- Added a centered "Meditating" label directly above the meditation EXP bar while player meditation is active.
+- Label shares the existing meditation bar ownership path and disappears automatically when meditation ends or is interrupted.
+- Preserved meditation EXP progression, bar placement, cancellation rules, and animation behavior.
+
+## V0.14.37 — Threat Meter Mob Health Bar UI Addition Pass
+
+- Added a player-relative threat meter directly beneath each hostile mob health bar.
+- Added `getPlayerThreatInfoForEnemy` through the owning threat system so rendering reads normalized player threat from the active mob threat table.
+- The threat meter is aligned to the health-bar width and uses yellow/orange/red visual fill to show rising threat.
+- Primary player threat receives a stronger red highlight; second/lower threat shows partial fill from the player's share of the leading threat.
+- Preserved existing damage, healing aggro, taunt, threat drop/decay, mob targeting, nameplate, and health-bar behavior.
+
+## V0.14.36 — Necromancer Pet Assist Mode Discipline Fix Pass
+
+- Fixed assist-mode pet targeting in `entities/pet.js` so pets no longer self-pull selected or nearby damaged enemies while the owner is out of combat.
+- Added owner-combat intent checks for assist-mode pets: pets join when the owner attacks a hostile target or is actively threatened.
+- Added resting/meditating/gathering guards so Bone Servant and Azure Shard Familiar stay beside the owner while the owner is safely recovering or busy.
+- Updated sustained assist combat so stale damaged targets do not keep pets attacking after combat ends.
+- Added pass notes in `docs/V0.14.36_NECROMANCER_PET_ASSIST_MODE_DISCIPLINE_FIX_PASS.txt`.
+
+## V0.14.35 — Gathering Harvest Progress Animation Pass
+
+- Implemented a timed harvest progress bar for herbs and resource nodes with remaining time and fill progress.
+- Added player gathering action state, synchronized harvesting animation pose, and gathering readout effects in the humanoid renderer pipeline.
+- Added immediate cancellation when the player moves, jumps, click-moves, uses Steam Deck movement, takes combat damage, or takes drowning damage.
+- Added brief success/failure completion feedback before the bar closes while preserving resource drops, depletion, respawn, tool checks, and skill XP ownership.
+- Added patch notes in `docs/V0.14.35_GATHERING_HARVEST_PROGRESS_ANIMATION_PASS.txt`.
+
+## V0.14.34 — Cave Floor Layer High-Detail Procedural Upgrade Pass
+
+- Upgraded the cave floor terrain layer with higher-detail procedural bedrock, geological fracture, mineral, flowstone, scree, seepage, sediment, and sparse cave-life readables.
+- Added cached and direct-render cave-floor detail paths in `render/terrain-renderer.js` while preserving cave floor footprint, terrain IDs, collision, pathing, and dynamic cave occlusion.
+- Preserved all previous water, dirt, grass, pet, party HUD, class renderer, spider, and cave-occlusion fixes.
+
+## V0.14.33 — Water Layer High-Detail Procedural Upgrade Pass
+
+- Upgraded the cached water terrain layer with higher-detail procedural surface treatment while preserving terrain footprint, boundary edges, tile IDs, collision, fishing, and chunk-cache behavior.
+- Added subtle depth gradients, wind ripple bands, local disturbance rings, shoreline meniscus/lapping detail, submerged bottom cues, floating debris, lily-pad/foam readables, and caustic glints.
+- Kept water logic and zone layout unchanged; this is a visual fidelity pass in the terrain renderer.
+- Added patch notes in `docs/V0.14.33_WATER_LAYER_HIGH_DETAIL_PROCEDURAL_UPGRADE_PASS.txt`.
+
+## V0.14.32 — Unified HUD Companion Layout Visibility Fix Pass
+
+- Fixed the merged Pet Command / Party Companion section so it spans the full compact player HUD width instead of being squeezed into the portrait column.
+- Restored readable pet info, HP bar, and command buttons inside the single unified player HUD window.
+- Preserved V0.14.31 single-window HUD ownership and solo-hidden companion behavior.
+- Added patch notes in `docs/V0.14.32_UNIFIED_HUD_COMPANION_LAYOUT_VISIBILITY_FIX_PASS.txt`.
+
+## V0.14.31 — Unified Pet Party HUD Merge Fix Pass
+
+- Merged the Pet Command / Party Companion HUD directly into the player HUD container so it extends the existing character HUD as one window.
+- Added `attachUnifiedCompanionHudToPlayerHud()` in the UI owning system to keep the companion HUD parented under `#hud`.
+- Added `inPlayerHud` CSS path to remove the separate fixed panel border/background while preserving frame content, pet commands, and class emblems.
+- Preserved solo-hidden behavior when no pet or invited party members are active.
+
+## V0.14.30 — FPS HUD Real Frame Cadence Fix Pass
+
+- Fixed the FPS HUD reporting path so it measures real presentation cadence from requestAnimationFrame timestamps instead of the clamped simulation delta.
+- Added smoothing and reset guards for hidden-tab/resume spikes so the displayed number is stable and not poisoned by irregular frame timing.
+- Preserved V0.14.28 movement speed restoration and V0.14.29 pet command HUD behavior.
+- Added patch notes in `docs/V0.14.30_FPS_HUD_REAL_FRAME_CADENCE_FIX_PASS.txt`.
+
+## V0.14.29 — Pet Command HUD Auto Attach Fix Pass
+
+- Fixed the missing pet command window regression by removing the active-party gate from pet HUD entries.
+- Pet command controls now auto-render under the player HUD whenever a Summoner or Necromancer pet exists, even while solo.
+- Party roster frames remain hidden unless the player is actually in a party or has party companions.
+- Kept the old detached `petCommandPanel` suppressed to prevent duplicate pet command windows.
+- Added notes in `docs/V0.14.29_PET_COMMAND_HUD_AUTO_ATTACH_FIX_PASS.txt`.
+
+## V0.14.28 — Movement Speed Regression Fix Pass
+
+- Fixed the movement slowdown regression caused by frame-delta movement caps being too strict after recent heavier graphical passes.
+- Increased movement dt ownership in `core/config.js` and updated player keyboard, click-to-walk, Steam Deck, entity, and companion movement paths.
+- Added sub-stepped controlled-player movement to restore speed while preserving collision safety.
+- Preserved V0.14.27 camp marker, Party HUD, Rogue dagger, and herb prop cleanup work.
+
+## V0.14.27 — Camp Marker Party HUD Rogue Dagger Herb Prop Cleanup Pass
+
+- Removed non-quest overhead role bubbles from trainers, vendors, and camp NPCs.
+- Hid the unified party/companion HUD while solo; it now appears only when a real party/party companion state exists.
+- Kept the companion HUD attached beneath the original player HUD instead of rendering as a duplicate party panel.
+- Re-anchored Rogue daggers to the hand grip centers in front and back facing views.
+- Replaced flat herb/resource marker circles with physical harvestable herb, mushroom, and ore prop drawings.
+- Removed crafting-station marker circles while preserving crafting interactions.
+- Added notes in `docs/V0.14.27_CAMP_MARKER_PARTY_HUD_ROGUE_DAGGER_HERB_PROP_CLEANUP_PASS.txt`.
+
+## V0.14.26 — Screen-Space Ambient Shape Removal Pass
+
+- Removed the legacy screen-space depth-fog oval overlay that rendered after the world pass and appeared as drifting random translucent shapes.
+- Converted `drawDepthFog` into an owning-renderer no-op in `render/effects-renderer.js` and removed its main render-loop invocation.
+- Removed animated sunshaft oval ground patches while preserving the lighter shaft polygon effect.
+- Preserved terrain, cave occlusion, weather, entity, pet, and UI behavior.
+- Added patch notes in `docs/V0.14.26_SCREEN_SPACE_AMBIENT_SHAPE_REMOVAL_PASS.txt`.
+
+## V0.14.25 — Spider High-Detail Procedural Model Upgrade Pass
+
+- Upgraded the Silk Web spider procedural renderer with higher-detail arachnid construction while preserving existing silhouette, proportions, role profiles, and gameplay behavior.
+- Added segmented legs with joint membranes, tarsal claws, sensory setae, and chitin highlights.
+- Added eight-eye clusters, pedipalps, articulated chelicerae/fangs, richer carapace grooves, abdomen surface texture, spinnerets, silk strands, debris traces, and role-specific markings.
+- Preserved cave occlusion/depth sorting work, dungeon spider role handling, boss/elite scaling, and nameplate anchors.
+- Added pass notes in `docs/V0.14.25_SPIDER_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt`.
+
+## V0.14.24 — Cave Roof Dynamic Occlusion Depth Sort Fix Pass
+
+- Fixed rotated-camera cave roof/wall occlusion by inserting cave wall occluders into the same world depth sort as actors, props, effects, and damage text.
+- Added `caveWallOcclusionDepth` and `drawCaveWallDepthOccluder` to the terrain renderer as the owning terrain-side implementation.
+- Cave wall occlusion depth is derived from the camera-front edge of each wall tile, allowing the occluder order to update correctly as the camera rotates.
+- Preserved cave layout, cave collision, terrain IDs, player and pet movement, and prior Bone Servant owner-assist combat fixes.
+- Added pass notes in `docs/V0.14.24_CAVE_ROOF_DYNAMIC_OCCLUSION_DEPTH_SORT_FIX_PASS.txt`.
+
+## V0.14.23 — Bone Servant Owner Assist Combat Fix Pass
+
+- Fixed the actual Necromancer Bone Servant owner-assist combat regression in `entities/pet.js` and combat cleanup ownership.
+- Increased Bone Servant melee reach tolerance for large enemy sprite/body spacing.
+- Added a pet-owned direct combat movement fallback when the shared companion path planner returns no movement but the pet is still outside attack range.
+- Updated stale-combat cleanup so active owner-assist pets are not cleared while the player is still attacking a valid hostile target.
+- Validated sustained Bone Servant attacks with a direct smoke test.
+
+## V0.14.22 — Sustained Necromancer Pet Auto Attack Fix Pass
+
+- Fixed a pet combat regression where the Necromancer Bone Servant attacked once and then stood idle beside the target.
+- Added sustained pet target retention so current valid hostile targets remain locked while combat is active.
+- Pet auto-attacks now refresh target aggro/combat state, preventing immediate target drop after the first swing.
+- The same sustained-combat guard applies to Summoner shard familiar ranged auto-attacks.
+- Preserved party HUD changes, pet visuals, class renderers, terrain passes, and existing pet command behavior.
+
+## V0.14.21 — Pet Auto Attack and Party HUD Attachment Fix Pass
+
+- Fixed Necromancer Bone Servant and Summoner Azure Shard Familiar auto-attack targeting/execution so summoned pets no longer stand idle during combat.
+- Added explicit attack animation triggering for pet auto-attacks; Azure Shard now uses ranged caster behavior and projectile-style visuals.
+- Corrected Party HUD class emblem portraits and restored a HUD-extension layout under the player HUD instead of an obstructive overlay.
+- Added pass notes in `docs/V0.14.21_PET_AUTO_ATTACK_PARTY_HUD_ATTACHMENT_FIX_PASS.txt`.
+
+## V0.14.20 — Character Model Preview Scale Anchor Fix Pass
+
+- Fixed the Character Window model preview transform so the live equipped class model fills the center model viewport.
+- Increased preview scale substantially and re-anchored the model vertically so it no longer appears undersized at the bottom of the display.
+- Added per-class scale targets while preserving the model-only viewport, gear slot formatting, and live class/equipment rendering.
+
+## V0.14.18 — Character Window Gear Slot and Bone Servant Nameplate Fix Pass
+
+- Cleaned the Character Window model viewport so it only displays the live equipped class model.
+- Removed visible equipment model wording and extra class model caption text from the player-facing UI.
+- Reformatted empty gear slots as `[Slot Name] Slot - Empty`.
+- Added equipped-slot stat summaries and improved equipment icon family rendering for starter robes, leg wraps, boots, wands, skull focuses, shard focuses, and grimoires.
+- Raised the Bone Servant nameplate/HP bar anchor so it clears the high-detail pet model.
+
+## V0.14.17 — UI NPC World Cleanup and Cave Entrance Fix Pass
+
+- Replaced the Character Window block-style equipment model with an actual class-model canvas preview using the same procedural class renderer family as the player model.
+- Lifted universal nameplate and health-bar placement so high-detail class, NPC, pet, and mob models no longer touch or overlap the nameplate stack.
+- Flattened overworld walkable elevation to remove half-block floor clutter from generated and loaded worlds while preserving cave/dungeon wall rendering.
+- Cleaned Dead Lantern camp NPC placement by removing non-essential camp service NPCs and retaining quest NPCs, trainers, and the respawn-critical Spirit Healer.
+- Added trainer nameplates in the requested `Class Master Name + class emblem` format.
+- Suppressed extraneous floating NPC/world-object text including close-range NPC prompts, cave ENTER/name labels, vendor/shop labels, crafting labels, chest labels, and resource labels.
+- Added front-threshold cave entrance detection so cave warps activate from the cave mouth front instead of the old object-origin tile behind the entrance art.
+
+## V0.14.16 — Spirit Healer High-Detail Procedural Model Upgrade Pass
+
+- Upgraded the dedicated Spirit Healer renderer with a richer high-detail ethereal angelic model pass.
+- Added layered primary and covert wing feathers, quill/barb readables, dissolving feather motes, enhanced halo/crown treatment, drifting hair wisps, robe constellation embroidery, luminous hands, sacred ground glyphs, respawn anchor beacon, soul tethers, and attendant spirit motes.
+- Preserved Spirit Healer silhouette, proportions, nameplate anchoring, respawn behavior, NPC interaction hooks, placement footprint, and prior renderer stability.
+- Added patch notes in `docs/V0.14.16_SPIRIT_HEALER_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt`.
+
+## V0.14.15 — Dirt Floor Layer High-Detail Procedural Upgrade Pass
+
+- Upgraded dirt-like terrain surfaces with high-detail procedural earth readables while preserving tile footprint, boundary edges, collision, pathing, and map layout.
+- Added soil aggregate, cracks, rain rills, compacted scuffs, embedded stones, exposed roots, organic debris, insect/animal signs, moisture pockets, and grass-edge transition runners.
+- Added cached-terrain chunk support for the same dirt-floor details so optimized rendering keeps visual parity.
+- Added patch notes in `docs/V0.14.15_DIRT_FLOOR_LAYER_HIGH_DETAIL_PROCEDURAL_UPGRADE_PASS.txt`.
+
+## V0.14.14 — Azure Shard Familiar High-Detail Procedural Model Upgrade Pass
+
+- Upgraded the Summoner Azure Shard Familiar pet renderer with a denser high-detail crystalline entity pass.
+- Added stronger facet geometry, chipped edge readables, surface growth striations, mineral inclusions, internal fracture planes, luminous core rings, branching energy veins, orbiting motes, and conchoidal damage cues.
+- Expanded satellite shards with miniature-crystal detail, faint tether geometry, glow halos, planar aura, spectral wisps, termination corona, and subtle ground caustic hints.
+- Preserved the original floating-shard silhouette, coordinate footprint, 8-direction pet behavior, nameplate anchor, animation hooks, and pet gameplay.
+- Added patch notes in `docs/V0.14.14_AZURE_SHARD_FAMILIAR_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt`.
+
+## V0.14.13 — Bone Servant High-Detail Procedural Model Upgrade Pass
+
+- Upgraded the Necromancer Bone Servant / undead pet renderer with a denser procedural skeletal detail pass.
+- Added skull sutures, fracture/callus readables, jaw wire, uneven teeth, exposed vertebrae, asymmetrical ribs and pelvis, crude leather/copper/metal bindings, sharpened phalanges, soul motes, and stronger necromantic joint glow.
+- Preserved the existing pet silhouette, proportions, nameplate anchor, 8-direction facing behavior, action states, and gameplay behavior.
+- Added patch notes in `docs/V0.14.13_BONE_SERVANT_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt`.
+
+## V0.14.12 — Grass Floor Layer High-Detail Procedural Upgrade Pass
+
+- Upgraded the procedural grass floor/terrain layer with denser high-detail meadow readables while preserving existing tile footprints, boundary edges, and material coverage.
+- Added cached grass-layer detail for the terrain chunk pipeline: soil/damp patches, hummocks, dense tuft clusters, broadleaf/clover/flower accents, twigs/pebbles/dew, and organic edge thinning.
+- Added non-cached/fallback `drawTile` detail path for grass tiles so legacy rendering receives the same high-detail ground pass.
+- Preserved terrain chunk caching, half-block exposure behavior, shoreline/edge transitions, terrain IDs, layout, and collision/walkability.
+- Added patch notes in `docs/V0.14.12_GRASS_FLOOR_LAYER_HIGH_DETAIL_PROCEDURAL_UPGRADE_PASS.txt`.
+
+## V0.14.11 — Cleric High-Detail Procedural Model Upgrade Pass
+
+- Upgraded the shared class-identity Cleric renderer with a heavier high-detail armored battle-priest treatment.
+- Added breastplate, pauldrons, shield face detail, mace head accents, holy tabard embroidery, belt relics, prayer gear, sabaton/greave hints, and divine glow overlays.
+- Preserved the Cleric silhouette/proportions, 8-direction renderer behavior, and existing action hooks.
+- Added patch notes in `docs/V0.14.11_CLERIC_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt`.
+
+## V0.14.10 — Necromancer High-Detail Procedural Model Upgrade Pass
+
+- Upgraded the shared class-identity Necromancer renderer with a denser high-detail grim-funerary silhouette.
+- Added richer hood/crown detailing, stronger shoulder mantle/bone regalia, expanded phylactery and soul-vessel readables, more detailed belt relic gear, and a fuller robe/hem treatment.
+- Upgraded the bone staff to a clearer skull-topped ritual focus and added additional class-specific lower detail accents.
+- Preserved the Necromancer silhouette, proportions, 8-direction support, and existing animation/action hooks.
+- Added patch notes in `docs/V0.14.10_NECROMANCER_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt`.
+
+## V0.14.09 — Rogue Class Asset + Dual Wield Expansion Pass
+
+- Re-cut the class emblem sprite sheet at 2048x1024 resolution with cleaner, sharper class silhouettes for HUD, character window, nameplates, and bot inspect panels.
+- Upgraded Rogue dagger rendering to display two clear high-detail daggers with blade bevels, guards, wrapped grips, and pommels.
+- Expanded Rogue off-hand weapon support to eligible daggers, swords, and fist weapons.
+- Added an off-hand damage strike during Rogue auto attacks when a valid off-hand weapon is equipped.
+- Added a Rogue starter off-hand shiv to exercise the dual-wield path on new characters.
+- Added patch notes in `docs/V0.14.09_ROGUE_CLASS_ASSET_DUAL_WIELD_EXPANSION_PASS.txt`.
+
+## V0.14.04 — Rogue Render Bug Fix Pass
+
+- Upgraded the shared class-identity Rogue renderer with a high-detail stealth/skirmisher model pass.
+- Added mask/hood/cowl detail, asymmetric pauldron plates, quilted leather/gambeson seams, chest harness tools, utility belt gear, boot dagger, throwing knives, compact crossbow/bolt hints, and jagged short cloak detailing.
+- Preserved Rogue silhouette/proportions, 8-direction support, existing animation hooks, class emblems, Bard upgrade, Wolf/Boar/Fighter fixes, and Rotling runtime fix.
+- Added patch notes in `docs/V0.14.04_ROGUE_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt`.
+
+## V0.14.02 — Class Emblem UI Integration Pass
+
+- Added a generated class emblem sprite sheet at `assets/ui/class-emblems.png`.
+- Replaced the placeholder class glyphs in the compact character HUD with the new emblem badge art.
+- Replaced the placeholder class glyph in the character window stat header with the new emblem badge art.
+- Updated player and bot nameplates to draw the new emblem badge art from the sprite sheet, while keeping the previous vector emblem code as a fallback if the image is unavailable.
+
+## V0.14.01 — Bard High-Detail Procedural Model Upgrade Pass
+
+- Upgraded the dedicated Bard renderer with high-detail clothing, hat, hair, face, instrument, cloak, belt gear, hand, boot, and surface-detail passes.
+- Preserved the existing Bard silhouette/proportions and all 8-direction renderer support.
+- Added Bard renderer smoke testing across idle, walk, attack, cast, meditate, fishing, hit, death, and all 8 facings.
+- Preserved prior Fighter, Boar, Wolf, and Rotling fixes.
+- Added patch notes in `docs/V0.14.01_BARD_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt`.
+
+## V0.14.00 — Boar High-Detail Procedural Model Upgrade Pass
+
+- Upgraded the dedicated Boar procedural renderer with denser anatomical detail while preserving silhouette, proportions, orientation, animation states, nameplate anchoring, and gameplay behavior.
+- Added shoulder/haunch muscle contour bands, thick hide folds, pebbled skin, scars, ticks/seed pods, osteoderms, mud-caked lower legs, enhanced tusk/hoof detail, facial ridges, and directional bristle/fur clumps.
+- Added patch notes in `docs/V0.14.00_BOAR_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt`.
+
+## V0.13.89 — Fighter Meditation Spirit Aura Pass
+
+- Extended the Fighter meditation animation with a blue glowing aura ring beneath the character, surrounding energy flow, and a slowly rising spirit effect above the model.
+- Preserved the V0.13.84 dedicated Fighter meditate, fishing, and auto-attack ready poses.
+- Added patch notes in `docs/V0.13.89_FIGHTER_MEDITATION_SPIRIT_AURA_PASS.txt`.
+
+# Dream Realms Modular History
+
+## V0.13.84 — Fighter Action Animation Upgrade Pass
+- Added dedicated Premium Fighter meditation, fishing, and auto-attack ready poses to the owning Fighter renderer.
+- Preserved the V0.13.83 high-poly armor plate mesh, silhouette, proportions, facing support, nameplate anchors, click bounds, and non-Fighter renderer paths.
+- Added patch notes in `docs/V0.13.84_FIGHTER_ACTION_ANIMATION_UPGRADE_PASS.txt`.
+
+## V0.13.83 — Fighter High-Poly Plate Mesh Upgrade Pass
+- Added a denser procedural armor plate mesh layer to the Premium Fighter renderer.
+- Preserved silhouette, proportions, animation hooks, nameplate/click bounds, and non-Fighter class renderer paths.
+- Added patch notes in `docs/V0.13.83_FIGHTER_HIGH_POLY_PLATE_MESH_UPGRADE_PASS.txt`.
+
+## V0.13.82 — Fighter High-Detail Procedural Mesh Polish Pass
+- Replaced the failed shield-dominant Fighter composition with an owning full-body Premium Fighter renderer path inside `render/class-identity-procedural-model.js`.
+- Explicitly draws Fighter head, face, torso/chest armor, shoulders, arms, sword, side shield, belt/skirt, legs, and feet.
+- Keeps the shield as an off-hand side prop instead of allowing it to replace the torso/head silhouette.
+- Preserved the improved overhead nameplate renderer from previous passes.
+- Added patch notes in `docs/V0.13.82_FIGHTER_HIGH_DETAIL_PROCEDURAL_MESH_POLISH_PASS.txt`.
+
+## V0.13.80 — Fighter Renderer Emergency Revert Repair Pass
+- Restored `render/class-identity-procedural-model.js` from the stable V0.13.76 renderer to remove the giant-shield Fighter regression introduced by later visual passes.
+- Preserved improved overhead nameplate styling from V0.13.77+ by leaving `render/entity-renderer.js` untouched.
+- Kept gameplay, targeting, sprite sheet, save/load, inventory, party, and map systems unchanged.
+- Added patch notes in `docs/V0.13.80_FIGHTER_RENDERER_EMERGENCY_REVERT_REPAIR_PASS.txt`.
+
+V0.13.79 — Fighter Front-View Renderer Repair Pass
+- Repaired the Fighter renderer after the previous shield/armor visual pass caused Fighter to render as a shield-dominant wedge with legs.
+- Added a Fighter-owned complete composition path inside the class identity renderer so head, face, torso, shoulders, arms, shield, sword, legs, and feet are explicitly drawn in a safe order.
+- Repositioned shield ownership as an off-hand side prop instead of allowing it or the armor plate to replace the humanoid silhouette.
+- Preserved the improved V0.13.77/V0.13.78 nameplate styling and avoided combat, targeting, save/load, UI, sprite sheet, and gameplay system changes.
+
+V0.13.78 — Fighter Shield Layering + Model Proportion Fix Pass
+- Fixed the V0.13.77 Fighter visual regression where the sharper heater shield could render too large and cover the body/head.
+- Moved Fighter sword/shield prop placement into a clean Fighter front-prop helper, reduced shield scale, offset the shield to the shield arm, and kept the crisp heater-shield details without breaking the model silhouette.
+- Preserved the improved nameplates, Fighter armor/face/hair polish, character creation previews, targeting, combat, save/load, sprite systems, map, inventory, party, bot/pet systems, and all gameplay systems.
+
+V0.13.77 — Fighter Model + Nameplate Visual Quality Revamp Pass
+- Upgraded the Fighter model with sharper angular armor construction, stronger plate shoulders/chest, improved shield/sword silhouettes, lower-body greave/tabard detail, and cleaner fighter face/head framing.
+- Reworked overhead nameplates with a compact beveled frame, improved name/level hierarchy, integrated class/elite badge framing, and a crisper HP bar while preserving anchors and gameplay behavior.
+- Preserved character creation appearance support, targeting, combat, save/load, sprite-sheet systems, map, inventory, party, bot/pet systems, and all gameplay systems.
+
+V0.13.76 — Character Creation No-Scroll Layout Fit Pass
+- Tightened the character creation modal into a viewport-fit layout so the Create Character button remains visible without scrolling.
+- Reduced header/logo height, form control height, preview canvas dimensions, summary text height, class-card spacing, and short-screen layout density.
+- Preserved the V0.13.75 live class-model preview pipeline, appearance syncing, class cards, create-character flow, save/load, sprite systems, combat, map, inventory, and gameplay behavior.
+
+V0.13.75 — Character Creation UI + Class Preview Model Revamp Pass
+- Revamped character creation to use live canvas-rendered actual class model previews instead of CSS-only placeholder portrait art.
+- Added class card model previews for active class families and synced the main preview to selected appearance choices.
+- Added eye color support and improved humanoid face rendering with colored eyes, nose, mouth, brows, and clearer facial readability.
+- Routed ClassIdentity/Bard/Druid renderers through shared hairstyle-capable hair rendering so UI hairstyle choices affect actual class models.
+- Preserved character creation, slot flow, save/load, gameplay systems, sprite-sheet fallback, targeting, and UI behavior.
+
+V0.13.74 — Global Auto Attack Timing Normalization Pass
+- Added one shared 2.5 second standard auto-attack interval through DR.GLOBAL_AUTO_ATTACK_INTERVAL_MS and DR.resolveAutoAttackIntervalSeconds().
+- Routed player, mob/enemy, mercenary, autonomous bot, and pet basic auto-attack cadence through the shared resolver while preserving separate spell, heal, taunt, boss special, scripted ability, targeting, threat, damage, and animation systems.
+- Normalized revive/fallback attack timers so old short-startup or random swing delays do not bypass the 2.5 second standard cadence.
+- Validation: all JS syntax checks passed, HTML script references audited, metadata/docs updated, static timing audit completed, zip integrity passed. Manual browser combat timing validation still required.
+
+V0.13.73 — World Object Sprite Sheet Bake Pipeline Expansion Pass
+- Expanded the per-model sprite sheet bake/runtime path to world-rendered objects and environmental props.
+- Added prop bake definitions, props folder/index support, baker UI controls, runtime prop frame resolution, and object-renderer drawImage fallback path.
+- Preserved procedural object renderers as source of truth and kept terrain/UI/nameplates/health bars/chat bubbles/damage numbers out of baked sheets.
+
+V0.13.72 — Class Sprite Sheet Numeric Seed Bake Fix Pass
+- Fixed per-model class sprite baking so Bard/Druid use their dedicated class renderers while Fighter/Cleric/Summoner/Necromancer/Rogue/Enchanter use ClassIdentityProceduralModel.
+- Added opaque-pixel validation so blank transparent class PNGs fail loudly instead of exporting silently.
+- Preserved per-model sprite sheet runtime loading, procedural fallback, anchors, targeting, gameplay behavior, and save/load.
+
+V0.13.70 — Per-Model Sprite Sheet Bake Pipeline + Runtime Renderer Pass
+- Added SpriteSheetSystem for per-model sprite-index.json loading, on-demand model PNG/JSON loading, drawImage() rendering, anchor/click-bound preservation, debug stats, and safe procedural fallback.
+- Updated the sprite baker so classes and mobs export to their own PNG/JSON files instead of only a shared entities atlas; added Bake Selected Model, Bake Classes, Bake Mobs, and Bake All Per-Model Sheets controls.
+- Added assets/sprites/classes, assets/sprites/mobs, and assets/sprites/sprite-index.json placeholders so the runtime has a stable per-model sheet structure before generated PNGs are copied in.
+- Preserved the existing shared atlas path and all procedural renderers as fallback; no UI/nameplates/health bars/chat bubbles/damage numbers/world screenshots are baked.
+- Validation: all JS syntax checks passed, HTML script references audited, metadata/docs updated, static sheet/baker/runtime audit completed, zip integrity passed. Manual browser bake/runtime validation still required.
+
+V0.13.69 — Sprite Atlas Runtime Validation + Entity Coverage Pass
+- Validated and expanded the sprite atlas runtime path: model-specific frame-key variants, action/direction fallback candidates, atlas/procedural stats, optional debug labels, and safe missing-frame fallback.
+- Expanded bake definitions for boars, wolves, Rotlings, Spirit Healer, player class models, and class trainer variants while preserving procedural renderers as source of truth.
+- Added baker validation controls and stronger metadata coverage for anchors, click bounds, and deterministic frame keys.
+
+V0.13.68 — Sprite Baker Local Loader Fix Pass
+- Fixed tools/sprite-baker.html failing at Load Renderers when browser fetch() cannot load ../_script_order.json from local file launches.
+- Added a bundled script-order fallback inside tools/sprite-baker.js while preserving live _script_order.json loading for HTTP/server launches.
+- Added safer script URL resolution and clearer missing-file diagnostics so users can tell whether the build zip was not extracted or a path is missing.
+- Preserved the V0.13.67 sprite atlas bake/runtime pipeline, procedural fallback, entity rendering, anchors, targeting, UI overlays, save/load, combat, map UI, and gameplay behavior.
+- Validation: all JS syntax checks passed, HTML script references audited, metadata updated, static baker-loader audit completed, zip integrity passed. Manual browser bake/export validation still required.
+
+V0.13.67 — Sprite Atlas Bake Pipeline + Runtime Renderer Pass
+- Added an optional runtime sprite atlas system that loads PNG atlas pages and JSON frame metadata and draws available entity frames with drawImage().
+- Added a dev-only browser sprite baker under tools/ that renders procedural model frames onto transparent canvases, packs them into deterministic atlas pages, and exports entities.json metadata.
+- Kept all procedural renderers as source of truth and fallback; missing, unloaded, or failed atlas frames render procedurally and warn once per missing frame key.
+- Added frame metadata support for render anchors, foot anchors, nameplate anchors, shadow anchors, and click bounds so atlas rendering preserves targeting, nameplates, footstep FX, shadows, and corpse anchors.
+- Added initial bake definitions for player/bot/trainer class model families, Gloom Wolf, Briar Boar, Rotling, Silk Web Spider, and Spirit Healer without baking UI/nameplates/health bars/chat bubbles/maps/damage text.
+- Preserved gameplay behavior, visuals when no atlas is present, targeting, threat ownership, bots, pets, map UI, footstep anchors, boar corpses, save/load, terrain/water, half-block rendering, and Silk Web Cavern.
+- Validation: all JS syntax checks passed, HTML script references audited, metadata updated, static atlas/baker audit completed, zip integrity passed. Manual browser bake/runtime atlas validation still required.
+
+V0.13.66 — Footstep FX Anchor Fix + Camp/Trainer Visual Revamp Pass
+- Added shared humanoid/class-family foot-contact anchoring so terrain footstep dust and grass interaction FX spawn at the feet instead of the actor root/body origin.
+- Polished the dedicated boar renderer again with a less circular body read, stronger front-heavy silhouette, improved shoulder/neck/head/snout/tusk/hoof structure, and preserved the corpse-render fix.
+- Cleaned the generated starting camp layout with more deliberate tent/prop spacing, clearer access lanes, removal/replacement of MERC-style signage and ground-flag clutter, and preserved camp gameplay function.
+- Routed class trainers through trainer variants of the matching player class model families using trainer metadata before generic NPC fallback rendering.
+- Preserved movement, combat, targeting, threat ownership, trainer interactions, camp access, maps, save/load, bots, pets, inventory, terrain/water, and half-block systems.
+- Validation: all JS syntax checks passed, HTML script references audited, metadata updated, static ownership audit completed, zip integrity passed. Manual browser visual/input validation still required.
+
+V0.13.65 — Detailed Zone Map + Zoomable Map UI Revamp Pass
+- Replaced the simple full map with a cached zone-data-driven map surface generated from active terrain/object data.
+- Added mouse-wheel zoom, +/- zoom buttons, drag panning, player recentering, and map marker hover labels.
+- Added dynamic map markers for player, party/companions, Spirit Healers, quest givers, trainers, vendors, caves, dungeon entrances, exits/stairs, and important landmarks.
+- Preserved minimap behavior and gameplay systems while making the full map represent the actual zone layout.
+
+V0.13.64 — High FPS Render Projection Optimization Pass
+- Added frame-safe camera projection caching to avoid repeated worldToScreen/cameraDepth camera-center, viewport, and yaw trig recomputation.
+- Added pooled render queue records for terrain/entity/effect/damage renderables to lower per-frame GC pressure.
+- Moved viewport/cull calculations out of tile inner loops and culled offscreen effects/damage before queue insertion.
+- Optimized threat target selection and decay loops to avoid repeated allocation-heavy Object.keys/Object.entries/filter paths.
+- Preserved graphics, gameplay, UI layout, camera behavior, targeting, threat ownership, mob models, bots, pets, dungeons, quests, loot, and save/load.
+
+V0.13.63 — Full Codebase Performance Optimization Pass
+- Added frame-owned performance caches for threat actor/enemy lists, actor-id lookup, roaming group membership, FPS DOM lookup, and render scratch arrays.
+- Added guarded UI DOM writes plus bag render signatures/dirty checks to avoid rebuilding unchanged HUD and inventory markup during the frame loop.
+- Optimized enemy assist scans, Tab-target candidate filtering, nearest enemy checks, minimap enemy marker filtering, and selected path/collision helper checks with allocation-light loops and squared-distance comparisons.
+- Preserved all gameplay behavior, graphics, UI layout, camera behavior, mob models, mob counts, quests, loot, dungeons, bots, pets, targeting, save/load, and V0.13.60 threat ownership rules.
+- Validation: all JS syntax checks passed, HTML script references audited, metadata updated, static performance ownership audit completed, zip integrity passed. Manual browser FPS/visual parity testing still required.
+
+V0.13.62 — Rotling Model Revamp Pass
+- Added render/rotling-procedural-model.js as the dedicated Rotling-family renderer with corrupted woodland anatomy, asymmetrical hunch, separated head/torso masses, visible maw/eyes, bent root limbs, fungal caps, thorns, pustules, bark/root detail, and grounded corpse presentation.
+- Routed Dark Woods Rotlings through RotlingProceduralModel from render/dark-woods-mob-procedural-model.js instead of the old simple rootling/blob fallback.
+- Added idle, walk, attack, hit, death, corruption-cast/spit, claw/swipe/lunge, and spore-burst visual mappings with 8-direction support and variant-aware palettes.
+- Updated Rotling enemy/NPC/editor metadata, dedicated nameplate anchoring, script order, HTML references, README, VERSION, save/default-world/serializer metadata, patch notes, and modular history to V0.13.62.
+- Preserved targeting, threat ownership, combat behavior, loot, quests, pathing, collision, save/load, terrain/water rendering, wolf/boar/Spirit Healer revamps, autonomous bots, pets, Silk Web Cavern, inventory, currency, Purify, resurrection, and Esc menu systems.
+
+V0.13.61 — Boar Model Polish + Corpse Render Fix Pass
+- Polished the dedicated boar-family renderer with stronger heavy-front anatomy, shoulder hump, head/snout/tusk construction, body-plane shading, bristle ridge, hoof grounding, and named/elite detail preservation.
+- Fixed the boar corpse render bug by moving death rendering to a stable corpse-specific geometry path instead of reusing live idle/walk transforms.
+- Corpse pose now keeps body, head, tusks, folded/splayed legs, and bristles visually coherent and grounded.
+- Preserved boar combat behavior, charge behavior, targeting, health/nameplate anchors, corpse/loot behavior, save/load, V0.13.60 targeting/threat fixes, and all unrelated gameplay systems.
+- Updated README, VERSION, HTML patch notes, save/default-world/serializer metadata, patch notes, and modular history to V0.13.61.
+
+V0.13.60 — Targeting + Threat Ownership Hotfix Pass
+- Added bot and bot-owned pet coverage to the central threat actor resolver so bot attacks, bot spells, bot taunts, bot heals, and bot-pet attacks no longer credit player threat.
+- Changed threat target selection to prefer valid stored threat entries and only use proximity aggro when no actor has generated stored threat, preventing player fallback during autonomous bot combat.
+- Removed explicit player bias from enemy fallback target scoring and added stale-threat guarding so invalid threat tables do not silently snap mobs to the player.
+- Reworked Tab targeting into a valid-hostile candidate cycle that ignores bots, pets, friendly NPCs, dead mobs, and invalid actors while preserving target frame updates without starting player auto-attack from target selection alone.
+- Added shared screen-space target bounds for click/right-click targeting so revamped wolves, boars, elites, named mobs, bosses, and other scaled actors are targetable across their visible body; empty ground no longer targets random nearby mobs.
+- Updated README, VERSION, HTML patch notes, save/default-world/serializer metadata, patch notes, and modular history to V0.13.60.
+
+V0.13.59 — Dark Woods Boar Model Revamp Pass
+- Added dedicated BoarProceduralModel and routed Briar Boar / Old Tusk Briarback through the boar-family renderer instead of the old inline oval-body fallback.
+- Upgraded boar anatomy with front-heavy shoulder mass, wedge head, snout/nose disk, tusks, bristled spine, hooves, mud/scar/bark details, and 8-direction support.
+- Added idle, walk, charge, attack, hit, death, and specialAttack visual coverage while preserving charge AI, targeting, corpse handling, loot, quests, save/load, and all non-boar renderers.
+- Updated README, VERSION, HTML patch notes, script order, save/default-world/serializer metadata, patch notes, and modular history to V0.13.59.
+
+V0.13.58 — Dark Woods Wolf Model Revamp Pass
+- Rebuilt render/wolf-procedural-model.js as the dedicated wolf-family renderer with natural wolf anatomy, 8-direction facing, idle/walk/attack/hit/death/howl animation support, palette/variant resolution, and anchor metadata.
+- Routed Dark Woods wolf-family enemies through WolfProceduralModel from render/dark-woods-mob-procedural-model.js, replacing the older inline Dark Woods wolf drawing path instead of recoloring a generic quadruped fallback.
+- Added visible rare/elite/named upgrades including stronger shoulders/chest, brighter eyes, aura ring, fur ridge emphasis, scar details, and Mossfang-specific palette treatment while preserving wolf stats, aggro, targeting, loot, collision, pathing, and save/load behavior.
+- Updated enemy/NPC/editor fallback wolf metadata to keep rendererId/mobVisualKey/family ownership explicit for Gloom Wolf and Mossfang Alpha variants.
+- Updated README, VERSION, HTML patch notes, save/default-world/serializer metadata, patch notes, and modular history to V0.13.58.
+- Validation: JS syntax check, HTML local script audit, wolf renderer static audit, Dark Woods wolf routing audit, mocked render smoke test, metadata audit, and zip integrity passed; manual browser wolf-combat visual QA still required.
+
+V0.13.57 — Half-Block Corner Join Rendering Fix Pass
+- Extended half-block exposure resolution with diagonal neighbor sampling and explicit northEast/southEast/southWest/northWest corner descriptors.
+- Replaced thin two-sided-only corner seams with material-toned vertical corner columns/caps adapted from the cave wall corner rendering principle.
+- Fixed one-sided diagonal corner cases for zig-zag steps, shoreline turns, narrow bridges, isolated raised terrain, and chunk-border corners while preserving ground-over-depth layering.
+- Updated README, VERSION, HTML patch notes, save/default-world/serializer metadata, terrain cache telemetry, patch notes, and modular history to V0.13.57.
+- Validation: JS syntax check, HTML local script audit, metadata audit, terrain static audit, resolver smoke test, and zip integrity passed; manual browser visual QA still required.
+
+V0.13.56 — Spirit Healer Visual Revamp Pass
+- Added render/spirit-healer-procedural-model.js as the dedicated sacred-spirit renderer for Spirit Healer NPCs.
+- Routed dream_spirit/spiritHealer NPCs through SpiritHealerProceduralModel in systems/npc-system.js before any legacy fallback renderer.
+- Upgraded Spirit Healer visuals with layered floating robes, readable holy silhouette, large slow-flapping feathered wings, halo shimmer, body aura, floor rune glow, robe drift, hover bob, and deterministic drifting motes.
+- Updated overworld and Silk Web Cavern Spirit Healer definitions to use rendererId/visualRole spiritHealer while preserving respawn, interaction, placement, collision, save/load, party, bot, quest, and dungeon behavior.
+- Updated README, VERSION, HTML script references, save/default-world/serializer metadata, and modular docs to V0.13.56.
+- Validated JavaScript syntax, local HTML script references, metadata, Spirit Healer renderer registration/routing, dedicated NPC definitions, and ZIP integrity. Manual browser visual testing is still required.
+
+V0.13.55 — Full-Sided Half-Block Wall Rendering Pass
+- Added centralized terrain exposure detection for north/east/south/west half-block faces in render/terrain-renderer.js.
+- Updated structural-pass eligibility so land next to lower terrain, water, or map void emits depth faces even when cached ground rendering is active.
+- Added systematic corner joins and corner occlusion caps for exposed side combinations while preserving V0.13.53 ground-over-depth-face layering.
+- Preserved V0.13.54 auto-attack speed tuning and all gameplay systems; this pass only changes terrain rendering ownership.
+- Validated JavaScript syntax, local HTML script references, V0.13.55 metadata, static face/corner coverage, and ZIP integrity. Manual browser visual testing is still required.
+
+V0.13.54 — Auto Attack Speed Tuning Pass
+- Added shared auto-attack timing tuning in data/classes.js with DR.AUTO_ATTACK_SPEED_TUNING and DR.resolveAutoAttackIntervalSeconds.
+- Added Game.prototype.getAutoAttackIntervalSeconds and routed player getPlayerSwingDelay through the shared resolver while preserving melee/ranged class identity.
+- Routed autonomous bot fallback attacks, class-AI bot fallback attacks, mercenary role attacks, and Summoner/Necromancer pet attacks through the same timing resolver.
+- Reduced baseline auto-attack interval by roughly 18% while preserving range checks, cooldown gates, line-of-sight checks, damage formulas, threat, damage numbers, combat logs, and save/load state fields.
+- Updated README, VERSION, HTML, save/default-world/serializer metadata, and modular docs to V0.13.54.
+- Validated all JavaScript syntax, local HTML script references, V0.13.54 metadata, static timing ownership, and ZIP integrity. Manual browser combat testing is still required.
+
+V0.13.53 — Ground Over Half-Block Layering Fix Pass
+- Split cached-ground elevation rendering into explicit depth-underlay, cached surface, and ground occlusion-cap phases so half-block/depth faces no longer draw over walkable ground.
+- Ground-owned vertical/depth faces now render before cached water and cached ground surfaces, making the terrain face read below the top plane instead of pasted on top of it.
+- Added material-colored ground surface occlusion lips from the owning terrain renderer to cover the upper seam of elevation faces without reintroducing thick rectangular outlines.
+- Preserved V0.13.49 seamless ground chunks, V0.13.50 cached water surfaces, V0.13.51 water depth/shore occlusion, and V0.13.52 organic terrain boundaries.
+- Terrain chunk signatures now sample neighboring tiles beyond chunk bounds for edge-dependent invalidation while keeping bounded chunk caching and targeted mutation invalidation.
+- Updated README, VERSION, HTML, save/default-world/serializer metadata, and modular docs to V0.13.53.
+- Logical terrain data, collision, pathfinding, water blocking, mob/quest/loot placement, combat, bots, pets, Silk Web Cavern, equipment model, inventory drop, currency, Purify, resurrection, ranged auto attacks, Esc menu, and save/load remain unchanged.
+- Validated all JavaScript syntax, local HTML script references, V0.13.53 metadata, terrain phase ordering, terrain renderer mode support, neighbor sampling, and ZIP integrity.
+- Manual browser testing remains recommended for cap thickness, camera rotation, chunk-edge seams, prop/actor overlap near drop-offs, Silk Web floor transitions, and prolonged cache invalidation behavior.
+
+V0.13.52 — Edge Outline Cleanup + Organic Terrain Boundary Pass
+- Replaced the cached ground transition's isolated ellipse stamps with broad, low-contrast cubic contour bands for grass, forest, dirt/path, camp, stone, ruin, cave, and Silk material boundaries.
+- Replaced V0.13.51 rectangular shoreline-cap strips and straight contact lines with layered curved land-material contours.
+- Organic contour endpoints are derived from shared world-coordinate vertices, so neighboring tiles and adjacent chunks reproduce identical joins without gaps or mismatched masks.
+- Curves use deterministic intermediate control offsets plus round caps/joins to reduce rigid stair steps while retaining readable material separation.
+- Shore contours keep the dark underside, solid land cap, and subtle highlight as shaped strokes, preserving the recessed water-wall illusion without a thick half-block silhouette.
+- Removed the old drawWaterEdgeHalfBlock name/path; the unsupported-canvas fallback now uses a restrained curved shore-depth edge and curved transition strokes.
+- Real elevation faces, cave walls, cliffs, and blocked edges remain structurally defined; only soft material and shoreline transitions were relaxed.
+- Boundary curves are generated only during shared terrain chunk builds and retain chunk signatures, camera culling, bounded caching, mutation invalidation, and cross-chunk bleed.
+- Logical tile types, collision, pathfinding, water rules, spawning, placement, combat, quests, dungeons, and save data remain unchanged.
+- Validated all JavaScript syntax, 88-script boot, Fighter update/render, cached material/shore contour construction, vertical/horizontal shared endpoint continuity, cache reuse/invalidation, V0.13.51 composition order, and the full prior gameplay regression smoke suite.
+- Manual browser testing remains recommended for subjective contour width, path readability, tight concave shore corners, rotated views, extreme zoom/DPI, and cliff/soft-edge contrast.
+
+V0.13.51 — Water Wall Depth Layering + Shore Occlusion Fix Pass
+- Corrected the owning terrain pipeline: shoreline depth shafts now render in a dedicated pre-surface phase instead of the post-surface structural tile pass.
+- Shared terrain chunks now compose globally in explicit water-surface, ground-surface, and shoreline-cap phases, preventing later chunks from placing water over earlier cross-chunk land edges.
+- Added land-owned cached shoreline cap surfaces generated from every ground-to-water boundary, including straight edges, corners, ponds, rivers, and chunk-border shorelines.
+- Shore caps inherit grass, dirt, forest, stone, camp, ruin, cave, and Silk floor material colors and use a restrained underside contact shade to read as overhang rather than a heavy outline.
+- Deterministic seeded contour lobes soften tile-stepped shore caps while preserving exact logical terrain and water boundaries.
+- Water depth faces retain their existing dark downward gradients and depth metadata, but their upper seam is now covered by water/ground tops and the final shore cap.
+- Interior water remains absent from per-tile structural drawing; only shoreline depth geometry is processed before cached surfaces.
+- Ground, water, shimmer, and shore-cap layers retain shared chunk culling, signatures, bounded retention, mutation invalidation, camera-independent projection, and cross-chunk bleed.
+- Logical collision, pathfinding, water rules, fishing, spawn/placement validation, combat, quests, dungeons, and save data are unchanged.
+- Validated all JavaScript syntax, 88-script boot, Fighter update/render, depth-before-surface ordering, ground-before-actor ordering, cached shore-cap generation, no water top tile pass, shared cache reuse/invalidation, and the full prior gameplay regression smoke suite.
+- Manual browser testing remains recommended for subjective cap thickness, corner contours, camera rotations, extreme zoom/DPI, props at shorelines, and cave/dungeon water.
+
+V0.13.50 — Seamless Water Rendering + Water Surface Chunk Cache Pass
+- Extended the V0.13.49 terrain chunk object with cached water base and shimmer surfaces instead of adding a disconnected water cache or render loop.
+- Water tops now use continuous world-anchored color fields, soft depth gradients, shallow/deep palettes, cave/dungeon palettes, and inward shoreline fades without per-tile rims or checker variation.
+- Globally aligned wave bands are baked once per affected chunk and animated through one shared opacity phase; no water tiles or full maps are redrawn for animation.
+- Interior water tiles no longer enter the structural tile draw/sort pass. Shoreline water retains the existing deep-water shaft faces so blocked edges, cliffs, and depth remain readable.
+- Water depth is included in per-chunk signatures, so water type/elevation/depth mutations rebuild only affected shared terrain chunks.
+- Camera movement, zoom, and continuous yaw reuse the same world-space water surfaces; deterministic two-texel overlap prevents affine chunk raster cracks.
+- Preserved the logical TILE.WATER model and existing collision, pathfinding, swimming, fishing, spawn rejection, placement, loot, quest, dungeon, and save behavior.
+- Removed the obsolete visible-water animation loop and unused per-tile water detail renderer from the owning terrain module.
+- Existing saves require no migration and transient water surfaces are never serialized.
+- Validated all JavaScript syntax, 88-script boot, Fighter update/render, shared water cache construction/reuse, water-depth invalidation, shallow/deep identity, shoreline structural retention, no interior per-tile draw, and the full prior gameplay regression smoke suite.
+- Manual browser testing remains recommended for subjective shoreline smoothness, animation feel, camera rotation, extreme zoom/DPI, cave water, and editor painting across chunk boundaries.
+
+V0.13.49 — Seamless Ground Rendering + Terrain Chunk Cache Pass
+- Moved walkable ground tops from the per-frame tile draw path into reusable 16×16 logical terrain chunks backed by offscreen canvas surfaces.
+- Kept collision, pathfinding, spawning, placement, combat range, loot, dungeon validation, quest objectives, and saves on the unchanged logical tile grid.
+- Added world-anchored broad tint patches, sparse material details, and irregular cross-material feathering so grass, dirt, forest, stone, cave, and Silk Web floors read as continuous surfaces without square bevels or grout lines.
+- Kept animated water, shore depth, cave walls, cliffs, elevation faces, objects, actors, nameplates, effects, and bubbles in their existing structural/depth render paths.
+- Added camera-independent affine chunk projection, allowing cached terrain to remain aligned and reusable through player movement, camera zoom, and free camera yaw.
+- Added camera chunk culling, bounded least-recently-used retention, per-chunk terrain signatures, zone/map identity keys, explicit region invalidation, and direct editor tile/elevation invalidation.
+- Flat cached ground no longer enters the structural tile draw/sort pass; only water, walls, non-walkable tiles, and elevation boundaries retain per-tile structural drawing.
+- Offscreen-surface capability detection preserves the existing renderer as a safe fallback on unsupported browsers.
+- Existing saves require no migration and volatile cache surfaces are never serialized.
+- Validated all JavaScript syntax, 88-script boot, Fighter update/render, chunk build/reuse/yaw alignment, terrain mutation rebuild, cache bounds, Silk Web material selection, and the full prior gameplay regression smoke suite.
+- Manual browser testing remains recommended for subjective seam quality, prolonged camera rotation, unusual zoom/DPI combinations, and editor painting across chunk boundaries.
+
+V0.13.47 — Bot Summoner + Necromancer Pet Attack Hotfix
+- Bot-owned pets now resolve the bot owner’s current hostile target directly, then protect the owner, assist the party target, protect player/support actors, or engage a nearby already-active threat.
+- Central pet hostile validation rejects friendly, quest, ambient, non-combat, dead, and invalid actors without hardcoding only one hostile representation.
+- Summoner shard and Necromancer undead attacks retain the existing animation, damageEntity, damage-number, death, loot, threat, and reward paths.
+- Ranged pets require line of sight and melee pets require melee clearance; blocked attacks request existing companion pathing instead of damaging through walls or teleporting.
+- Pet target and AI intent state clear on invalid/dead targets, and pets return to owner follow behavior when combat ends.
+- Bot AI now publishes/clears current combat target IDs and returns its pet to assist state on target loss.
+- Living pets with stale entity registration are relinked to their owner and re-registered instead of duplicated; loaded bots safely recreate missing pets through existing summon logic.
+- Non-party bot pet kills now credit their owner’s supported XP path while party pet kills retain party distribution.
+- Existing save schemas and botPetId compatibility remain unchanged; transient targets are reacquired rather than persisted.
+- Validated JavaScript syntax, 88-script boot, both class pets across target priority/pathing/damage/follow/load/XP cases, all prior regressions, and ZIP integrity.
+- Manual browser testing remains recommended for animation timing, rapid target swaps, narrow dungeon pathing, and post-load resummoning.
+
+V0.13.46 — Silk Web Cavern Dungeon Structure + Encounter Polish Pass
+- Replaced Silk Web Cavern’s large round-robin trash distribution with 32 authored room-owned encounter packs and 97 validated pack members across three distinct floors.
+- Floor 1 now serves as Webbed Entry Tunnels, Floor 2 as Venom Nest Depths, and Floor 3 as Matriarch’s Hollow while retaining stable floor IDs and connected branching layouts.
+- Added controlled patrol packs through the existing enemy patrol/pathing system; no new update loop or teleport behavior was introduced.
+- Silk object placement now selects existing reachable floor instead of carving floor beneath requested coordinates, and exact post-construction actor coordinates match the tile that was validated.
+- Added data-owned player-plus-five entrance offsets plus three interior quest NPCs and the Cavern Spirit Healer on reserved reachable staging tiles.
+- Retained five stable quest IDs and integrated Clear the Webbed Mouth, Cave Moss and Silk, Venom in the Walls, Break the Webguard, and The Silk Matriarch with 15 reachable objective nodes.
+- Preserved nine named mini-bosses and three unique ability-driven bosses with valid six-member arenas, gate progression, and boss-specific loot.
+- Added four optional guarded dungeon caches, expanded Queen/final pools with existing named earring/cape/shoulder rewards, added poison-resist dungeon stats, and normalized two raw legacy slots to canonical charm.
+- Existing save schemas and public IDs remain compatible; new objective/cache state is additive and prior active quest snapshots retain their required hooks.
+- Validated JavaScript syntax, 88-script boot, all floor routes/actors/objects/transitions/patrols/objectives/quests/loot, six-member staging, prior gameplay regressions, and ZIP integrity.
+- Manual browser testing remains recommended for live pack pacing, aggro chaining, interaction readability, and full-party poison/resurrection stress.
+
+V0.13.45 — Dungeon Death Visibility, Resurrection, Currency + Placement Fix Pass
+- Centralized live actor restoration now clears stale corpse, ghost, visibility, opacity, death-animation, combat, pathing, meditation, and status state for player respawn, bot recovery, resurrection, and character load.
+- Added level-5 Cleric Resurrection and level-6 Druid Rebirth for dead friendly party targets, including six-tile range/LoS validation, partial resource restoration, autonomous full-party bot selection, safety checks, and class speech.
+- Reworked mob coin loot through the existing coinCopper wallet: level/rank rolls now naturally display copper, silver, gold, and future rare platinum while preserving item and quest drops.
+- Corrected the C/S/G/P platinum conversion mismatch and retained safe transient legacy-corpse gold normalization.
+- Fixed dungeon NPC zone resolution so Dark Woods camp actors cannot appear over Silk Web walls.
+- Added reachable Silk Web interior entrance staging for the quest giver, Spirit Healer, player, companions, respawns, and safe placement fallbacks.
+- Dungeon-owned placement validation now rejects cave walls, blockers, solid props, unreachable islands, occupied positions, and reserved entrance slots for NPCs, mobs, bosses, party transitions, and death recovery.
+- Existing saves remain compatible; missing Resurrection/Rebirth/Purify defaults merge non-destructively and no second currency or transient UI save model was introduced.
+- Validated JavaScript syntax, 88-script load order, Fighter boot/render, visible respawn/save-load, player and bot resurrection, C/S/G/P tiers and wallet persistence, valid Silk entrance actors/mobs/party/checkpoints, prior regressions, and ZIP integrity.
+- Manual browser verification remains recommended for death-panel timing, resurrection pointer/effects feedback, crowded entrance readability, and long-session currency pacing.
+
+V0.13.44 — Dungeon Respawn, Ranged Auto-Attack, Purify + Class Identity Pass
+- Added a dungeon-owned safe checkpoint resolver so player and bot deaths in Silk Web Cavern recover at the active floor entrance without leaving the dungeon or retaining stale combat, pathing, meditation, or death-cleared status state.
+- Added explicit class combat identities: Fighter/Rogue melee, Bard hybrid melee/support, and Cleric/Druid/Summoner/Necromancer/Enchanter ranged casters with six-tile projectile auto-attacks and line-of-sight validation.
+- Normalized ranged bot spacing inside its real firing range and retained autonomous class-role spell priorities.
+- Tuned normal and Silk Web spider poison to limited, curable poison statuses with lower early pressure while preserving stronger elite/boss danger.
+- Added level-4 Cleric Purify as a six-tile friendly cleanse plus autonomous full-party poison detection, target prioritization, casting, and dedicated speech.
+- Reviewed every class spellbook against its role; retained complete existing identities and added only the confirmed Fighter gap, the level-4 self-only Iron Guard defensive cooldown.
+- Expanded status/spell data hygiene for poison tags, cleanse type, curability, nine action-bar slots, stable spell IDs, and non-destructive old-save merging of newly added default spells.
+- Extended dead-bot persistence with dungeon death context and respawn timers; existing V0.13.43 and older save data remains compatible.
+- Validated all JavaScript syntax, 88-script HTML load order, Fighter boot/update/render, generated Floor 2 player/bot respawns, class attack ranges/LoS, player/bot Purify, poison tuning, spell uniqueness, save/load, autonomous six-member party, pathing, meditation, Dark Woods render, Esc menu, equipment model, drops, item compare, and ZIP integrity.
+- Manual browser verification remains recommended for live death-panel timing, ranged projectile feel at different zoom levels, and Purify pointer targeting/status-icon feedback in crowded parties.
+
+V0.13.43 — Core Gameplay Bugfix + Item Compare Pass
+- Shared mob spawn validation now rejects water/deep water, blocked tiles, solid/collision props, entrance/warp tiles, collision-only editor attributes, occupied positions, and out-of-bounds coordinates in every runtime zone.
+- Initial spawn and respawn placement reuse nearby dry-ground retries; exhausted searches skip creation and emit throttled, actionable warnings instead of force-spawning.
+- Added centralized hostile target selection used by left-click, right-click, and Tab paths; right-click hit-tests the clicked mob before opening the empty-world context menu and cannot target through UI.
+- Repaired the paper-doll lifecycle with one data-driven 15-slot markup owner, equipped/empty state markers, alias normalization, and existing character-panel rerendering after equip, unequip, and save/load.
+- Bag-to-world drops are now transactional: ground loot is created first, inventory removal commits second, failed source removal deletes the provisional ground entity, and repeated drop events cannot duplicate items.
+- Ground placement rejects water, blocked terrain, solid props, and collision-only attributes, falls back near the player, preserves stacks, supports pickup, and keeps the existing 45-second despawn.
+- Item tooltips now compare equippable items against the matching slot using class-aware transparent scoring, per-stat deltas, and Upgrade/Downgrade/Sidegrade/No equipped item summaries.
+- Rings and earrings compare both slots and recommend replacing the lower-scoring equipped item without auto-equipping.
+- Validated all JavaScript syntax, 88-script load order, Fighter boot/update/render, water rejection/retry/warnings, left/right/Tab targeting, paper-doll equip/unequip/save/reopen, drop rollback/pickup/despawn/deduplication, item comparisons, save/load, six-member party, bot bubbles, Dark Woods rendering, Esc menu, pathing, meditation, gear, and ZIP integrity.
+- Manual browser testing remains recommended for native HTML5 drag/drop behavior, pointer hitbox feel at different zoom levels, tooltip placement, and paper-doll readability at unusual UI scales.
+
+V0.13.42 — Bot Personality + Party Behavior Deepening Pass
+- Added five stable bot personalities (steady, bold, cautious, grim, witty) with deterministic assignment, inspection visibility, and save/load normalization for V0.13.41 class-key personality data.
+- Personality now modifies chatter frequency, speech selection, recovery timing, combat caution, ally protection, and rare/loot reaction likelihood without overriding class-role priorities.
+- Deepened class behavior with personality-adjusted healer thresholds, tank protection scoring and chase limits, rogue defensive repositioning, caster control callouts, pet health/death/summon reactions, and multi-ally danger awareness.
+- Expanded the class speech matrix to joining, combat threat tiers, emergency healing, control, adds, pets, loot/chests, recovery, cave/dungeon entry, kills, and deaths.
+- Added event-driven party banter selection with per-bot, per-event, party-wide, and event-specific cooldowns; no additional update loop or per-frame event scan was introduced.
+- Chat bubbles now clamp above the action-bar region and resolve crowded overlap with deterministic vertical offsets inside the existing entity render pass.
+- Party HUD bot states now map actual runtime activity to autonomous intents such as Following, Fighting, Healing, Buffing, Controlling, Casting, Recovering, and Downed.
+- Invite analysis now includes tank, healer, support/control, melee, ranged, player class, duplicate-class saturation, availability, level range, and shared six-member capacity while remaining permissive.
+- Validated JavaScript syntax, 88-script load order, Fighter boot/update/render, six-member targeting/HUD/context behavior, personality persistence/migration, complete speech coverage, cooldowns, bubble fade/clamp/overlap, autonomous combat/recovery, save normalization, pathing, meditation cleanup, Dark Woods rendering, Esc menu, equipment/equipment model, and ZIP integrity.
+- Manual browser verification remains recommended for dense moving-party bubble placement, unusual resolutions/UI scale, real pointer interactions, and browser-blocked window close fallback.
+
+V0.13.41 — Autonomous Party HUD + Smart Bot Personality Pass
+- Kept the centralized six-member cap and responsive player-plus-five party HUD while replacing pet-style bot stance/command controls with autonomous class-role behavior.
+- Party frames expose friendly targeting plus Inspect, Talk, and Remove From Party only; combat, support, follow, and recovery decisions remain owned by bot AI.
+- Added deterministic invite evaluation for capacity, availability, level range, existing-party state, and tank/healer/support composition needs.
+- Added centralized, class-specific bot speech with party-wide, per-bot, and per-event cooldowns plus renderer-owned moving/fading chat bubbles.
+- Bot speech now reacts to joining, combat, healing, buffing, protection, rare enemies, loot, recovery, zone entry, low resources, kills, and deaths without adding update or render loops.
+- Save/load retains party order and bot personality identity, initializes transient speech state safely, accepts old four-member data, and normalizes over-cap parties to player plus five companions.
+- Validated all JavaScript syntax, 88-script HTML load order, Fighter boot/update/render, six-member HUD targeting and context menus, autonomous invite/spacing behavior, speech coverage/cooldowns/rendering, save compatibility, Dark Woods rendering, Esc menu, obstacle pathing, meditation cleanup, gear/equipment model, and ZIP integrity.
+- Manual browser verification remains recommended for bubble/nameplate placement in crowded combat, responsive HUD layout at unusual aspect ratios, and real pointer/context-menu behavior.
+
+V0.13.40 — Dark Woods Mob Visual Revamp Pass
+- Added species-specific procedural renderers for Dark Woods mob families: wolves, spiders, boars, stags, rootlings, wisps, deadroot horrors, cave bats, skeletons/mine husks, crystal crawlers, and hostile humanoids.
+- Added deliberate rendererId/mobVisualKey/animationProfile assignments to Dark Woods mob drafts and runtime enemy types.
+- Entity rendering now prefers the Dark Woods visual model resolver before the generic enemy fallback while preserving the Silk Web Cavern spider renderer.
+- Elite, rare, and named mobs receive stronger silhouettes, scale, detail, and glow accents without changing combat balance, loot, pathfinding, targeting, or quest links.
+
+V0.13.39 — Esc Menu Save Exit Hotfix
+- Esc now opens the centered in-game menu instead of using the old pause-only flow.
+- Exit Game now saves world and character state before requesting the app/window close.
+- Browser-blocked window closes fall back to a saved-state overlay instead of silently pausing.
+
+V0.13.38 — Party Size Six Capacity Hotfix
+- Raised the canonical party cap to 6 total party slots.
+- Bot recruitment capacity is now derived from total party occupancy instead of a hard 4-bot cap.
+- Player, remote players, mercenary, and class bots now share the same six-slot party capacity budget.
+- Bot recruiter UI now displays total party size plus available bot slots.
+
+V0.13.37 — Bot Obstacle Pathfinding Combat Movement Pass
+- Shared companion movement now paths around blocked terrain instead of pushing directly into invalid tiles.
+- Bot combat positioning validates melee clearance and ranged line of sight before holding or attacking.
+- Follow/combat route stepping now uses local slide attempts and clean repath triggers without teleport or speed hacks.
+
+V0.13.36 — Bot Meditation Movement Cleanup Pass
+
+- Added centralized meditation-state cleanup used by interrupted bot, merc, and player meditation exits.
+- Meditation exit now clears stale sitting/rest/recovery flags, pending meditation intent, animation state, cached speed/path data, and meditation-only movement penalties.
+- Companion pathing now force-recalculates after meditation ends instead of reusing a path built while the actor was sitting.
+- Bot and companion movement now resolve speed through the owning movement-speed resolver, where meditation returns zero only while actively meditating.
+- Status-effect ticking now includes bot players, so real slows/snares/roots expire correctly on bots.
+- Bot save/load restoration now strips persisted meditation/rest/recovery state so old saves cannot reload bots into a permanent slow state.
+
+V0.13.35 — Full Gear Slot Loot equipment model Pass
+- Expanded the runtime equipment grid to cover all visible character sheet slots: head, shoulders, chest, legs, hands, feet, cape, amulet, two earrings, two rings, weapon, offhand, and charm.
+- Preserved distinct cape/ring/earring/shoulder slots in the item compiler instead of collapsing them into charm or single ring aliases.
+- Added open-world and dungeon gear drops for helmet/head, shoulders, cape, amulet, earrings, rings, and charm slots.
+- Replaced the character sheet's emblem-only center preview with a real equipment model that colors each visible body layer from equipped gear.
+- Added save-safe equipment-slot normalization for older ring/cape/earring aliases.
+
+V0.13.34 — Bot AI Role Targeting Fix
+- Centralized bot role classification and updated legacy fallback AI, party formation, dungeon readiness, and gear scoring to recognize the newer class bot roles.
+- Fixed offensive bot spell targeting for hostile actors beyond kind === "enemy".
+- Fixed ally buff selection and delayed bot spell resource commitment until an effect succeeds.
+
+V0.13.33 — Class Bot AI Stability Balance Pass
+- Class bot spell use now has a real pending-cast state for non-instant spells instead of immediate effect application.
+- Bots lock movement while casting, cancel invalid pending casts safely, and complete casts through the normal bot spell/resource/cooldown path.
+- Bot mana conservation now reserves healer/support/caster mana for emergencies instead of dumping all mana into damage.
+- Bot pet commands reject ambient/non-combat targets and no longer force pets onto invalid critter targets.
+- Bot snapshots record pending cast display state while restore clears transient cast references safely.
+- Added auditClassBotAiStability for profile, spellbook, cooldown, cast-time, and active bot runtime checks.
+
+V0.13.9 — Group Loot Buff Tray Bot Mob AI Polish Pass
+- Corpse loot now merges nearby kills into a single group corpse bag instead of forcing one loot window per mob.
+- Added action-bar buff/debuff tray with hover/focus tooltips using the owned StatusEffectSystem renderer.
+- Reworked bot inspection into a compact no-scroll desktop layout with the Close button fixed at the top right.
+- Improved bot combat AI: protect-target selection, emergency healing, tank taunt behavior, support/caster debuffs, and smarter role positioning.
+- Improved mob AI: same-family assist calls, tactical venom/rend/root effects, low-health fallback behavior, and stronger threat reactions.
+
+V0.13.8 — Vendor Sell Flow Camp NPC Model Fix Pass
+- Removed duplicate legacy vendor sell panel flow; shop Sell tab is now the single selling surface.
+- Rewired runtime NPC rendering to prefer the detailed camp/town NPC renderer before class-model fallback.
+- Added explicit detailed visual roles for starter merchant and camp cook.
+
+V0.13.7 — Runtime Zone Companion Persistence Fix Pass
+V0.13.6 — Save Load Runtime State Bugfix Pass
+- Restored saved player x/y and active runtime zone/cave metadata during character load.
+- Added owned runtime session reset for slot load/logout to prevent stale cave/dungeon/companion state leaks.
+- Fixed bot restore to preserve hp, mana, alive/downed state, botState, command, x/y, zone, and AI timers.
+- Added merc x/y/zone persistence.
+- Preserved water metadata in world tile save/load.
+- Updated stale save metadata.
+
+
+V0.13.5 — Companion Persistence Save Load Stability Pass
+- Added first-class pet save/load ownership.
+- Saved runtime.pet beside mercenary, party, and bot player state.
+- Restored pet command/state/zone and reconciled companions after character load.
+Dream Realms V0.13.4 — Companion Combat Role AI and Encounter Polish Pass
+- Added role-aware companion combat anchors for tanks, melee, ranged, healer, and pets.
+- Improved bot/merc/pet target discipline through party assist and guard threat helpers.
+- Reduced combat clumping with owning-party companion separation logic.
+- Improved pet assist/guard behavior so pets protect party actors, not only the owner.
+- Fixed party XP recipient helper bot ID normalization edge case.
+
+Dream Realms V0.13.3 — Companion Zone Transition QA and World Interaction Polish Pass
+- Added party-owned companion zone transition synchronization for mercs, pets, and party bots.
+- Cave/dungeon floor loads and exits now use one shared companion transition path.
+- Active enemy-set refreshes now preserve valid active-zone allies.
+
+Dream Realms V0.13.2 — World AI Target Discipline and Camp NPC Visual Polish Pass
+- AI target discipline and camp NPC visual polish pass.
+
+Dream Realms V0.12.99 — Merc Nameplate Bag Bar Chat Layout Bugfix Pass
+- Fixed merc nameplate duplicate level display.
+- Added bag-shaped bag dock icons and grey empty bag slots.
+- Adjusted bag dock and chat window layout to prevent overlap.
+
+
+V0.12.97 — Bot Inspect Trade Window NPC Class Model Bugfix Pass
+- Centered bot inspect gear window.
+- Added explicit bot trade window.
+- Routed town NPCs through player class model methods before fallback.
+- Normalized camp NPC layout.
+Dream Realms V0.12.96 — Bot Adventure Loop Combat Followthrough Pass
+- Added bot adventure loop combat followthrough: camp-radius gating, direct quest enemy acquisition, persistent adventure targets, and save snapshot version 6.
+
+V0.12.93 — NPC Visuals Merchant Sell Bugfix Pass
+- Rebuilt town/camp NPC rendering through a readable role-specific 2.5D billboard path.
+- Moved NPC interaction markers above the head so trainer/vendor badges no longer cover faces.
+- Fixed merchant selling by enumerating canonical player inventory instead of legacy bag-slot arrays.
+- Merchants now buy carried inventory items regardless of class restriction, bound/starter tags, or item category unless explicitly engine-locked.
+
+V0.12.78 — Mercenary Gear Pass
+- Made the mercenary gear window functional instead of display-only.
+- Added role-aware merc gear compatibility checks for Guardian, Field Cleric, Arcane Adept, and Blade Scout.
+- Added compatible bag item equip controls and per-slot remove controls inside the merc gear window.
+- Added merc gear stat normalization, gear score, and stat bonus application for HP, mana, attack, defense, armor, speed, range, healing power, spell power, and physical power.
+- Preserved merc gear in the existing mercenary save state and recalculates merc stats after equip, unequip, restore, and level-up.
+- Kept the pass inside mercenary/entity/UI ownership with no cascade patch layer.
+
+V0.12.77 — Mercenary HUD + Progression Pass
+- Upgraded the mercenary HUD into a readable contract card with role icon, role archetype, command/recovery state, stat tiles, HP/mana bars, and expanded EXP display.
+- Downed mercenaries now remain visible in the mercenary HUD with recovery countdown instead of disappearing as if no mercenary existed.
+- Added progression helper methods for role icons, role archetypes, state badges, stat snapshots, and XP summaries.
+- Improved mercenary XP award feedback with level-up pulse, status pulse, level-up sound hook, UI refresh, and character-save dirty marking.
+- Added mercenary state serialization/restoration support to character saves so merc role, level, XP, command, equipment, downed state, and revive timer can persist.
+- Kept changes inside mercenary, UI, save, and runtime-QA owning modules with no cascade patch layer.
+
+V0.12.76 — Mercenary System Completion Pass
+- Rebuilt mercenary combat AI around explicit role behavior for Guardian, Field Cleric, Arcane Adept, and Blade Scout.
+- Added reliable stance handling for Follow, Assist, Guard, Passive, Attack, and Meditate commands.
+- Mercenaries now auto-rest out of combat, wait for the owner to stop moving, and meditate to full HP/mana before resuming.
+- Guardian now taunts and builds extra threat as a tank, Field Cleric prioritizes emergency and normal heals, Arcane Adept maintains ranged spacing, and Blade Scout commits to melee flanking/assist behavior.
+- Added downed/recovery flow: mercenaries are marked downed on death, remain in the party/contract, and revive near the player once combat is safe.
+- Improved merc command-state display and wired command/revive/death feedback through existing audio hooks.
+- Kept changes inside the mercenary entity/system, combat death handling, UI owner, and runtime QA. No cascade patch layer added.
+
+V0.12.75 — Scene-Aware Music Transition Pass
+- Added audioSceneForCurrentState so music selection uses explicit scenes: combat, cave, town, and overworld.
+- Added combat music release-hold so combat music does not rapidly flicker off between attacks or target updates.
+- Added applyMusicScene to centralize music transition timing, fade selection, scene labels, and transition counts.
+- Added Settings music test buttons for Woods, Town, Cave, and Combat music scenes.
+- Extended the audio runtime summary and runtime QA checks to cover scene-aware music transitions.
+- Kept the work in the audio, UI, and runtime QA owner modules; no cascade patch layer added.
+
+V0.12.74 — Ambient Mixer + Audio Runtime Budget Pass
+- Added ambient-specific mixer controls: Ambient Mute, Ambient Volume, and Ambient Density in the Settings panel.
+- Extended persisted audio settings with ambientMuted, ambientVolume, and ambientDensity.
+- Added runtime voice budgeting for SFX and ambient channels so overlapping footsteps, ambience, and combat sounds cannot flood WebAudio.
+- Added audio runtime diagnostics in Settings, including asset mode, active music, active voice counts, buffer counts, failed buffers, and dropped voice count.
+- Routed ambient one-shots through the ambient channel so forest wind, birds, insects, cave drips, water lapping, town murmur, campfire crackle, and thunder obey the ambient mixer.
+- Kept procedural fallback audio and external WAV loading intact; no cascade patch layer added.
+
+V0.12.73 — Ambient Audio + Weather SFX Pass
+- Added systems/ambient-audio-system.js for low-frequency world ambience without adding a cascade patch layer.
+- Added positional ambient one-shot events for forest wind, bird chirps, night insects, owl hoots, water lapping, cave drips, cave rock shifts, campfire crackle, town murmur, and thunder rolls.
+- Added placeholder WAV assets for the new ambient sound effects under sound-effects/ while preserving procedural WebAudio fallback playback for standalone builds.
+- Wired weather lightning to thunder audio through the ambient audio owner, with cooldown protection so storms do not spam thunder.
+- Ambient playback now reacts to cave/overworld, town proximity, water proximity, day/night phase, and rainy/windy weather.
+
+V0.12.72 — Audio Event Coverage + Dynamic Music Pass
+- Added semantic audio events for UI open/close, target selection, bag open, chest open, loot pickup, coin pickup, equipment, quest accept/complete, mercenary hire/commands, and meditation start/stop.
+- Added new WAV placeholder assets under sound-effects/ for the expanded event set.
+- Added town_lantern_loop.wav and combat_pulse_loop.wav under music/ and expanded music selection to support town, overworld, cave, and combat states.
+- Added Game.playAudioEvent as the owned semantic routing layer over Game.playSfx so gameplay systems can trigger audio by intent instead of hardcoded file names.
+- Wired inventory, corpse loot, chest, quest, mercenary, targeting, and meditation systems into the semantic audio event layer.
+- Extended runtime QA to check semantic audio events and combat music coverage.
+- Preserved external WAV loading and standalone procedural WebAudio fallback behavior; no cascade patch layer added.
+
+V0.12.71 — Audio Mixer + Settings Integration Pass
+- Added owned audio settings state with persisted master/music/SFX volumes and mute toggles.
+- Added Settings-panel controls for Master Mute, Music Mute, SFX Mute, Master Volume, Music Volume, SFX Volume, Test Sound, and Reset Audio.
+- Updated SFX playback to respect master/SFX mute and effective volume without breaking procedural fallback audio.
+- Updated music playback and zone-music checks to respect master/music mute and live volume changes.
+- Extended runtime QA to verify audio mixer/settings methods.
+- Kept the audio work in systems/audio-system.js and systems/ui-system.js ownership; no cascade patch layer added.
+
+V0.12.70 — Audio Folder + Sound Music Foundation Pass
+- Added sound-effects/ and music/ folders for owned audio assets.
+- Added systems/audio-system.js with WebAudio SFX/music playback, external WAV loading, procedural fallback audio, audio unlock handling, and zone music switching.
+- Added procedural placeholder WAV assets for footsteps, attacks, hit impacts, spell casts, healing, pet summon, enemy death, level up, Dark Woods music, and cave ambience.
+- Wired terrain footsteps, attack animations, cast cues, status/heal pulses, damage impacts, death, pet summon, level up, and game start to audio hooks.
+- Preserved standalone HTML compatibility by using procedural WebAudio fallbacks when external folders are not available.
+- Kept audio work in owning systems without adding cascade patch layers.
+
+V0.12.69 — Enhanced Nameplates Pass
+- Rebuilt nameplates into a two-line structure: name on line 1, level/emblem row on line 2.
+- Player nameplates now show class emblems next to Lvl:XX for Fighter, Rogue, Cleric, Summoner, Necromancer, Bard, and Druid.
+- Standard enemy nameplates now show name and level without a class emblem.
+- Elite, named, dungeon-elite, and boss enemy nameplates now show a distinct gold elite emblem beside Lvl:XX.
+- Preserved the health bar and meditation skill bar while moving them under the enhanced nameplate stack.
+- Kept the feature inside render/entity-renderer.js nameplate ownership; no cascade patch layer added.
+
+V0.12.68 — Pet Silhouette Replacement Pass
+- Hard-replaced the Summoner pet silhouette with a floating blue shard familiar: no legs, no grounded animal body, hover shadow, spectral mist, orbiting crystal fragments, and blue-white arcane core.
+- Rebuilt the Necromancer pet as a cleaner skeletal warrior / bone servant with larger skull, readable rib cage, clear biped limbs, ragged cloth, crude armor plates, necrotic glow, and a stronger bone-blade attack silhouette.
+- Removed the old pet-body fallback from EntityRenderer so pet-renderer failures cannot visually fall back to the pre-revamp creature silhouettes.
+- Updated Summoner pet naming/default pet type from Shard Elemental/elemental to Azure Shard Familiar/shard.
+- Increased pet render scale slightly for readability and added explicit visualModel metadata to Pet entities.
+- Kept changes in pet renderer/entity/spell/class data ownership; no cascade patch layer added.
+
+V0.12.67 — Direction Frame Orientation Fix
+- Fixed inverted humanoid direction-frame selection by resolving live actor facing from projected screen motion instead of raw world-angle assumptions.
+- Moving toward the bottom of the screen now selects Row 1 Down/front-facing frames.
+- Moving toward the top of the screen now selects Row 0 Up/back-facing frames.
+- Diagonal movement now maps to the matching camera-relative diagonal rows: Down Right, Down Left, Up Right, and Up Left.
+- Updated runtime QA to verify screen-relative direction rows so this regression is caught on boot.
+- Kept the fix in HumanoidAnimationSystem, EntityRenderer, and RuntimeQaSystem ownership; no cascade patch layer added.
+
+V0.12.66 — Pet Revamp Polish Pass
+- Rebuilt the Summoner pet as a floating blue ghostly shard familiar with no legs, hover/glide motion, spectral mist, orbiting shard fragments, arcane core glow, attack flare, hit flicker, death fade, and summon assembly visuals.
+- Reworked the Necromancer pet into a cleaner skeletal warrior / bone servant with larger readable skull, cleaner rib cage, clearer pelvis/limbs, simple armor bits, tattered cloth, necrotic eye/chest glow, and a stronger bone-blade attack silhouette.
+- Split pet motion language inside the shared PetIdentityProceduralModel: Summoner pet uses hover/shard motion while Necro pet uses grounded biped skeleton motion.
+- Updated the Summoner pet default display identity from Shard Elemental to Blue Shard Familiar.
+- Kept changes in the existing pet renderer and pet entity owner modules; no cascade patch layer added.
+
+V0.12.65 — Pet Model Identity Revamp Pass
+- Added render/pet-identity-procedural-model.js as a shared pet rendering foundation with shared animation timing, direction handling, and state-driven action rendering.
+- Revamped the Summoner pet into a mystical spirit familiar with a clearer silhouette, arcane core glow, dorsal crystal fins, runic summon FX, and more readable walk/attack/readiness posing.
+- Revamped the Necromancer pet into a bone-servitor / bone-knight companion with stronger skull, rib cage, pauldron, blade-arm, ragged cloth, necrotic eye glow, and improved attack/hit/death readability.
+- Added pet summon spawn FX timing in entities/pet.js and extended runtime QA checks to validate the shared pet renderer export surface.
+- Kept the work in owning renderer/entity modules with no cascade patch layer added.
+
+V0.12.64 — Final Renderer QA Lock Pass
+- Added systems/runtime-qa-system.js for boot-time renderer integrity checks.
+- Hardened scaled model rendering by sanitizing model screen coordinates and draw scale before applying Canvas transforms.
+- Moved humanoid ground-anchor persistence into the base renderer finally block so terrain footstep anchors cannot remain stale after caught renderer faults.
+- Preserved canonical 8-row humanoid direction mapping and avoided cascade-style overrides.
+
+V0.12.63 — Combat Animation Readability Pass
+- Added stronger combat readability overlays to class identity renderers: attack commitment arcs, cast circles, hit ticks, death-ground fades, and class-specific combat cues.
+- Added role-specific combat readability overlays to mercenary and humanoid NPC identity rendering for Guardian, Field Cleric, Arcane Adept, Blade Scout, and future combat-capable NPCs.
+- Kept changes inside renderer-owning modules; no cascade patch layer added.
+
+V0.12.62 — Footstep Anchor + Meditation Stop Fix
+- Fixed terrain step FX placement by anchoring grass/dirt/dust/water step particles to the world-foot contact point instead of stale screen/nameplate anchors.
+- Removed legacy anchorScreenX/anchorScreenY terrain step overrides from the active effect path.
+- Added meditation toggle debounce so duplicated touch/pointer/click/key events do not immediately cancel meditation as a manual stop.
+- Starting meditation now clears click-to-move pathing to prevent old movement intent from breaking the seated state.
+
+V0.12.61 — Click Move, Terrain Foot FX, Meditation Revamp Pass
+- Fixed click-to-move ground targeting by keeping precise enemy selection screen-based and letting normal ground clicks move reliably.
+- Improved click target resolution near blocked tiles with expanded nearest-walkable searching and diagonal collision axis fallback.
+- Re-anchored terrain grass/dirt/dust footstep effects to the new humanoid ground baseline and moved terrain-step rendering below entities.
+- Revamped shared humanoid meditation visuals with a larger layered aura, rotating rings, rising orbs, and energy wisps.
+
+V0.12.60 — Animation Identity Pass
+- Added action/posture identity shaping to the shared class identity renderer.
+- Fighter, Rogue, Cleric, Summoner, and Necromancer now get stronger motion identity beyond silhouette and palette.
+- Bard and Druid dedicated renderers now apply lightweight identity-specific pose shaping before drawing.
+- Mercenaries and NPCs now get job/role animation cues such as smith sparks, cook stirring, fisher rod motion, bard notes, scout traces, healer glow, and adept orbiting magic.
+- Preserved canonical 8-row direction handling and the existing V0.12.59 stability fixes.
+
+V0.12.59 — Runtime QA + Renderer Stability Pass
+- Performed a renderer/camera/runtime stability audit after the class, mercenary, NPC, and DPR transform passes.
+- Fixed resetCanvasTransform to directly restore the DPR-aware canvas transform instead of relying on a raw identity fallback.
+- Added fault isolation around external-system update/render calls in owning game loop methods.
+- Guarded world renderable drawing so a single object/entity/effect fault cannot leak transforms or break the entire world frame.
+- Wrapped legacy fallback humanoid scaled draw blocks with try/finally and removed a duplicate class-identity renderer guard.
+- Verified syntax, script order, missing scripts, duplicate scripts, duplicate Game.prototype ownership, and cascade-pattern scan.
+
+V0.12.58 — Code Audit + DPR Transform Ownership Fix
+- Audited V0.12.57 for syntax errors, script order, missing scripts, duplicate Game.prototype ownership, renderer smoke errors, and cascade-style patch patterns.
+- Fixed resetCanvasTransform so it restores the canvas display-pixel-ratio transform instead of raw identity.
+- Moved the DPR transform reset into owned game.js camera/canvas methods and updated weather/dungeon screen overlays to use that owned reset.
+- Confirmed no new bottom-of-file hotfix, delayed setTimeout patch, or wrapper cascade was added.
+
+V0.12.57 — Camera Transform Zoom Containment Fix
+- Fixed runaway zoom/scale caused by leaked Canvas transform state when a model renderer failed inside a nested ctx.save() scope.
+- Added per-frame transform reset, safer camera zoom clamps, safer wheel input, and try/finally around scaled model rendering and HumanoidBaseRenderer drawing.
+
+V0.12.56 — Merc NPC Renderer Runtime Zoom Fix
+- Fixed the V0.12.55 startup/runtime render bug in render/camp-npc-procedural-model.js.
+- Replaced invalid social renderer anchor references with compatibility helpers for chest, pelvis, mainHand, and offHand.
+- Corrected Camp/NPC identity ellipse calls to use the shared base renderer signature with rotation before fill/stroke.
+- Preserved the V0.12.55 mercenary/NPC identity revamp while preventing first-frame render failure/visual blowout.
+
+V0.12.55 — Mercenary + NPC Identity Revamp Pass
+- Replaced the old camp-only NPC body renderer with a shared humanoid-base social identity renderer.
+- Mercenaries now use role-specific identity silhouettes: Guardian, Field Cleric, Arcane Adept, Blade Scout.
+- NPCs now use role-specific identity silhouettes: guide, merchant, cook, bard trainer, road warden, scout, surveyor, healer, merc recruiter, smith, fisher.
+- Preserved the canonical 8-row humanoid direction format and debug-facing support.
+
+V0.12.54 — Strong Class Silhouette Identity Pass
+- Rebuilt render/class-identity-procedural-model.js around structured visual profiles instead of generic palette/accessory swaps.
+- Fighter, Rogue, Cleric, Summoner/Enchanter, and Necromancer now have stronger silhouette, posture, prop, layer, and VFX identity.
+- Added class-specific armor/robe/coat/cape shapes, shoulders, chest markings, belts, headwear, held props, back props, cast effects, attack effects, meditation auras, and hit/death flavor.
+- Preserved the V0.12.53 shared humanoid base, canonical row format, row-aware layering, and back-facing arm occlusion.
+
+V0.12.53 — Humanoid Base Phase 1 Foundation Pass
+- Began phase 1 of the class-identity revamp by upgrading the shared humanoid base instead of adding another generic overlay pass.
+- Added canonical row constants and row-aware direction resolution support, including direct row fallback resolution for debugging/runtime actors.
+- Added row-aware layering profiles for the shared humanoid rig and stabilized shared ground/anchor metadata.
+- Tightened back-facing and back-diagonal arm occlusion so rear rows no longer show front-attached arms sitting on top of the back silhouette.
+- Expanded debug-facing labels to show the canonical sheet row plus the world-direction alias when debug mode is enabled.
+
+
+V0.12.52 — Full Class Identity Humanoid Revamp Pass: shared class identity renderer plus back-facing arm occlusion fix.
+V0.12.51 - Canonical 8-Direction Format Correction Pass
+- Corrected the humanoid framework contract to use the required row order: Up, Down, Left, Right, Up Right, Down Right, Up Left, Down Left.
+- Added canonical row labels, row-to-world aliases, math and lookup row mappers, and debug labels that display sheet-row names instead of N/NE/E ordering.
+- Druid and Bard humanoid render routing now uses camera-relative row selection through the canonical mapper.
+
+V0.12.50 - Druid Humanoid Framework Pass
+- Rebuilt Druid on the reusable humanoid base renderer.
+- Added full 8-direction class-overlay Druid model, nature staff handling, leaf/vine/bark outfit layers, cast/attack/hit/death/meditation overlays, and debug-facing support.
+
+V0.12.49 - Humanoid Base Bard Renderer Foundation
+- Added shared humanoid animation and base renderer modules.
+- Rebuilt Bard on the reusable humanoid rig with full 8-direction readable profiles and class overlays.
+- Added debug-facing labels when debug overlay is active.
+
+V0.12.47 - Corpse Loot Window Visibility Fix
+- Fixed hidden Corpse Loot panel visibility in the owning loot system after E-key interaction.
+
+V0.12.46 - Corpse Loot Interaction Fix / Weather Readability Pass
+V0.12.45 - Corpse Interact Weather Visibility Pass
+- Changed corpse looting from death-triggered auto-open to explicit E-key interaction near lootable corpses.
+- Added a capture-phase interact handler so corpse loot gets priority when a lootable corpse is nearby, while normal E interactions still work when no corpse is in range.
+- Updated combat/startup messaging to teach the E-key corpse-loot flow.
+- Revamped rain/fog visibility through weather-system.js with denser weather profiles, stronger overlays, drifting fog bands, rain curtains, brighter rain streaks, and splash accents.
+- Kept changes in owning systems; no cascade patch layer added.
+
+V0.12.44 - Auto Corpse Loot Window Pass
+- Changed corpse looting from click-required to death-triggered auto-open when loot exists and range rules are satisfied.
+- Added pending auto-open handling for ranged/out-of-range kills.
+- Kept corpse click interaction as a fallback, without adding cascade patches.
+
+V0.12.43 - Dark Woods Bugfix Polish Pass
+- Redistributed Dark Woods mob spawns with stronger minimum spacing and safer no-spawn rules near town, roads, camps, cave entrances, and the Gloomheart landmark.
+- Restored Bard direction selection so the 8-direction procedural Bard renderer receives explicit facing frames.
+- Reworked vendor flow with Buy/Sell tabs in the vendor window and protected quest/bound/soulbound item sell guards.
+- Changed enemy loot flow so drops remain on the corpse until clicked, with a styled Corpse Loot window and loot marker on unlooted corpses.
+- Strengthened generated item icon fallbacks for weapons, armor, bags, potions, quest items, materials, currency, focus/offhand items, and consumables.
+- Added movement/distance auto-close rules for dialogue, vendor, trainer, and NPC windows.
+- Darkened the Dark Woods terrain palette and added organic terrain-edge blending.
+- Added the Gloomheart Tree, a 5x7-tile evil tree landmark with twisted roots, gloom foliage, and an evil bark face.
+
+V0.12.42 - Status Threat Systems Pass
+- Added systems/status-effect-system.js for owned buffs, debuffs, DoTs, HoTs, stacks, control tags, and status serialization.
+- Added systems/threat-system.js for per-enemy threat tables, healing threat, pet/merc threat ownership, taunts, decay, and threat-driven target selection.
+- Moved status ticking out of combat-system.js and wired combat/healing/enemy AI/Guardian mercenary behavior into the new owners.
+- Added HUD status trays and updated save metadata/load order without cascade patching.
+
+V0.12.41 - Weather System Pass
+- Added systems/weather-system.js as the weather owner.
+- Integrated biome/season/elevation-aware graduated weather with the existing day/night lighting system.
+- Added weather HUD, weather save persistence, particles, fog, rain, snow, sandstorms, and thunder lightning.
+- Updated load order and docs without adding a cascade patch layer.
+
+V0.12.40 - Time Rate Balance Pass
+- Slowed world time to 10 real seconds per in-game minute.
+- Increased full day length from 24 real minutes to 4 real hours.
+- Migrates V0.12.39 world-time saves to the new default seconds-per-game-day value without losing current day/minute.
+
+V0.12.39 - Day Night Cycle Pass
+- Added systems/time-cycle-system.js as the owner for in-game time, phase calculation, light-state derivation, and clock persistence.
+- Added a minimap clock and phase label.
+- Reworked world sky, canopy, sun shafts, dust motes, fog, vignette, stars, moonlight, and darkness overlay to read from the same time-of-day state.
+- World saves and character runtime saves now preserve current day and time.
+
+V0.12.38 - Core Stats Scaling Pass
+- Added core/stats.js as the single owner for armor mitigation, cooldown reduction, crit chance, crit damage, and class attribute scaling.
+- Armor and CDR now use diminishing returns with hard caps instead of flat runaway scaling.
+- Strength, Dexterity, Stamina, Intelligence, and Wisdom now feed physical output, magic output, healing output, crit, magic crit, mana, HP, armor, and speed.
+- Combat, spell cooldowns, healing, equipment aggregation, item tooltips, and the character panel now read the same derived stat model.
+
+V0.12.10 — Character Creation Text Input Fix
+- Fixed character creation name input so W, A, S, and D are no longer consumed by movement hotkeys while text fields are focused.
+
+V0.12.9 — Class Model Visual Revamp
+- Upgraded playable class model rendering with procedural material detail, pseudo-PBR gradient shading, rim-light passes, bevel/edge strokes, class-specific silhouette details, and higher-detail generated cloth/metal/leather/bone/arcane overlays.
+
+V0.12.8 — Cave Doorway Trigger Refinement
+Removed the remaining interior cave-mouth geometry from cave exits and replaced it with a bright doorway of exterior light drawn directly on the cave wall face. Cave exits and overworld cave entrances now use exact doorway-tile transition thresholds instead of wide radius triggers, preventing accidental walk-over zone transitions while preserving visible cave entrance art.
+
+V0.12.7 — Combat Rebalance and Same-Folder Character Saves
+- Rebalanced low-level combat for slower EverQuest-style pacing: lower early enemy burst, longer enemy swing delays, and low-level player damage caps.
+- Changed folder-linked character saves to write JSON directly into the selected game folder beside the HTML/JS files instead of a nested save folder, when browser permission allows it.
+
+V0.12.5 — Save Folder Autosave Fix
+- Added character save serialization, browser-local character save storage, optional File System Access API save-folder output, 15-minute autosave, F5 Save Folder, F10 character export, and fishing-pose arm-layer cleanup.
+
+Dream Realms V0.11.9 — Profession Loop Pass
+- Added functional profession progression for Gathering, Mining, Fishing, Cooking, and Blacksmithing.
+- Converted resource nodes into level-gated, tool-gated, timed, depleting, respawning profession nodes with XP rewards and success rolls.
+- Expanded items, materials, resource tables, recipes, and profession UI.
+- Added systems/profession-system.js for a consolidated profession overview.
+
+
+Pass 48 - Water / Fishing / Cave Foundations
+- Added swimming and underwater exploration foundation.
+- Added U-to-dive underwater mode and hidden underwater cave/dungeon markers.
+- Reworked fishing to use moving hotspot nodes with visible ripples/bubbles instead of fishing anywhere.
+- Added starter fishing rod/pickaxe tool items, fish/junk catch items, and cooked fish recipes.
+- Seeded Dark Woods herbs and cave herb/mining nodes.
+- Added cave pool water and underwater dungeon draft definitions.
+- Improved water rendering with layered currents and soft natural brown shoreline hints.
+Dream Realms Modular Split History
+==================================
+
+Pass 1:
+- Added systems/fishing-system.js and external system registry.
+
+Pass 2:
+- Split core config/constants/utils and data tables.
+
+Pass 3:
+- Split entity classes.
+
+Pass 4:
+- Split world, cave, and collision systems.
+
+Pass 5:
+- Split combat, spell, and effects gameplay systems.
+
+Pass 6:
+- Split inventory and loot runtime.
+- Added core/globals.js compatibility bridge.
+
+Pass 7:
+- Split render utilities, effects renderer, and minimap renderer.
+
+Pass 8:
+- Split terrain renderer.
+
+Pass 9:
+- Split object renderer.
+
+Pass 10:
+- Split entity renderer.
+
+Pass 11:
+- Split UI runtime.
+
+Pass 12:
+- Split party runtime.
+
+Pass 13:
+- Split multiplayer runtime.
+
+Pass 14:
+- Split mercenary hiring/runtime.
+
+Pass 15:
+- Split main Game runtime into game.js.
+
+Pass 16:
+- Cleaned folder documentation.
+- Added docs/ ownership and load-order files.
+- Externalized logo image to assets/logo/dream-realms-logo.png.
+
+Pass 17 — World Save Foundation
+--------------------------------
+Added data/default-zones.js, systems/world-serializer.js, and systems/save-system.js.
+The game can now save the current world state, load it on boot, reset to default,
+export world JSON, and import world JSON. This prepares the project for an in-game
+map/zone/world editor without changing gameplay or rendering behavior.
+
+
+Modular Pass 18
+---------------
+Added systems/editor-system.js as the in-game editor shell foundation. F10 toggles
+editor mode. The editor panel exposes placeholder tabs/tools, world save/load/export/import
+controls, mouse tile picking, tile inspection, and an in-world highlight overlay. No map
+painting or data mutation tools were added in this pass.
+
+
+Pass 22 — Cave Editor Foundation
+- Added cave theme palette.
+- Added small/big/large cave layout generation.
+- Added Cave Room and Cave Tunnel carving tools.
+- Added Cave Properties metadata.
+- Added cave metadata serialization.
+
+
+Pass 23 — Resource Placement Tools
+- Added data/resources.js.
+- Added resource editor tab and placement tools.
+- Added editorResources world-save metadata.
+
+Modular Pass 29
+- Added data/npcs.js for NPC, mob, and mob-spawn editor draft definitions.
+- Added NPCs and Mobs tabs to the in-game editor.
+- Added placed NPC and mob-spawn editor metadata overlays.
+- Added save/export/import support for NPC/mob editor definitions and placed markers.
+- Runtime NPC interaction is implemented in Pass 36; runtime mob spawn conversion is implemented in Pass 37.
+
+Modular Pass 30
+- Added data/dungeons.js for dungeon drafts, puzzle drafts, and dungeon-room metadata.
+- Added dungeon marker placement tools to systems/editor-system.js.
+- Added dungeon marker save/export support to systems/world-serializer.js.
+- Runtime dungeon entrance and generated floor loading are implemented in Pass 38; puzzle playback is implemented in Pass 39.
+
+Modular Pass 36
+---------------
+Added systems/npc-system.js for live runtime NPC interaction. Placed NPC editor markers
+now render in the world and support E interaction. NPCs can show dialogue, route quests
+through the quest runtime, open runtime vendors, and provide class trainer rank upgrades.
+NPC runtime state is included in world save/export/import. Player level-up base stat
+updates were corrected so later stat recalculation does not wipe level gains.
+
+Modular Pass 37
+---------------
+Added systems/mob-spawn-system.js for live marker-driven mob population. Editor mob
+spawn markers now create overworld and cave enemies using editor mob definitions,
+spawn group count caps, level ranges, loot table ids, aggro/leash radii, and respawn
+timers. Dead spawn slots are tracked in mobRuntime and persist through world
+save/export/import. Runtime placement avoids safe zones, no-mob-spawn attributes,
+NPC safe radii, cave entrances/exits, camp, and noSpawnNearTown areas.
+
+
+
+Modular Pass 38
+---------------
+Added systems/dungeon-system.js for runtime dungeon entrance and instance loading.
+Editor dungeon entrance markers now render as live portals, E near a marker loads a
+generated dungeon floor, stairs progress to the next floor, and exits return the
+player/merc/pet to the original source zone location. Dungeon draft data now drives
+floor count, room plan, min/max level, theme, elite multiplier, and loot table routing.
+Dungeon runtime state is saved/exported/imported as dungeonRuntime.
+
+
+Modular Pass 39
+---------------
+Added systems/puzzle-system.js for live puzzle execution. Generated dungeon puzzle rooms now contain switches, keys, locks, and sealed doors. Sequence puzzles enforce order, key/lock chains open linked doors, clear-room gates open after room enemies are dead, and puzzleRuntime is saved/exported/imported. Object rendering now includes puzzle switches, keys, locks, and doors.
+
+
+Modular Pass 40
+---------------
+Added runtime boss and dungeon-loot integration. Dungeon boss rooms now spawn named bosses from dungeon bossIds and elite add mobs. Dungeon combat/puzzle/boss enemies are flagged as elite dungeon mobs and use the dungeon elite loot table with lootRolls derived from dungeon.eliteMultiplier. Bosses use dedicated boss loot tables and new boss reward item drafts. Stairs and final treasure stay sealed while a floor boss is alive. Boss kills persist in dungeonRuntime.bossKills, and final treasure claims persist in dungeonRuntime.lootedNodes so rewards cannot be farmed repeatedly in the same run. Bosses also cast timed special abilities and phase at lower health.
+
+
+Modular Pass 41
+---------------
+Added systems/spell-compiler-system.js for live spell editor runtime compilation. Editor spell drafts and classSpellSlots now build compiled class spellbooks used by the hotbar and casting system. The spell system now validates mana, cooldowns, pet requirements, and target/range before consuming resources. Spell draft create/edit/duplicate/delete/assignment flows immediately recompile and refresh the hotbar. World import/load/reset paths rebuild the compiled spellbook so saved editor spell data becomes playable immediately.
+
+
+Modular Pass 42
+---------------
+Added systems/item-compiler-system.js for runtime item compilation. Editor item drafts now compile into runtime equipment, stackable materials/resources, quest/currency items, and usable consumables. Loot tables, vendor purchases, quest rewards, resource gathering, and crafting outputs now resolve through compiled item definitions. The compiler normalizes editor-only/legacy slots such as ring1/ring2 to ring and cape/cloak/back to charm so drafted rewards are equipable in the current runtime equipment grid. Stackable runtime items now merge into capped stacks, and consumables such as Roasted Darkwater Fish can be used from the bag.
+
+
+Modular Pass 43
+---------------
+Added save migration and version safety. World saves now serialize as dream-realms-world-save-v2 with saveFormatVersion 2 and buildPass 43 while keeping the existing browser storage key for compatibility. Legacy v1 saves from Pass 31-42 migrate in place, with missing editor/runtime sections backfilled from current defaults. The save system now preserves backups before overwrites, reset, import, and automatic migration; corrupted boot saves are quarantined instead of blocking startup. Load/import/reset/rebuild paths also recompile runtime item and spell catalogs and reapply pending runtime states to installed systems.
+
+
+Modular Pass 45
+---------------
+Polished the in-game editor workflow. Palette sections now include search/filtering with result counts, the editor exposes validate-only vs validate-and-repair actions, validation output includes category counts and sample broken references, and the inspector/status panels show filter and validation state. Editor shortcuts were expanded with / for palette search, [ and ] for brush size changes, and Esc for clearing selection/rectangle anchors.
+
+Modular Pass 45
+Full QA / Stabilization pass. Fixed broken editor/runtime data references found by cross-reference QA: Gloom's Crypt now has a valid key item, the lower-crypt Bone Lever puzzle draft exists, the Gloomleaf quest reward resolves to a compiled item, and Camp Cook is a live quest/vendor NPC. Save metadata now migrates buildPass to the current pass and export validates before writing JSON. Editor validation now checks quest rewards, mob and spawn loot tables, dungeon bosses/key items/puzzles/loot, puzzle failure spawns, NPC quest refs, and event-command loot aliases.
+
+Pass 46 - HUD/Bag/Skills/Merc/Party QoL: bar values, six-bag inventory, C/S/G/P money display in bags, movable Skills window, merc commands/meditation, and party HUD merc support.
+
+Pass 46.1 - UI Drag Anchor Fix
+------------------------------
+Fixed the movable window regression where panels could jump to the lower-left corner when drag started. The drag owner now measures the panel before changing fixed-position anchors, normalizes the panel to explicit left/top coordinates, preserves the pointer-to-panel offset, and clamps movement by actual panel width/height instead of fallback constants.
+
+
+Pass 47.1 - Dark Woods Density / Meditation Rules
+-----------------------------------------------
+Added starter-zone Dark Woods mob spawn coverage so new players can find wolves and rotlings near the starting route without entering the protected camp radius. Meditation now uses formal gameplay rules: out-of-combat only, movement/damage/attack/spell-cast cancellation, a short settle period before the first tick, level-scaled tick rate from 15s to 5s, level-scaled HP/Mana restore from +2 to +45, and meditation XP only when a real restore tick fires. Mercenaries now use the same meditation runtime and visual animation path.
+
+Pass 48.1 - Meditation Combat State / Character Color / Party HUD Fixes
+- Fixed combat cooldown not decaying for player/entity base updates.
+- Removed passive nearby-enemy proximity from meditation combat-state blocking.
+- Fixed character creation appearance payload being dropped by save wrapper.
+- Updated party HUD to show Name - Class - Level and readable HP/Mana bar values.
+
+
+Pass 48.2 - Space Bar Jump
+- Added Space Bar jump input.
+- Added entity jump z/vz runtime physics.
+- Jump cancels meditation and is blocked underwater.
+- Renderer now lifts jumping sprites while keeping shadows on ground.
+- Multiplayer peer state sync includes jump height.
+
+Pass 49.3 - Verified Menu Patch Notes / Meditation Bar / Turn Combat
+- Patched the actual packaged zip.
+- Added visible main-menu Patch Notes button and panel.
+- Added rounded meditation EXP bar with inside text.
+- Added turn-combat system load + HUD + runtime wrappers.
+
+Pass 50 - Steam Deck Support
+- Added Steam Deck / 1280x800 responsive UI layout.
+- Added Gamepad API control support for Steam Deck/Xbox-style controllers.
+- Added click-to-walk movement while preserving click-to-target on mobs.
+- Added visible click-walk ground marker.
+
+
+V0.10.6 - FPS Counter + Terrain Step Effects
+- Added a live FPS counter under the minimap.
+- Implemented FPS in game.js main-loop/UI update ownership, with the display element in the minimap HUD section.
+- Added terrain-tag-based footstep particles driven from data/tiles.js profiles.
+- Movement step emission is called from systems/collision-system.js and systems/swimming-system.js, with rendering in render/effects-renderer.js.
+- Effects are step-timed, low-count, short-lived, and culled when offscreen.
+
+V0.10.8 - Combat and Movement Stabilization: repaired turn-combat turn loop and added F3 debug overlay.
+
+V0.10.9 - Cascade Cleanup and Owning-System Rewrite: removed wrapper-style patches and moved behavior into owning lifecycle/input/combat/collision systems.
+V0.11.0 - Dark Woods Content Foundation: expanded outdoor level 1-10 mob families, default spawn placements, road/deepwood quest NPCs, quests, loot drops, and outer-woods rare rewards.
+
+V0.11.2 - Dark Woods Visual Atmosphere
+- Added fog pockets, fireflies, lantern posts, dead trees, ash stumps, glow mushrooms, and root-arch landmarks.
+- Added systems/atmosphere-system.js as the owning ambient visual system.
+- Added object rendering and editor validation for new atmosphere prop types.
+
+V0.11.3 - Dark Woods Loot and Progression: family loot tables, named rare mobs, gear rewards, upgraded quest rewards, and clearer loot messages.
+V0.11.4 - Class Ability and Combat Feel: added cast cues, hit sparks, heal/status pulses, enemy turn telegraphs, and hotbar cooldown/readiness readability.
+V0.11.5 - Enemy AI and Encounter Balance: added structured enemy AI profiles, family-specific turn abilities, threat tags, cleave/AoE/ranged behavior, and named rare combat tuning.
+
+V0.11.6 - Full Class Identity and Ability Progression: corrected all class role text, rebuilt Fighter as heavy-weapon melee DPS, Rogue as burst/poison DPS, and Necromancer as undead pet attrition caster; added ability unlock levels, poison/disease turn damage hooks, and pet summon metadata.
+
+V0.11.7 - Gear + equipment model Pass
+- Added equipment model equipment preview, rarity framed gear slots, stat comparisons, and equipped-gear visual tinting.
+
+V0.11.8 - Dark Woods Cave + Dungeon Expansion
+- Added named Dark Woods cave entrances for Mossfang Cave, Silk Web Cavern, Ashroot Hollow, Crystal Grotto, Forgotten Mine, and Blackroot Catacombs.
+- Rebuilt cave runtime around deterministic small/medium/large layouts, multi-floor stair transitions, cached floor state, floor-scaled enemies, encounter rooms, and cave-specific resources.
+- Added cave-specific mob/resource/treasure loot identity, dungeon entrance hooks for deeper content, and improved cave entrance terrain blending.
+
+V0.12.3 - Deep Water System Pass
+- Added connected-water depth normalization for overworld and cave maps.
+- Added vertical swimming through 5-12 block water volumes with breath tracking.
+- Improved deep-water visual attenuation and depth cues.
+- Updated file/version metadata and patch notes for the release.
+
+V0.12.4 - Stabilization Bugfix Pass
+- Added styled item hover tooltips for inventory, bag bar, and equipment slots.
+- Revamped generated item icon visuals by family and rarity.
+- Restored meditation bar label to Exp: current/needed.
+- Changed Necromancer Bone Servant rendering to a skeleton pet instead of an elemental shard.
+- Reworked cave exits into wall-mounted daylight breaches.
+- Added right-click Start Fishing / Start Gathering / Start Mining / Start Smelting style world actions.
+- Updated release filename, metadata, README, patch notes, and load order.
+
+V0.12.6 - Control Settings, Targeting, Resource Interaction, and Spawn Stabilization
+- Replaced cave interior exits with larger wall-seamed daylight doorways.
+- Added saved key rebinding in Settings.
+- Added active target indicators under selected mobs.
+- Pets despawn on death.
+- C opens Character Info by default; crafting moved to J.
+- Fixed right-click profession/resource actions.
+- Added mob respawn minimum delay and spawn collision checks.
+
+
+V0.12.11 - Rogue Sprite Sheet Integration Pass
+- Integrated the provided rogue sprite sheet as an external runtime asset.
+- Rogue class now uses sprite-sheet rendering with directional row selection and animated walk frames.
+
+
+V0.12.12 - Rogue Sprite Sheet Removal Fix
+- Removed the external rogue sprite-sheet runtime integration from V0.12.11.
+- Rogue class now uses the procedural class renderer again.
+- Removed oversized checkerboard sprite-card artifact from gameplay.
+
+
+V0.12.13 - Female Walk Animation and Gender Select Fix
+- Removed Nonbinary from the character creation gender dropdown.
+- Fixed female character sliding by routing female models through the shared planted-step walk animation path.
+
+
+V0.12.14 - Starting Camp Scale and Vendor Pass
+- Revamped starting camp prop scale so tents and vendor structures are larger than characters.
+- Added Quartermaster Brann vendor NPC at the starting camp.
+- Added sell-item vendor UI for bag items.
+
+
+V0.12.15 - Gender Select Cleanup
+- Character creation gender dropdown now contains exactly Male and Female.
+- Removed the blank third option.
+
+
+V0.12.16 - Class Starting Gear Pass
+- Added class-specific starter gear definitions to item data.
+- Added inventory-owned starter gear grant/equip flow for new characters.
+- Starter gear remains low-power, white rarity, level 1, and class-restricted.
+
+
+V0.12.17 - EverQuest Combat Feel and Merc Meditation Fix
+- Added automatic auto-attack engagement/disengagement tied to combat state.
+- Slowed player/ally/enemy swing cadence and reduced burst damage.
+- Fixed mercenary meditation out of combat and command meditation behavior.
+
+
+V0.12.17 - EverQuest Combat Pacing and Merc Meditation Fix
+- Auto attack now auto-engages in combat and disengages when combat ends.
+- Slowed and smoothed auto-attack damage for players, mobs, mercs, and pets.
+- Fixed mercenary meditation rest behavior out of combat.
+
+
+V0.12.18 - Layered Character Puppet and Meditation Pose Pass
+- Split meditation rendering out of the standing humanoid draw path.
+- Added layered puppet methods for meditation pose, aura, particles, body parts, and gear details.
+- Improved seated silhouette and aura/terrain response without changing gameplay systems.
+
+
+V0.12.19 - Standing and Walking Layered Humanoid Puppet Pass
+- Rebuilt the standard class model renderer as a layered humanoid puppet.
+- Added 8-direction standing profiles, per-part limb drawing, torso/chest panel structure, and hand-attached weapons.
+- Preserved legacy fishing-specific standing rendering as a fallback.
+
+
+V0.12.20 - Camera Spawn Recovery and Renderer Fault Fix
+- Fixed the V0.12.19 standing puppet renderer runtime fault after character selection.
+- Added camera sanitization/recenter handling in the main runtime owner.
+- Cleaned stale HTML files from the build package.
+
+
+V0.12.21 - Layered World Depth Stage 1 Pass
+- Added deterministic tile variant/decal system to terrain rendering.
+- Added bevel, micro-detail, wall-gradient, wall-detail, ledge-lip, and broken-edge passes.
+- Added prop contact shadows and atmospheric dust/light texture pass.
+
+
+V0.12.22 - Canonical Actor Pose and Fishing Renderer Fix
+- Fixed floating meditation head by anchoring head/neck/nameplate through buildActorPose().
+- Removed the legacy fishing body renderer branch.
+- Fishing now uses the current layered puppet body with a rod/reel action overlay attached to hand anchors.
+
+
+V0.12.23 - Cave Mob Restore, Flat Floors, Zone Density, Model Polish, Patch Notes Fix
+- Preserved generated cave enemies when the mob-spawn runtime has no cave editor spawn markers, fixing empty caves.
+- Flattened playable cave floor and water elevation to remove half-block floor clutter while retaining walls.
+- Increased Dark Woods default spawn anchors from 22 to 66 for roughly triple outdoor mob density with spacing.
+- Restored class-profile colors over starter-rarity colors and added another humanoid model polish pass.
+- Repaired the HTML title and visible splash Patch Notes list through V0.12.23.
+
+
+V0.12.24 - Overworld/Cave Flat Floors, Cave Mob Spacing, Cave Mob Runtime Ownership
+- Flattened walkable Dark Woods terrain so outdoor ground no longer renders raised half-block floor clutter.
+- Flattened cave and dungeon walkable terrain consistently, keeping wall height but removing step-like floor slabs.
+- Moved cave encounter ownership back to the cave generator so cave floors are no longer overwritten by old cave marker runtime spawns.
+- Spread cave enemies across rooms with minimum-distance placement so packs do not pile ten mobs into one spot.
+- Updated title, metadata, README, and patch notes for V0.12.24.
+
+
+V0.12.25 - Combat State Cleanup and Meditation Unlock Fix
+- Added active threat detection and stale combat-state cleanup.
+- Meditation now clears stale combat state before blocking on combat.
+- Enemy aggro no longer refreshes player combat cooldown every frame unless real engagement exists.
+- Auto-attack, target, merc, and pet combat flags clear when no active threat remains.
+
+
+V0.12.26 - Rogue-Specific Procedural Renderer Pass
+- Added a dedicated render/rogue-procedural-model.js module.
+- Routed Rogue actors away from the generic humanoid renderer into the Rogue-specific procedural model.
+- Added hood/mask/cloak/pouches/asymmetrical shoulder plate and readable hand-attached dual daggers.
+
+
+V0.12.27 - Seamless Terrain, Roaming Mobs, Cave Density, EQ Pace Rebalance
+- Removed hard internal tile strokes and added neighbor-aware terrain edge transitions.
+- Added connected water surface overlay and terrain-first render ordering.
+- Added enemy patrol/roam behavior around spawn homes.
+- Increased cave room enemy budgets with distance-spread placement.
+- Increased enemy health and reduced player auto-attack damage for slower EverQuest-style combat pace.
+
+
+V0.12.28 - Rogue Animation State Integration Pass
+- Added Rogue-specific meditation, fishing, and auto-attack animation states to render/rogue-procedural-model.js.
+- Routed Rogue meditation through the Rogue renderer instead of generic humanoid meditation.
+- Added hand-anchored Rogue fishing rod/reel overlay and Rogue dual-dagger slash animation.
+
+
+V0.12.29 - Logo Screen Boot Fix and Water-Edge Half Blocks Restore
+- Fixed logo-screen boot lock by replacing undefined cave enemy elite reference with options.elite.
+- Added robust splash close input support for click/tap/pointer/Enter/A/Space.
+- Restored half-block visual ledges only on land edges adjacent to water.
+        - Updated patch notes and cleaned adjacent duplicate recent entries.
+
+
+V0.12.30 - Bard-Specific Procedural Renderer Pass
+- Added dedicated render/bard-procedural-model.js.
+- Routed Bard actors away from the generic humanoid renderer into the Bard-specific procedural model.
+- Added lute/instrument, gold sash, cape, feather accent, music pouch, and performing note overlays.
+
+
+V0.12.31 - Dark Woods Full Layout Regeneration Pass
+- Replaced the Dark Woods world-generation layout with a fresh authored/procedural terrain pass.
+- Removed the flat-floor-only constraint from this pass; elevation is used intentionally for ridges, ruins, cave shelves, and landmarks.
+- Rebuilt roads, water bodies, camps, landmarks, cave entrance coordinates, atmosphere objects, and outdoor spawn anchors.
+- Preserved existing gameplay systems and class renderers.
+
+
+V0.12.32 - Bard True 8-Direction Renderer Pass
+- Rebuilt render/bard-procedural-model.js around true 8-direction profiles.
+- Removed the old front/back Bard renderer branch.
+- Added direction-specific lute, sash, cape, head, face, torso, arm, leg, and gear anchors.
+
+
+V0.12.33 - Wolf-Specific Procedural Renderer Pass
+- Added render/wolf-procedural-model.js from the WolfProceduralModel specification.
+- Routed wolf-type enemy actors away from the generic enemy renderer into the wolf quadruped renderer.
+- Added 8-direction wolf body/head/muzzle/tail/leg profiles and a dedicated wolf corpse pose.
+
+
+V0.12.34 - Pathfinding, Mob Density, Merc Progression, Tree Variety Pass
+- Added A* pathfinding for click-to-walk and entity movement around blocked objects.
+- Tripled Dark Woods mob density at spawn runtime.
+- Cut enemy swing delay to roughly half the prior pacing.
+- Added mercenary EXP, level scaling, and a merc gear window.
+- Expanded tree visual variety with multiple shapes, sizes, trunk palettes, and foliage colors.
+
+
+V0.12.35 - Steam Deck Action Bar Fix, Deck Meditation Button, Code Audit Pass
+- Fixed Steam Deck/touch action-bar activation by binding hotbar pointer/click/touch/keyboard events inside systems/spell-system.js.
+- Added Steam Deck-only Meditate button and bound it inside systems/steam-deck-system.js.
+- Completed static no-cascade audit across game JavaScript files: syntax, duplicate Game.prototype owners, script references, and UI ids.
+
+
+V0.12.36 - Bard Meditation and Fishing Animation Pass
+- Added bard-specific meditation and fishing animations to the dedicated Bard procedural renderer.
+- Updated entity-renderer bard dispatch to pass meditation/fishing state and seated nameplate anchoring.
+
+
+V0.12.37 - Detailed Starter Camp NPC Renderer Pass
+- Added dedicated detailed starter camp NPC procedural renderer.
+- Added healer, mercenary recruiter, smith, and fisher/provisioner NPC definitions and placements.
+- Updated NPC runtime rendering to use role-specific detailed NPC silhouettes before generic marker fallback.
+
+V0.12.79 - Party System Foundation Pass
+- Realigned V0.12.79 to the user roadmap after the V0.12.76/V0.12.77/V0.12.78 mercenary passes.
+- Rebuilt party roster ownership in systems/party-system.js with normalized party ids, leader/member state, invite state, and roster snapshots.
+- Added party HUD member frames with role/class, level, HP, mana, leader/downed/meditating state, and signature-based rendering.
+- Improved party panel member frames, nearby player invites, invite accept/decline flow, and mercenary invite/remove behavior.
+- Added right-click world-context party actions for nearby synced players and active mercenaries.
+- Retained code ownership maintenance fixes without adding bottom-of-file patch layers.
+
+
+V0.12.80 - Party Combat Integration Pass
+- Connected the V0.12.79 party roster to combat helpers for assist targeting, healing priority, XP sharing, and loot policy tagging.
+- Added party-aware mercenary assist targeting and Field Cleric healing candidate selection.
+- Routed enemy defeat XP through party sharing rules while preserving active mercenary XP progression.
+- Added BroadcastChannel party reward and combat-ping message handling for browser-local synced peers.
+- Saved and restored party runtime state with character save data.
+
+
+V0.12.87 - Bot Player Behavior + Integration Polish Pass
+- Added autonomous bot squad formation and shared squad assist targeting.
+- Tightened party bot assist targeting so bots do not pull idle selected enemies.
+- Fixed XP ownership so solo bot kills reward bots and non-party nearby bots do not receive party XP.
+- Included bot ally combat in combat-system cooldown/threat ownership.
+- Added bot inspect context action and stronger save snapshot fields.
+
+V0.12.88 - Bot Player Quest Camp Dungeon Simulation Pass
+- Added bot quest routines, camp supply/turn-in behavior, and simulated dungeon run state.
+- Persisted bot quest/camp/dungeon state in bot runtime saves.
+V0.12.89 - Bot Player Social Economy World Presence Pass
+- Added bot social/status chatter.
+- Added bot economy fields and camp sell/buy/repair/upgrade loop.
+- Added bot current activity labels to nameplates/HUD.
+- Added Ask Status bot context action.
+- Raised bot save snapshot to version 3.
+V0.12.90 - Bot Player Performance Scheduling Runtime Stability Pass
+- Added budgeted bot simulation scheduling.
+- Hot bots (party, nearby, combat) remain responsive; distant autonomous bots tick at lower frequency.
+- Added bot actor AI throttling and advanced routine budget.
+- Added timed squad refresh/ensure checks.
+- Added bot runtime sanitization and stuck recovery.
+- Upgraded bot snapshot version to 4 with scheduler/stability fields.
+V0.12.91 - Bot Scheduler Render Recovery Bugfix Pass
+- Fixed UI-only/blank-world failure from recursive bot party normalization.
+- normalizeBotState no longer calls isBotInParty.
+- isBotInParty now safely reads the bot party set without recursive normalization.
+- Split game loop update/render fault handling so update faults cannot suppress world rendering.
+- Added safe player class fallback for invalid legacy saves.
+
+V0.12.92 — Bot Party Movement HUD Duplication Bugfix Pass
+- Fixed party bot idle jitter caused by followParty falling through into autonomous roam.
+- Slowed bot movement and clamped large follow/roam frame deltas.
+- Removed duplicate Offline/Downed HUD rows by keeping bot IDs out of partyMembers.
+
+
+V0.12.94 — Bot Loot Trading Meditation Pass
+- Added bot-owned inventory/equipment persistence.
+- Added bot class/role gear scoring and equip upgrades.
+- Added bot loot handling from bot mob kills.
+- Added bot-to-bot gear trading and player gear trade context action.
+- Tightened bot meditation to full HP/mana with combat/movement cancellation.
+
+V0.12.95 — NPC Class Models Bot Inspect Adventure AI Pass
+- NPCs route through class identity models. Bot Inspect opens gear window. Bot AI leaves camp for quest/hunt anchors.
+
+V0.13.14 - Camera Relative Facing Direction Fix Pass: dynamic humanoid/class actor visual direction now resolves from camera-projected screen movement, preserving front/back readability under camera rotation.
+
+V0.13.16_WORLD_AI_LOOT_TERRAIN_AMBIENT_POLISH_PASS
+- Clean owning-system polish pass for aggro/pathing, corpse cleanup, friendly targeting, minimap companion markers, Dark Woods bag drops, terrain blending/detail, bot/merc regeneration rules, and ambient small creatures.
+
+
+V0.13.16_ROLE_SPECIFIC_HUMAN_NPC_RENDERER_UPGRADE_PASS
+- Replaced generic human NPC torso overlays with role-specific silhouette/body renderers while preserving shared helpers.
+V0.13.17_INVENTORY_ITEM_TOOLTIP_COMPLETION_PASS
+- Centralized item tooltip builder/renderer in systems/inventory-system.js.
+- Bound item stat tooltips across inventory, equipped gear, bag bar, corpse loot, vendor buy/sell rows, merc gear, and bot gear UI.
+- Added viewport-safe tooltip placement and mobile long-press behavior.
+
+
+V0.13.32_BOT_RECRUITER_PARTY_MANAGEMENT_PASS
+- Added player-facing class bot recruitment through the mercenary recruiter, with bot slot rules, recruit/dismiss actions, class role descriptions, and debug-only mass-spawn gating.
+
+V0.14.43 - Mob Balance Threat Border Fishing Proximity Pass
+- Root stat ownership: hostile mob HP now receives a global 2.0x multiplier in entities/enemy.js, applying before cave/dungeon/elite/boss multipliers.
+- Root stat ownership: hostile mob attack now receives a global 1.2x multiplier in entities/enemy.js, so auto attacks and attack-stat-driven mob abilities inherit the damage increase.
+- Threat UI: mob threat bars now draw with a heavier dark outer border and inner rim for clearer bounds.
+- Fishing system: free-cast and clicked-water fishing now require shoreline proximity instead of allowing long-range casting; failed attempts show "Too far from water."

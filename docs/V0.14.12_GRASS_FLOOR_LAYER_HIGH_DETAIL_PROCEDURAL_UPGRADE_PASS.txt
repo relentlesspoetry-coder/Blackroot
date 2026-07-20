@@ -1,0 +1,18 @@
+Dream Realms V0.14.12 — Grass Floor Layer High-Detail Procedural Upgrade Pass
+
+Summary
+- Upgraded the grass floor layer with a high-detail procedural meadow rendering pass.
+- Preserved the existing grass tile footprint, boundary edges, world coverage, terrain IDs, and collision behavior.
+- Added richer floor readables through procedural ground variation, grass tufts, exposed soil, low ground-cover plants, pebbles, twigs, roots/thatch, and edge-transition vegetation.
+
+Files changed
+- render/terrain-renderer.js
+- Dream Realms V0.14.12.html
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.12_GRASS_FLOOR_LAYER_HIGH_DETAIL_PROCEDURAL_UPGRADE_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check` across all `.js` files.
+- ZIP integrity verified with `unzip -t`.

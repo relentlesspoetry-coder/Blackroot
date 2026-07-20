@@ -1,0 +1,18 @@
+Dream Realms V0.15.30 — Hybrid Renderer Default Candidate Pass
+
+Scope
+- Adds a controlled Hybrid Default Candidate profile.
+- Adds persistent Canvas Compatibility Mode.
+- Adds layer health monitoring for visible WebGL terrain, sprites, effects, and damage text.
+- Adds automatic per-layer holdoff when fallback pressure becomes unsafe.
+- Adds F3 diagnostics for candidate state, safe frames, unstable frames, disabled layers, fallback pressure, and hybrid cost.
+- Adds Settings controls for candidate mode, compatibility mode, apply candidate profile, and reset Canvas stable.
+
+Safety Rules
+- Canvas 2D remains the authoritative fallback.
+- Hybrid mode is not forced if WebGL is unavailable, context-lost, in watchdog cooldown, or audit-blocked.
+- Watchdog fallback can persist a holdoff so the game does not immediately retry unstable Hybrid mode on reload.
+- Individual promoted WebGL layers can be disabled while the rest of the renderer remains active.
+
+No Gameplay Changes
+- No class, spell, mob, loot, quest, dungeon, UI layout, economy, or save-system balance values were changed.

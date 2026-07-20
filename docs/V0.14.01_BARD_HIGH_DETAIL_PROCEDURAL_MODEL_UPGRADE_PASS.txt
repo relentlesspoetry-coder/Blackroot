@@ -1,0 +1,21 @@
+Dream Realms V0.14.01 — Bard High-Detail Procedural Model Upgrade Pass
+
+Summary
+- Revamped the in-game Bard class renderer with a high-detail procedural graphical pass.
+- Added layered garment detail, hat/feather detail, expressive face/hair accents, cloak trim, lute detail, belt pouches, dagger/scroll gear, hand rings/bracers, and boot/trouser wear detail.
+- Preserved existing silhouette, proportions, facing support, animation hooks, nameplate anchoring, fishing rod integration, and gameplay behavior.
+
+Files Changed
+- render/bard-procedural-model.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- README.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.01_BARD_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- Bard renderer smoke-tested with a fake Canvas context across idle, walk, attack, cast, meditate, fishing, hit, death, and all 8 facings.
+- ZIP integrity verified with `unzip -t`.

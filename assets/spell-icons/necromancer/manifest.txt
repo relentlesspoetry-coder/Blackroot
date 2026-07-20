@@ -1,0 +1,25 @@
+Necromancer Spell Icons Manifest
+Naming format: {Spell Name} - Necromancer - Level {Level}.png
+Source image: gothic_necromancy_ability_icons_set.png
+Crop method: source-card cuts from audited 5x4 icon bounds; original frames preserved.
+
+Level 01: Bone Splinter - Necromancer - Level 1.png | crop=[8, 1, 291, 283] | size=[284, 283]
+Level 02: Raise Skeleton - Necromancer - Level 2.png | crop=[304, 1, 586, 283] | size=[283, 283]
+Level 03: Grave Rot - Necromancer - Level 3.png | crop=[600, 1, 883, 283] | size=[284, 283]
+Level 04: Life Tap - Necromancer - Level 4.png | crop=[897, 1, 1182, 283] | size=[286, 283]
+Level 05: Command Undead - Necromancer - Level 5.png | crop=[1194, 1, 1479, 283] | size=[286, 283]
+Level 06: Bone Armor - Necromancer - Level 6.png | crop=[8, 284, 291, 545] | size=[284, 262]
+Level 07: Plague Mark - Necromancer - Level 7.png | crop=[304, 284, 586, 545] | size=[283, 262]
+Level 08: Corpse Mender - Necromancer - Level 8.png | crop=[600, 284, 883, 545] | size=[284, 262]
+Level 09: Fear the Living - Necromancer - Level 9.png | crop=[897, 284, 1182, 545] | size=[286, 262]
+Level 10: Rot Cloud - Necromancer - Level 10.png | crop=[1194, 284, 1479, 545] | size=[286, 262]
+Level 11: Summon Bone Servant - Necromancer - Level 11.png | crop=[8, 546, 291, 791] | size=[284, 246]
+Level 12: Soul Harvest - Necromancer - Level 12.png | crop=[304, 546, 586, 791] | size=[283, 246]
+Level 13: Bone Shackles - Necromancer - Level 13.png | crop=[600, 546, 883, 791] | size=[284, 246]
+Level 14: Withering Curse - Necromancer - Level 14.png | crop=[897, 546, 1182, 791] | size=[286, 246]
+Level 15: Army of Bones - Necromancer - Level 15.png | crop=[1194, 546, 1479, 791] | size=[286, 246]
+Level 16: Death Pact - Necromancer - Level 16.png | crop=[8, 792, 291, 1054] | size=[284, 263]
+Level 17: Bone Storm - Necromancer - Level 17.png | crop=[304, 792, 586, 1054] | size=[283, 263]
+Level 18: Lich Veil - Necromancer - Level 18.png | crop=[600, 792, 883, 1054] | size=[284, 263]
+Level 19: Soul Leech - Necromancer - Level 19.png | crop=[897, 792, 1182, 1054] | size=[286, 263]
+Level 20: Grave Sovereign - Necromancer - Level 20.png | crop=[1194, 792, 1479, 1054] | size=[286, 263]

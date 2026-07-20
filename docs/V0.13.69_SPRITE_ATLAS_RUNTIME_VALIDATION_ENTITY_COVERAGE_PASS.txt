@@ -1,0 +1,43 @@
+Dream Realms V0.13.69 — Sprite Atlas Runtime Validation + Entity Coverage Pass
+
+Systems changed:
+- systems/sprite-atlas-system.js
+- systems/sprite-bake-system.js
+- render/entity-renderer.js
+- tools/sprite-baker.html
+- tools/sprite-baker.js
+- assets/atlases/entities.json
+- assets/atlases/README.txt
+- version metadata / README / modular history
+
+Runtime atlas validation:
+- Added model-specific frame-key resolution for active game variants such as briarBoar, oldTuskBriarback, gloomWolf, mossfangAlpha, rotling, SpiritHealer default, player class models, and class trainer variants.
+- Added multi-candidate frame fallback resolution for action/state fallback, direction fallback, and model default-variant fallback.
+- Added runtime atlas stats for manifests, pages, loaded frames, atlas draws, procedural fallbacks, missing frames, invalid frames, and fallback reasons.
+- Added optional debug rendering mode through game.spriteAtlasSystem.setDebugEnabled(true), with per-entity atlas/procedural/missing-frame labels only while debug is enabled.
+- Atlas rendering remains disabled/inert when no generated atlas frames exist; procedural rendering remains the source of truth.
+
+Bake tool validation / entity coverage:
+- Expanded bake definitions for BriarBoar, Old Tusk Briarback, Gloom Wolf, Mossfang Alpha, Rotling, Silk Web Spider roles, Spirit Healer, all active player class families, and class trainer variants.
+- Added Validate Definitions and Bake Expanded Entity Atlas controls to the dev baker.
+- Smoke bake still supports Boar + Wolf export first and exports JSON plus an optional manifest script fallback for local-file runtime testing.
+- Metadata now includes the deterministic frame key inside each frame object as well as coordinates, anchors, shadow anchors, nameplate anchors, click bounds, model ID, variant, state, direction, and frame index.
+
+Procedural fallback behavior:
+- Missing manifests, missing PNG pages, missing frame keys, invalid frame metadata, and draw failures all fall back procedurally.
+- Missing frame warnings are logged once per unique frame key through the atlas system.
+- Entities should never disappear because an atlas file is absent or incomplete.
+
+Anchor / targeting preservation:
+- Atlas frames apply nameplate, foot, shadow, and click-bound metadata to the source entity.
+- Existing target-bounds code can use atlas click bounds when present.
+- Health bars/nameplates/chat bubbles/damage numbers/UI remain runtime-drawn and are not baked.
+
+Tests run:
+- node --check passed for all JavaScript files.
+- Main HTML script references audited: 94 found, 0 missing.
+- Static audit confirmed SpriteAtlasSystem stats/debug APIs, getEntityFrame candidate resolution, expanded bake definitions, baker validation controls, placeholder manifest safety, and entity renderer fallback paths.
+- ZIP integrity passed.
+
+Manual browser-test caveats:
+- Browser bake/export was not executed inside the container. Manually test tools/sprite-baker.html, Load Renderers, Validate Definitions, Boar + Wolf Smoke Atlas, Expanded Entity Atlas, copied atlas assets in assets/atlases/, game runtime atlas draw counts, anchors, click targeting, nameplates, health bars, footstep FX, boar corpse rendering, save/load, and FPS.

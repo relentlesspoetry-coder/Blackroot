@@ -1,0 +1,22 @@
+{
+  "asset": "silk_web_cavern_environment_highpoly_quadmesh_v0.18.6.obj",
+  "upgradeOf": "silk_web_cavern_environment_highpoly_quadmesh_v0.15.05.obj",
+  "source": "systems/dungeon-system.js SILK_WEB_FLOOR_CONFIG (via tools/generate-silk-web-highpoly.js)",
+  "floors": 3,
+  "vertices": 887310,
+  "quadFaces": 281782,
+  "triangles": 98824,
+  "ngons": 0,
+  "featureGroups": {
+    "web_curtain": 102,
+    "prey_cocoon": 71,
+    "debris_strand": 60,
+    "foreign_object": 27,
+    "egg_sac": 62,
+    "gouge_tear": 2,
+    "shed_exoskeleton": 2,
+    "anchor_cable": 16,
+    "crevice_fill": 12
+  },
+  "notes": "Graphical upgrade pass. The six structural floor/wall groups are byte-identical to v0.15.05 (room centers, dimensions, corridor links, coverage and boss-arena bounds unchanged). Only web-feature fidelity was increased; new detail (cocoons, crevice fill, droplets, foreign objects) stays within the existing coverage footprint. Quads on all primary surfaces (cables, sheets, sacs, cocoons); triangles only on fine threads. Offline bake/reference asset — not loaded at runtime."
+}

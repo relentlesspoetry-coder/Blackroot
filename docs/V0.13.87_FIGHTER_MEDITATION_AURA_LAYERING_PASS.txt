@@ -1,0 +1,18 @@
+Dream Realms V0.13.87 — Fighter Meditation Aura Layering Pass
+
+Summary
+- Fixed meditation aura render order for the Fighter so the ground aura is beneath the seated model.
+- Kept the rising spirit VFX above the Fighter for clarity.
+
+Files Changed
+- render/class-identity-procedural-model.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.13.87_FIGHTER_MEDITATION_AURA_LAYERING_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- ZIP integrity verified with `unzip -t`.

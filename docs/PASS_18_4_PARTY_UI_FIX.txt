@@ -1,0 +1,13 @@
+Pass 18.4 Party UI Fixed
+
+Root cause of blank/green play screen:
+- systems/party-system.js captured `const ui = DR.ui` at script-load time.
+- Script files load before game.js creates DR.ui.
+- ui was therefore undefined inside renderPartyPanel().
+- updateMultiplayer() called renderPartyPanel() after class select.
+- The update loop threw before render(), leaving only the dark background and UI.
+
+Fix:
+- Bind `const ui = DR.ui` inside PartySystem.install(Game), after game.js creates DR.ui and before gameplay starts.
+
+No gameplay, cave, editor, save, or renderer behavior was changed.

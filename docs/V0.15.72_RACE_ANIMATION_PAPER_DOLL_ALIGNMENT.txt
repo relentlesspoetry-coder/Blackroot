@@ -1,0 +1,3 @@
+Dream Realms V0.15.72 — Race Animation and Paper Doll Alignment
+
+Refined race-specific non-combat animations for meditation, swimming, dancing, harvesting, mining, and fishing. Added improved race/gender paper doll equipment alignment for armor, weapons, shields, and gathering tools across Human, Elf, Ratkin, Bogling, and female Bogling while preserving sprite-sheet fallbacks and save/load compatibility.

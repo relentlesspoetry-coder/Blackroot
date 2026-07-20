@@ -1,0 +1,3 @@
+Dream Realms V0.15.70 — Final Bogling Model Polish
+
+Performed a final Bogling model polish pass, strengthening the amphibian silhouette, crouched frog-leg stance, wide mouth, raised eyes, throat pouch, webbed hands and feet, skin markings, wet highlights, directional rendering, and all Bogling color variants while preserving character creation, runtime rendering, save/load, and sprite fallback behavior.

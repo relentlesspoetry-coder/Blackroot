@@ -1,0 +1,10 @@
+Dream Realms V0.14.60 — Account Character Binding Save Pass
+
+- Reworked the save-system owner so local offline accounts and character slots persist as one account-character hierarchy.
+- Added stable account IDs and character IDs.
+- Account records now store username plus local hashed password/PIN data instead of plaintext credentials.
+- Full character state now lives inside the owning account slot, including class, level, gear, inventory, bags, position, quests, professions, mercenary, pet, party, bot, dungeon, weather, and world-time runtime state.
+- Character selection now reads only the active account's slots and rejects cross-account slot payloads.
+- Primary Save folder output is now Dream-Realms-Accounts.json.
+- Legacy Dream-Realms-Character JSON files remain import/export fallback only and are migrated into account slots when possible.
+- Removed primary writes to the old standalone browser character autosave key.

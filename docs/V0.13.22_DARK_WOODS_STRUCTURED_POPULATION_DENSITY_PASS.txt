@@ -1,0 +1,11 @@
+Dream Realms V0.13.22 - Dark Woods Structured Population Density Pass
+
+Scope:
+- Integrated the Dark Woods population increase into systems/mob-spawn-system.js.
+- Added structured encounter layers: authored camps, solo roamers, and roaming groups.
+- Added stronger Dark Woods spawn validation around town, player spawn, cave entrances, roads, NPC safe areas, blockers, water, and occupied tiles.
+- Added encounter-kind metadata for camp/solo/group respawn behavior.
+- Added randomized respawn windows and player-distance respawn safety.
+- Added roaming-group leader/follower behavior and distant enemy AI throttling in entities/enemy.js.
+
+No bottom-of-file patch script, duplicate spawn manager, or unvalidated random mob placement was added.

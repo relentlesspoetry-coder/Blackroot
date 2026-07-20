@@ -1,0 +1,15 @@
+Dream Realms V0.14.93 - No Friendly Fire Bot Resurrection Death Respawn Fix Pass
+
+Scope
+- Root-owner gameplay fix for PvE-only combat targeting, friendly-fire blocking, bot resurrection, and player death UI fallback.
+
+Changes
+- Added global combat/status guards so player, bots, mercenaries, pets, and remote party members cannot damage or apply hostile effects to friendly actors.
+- Offensive actions against friendly selected targets now fail before firing and show "Cannot attack friendly target."
+- Party assist, bot target selection, bot auto-attack, and combat entry now require hostile enemy targets.
+- Bot resurrection now searches dead player, party bots, and hired mercenaries with priority Player > party bots > mercenary.
+- Revive-capable bots reserve corpse targets, move into range, cast resurrection, and revive allies with 35% health by default.
+- Player death now opens a centered Respawn at Camp overlay while preserving automatic bot resurrection as the preferred recovery path when available.
+
+Non-goals
+- No balance values, spells, loot, quests, mobs, NPCs, portals, or save schemas were removed or reduced.

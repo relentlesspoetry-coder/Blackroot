@@ -1,0 +1,25 @@
+Dream Realms Modular Pass 26 - Item / Loot Table Editor Foundation
+
+Baseline:
+- Built from Modular Pass 25.
+
+Added:
+- data/items.js with starter item draft definitions.
+- data/loot-tables.js with starter loot table definitions.
+- Items editor tab for item browser/new/edit/duplicate/delete.
+- Loot editor tab for loot table browser/new/edit/duplicate/delete/assign.
+- Loot table assignment metadata for resource nodes, chest events, and selected metadata tiles.
+- Save/export/import persistence for editorItems and editorLootTables.
+
+Runtime status after later passes:
+- Runtime drop-table execution was added in Pass 33/40.
+- Runtime chest opening from editor loot tables was added in Pass 33.
+- Item draft runtime compilation was added in Pass 42.
+
+Still not added:
+- Dedicated runtime item browser/compendium UI.
+
+Ownership:
+- Data definitions live in data/items.js and data/loot-tables.js.
+- Editor controls live in systems/editor-system.js.
+- Save/export persistence lives in systems/world-serializer.js.

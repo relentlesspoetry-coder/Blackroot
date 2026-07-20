@@ -1,0 +1,7 @@
+V0.13.35 — Full Gear Slot Loot Paper Doll Pass
+- Expanded the runtime equipment grid to cover all visible character sheet slots: head, shoulders, chest, legs, hands, feet, cape, amulet, two earrings, two rings, weapon, offhand, and charm.
+- Preserved distinct cape/ring/earring/shoulder slots in the item compiler instead of collapsing them into charm or single ring aliases.
+- Added open-world and dungeon gear drops for helmet/head, shoulders, cape, amulet, earrings, rings, and charm slots.
+- Replaced the character sheet's emblem-only center preview with a real paper doll that colors each visible body layer from equipped gear.
+- Added save-safe equipment-slot normalization for older ring/cape/earring aliases.
+

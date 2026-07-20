@@ -1,0 +1,21 @@
+Dream Realms V0.14.04 — Rogue Render Bug Fix Pass
+
+Summary
+- Fixed the black-screen render bug reported after V0.14.03.
+- Kept the Rogue high-detail remodel intact.
+- Added renderer hardening so a single class-model draw failure cannot stop world rendering.
+
+Files Changed
+- render/humanoid-base-renderer.js
+- render/entity-renderer.js
+- Dream Realms V0.14.04.html
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.04_ROGUE_RENDER_BUG_FIX_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- Rogue/ClassIdentity renderer smoke-tested across 8 facings and key states.
+- Legacy no-roundRect canvas compatibility smoke-tested.
+- ZIP integrity verified with `unzip -t`.

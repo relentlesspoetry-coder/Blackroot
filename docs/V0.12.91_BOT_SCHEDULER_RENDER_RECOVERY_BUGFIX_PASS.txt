@@ -1,0 +1,27 @@
+Dream Realms V0.12.91 — Bot Scheduler Render Recovery Bugfix Pass
+
+Baseline
+- Dream Realms V0.12.90 — Bot Player Performance Scheduling Runtime Stability Pass
+
+Problem
+- The game could start into an apparent UI-only state where the UI worked but the world was not visible.
+- The log showed repeated movement/render recovery messages.
+- Root cause: V0.12.90 bot scheduling introduced a recursion path:
+  normalizeBotState -> isBotInParty -> normalizeBotState.
+- That stack overflow occurred during startup/update and prevented the normal render pass from completing.
+
+Fixes
+- Removed recursive normalization from isBotInParty.
+- normalizeBotState now checks botPartyMembers directly when deciding whether a bot should clear squad state.
+- Added safer update/render isolation in the game loop.
+- A recovered update fault no longer skips the render pass.
+- Runtime recovery messages now include update/render phase and error message.
+- Added player class fallback to Fighter for invalid legacy/corrupt class values.
+- Character slot load/apply logic now validates class names before assigning them.
+
+Validation
+- Booted in a Node DOM/canvas runtime harness.
+- Started a Fighter character.
+- Spawned default bot players.
+- Ran 10 update ticks and 10 render calls without exceptions.
+- No cascade patch layer was added.

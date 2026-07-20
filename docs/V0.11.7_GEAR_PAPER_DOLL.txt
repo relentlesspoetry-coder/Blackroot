@@ -1,0 +1,14 @@
+Dream Realms V0.11.7 — Gear + Paper Doll Pass
+
+Added a paper doll equipment preview to the Bags & Equipment window.
+Added rarity-framed equipment and inventory slots.
+Added stat comparison text for equippable inventory items.
+Added equipment tooltip comparison details.
+Added equipped-gear visual tinting for character head/chest/legs/feet and weapon/offhand visuals.
+Adjusted Fighter loot identity away from shield/tank gear toward heavy weapons.
+
+Owning systems edited directly:
+- systems/inventory-system.js
+- render/entity-renderer.js
+- data/loot.js
+- Dream Realms V0.11.7.html

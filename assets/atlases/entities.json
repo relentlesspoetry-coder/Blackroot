@@ -1,0 +1,7 @@
+{
+  "version": "0.13.69",
+  "type": "dream-realms-entity-atlas",
+  "notes": "Development placeholder manifest. Use tools/sprite-baker.html to export entities_*.png and a populated entities.json into this folder.",
+  "pages": [],
+  "frames": {}
+}

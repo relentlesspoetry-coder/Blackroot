@@ -1,0 +1,27 @@
+Dream Realms V0.12.88 — Bot Player Quest Camp Dungeon Simulation Pass
+
+Baseline
+- Dream Realms V0.12.87 — Bot Player Behavior + Integration Polish Pass
+
+Purpose
+- Make autonomous bot players behave more like player-like actors instead of only roaming combat NPCs.
+
+Implemented
+- Bot quest plans mapped to existing Dark Woods quest drafts.
+- Bot quest objective progress and camp turn-in state.
+- Bot camp supply meter, camp return behavior, resupply, healing, and mana recovery.
+- Bot dungeon intent for eligible autonomous bot squads.
+- Simulated dungeon runs with prep, entrance travel, completion rewards, XP, gear growth, and recovery needs.
+- Bot inspect output now shows quest progress, supply state, and dungeon state.
+- Bot save snapshots now persist quest, camp, dungeon, completion, and supply state.
+- Party combat excludes bots that are temporarily in simulated dungeon state.
+
+Ownership Notes
+- Changes remain in BotPlayerSystem and BotPlayer entity ownership.
+- No mount/class-renderer branch code was used.
+- No bottom-of-file hotfix wrapper was added.
+
+Validation
+- JS syntax check on all active JavaScript files.
+- HTML script-order check.
+- Static bot routine checks.

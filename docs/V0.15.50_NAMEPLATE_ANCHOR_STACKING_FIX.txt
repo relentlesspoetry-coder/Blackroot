@@ -1,0 +1,16 @@
+Dream Realms V0.15.50 — Nameplate Anchor Stacking Fix Pass
+
+Purpose:
+Fix the world nameplate bug where bot/player/pet nameplates were no longer positioned cleanly above the correct actor and nearby bot plates overlapped each other.
+
+Root changes:
+- Updated render/entity-renderer.js directly.
+- Updated game.js render frame setup directly.
+- Nameplate anchors are reset every draw so cached sprite/model paths cannot reuse stale screen-space anchors.
+- Added per-frame anchor normalization for players, bots, mercs, pets, NPCs, and enemies.
+- Added shared nameplate stacking/collision layout for clustered player-like actors.
+- HP bars and status bars now stay attached to the shifted plate position.
+- Reset nameplate placement list once per world render frame.
+
+No gameplay/content changes:
+- No class, spell, mob, loot, quest, dungeon, economy, XP, mana, cooldown, DPS, or combat-balance values were changed.

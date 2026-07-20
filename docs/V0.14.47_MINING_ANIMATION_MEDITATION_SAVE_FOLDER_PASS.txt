@@ -1,0 +1,13 @@
+Dream Realms V0.14.47 — Mining Animation Meditation Save Folder Pass
+
+Implemented:
+- Mining animation now uses a dedicated pickaxe swing pose instead of generic gathering reach.
+- Pickaxe visual drawn through class identity renderer while mining.
+- Mining impact spark/readability frame aligns to the swing cycle and remains synced with the active harvest progress state.
+- Existing movement/damage/interruption cancellation remains the single owner path for stopping mining animation and progress.
+- Meditation skill EXP bar color revamp: dark high-contrast background, bright cyan/teal fill, stronger border, and stroked text.
+- Added packaged Save folder with manifest.
+- Save-system folder linking now writes character and world autosaves inside Save/ when the game root is selected, or directly if the Save folder is selected.
+- Added helper methods for reading the latest character JSON from a linked Save folder.
+
+No cascade patching: changes were made in the owning systems.

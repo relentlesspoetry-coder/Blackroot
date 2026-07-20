@@ -1,0 +1,18 @@
+Dream Realms V0.13.95 — Wolf High-Detail Procedural Model Upgrade Pass
+
+Summary
+- Upgraded the dedicated Wolf procedural renderer with a higher-detail anatomical and fur pass.
+- Improved muzzle, teeth/fang readability, paws, claws, tail tufting, ruff volume, and body contour definition.
+
+Files Changed
+- render/wolf-procedural-model.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.13.95_WOLF_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- ZIP integrity verified with `unzip -t`.

@@ -1,0 +1,18 @@
+Dream Realms V0.14.95 - Bard Meditation Aura Pass
+
+Scope
+- Adds Bard Meditation Aura to the meditation owner path.
+- While a Bard party member is actively meditating, nearby party members within 30 yards receive +3 HP and +3 MP per meditation tick.
+- Aura applies to the Bard themselves and party members/followers resolved by the party combat membership system.
+- The buff tooltip reads: "Bard's Meditation Aura – +3 HP/MP per meditation tick."
+- Adds gentle floating music-note and soft soundwave visuals on affected party members.
+
+Implementation
+- Implemented in game.js meditation runtime rather than as a spell cascade patch.
+- The meditation restore tick adds bardMeditationAuraBonus(entity) to the existing meditationRestoreAmount(entity).
+- Aura status/effect state is refreshed through a low-cadence aura membership scan while a Bard is meditating, and is cleared immediately when the Bard stops meditating.
+- The visual renderer owns the new bardMeditationAura effect branch in render/effects-renderer.js.
+
+Validation
+- JS syntax validation passes for modified files.
+- Static checks confirm +3 HP/MP bonus, 30-yard range, tooltip text, and immediate clear paths.

@@ -1,0 +1,30 @@
+Dream Realms V0.14.41 - Player Gear Score Character Window Pass
+
+Goal:
+Integrate the existing bot gear score calculation into the player Character gear window without duplicating scoring logic or adding cascade patches.
+
+Implementation:
+- Added resolveGearScoreRole(actor) and calculateActorGearScore(actor, equipment, options) in the bot gear-score owner path.
+- Updated recalculateBotGearScore(bot) to use the shared actor gear score helper.
+- Added recalculatePlayerGearScore(player), also using the shared actor gear score helper.
+- Player score uses the same botItemScore item formula and role/class weighting path.
+- Player score is dynamic and based on currently equipped gear, so unequipping lowers the score immediately.
+- Character panel now displays a Gear Score badge in the stat header and a Gear Score stat card.
+
+Files changed:
+- systems/bot-player-system.js
+- systems/inventory-system.js
+- systems/ui-system.js
+- Dream Realms V0.14.41.html
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+
+Validation:
+- node --check passed for all JavaScript files.
+- Direct gear score smoke test confirmed equip and unequip recalculation.
+- ZIP integrity check passed.

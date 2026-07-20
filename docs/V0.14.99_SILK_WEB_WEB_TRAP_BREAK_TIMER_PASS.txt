@@ -1,0 +1,20 @@
+Dream Realms V0.14.99 - Silk Web Web Trap Break Timer Pass
+
+Scope
+- Root-owner bug fix for Silk Web Cavern ground web traps that could hold the player/friendly actors indefinitely by repeatedly refreshing Webbed while the actor stayed inside the trap radius.
+
+Changed
+- Added SILK_WEB_TRAP_HOLD_SECONDS = 5.0 in the dungeon owner.
+- Ground web traps now start an object-owned break timer on first contact.
+- Ground web root effects now use trap-specific status IDs and a remaining duration clamped to that trap object's breakAt timestamp.
+- When a web reaches its 5-second limit, the dungeon object owner snaps/breaks the web, removes only that trap's root status from affected friendly actors, and prevents further applications.
+- Multiple web traps track independent break timers and root status IDs.
+- Web hazard objects now support early breaking via damageDungeonObject without changing boss cocoon break logic.
+- Web hazard rendering now shows active hold countdown feedback and snapped/dissolving strands when the timer expires.
+
+Not Changed
+- Dungeon layout, mobs, bosses, loot, quests, poison rules, venom sack behavior, boss engagement gates, combat balance, party rules, save format, and encounter timing were not removed or reduced.
+
+Validation
+- JS syntax check passed.
+- Static web trap audit confirmed 5-second constant, trap-specific status IDs, breakAt-owned expiry, root cleanup, and visual break state.

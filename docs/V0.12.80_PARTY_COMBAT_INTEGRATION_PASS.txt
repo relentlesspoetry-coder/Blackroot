@@ -1,0 +1,29 @@
+Dream Realms V0.12.80 - Party Combat Integration Pass
+
+Purpose:
+Connect the V0.12.79 party foundation to real gameplay combat without cascade patches.
+
+Implemented:
+- Added party combat member helpers in systems/party-system.js.
+- Added party-aware assist target resolution for merc AI and future player party commands.
+- Added party-aware healing candidate selection with proper player / party player / merc / pet priority.
+- Guardian threat scans now protect local party actors, not just the owner.
+- Merc AI assist/attack/guard logic now reads party assist targets and party combat pings.
+- Combat damage against enemies marks local party actors as combat-engaged.
+- Enemy death XP now routes through awardPartyEnemyXp().
+- Shared XP is distributed to eligible local party recipients and synced browser-local peers.
+- Corpse loot now carries a party policy object when more than one eligible party member is in range.
+- Party combat pings and reward messages are handled through the existing multiplayer system.
+- Party runtime state is saved and restored with the character save payload.
+
+Ownership notes:
+- Combat reward routing lives in systems/combat-system.js.
+- Party roster, reward policy, assist pings, and serialization helpers live in systems/party-system.js.
+- Mercenary role AI remains inside entities/mercenary.js.
+- Multiplayer message dispatch remains inside systems/multiplayer-system.js.
+- Save payload integration remains inside systems/save-system.js.
+
+Cascade status:
+- No late runtime patch layer.
+- No setTimeout wrapper.
+- No duplicate method override outside owning files.

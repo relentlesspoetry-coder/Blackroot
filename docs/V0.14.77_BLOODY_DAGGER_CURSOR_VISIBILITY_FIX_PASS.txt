@@ -1,0 +1,15 @@
+Dream Realms V0.14.77 — Bloody Dagger Cursor Visibility Fix Pass
+
+Implemented:
+- Replaced the faint translucent bloody dagger cursor assets with fully opaque high-contrast PNGs.
+- Added bright white/silver outline, black silhouette edge, crimson-gold outer glow, saturated blood detail, and blade glinting.
+- Preserved cursor hotspot alignment at the dagger tip:
+  - 64px cursor: 4,4
+  - 32px cursor: 2,2
+- Added assets/cursors/bloody-dagger-visibility-test.png to validate readability on dark and light backgrounds.
+- Kept the existing shared CSS cursor ownership across game-owned UI and world canvas.
+
+Validation:
+- Runtime JavaScript syntax validated with node --check.
+- Zip integrity validated with unzip -t.
+- No cascade patch layer added.

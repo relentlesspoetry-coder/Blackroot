@@ -1,0 +1,70 @@
+Dream Realms Modular Pass 36 — Runtime NPC Interaction
+======================================================
+
+Goal
+----
+Convert placed editor NPC markers into live runtime NPCs that the player can interact
+with using the same in-world data authored by the NPC editor.
+
+Implemented
+-----------
+- Added systems/npc-system.js as the runtime owner for NPC interaction.
+- Added visible live NPC rendering for placed editor NPC markers.
+- Added an NPC HUD prompt showing nearby NPCs and interaction range.
+- Added E interaction routing for NPCs without conflicting with runtime chest/event/quest handlers.
+- Added a dialogue window using NPC dialogueId, dialogue text, quest flavor text, or notes fallback.
+- Added quest-giver routing through the existing quest runtime:
+  - accepts available quests
+  - completes ready quests
+  - reports in-progress quest text
+  - reports already-completed quest text
+- Added vendor routing through the existing runtime shop/event item purchase flow.
+- Added class-trainer runtime:
+  - trainer class validation
+  - persistent class training rank
+  - gold cost scaling by rank
+  - immediate stat bonuses through the player stat recalculation path
+  - world save/export/import persistence
+- Added default placed NPC markers when a world has no placed NPCs yet:
+  - Town Guide
+  - Camp Merchant
+  - Bard Trainer
+  - Mossfang Scout
+- Added npcRuntime state to world serializer apply/serialize.
+- Added npcRuntime reset behavior to save-system reset.
+- Updated stale editor hints that still claimed NPC runtime interaction was deferred.
+
+Supporting fixes
+----------------
+- The level-up stat path now updates player base stats before recalculation. This prevents
+  equipment changes or class training recalculation from wiping level-up stat gains.
+- Runtime shop item routing now recognizes shop_camp_basic_goods and trainer_goods.
+
+Controls
+--------
+- E near NPC: Open NPC interaction window.
+- NPC window actions:
+  - quest
+  - vendor
+  - trainer
+  - repeat dialogue
+
+Ownership
+---------
+- NPC runtime behavior lives in systems/npc-system.js.
+- Vendor item purchase remains owned by systems/event-system.js shop runtime.
+- Quest accept/complete remains owned by systems/quest-system.js.
+- Persistent world state remains owned by systems/world-serializer.js and systems/save-system.js.
+- Player stat recalculation remains owned by systems/inventory-system.js.
+
+Verification
+------------
+- JS syntax check passed for all core/data/entities/systems/render scripts and game.js.
+- Smoke load test passed with all scripts loaded in documented order.
+- Smoke runtime test confirmed:
+  - npcRuntime installs
+  - default NPC placements seed into Dark Woods
+  - Bard trainer class training consumes gold
+  - training rank persists in npcRuntime state
+  - training bonus applies
+  - npcRuntime serializes into world save payload

@@ -1,0 +1,11 @@
+Dream Realms V0.12.2 — HUD, Bags, Action Bar, and Fishing Cleanup
+
+Implemented directly in owning systems:
+- fishing-system.js: movement cancellation ownership and rod-tip line anchoring fallback.
+- entity-renderer.js: exposes current rendered fishing-rod tip while the player is fishing.
+- ui-system.js: compact player HUD, party HUD visibility rules, character sheet rendering, action-bar state.
+- inventory-system.js: bottom bag bar, compact bag windows, generated item icons, class requirement display.
+- party-system.js: visible-party predicate and solo Party HUD suppression.
+- game.js: movement/jump/click-walk notify fishing runtime for cancellation, 2-0 ability hotkeys.
+
+No rollback from V0.12.1.

@@ -1,0 +1,20 @@
+Dream Realms V0.12.6 - Control Settings, Targeting, Resource Interaction, and Spawn Stabilization
+
+Implemented fixes:
+- Cave exits now render as large, wall-mounted daylight doorways instead of cave-mouth assets inside cave floors.
+- Settings includes a full saved keybinding layout for movement, combat, interaction, profession, UI, and system controls.
+- Active enemy target indicator renders under the selected mob only.
+- Pet death removes the pet from world/entity state immediately.
+- C opens Character Info by default; crafting is moved to J and can be rebound.
+- Right-click context actions start gathering/fishing/mining/crafting when the clicked target is valid.
+- Runtime mob spawns enforce a minimum respawn delay and collision checks before placement.
+
+Owning-system changes:
+- game.js owns keybinding state, key dispatch, movement binding checks, and world context menu dispatch.
+- systems/ui-system.js owns Settings window rendering.
+- systems/resource-gathering-system.js owns direct resource action starts.
+- systems/combat-system.js owns pet death cleanup.
+- systems/mob-spawn-system.js owns spawn timers and spawn collision checks.
+- render/entity-renderer.js owns selected-target indicator rendering.
+- render/object-renderer.js owns cave-exit doorway rendering.
+- systems/cave-system.js owns cave-exit object metadata.

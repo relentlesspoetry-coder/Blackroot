@@ -1,0 +1,19 @@
+Dream Realms V0.14.65 — Swimming Animation Submersion Pass
+
+Summary
+- Adds swimming and treading animations for every playable class when the player enters water.
+- Uses the existing Swimming / Underwater Exploration system and waterDepthAt terrain owner for rivers, ponds, lakes, oceans/future water volumes, and cave pools.
+- Keeps the character visually waist-deep through class renderer swim poses and layered waterline submersion/ripple overlays.
+- Preserves combat/cast/gather/fishing/meditation/death state priority; swimming only owns locomotion/idle water behavior.
+
+Changed Files
+- systems/swimming-system.js
+- render/humanoid-animation-system.js
+- render/humanoid-base-renderer.js
+- render/entity-renderer.js
+- render/class-identity-procedural-model.js
+- render/bard-procedural-model.js
+- render/druid-procedural-model.js
+- systems/sprite-atlas-system.js
+- systems/sprite-sheet-system.js
+- systems/sprite-bake-system.js

@@ -1,0 +1,58 @@
+Dream Realms V0.13.54 — Auto Attack Speed Tuning Pass
+
+Scope
+- Combat pacing / attack timing tuning only.
+- No combat-system rewrite, damage formula rebalance, class redesign, duplicated combat loop, or per-coordinate/per-class patch layer was added.
+
+Systems Changed
+- data/classes.js
+  - Added DR.AUTO_ATTACK_SPEED_TUNING with an 0.82 global swing interval multiplier, 0.90s minimum swing guardrail, and 3.25s maximum swing guardrail.
+  - Added DR.resolveAutoAttackIntervalSeconds(actor, context) as the shared auto-attack timing resolver.
+  - Preserved speed-stat haste/slow behavior through a bounded haste multiplier instead of fake haste buffs.
+- systems/combat-system.js
+  - Added Game.prototype.getAutoAttackIntervalSeconds as the game-level delegate into the shared resolver.
+  - Updated player auto-attack timing to use the resolver while preserving class-specific base cadence: Rogue remains faster, Fighter/Bard remain distinct, caster ranged auto attacks remain slower than fast melee.
+- entities/bot-player.js
+  - Updated autonomous bot direct combat fallback attacks to use the shared timing resolver.
+- systems/bot-player-system.js
+  - Updated class-AI bot fallback auto attacks to use the shared timing resolver for both melee and ranged caster profiles.
+- entities/pet.js
+  - Updated Summoner shard and Necromancer undead pet auto attacks to use the shared timing resolver.
+- entities/mercenary.js
+  - Updated Guardian, Field Cleric, Arcane Adept, and Blade Scout attack timers to use the shared resolver while preserving their role-specific base values.
+
+Auto-Attack Timing Changes
+- General baseline auto-attack interval reduced by roughly 18% through AUTO_ATTACK_SPEED_TUNING.globalMultiplier = 0.82.
+- Existing class/role identity remains intact because the old base intervals are still used as the resolver inputs.
+- Existing damage formulas, threat values, cooldown state fields, range checks, line-of-sight checks, and combat log/damage number paths remain unchanged.
+- Enemy auto-attack cadence was not globally increased in this pass to avoid unintentionally buffing bosses and overworld mobs beyond the requested player/companion responsiveness target.
+
+Player Coverage
+- Player melee auto attacks now resolve through getPlayerSwingDelay -> getAutoAttackIntervalSeconds.
+- Player ranged caster auto attacks keep the existing 6-tile range identity and projectile/cast visual behavior.
+- Auto attacks still require the existing target/range/line-of-sight checks and do not bypass attackTimer.
+
+Bot Coverage
+- Fighter/Rogue/Bard-style melee bot fallback attacks are moderately faster.
+- Cleric/Druid/Summoner/Necromancer/Enchanter-style ranged caster fallback attacks are moderately faster.
+- Bot attackAiTimer and attackTimer remain gated; bots cannot attack every frame.
+
+Pet Coverage
+- Summoner shard pets and Necromancer undead pets use the shared timing resolver.
+- Pet damage, target validation, pathing/range checks, and XP/loot ownership paths remain unchanged.
+
+Melee / Ranged Coverage
+- Melee range requirements still use each actor's existing melee range.
+- Ranged class identities still use the existing ranged combat style and 6-tile player class range.
+- Ranged projectile/cast cue behavior remains unchanged.
+
+Tests Run
+- All JavaScript files passed node --check.
+- Main HTML local script references were audited and all referenced files exist.
+- Version metadata was audited in VERSION.txt, README.txt, core/config.js, data/default-zones.js, systems/save-system.js, systems/world-serializer.js, and Dream Realms V0.13.54.html.
+- Static timing audit confirmed the hardcoded player, bot, pet, and mercenary attackTimer assignments now route through the shared resolver where this pass changed auto-attack cadence.
+- ZIP integrity passed after packaging.
+
+Manual Browser-Test Caveats
+- A full interactive browser combat test was not completed inside this container.
+- Manually verify Fighter start, player melee auto attack cadence, caster/ranged 6-tile auto attack cadence, bot and pet cadence, combat log output, damage numbers, Silk Web Cavern combat, save/load, and Esc menu behavior in the local browser/AppImage environment.

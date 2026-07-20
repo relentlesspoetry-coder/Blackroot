@@ -1,0 +1,5 @@
+Dream Realms V0.15.96 - Character Creator Real Emblem Backdrop Fix
+
+- The selected class emblem is now a real transparent PNG image behind the character preview.
+- Removed the oval overlay/glitch that covered the character model.
+- Preserved full-body creator preview framing.

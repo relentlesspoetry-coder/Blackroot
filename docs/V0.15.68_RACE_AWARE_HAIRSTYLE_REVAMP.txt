@@ -1,0 +1,3 @@
+Dream Realms V0.15.68 — Race-Aware Hairstyle Revamp
+
+Revamped the character creation hair system across Human, Elf, Ratkin, and Bogling. Hairstyle options now render correctly per race, update live in the preview, persist into gameplay, and visually match their selected labels with improved detail and race-appropriate variation.

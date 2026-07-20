@@ -1,0 +1,5 @@
+Dream Realms V0.15.106 - Creator Emblem Soft Blend Pass
+
+- Reworked the character creator emblem backdrop only.
+- The creator backdrop now uses a soft blended treatment instead of a crisp cutout edge.
+- This reduces visible edge artifacts without changing the normal class emblem UI usages elsewhere.

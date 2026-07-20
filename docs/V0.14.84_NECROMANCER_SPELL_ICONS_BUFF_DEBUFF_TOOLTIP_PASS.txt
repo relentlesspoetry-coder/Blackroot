@@ -1,0 +1,30 @@
+Dream Realms V0.14.84 — Necromancer Spell Icons + Buff/Debuff Tooltip Pass
+
+Summary
+- Added unique colored Necromancer spell icons for every current Necromancer spell.
+- Reworked status tray icon generation so buffs and debuffs use themed colored icons instead of generic glyphs.
+- Added rich hover tooltips for buff/debuff icons with name, description, remaining duration, periodic details, and source.
+
+What Changed
+- systems/spell-system.js
+  - Added root-owned spell icon descriptor generation.
+  - Added icon rendering for hotbar spell slots.
+  - Added icon rendering for the spellbook panel entries.
+  - Added distinct icon families for the current Necromancer spell list.
+- systems/status-effect-system.js
+  - Added central status icon theme generation.
+  - Added effect description derivation for tooltip display.
+  - Sorted status trays with buffs before debuffs.
+  - Added rich tooltip HTML generation and tooltip binding hooks.
+- systems/inventory-system.js
+  - Extended the shared tooltip owner to support arbitrary HTML tooltip cards.
+- systems/ui-system.js
+  - Bound status tray tooltip behavior to player and target trays.
+  - Updated spellbook rendering to include icons.
+- Dream Realms V0.14.84.html
+  - Added CSS for new spell/status icon families and spellbook/hotbar layout support.
+  - Updated patch notes.
+
+Notes
+- The status icon system is heuristic-driven so proc buffs, auras, pet effects, and debuffs inherit themed colored icons without needing one-off UI patches.
+- Tooltip positioning reuses the existing viewport-aware tooltip owner so the card avoids overlapping the screen bounds.

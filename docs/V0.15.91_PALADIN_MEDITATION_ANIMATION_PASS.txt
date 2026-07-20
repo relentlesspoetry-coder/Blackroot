@@ -1,0 +1,4 @@
+Dream Realms V0.15.91 - Paladin Meditation Animation Pass
+
+Paladin meditation no longer uses the Fighter meditation animation stack.
+The Paladin renderer now owns a class-specific oath-kneel meditation pose with planted shield, grounded mace, clasped prayer hands, holy consecration circle, halo shimmer, and rising golden prayer motes.

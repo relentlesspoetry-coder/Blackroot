@@ -1,0 +1,15 @@
+Dream Realms V0.12.9 — Class Model Visual Revamp
+
+Diagnosis
+- The class models were low-detail because playable characters are generated with 2D canvas polygon parts, flat diffuse color fills, small pixel accents, and no material-specific lighting/detail pass.
+- There are no external character texture files or true 3D meshes in the current browser build, so engine-level PBR, normal maps, metallic/roughness textures, and mesh bevels must be approximated procedurally in the canvas renderer.
+
+Implemented
+- Added procedural material classification for class visuals: metal, blessed metal, leather, natural, arcane cloth, bone cloth, and cloth.
+- Added pseudo-PBR canvas material gradients for armor and robes, including darker occluded faces and brighter highlight faces.
+- Added cloth weave lines, leather seams, metal plate facets, bone rib overlays, arcane runes, leaf mantle details, holy glow, and class-specific silhouette accents.
+- Added rim-light and ambient-occlusion overlays to make characters separate from the terrain.
+- Applied the detail pipeline consistently through render/entity-renderer.js, the owning renderer for playable class/mercenary humanoid models.
+
+External asset note
+- No external assets were added. If the project later moves to real asset-backed models, author 512x512+ albedo, normal, roughness, metallic, and AO maps per armor set/material family, then route them through the character equipment visual resolver.

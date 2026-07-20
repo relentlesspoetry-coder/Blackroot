@@ -1,0 +1,3 @@
+Dream Realms V0.15.74 — Bogling Arm Stretch Fix
+
+Fixed a Bogling animation/rendering issue where arms could stretch unnaturally across the back. Corrected Bogling arm pose coordinates, direction-aware arm layering, transform safety, and equipment/tool grip alignment while preserving male/female Bogling support, all color variants, sprite-sheet fallback behavior, character creation, runtime rendering, and save/load compatibility.

@@ -1,0 +1,40 @@
+Dream Realms V0.13.47 — Bot Summoner + Necromancer Pet Attack Hotfix
+
+Bug fixed
+- Summoner and Necromancer bot pets could remain idle because pet targeting did not directly consume the bot owner’s current combat target and stale attack state was not cleared when owner combat ended.
+- A living bot pet whose entity registration became stale could be replaced instead of relinked, leaving ownership and update participation inconsistent.
+
+Systems changed
+- Pet AI now validates hostile targets centrally and rejects players, bots, mercenaries, pets, quest NPCs, non-combat actors, ambient actors, dead actors, and invalid coordinates.
+- Bot-owned pets resolve targets in this order: owner combat target, enemy attacking owner, party primary target, enemy attacking player/healer/support, then a nearby already-engaged hostile while the owner is in combat.
+- Bot AI now publishes and clears its current target IDs and explicitly returns its pet to autonomous assist/follow state when combat ends.
+- Pet combat stores owner, ownerId, target, targetId, and truthful AI intent. It clears stale target state on death/invalidity and follows its owner after combat.
+- Ranged shard pets require clear line of sight; undead melee pets require melee clearance. Blocked attacks request the existing companion combat pathing and never apply damage through the blocker.
+- Pet attacks continue to use playAttackAnimation and damageEntity, preserving damage numbers, combat death, loot, threat, and combat-log behavior without a second combat loop.
+- Existing extreme-distance pet catch-up remains unchanged. No new teleport behavior or manual pet command UI was added.
+- Bot pet maintenance now relinks owner data and re-registers the same living pet in the entity update list instead of duplicating it.
+- Dead stale pets are removed before replacement. Old bot snapshots continue to recreate pets through the existing class summon logic.
+- Party XP attribution now credits a non-party bot owner when its pet lands the killing blow; party-owned pet kills retain normal party reward distribution.
+
+Save/load compatibility
+- Save build metadata is V0.13.47. Existing save schemas and botPetId fields are unchanged.
+- Pet targets remain transient and are cleared/reacquired rather than persisted.
+- If a bot pet is not serialized as an entity, Summoner/Necromancer class AI recreates it through existing summon data after load.
+- Existing linked living pets are normalized with the current owner reference, owner ID, zone, and entity registration.
+
+Tests run
+- All JavaScript files passed node --check.
+- Main HTML loaded all 88 existing script references and completed Fighter boot/update/render smoke.
+- Runtime integrity audit completed with no failures or warnings.
+- Summoner Azure Shard Familiar and Necromancer Bone Servant both retained valid owner references and damaged their owner’s hostile target.
+- Both pets selected enemies attacking their owner and the party primary target when the owner lacked a direct target.
+- Both pets rejected the player and a quest-giver NPC, cleared dead targets, and requested the existing follow path after combat.
+- Both pets withheld damage through a blocked combat line and requested existing companion combat pathing.
+- Both attacks produced existing damage-number entries and owner-attributed XP behavior.
+- Removing a living pet from the entity list re-registered the same pet without duplication; simulated loaded bots recreated an active owner-linked pet.
+- Regression smoke passed for six-member autonomous party behavior, bot speech bubbles, ranged auto-attacks, Purify, resurrection, visible respawn, all three structured Silk Web floors, C/S/G/P loot, dry mob spawning, right-click targeting, paper doll, ground drops, item comparison, Dark Woods rendering, Esc menu, and save/load.
+- ZIP integrity and packaged HTML/script validation passed.
+
+Manual browser caveats
+- Manually verify shard projectile and Bone Servant melee animation timing during moving dungeon fights.
+- Manually stress owner target swaps, enemy deaths, narrow Silk Web corridors, and pet resummoning after save/load with full parties.

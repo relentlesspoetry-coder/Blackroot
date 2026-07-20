@@ -1,0 +1,17 @@
+Dream Realms V0.12.63 — Combat Animation Readability Pass
+
+Purpose
+- Improve combat readability on top of the newer humanoid/class/merc/NPC renderer foundation.
+
+Files changed
+- render/class-identity-procedural-model.js
+- render/camp-npc-procedural-model.js
+- VERSION.txt
+- README.txt
+- docs/MODULAR_HISTORY.txt
+- Dream Realms V0.12.63.html
+
+Implementation notes
+- Added direct attack/cast/hit/death readability overlays inside the owning procedural renderer modules.
+- Avoided bottom-of-file patches, wrapper hotfixes, delayed repair scripts, or duplicate Game.prototype overrides.
+- Preserved canonical 8-direction row format.

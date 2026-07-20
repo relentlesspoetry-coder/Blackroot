@@ -1,0 +1,21 @@
+spell_key,source_file,target_file
+summon_familiar,Summon Familiar - Summoner - Level 1.png,summon_familiar.png
+arcane_spark,Arcane Spark - Summoner - Level 2.png,arcane_spark.png
+command_attack,Command Attack - Summoner - Level 3.png,command_attack.png
+mend_companion,Mend Companion - Summoner - Level 4.png,mend_companion.png
+empower_beast,Empower Beast - Summoner - Level 5.png,empower_beast.png
+planar_bolt,Planar Bolt - Summoner - Level 6.png,planar_bolt.png
+protective_bond,Protective Bond - Summoner - Level 7.png,protective_bond.png
+summon_elemental_servitor,Summon Elemental Servitor - Summoner - Level 8.png,summon_elemental_servitor.png
+familiar_rush,Familiar Rush - Summoner - Level 9.png,familiar_rush.png
+planar_gate,Planar Gate - Summoner - Level 10.png,planar_gate.png
+bind_essence,Bind Essence - Summoner - Level 11.png,bind_essence.png
+call_swarm,Call Swarm - Summoner - Level 12.png,call_swarm.png
+soul_link,Soul Link - Summoner - Level 13.png,soul_link.png
+elemental_rotation,Elemental Rotation - Summoner - Level 14.png,elemental_rotation.png
+planar_surge,Planar Surge - Summoner - Level 15.png,planar_surge.png
+mass_dismissal,Mass Dismissal - Summoner - Level 16.png,mass_dismissal.png
+twin_summon,Twin Summon - Summoner - Level 17.png,twin_summon.png
+overrun,Overrun - Summoner - Level 18.png,overrun.png
+grand_binding,Grand Binding - Summoner - Level 19.png,grand_binding.png
+legion_gate,Legion Gate - Summoner - Level 20.png,legion_gate.png

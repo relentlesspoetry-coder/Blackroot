@@ -1,0 +1,14 @@
+Dream Realms V0.12.17 — EverQuest Combat Pacing and Merc Meditation Fix
+
+Diagnosis
+- Combat still required manual auto-attack toggling and could feel like burst trading rather than steady attrition.
+- Player damage and companion damage were high per swing relative to the desired slow EverQuest-style feel.
+- Merc meditation was blocked by overly broad combat/rest checks and did not reliably start when the merc was hurt or low mana out of combat.
+
+Fix
+- Added enterCombatWithTarget() as the owned combat engagement path.
+- Auto attack engages automatically when the player enters combat or damages a mob.
+- Auto attack disengages when combat ends, target dies, or target leaves meaningful combat range.
+- Slowed player, enemy, pet, and merc auto-attack timers.
+- Lowered per-swing burst while preserving steady damage over time.
+- Mercs now evaluate rest needs out of combat and call the shared meditation owner correctly.

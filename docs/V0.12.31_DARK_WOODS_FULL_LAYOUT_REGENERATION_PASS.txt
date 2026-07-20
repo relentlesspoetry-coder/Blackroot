@@ -1,0 +1,33 @@
+Dream Realms V0.12.31 — Dark Woods Full Layout Regeneration Pass
+
+Design Intent
+- Dark Woods was rebuilt from scratch rather than patched on top of the prior terrain layout.
+- The flat-floor-only constraint was canceled before implementation. Elevation/half-block terrain is now allowed when it is intentional and tied to landmarks, ridges, ruins, cave shelves, or shorelines.
+
+World Generation
+- Replaced the generateMap() terrain body with a fresh authored/procedural map pass.
+- New terrain families include safer near-camp forest, mid-zone dark woods, deep underbrush, stone ridges, ruin shelves, marsh pockets, and water bodies.
+- Added a main winding creek, a south-west side stream, and several ponds/lakes.
+- Added intentional elevation via radial danger gradient, stone ridges, ruin shelves, cave shelves, and landmark terrain.
+
+Layout
+- Dead Lantern Camp remains the start anchor.
+- Lanternfall Hamlet added as a safer south-west secondary camp.
+- Briar Watch added as a mid-map combat staging point.
+- Rebuilt routes connect the start to all cave/dungeon landmarks.
+- New cave entrance coordinates:
+  - Mossfang Cave: 76,74
+  - Silk Web Cavern: 52,139
+  - Ashroot Hollow: 145,63
+  - Crystal Grotto: 163,123
+  - Forgotten Mine: 65,171
+  - Blackroot Catacombs: 170,48
+
+Mob Spawns
+- Rebuilt DEFAULT_MOB_SPAWN_PLACEMENTS for Dark Woods.
+- New outdoor placement count: 67 anchors.
+- Spawn anchors now follow route pockets, outer danger bands, cave-adjacent forests, and named-rare regions.
+
+Verification Notes
+- JS syntax passes across all scripts.
+- Node boot harness loaded all script refs, instantiated the game, generated a 200x200 map, reported all six relocated caves, and produced runtime enemies.

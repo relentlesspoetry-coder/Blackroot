@@ -1,0 +1,22 @@
+Dream Realms V0.14.90 — Silk Web Poison and Venom Sack Hazard Pass
+
+Scope
+- Root-owner update in systems/dungeon-system.js, entities/enemy.js, systems/collision-system.js, render/object-renderer.js, and sprite-bake metadata.
+- No cascade patch scripts added.
+
+Changes
+- Removed Silk Web Cavern poisonDrip damage/status handling from the dungeon hazard update loop.
+- Replaced generated poison-drip floor hazards with non-damaging thick-web hazards.
+- Added venomSack dungeon objects placed in visible clusters near web/venom/egg/combat rooms while avoiding safe-entry and treasure transition rooms.
+- Added player-only venom sack collision checks that run immediately each update instead of waiting on the slower web-hazard tick.
+- Added stackable Venom Sack Poison: 15 seconds, 15 damage per second, max 20 stacks.
+- Consumed venom sacks become burst/deflated sack objects for the active dungeon run and reset on fresh instance/run generation.
+- Pets, mercenaries, and party bots do not trigger venom sacks independently.
+- Restricted ordinary spider Venom Bite tactical poison to elite/named/boss spiders only; boss/miniboss poison abilities remain owned by boss scripts.
+- Updated procedural rendering for live venom sacks, burst venom sacks, and venom pools.
+- Updated patch notes, version metadata, save manifest, and README.
+
+Validation
+- JS syntax check passed across all JavaScript files.
+- Static audit confirms no remaining poisonDrip damage/status application path.
+- Static audit confirms venom sacks use the dedicated player-only trigger and distinct stackable status id.

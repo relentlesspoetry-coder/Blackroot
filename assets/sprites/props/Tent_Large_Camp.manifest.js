@@ -1,0 +1,9 @@
+window.DreamRealmsSpriteSheetMetadata = window.DreamRealmsSpriteSheetMetadata || {};
+window.DreamRealmsSpriteSheetMetadata['Tent_Large_Camp.json'] = {
+  "version": "0.13.74",
+  "type": "dream-realms-model-sprite-sheet",
+  "modelId": "Tent_Large_Camp",
+  "modelType": "prop",
+  "image": "Tent_Large_Camp.png",
+  "frames": {}
+};

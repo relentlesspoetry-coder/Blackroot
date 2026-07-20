@@ -1,0 +1,90 @@
+{
+  "asset": "necromancer_spell_effect_geometry_v0.14.78",
+  "game": "Dream Realms",
+  "version": "0.14.78",
+  "pipeline": "2.5D Canvas 2D procedural geometry layers",
+  "globalStyle": {
+    "palette": [
+      "cold black",
+      "bone white",
+      "sickly green",
+      "green-black corruption",
+      "pale blue-white highlights"
+    ],
+    "motion": "heavy bone dust, ash, cold mist, dark tendrils, no warm fire or holy light",
+    "topologyNote": "Core effect silhouettes are authored as layered quad-friendly geometry/decal strips; transient particle trails remain lightweight runtime primitives."
+  },
+  "spells": {
+    "Raise Bone Servant": {
+      "components": [
+        "ground_rift",
+        "jagged_crack_edges",
+        "rising_bone_vortex",
+        "binding_energy_column",
+        "summoning_burst",
+        "settling_bone_dust"
+      ],
+      "animationFlow": "rift opens -> dark energy erupts -> bones spiral upward -> binding burst -> servant revealed -> dust settles"
+    },
+    "Life Tap": {
+      "components": [
+        "hand_origin_darkness",
+        "single_drain_tendril",
+        "target_contact_flash",
+        "stolen_life_motes",
+        "caster_healing_pulse"
+      ],
+      "animationFlow": "energy gathers -> tendril lashes target -> life motes travel back -> caster pulses -> tendril fades"
+    },
+    "Bone Spear": {
+      "components": [
+        "bone_fragment_assembly",
+        "solid_bone_projectile",
+        "sinew_binding",
+        "bone_dust_trail",
+        "impact_splinters",
+        "residual_shards"
+      ],
+      "animationFlow": "fragments assemble -> spear launches/spins -> dust trail -> impact shatter -> shards settle"
+    },
+    "Rot Cloud": {
+      "components": [
+        "pressure_burst",
+        "ground_hugging_miasma",
+        "disease_particles",
+        "pooling_cloud_body",
+        "debuff_readability_aura",
+        "dissipating_residue"
+      ],
+      "animationFlow": "miasma erupts -> cloud spreads -> particles settle -> affected zone persists -> cloud thins"
+    },
+    "Grave Armor": {
+      "components": [
+        "bone_plate_swirl",
+        "ribcage_chest_plate",
+        "vertebrae_pauldrons",
+        "forearm_guards",
+        "dark_binding_seams",
+        "orbiting_bone_fragments",
+        "decay_breakup"
+      ],
+      "animationFlow": "mist gathers -> plates lock on -> bindings weave -> active armor shimmer -> plates crack/dissolve"
+    },
+    "Soul Leech": {
+      "components": [
+        "two_hand_shadow_vortex",
+        "five_barbed_tendrils",
+        "target_torment_outline",
+        "large_life_fragments",
+        "dark_healing_corona",
+        "snapback_fade"
+      ],
+      "animationFlow": "shadow vortex builds -> tendrils lash -> target is drained -> fragments return -> caster pulses -> tendrils snap back"
+    }
+  },
+  "runtimeFiles": [
+    "systems/effects-system.js",
+    "systems/spell-system.js",
+    "render/effects-renderer.js"
+  ]
+}

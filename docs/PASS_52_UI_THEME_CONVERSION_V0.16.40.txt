@@ -1,0 +1,144 @@
+PASS 52 - UI THEME CONVERSION (Character Select redesign, Character/Stats window
+conversion, in-game UI theme unification)
+Version: V0.16.39 -> V0.16.40
+Date: 2026-07-05
+
+SCOPE OF THIS PHASE
+-------------------
+1. Character Slots screen: complete visual redesign (featured-slot showcase).
+2. Character / Stats window: full theme conversion + model preview enlargement.
+3. In-game UI: theme conversion pass across HUD/action bar/bag bar/chat/minimap/
+   panels/buttons, applied at the root theme layer rather than per-window.
+
+No other systems were touched. No gameplay, save data, or account logic changed.
+
+ROOT CAUSE FOUND
+-----------------
+The stylesheet already contained a single, comprehensive "Pass 51: Full UI revamp"
+theme block (~830 lines, intentionally placed late in <style> so it wins the CSS
+cascade) that already themes nearly every shared in-game UI class: .panel, button,
+.windowHeader, .bar/.fill, #hud, #hotbar, .slot, .equipSlot/.itemSlot/.bagSlot,
+#characterPanel/#bagPanel/#spellPanel/#settingsPanel/#menuPanel/etc, .logTab,
+#menuToggleBtn, .patchNotesButton, and more - largely gold-trimmed and dark already.
+
+The actual defect was narrower than "the whole UI is untouched": this canonical
+theme's --accent token and a handful of hardcoded colors inside that same block
+were still teal/green (#6fd7c8 and various rgba(127,223,205,...) values), and
+--panel/--panel2/the body background/a few component backgrounds still carried a
+faint green-black tint left over from the pre-Pass-51 palette. A separate,
+unrelated --br-* token set had also been added in a prior phase (V0.16.39, for
+Character Creation only) that duplicated part of this same intent without
+referencing Pass 51's tokens - two parallel "gothic theme" efforts existed instead
+of one.
+
+Root-cause fix: edited the Pass 51 block itself (the canonical, already-late,
+already-comprehensive theme owner) rather than adding a third parallel system or a
+bottom-of-file override. Shifted --accent and every hardcoded teal/green
+occurrence inside that block to violet, and shifted the green-black tint in
+--panel/--panel2/body background/.panel/.slot/#hotbar/the shared equip-slot
+background/the shared #characterPanel-and-friends background to navy-violet. Kept
+--line/--gold/the serif heading font exactly as Pass 51 already had them (already
+correct gold/serif). This single, targeted edit cascades to essentially every
+system in the game because those systems already read from these tokens/rules.
+
+A second, unrelated discovery: assets/ui/class-backgrounds/*.png (14 fully painted,
+per-class illustrated backdrops - radiant beams, wings, class emblem motifs) and
+their full canvas-drawing helper (drawCreatorClassEmblemBackdrop, with load-then-
+redraw handling, vignette, and animated ambient flare) already existed in
+systems/ui-system.js and are used by the character creator when it draws with
+creatorBackdrop:true. This is the canonical "class-themed background motif"
+renderer the task asked for - it was reused as-is for the new Character Select
+featured-slot showcase (see below), not rebuilt.
+
+FILES CHANGED
+-------------
+- Blackroot V0.16.39.html -> renamed to Blackroot V0.16.40.html
+  - :root theme tokens (accent teal->violet, panel/panel2 tint green->navy-violet)
+  - body{background} green blob -> violet blob
+  - button{}/button:hover{}, .logTab.active, #minimapWrap, #menuToggleBtn,
+    .panel, .slot, #hotbar, the shared .equipSlot/.bagSlot/etc background, the
+    shared #menuPanel/#characterPanel/#bagPanel/etc background, .patchNotesButton
+    (+::before/:hover) - teal/green hardcoded values converted to violet/navy,
+    all within the existing Pass 51 rules (no new rules added for these).
+  - #characterSlotScreen/#characterSlotModal/#characterSlotGrid markup and CSS:
+    replaced the four-equal-card grid with a featured-slot showcase (large model +
+    class-backdrop art + name/meta + Play/New/Delete/Create) plus a slim
+    .characterSlotSwitcher strip of compact tiles to pick which slot is featured.
+    Old dead classes (.characterSlotCard, .characterSlotCardTop, .characterSlotPreview,
+    .characterSlotPreviewCanvas, .characterSlotInfo, .characterSlotName,
+    .characterSlotMeta, .characterSlotActions - all introduced in a prior phase and
+    now fully superseded by this same phase's redesign) were removed rather than
+    left as dead weight, since this phase is the one that made them dead.
+  - #characterPanel/.characterSheet/.paperDollLayout/.dollCenter/etc left as fixed
+    in the previous phase (V0.16.39); this phase's theme-variable edits additionally
+    removed the last visible green tint from the shared panel background those
+    rules sit on top of.
+- systems/ui-system.js
+  - renderCharacterSlots(): rewritten to render a featured slot (big canvas +
+    info + actions) plus a compact switcher row, instead of N identical cards.
+  - renderFeaturedCharacterSlotPreview() (new): draws only the featured-slot
+    canvas via the existing renderRaceClassPreview/renderClassPreviewModel path
+    with creatorBackdrop:true - the same renderer + the same class-background art
+    the character creator already uses. No second/duplicate preview system.
+  - startCharacterSlotPreviewAnimation()/stopCharacterSlotPreviewAnimation() (new):
+    self-terminating rAF idle-animation loop, structured identically to the
+    existing startCreatorPreviewAnimation/stopCreatorPreviewAnimation (checks the
+    screen's own visibility each frame and stops itself - no separate cleanup path
+    to forget, no leaked loop).
+  - showCharacterSlotsScreen()/hideCharacterSlotsScreen(): now start/stop that loop.
+  - Click delegation: added a data-slot-select handler on the switcher strip
+    (#characterSlotGrid) to change the featured slot; the existing data-slot-action
+    handler (load/create/replace/delete) moved from #characterSlotGrid to
+    #characterSlotFeatured, since those buttons now live in the featured stage.
+    No behavior changed - same functions, same slot-index math, same 4-slot clamp.
+- game.js
+  - Added ui.characterSlotFeatured element reference (new DOM node).
+
+WHAT WAS NOT CHANGED
+--------------------
+- Account/character slot logic (getCharacterSlots, loadCharacterSlot,
+  deleteCharacterSlot, beginCharacterCreationForSlot, save/account system) -
+  untouched; only how the same data is displayed and which buttons trigger it.
+- Load Game / Link Save Folder / Account Menu / Close - same handlers, same IDs.
+- Character Creation screen structure/theme - out of this phase's scope; the
+  discovery of the class-background asset/helper was reused for Character Select
+  only, per "implement only this phase."
+- --line/--gold/serif heading font and the overall Pass 51 layout/spacing rules -
+  already correct, left as-is.
+
+VALIDATION
+----------
+  find . -name "*.js" -print0 | xargs -0 -n1 node --check         -> no errors
+  find . -name "*.json" -print0 | xargs -0 -n1 python3 -m json.tool -> no errors
+
+MANUAL/BROWSER TESTING PERFORMED (Playwright, headless Chromium)
+-----------------------------------------------------------------
+- Create Account -> featured-slot showcase (empty) -> Create Character -> class
+  creation -> gameplay entry: HUD/action bar/bag bar all render, zero console errors.
+- Login (separate flow) -> reaches the same redesigned slots screen.
+- Two characters created (Paladin, Wizard); switching the featured slot via the
+  switcher strip correctly re-renders the big preview with each class's own
+  illustrated backdrop, updates the info text, and highlights the active tile.
+- Play, New, and Delete all verified working from the featured stage's buttons.
+- Idle-animation loop confirmed running while the slots screen is visible and
+  confirmed stopped (no leaked requestAnimationFrame) after leaving to character
+  creation.
+- Character/Stats window: both .sheetPanel columns confirmed non-overflowing
+  (scrollHeight === clientHeight) at 1400x900 and 1280x800; full character model
+  visible with no crop (established in V0.16.39, reconfirmed here after the theme
+  edit touched the same shared background rule).
+- Spot-checked Abilities/Spells, Settings, and Skills panels visually - all
+  consistently violet/gold themed with no leftover green.
+- Randomize-preserves-class re-verified after all changes.
+- Character Select screen re-tested at 1280x800 - fits without clipping.
+
+NEXT RECOMMENDED PHASE
+-----------------------
+Character Creation currently uses a much tighter preview crop (correctly sized to
+avoid dead space, per the prior phase's fix) that only shows slivers of the same
+class-background art at the edges. A future phase could widen that preview's
+aspect ratio specifically to let more of the illustrated backdrop show, mirroring
+the Character Select showcase's treatment, if that stronger "showcase" look is
+wanted on the creation screen too. This was deliberately left out of this phase
+since it was not in the requested scope (Character Select, Character/Stats window,
+in-game UI theme).

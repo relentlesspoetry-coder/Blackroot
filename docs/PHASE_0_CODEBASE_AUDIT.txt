@@ -1,0 +1,553 @@
+Dream Realms — PHASE 0: Full Codebase Audit
+============================================
+
+Scope: read-only technical audit of the entire project as it stands (runtime
+reports V0.15.77, package/HTML filename V0.15.52, docs/ history runs to
+V0.15.78). No gameplay systems were added or changed. Only a documentation
+deliverable was produced this phase, per the Phase 0 brief.
+
+
+1. ARCHITECTURE SUMMARY
+------------------------
+
+Entry point: "Dream Realms V0.15.52.html" — a single static HTML file with
+127 <script src> tags loaded in classic (non-module) order, plus inline
+bootstrap script at the bottom of the file.
+
+Canonical load-order manifest: "_script_order.json" at the project root
+lists 126 paths. This is the intended source of truth for load order, but it
+is currently STALE: the HTML loads "data/hairstyles.js" (between
+data/races.js and data/spells.js) and _script_order.json does not list it.
+Every other entry matches positionally once the "./" prefix is stripped —
+there are no missing or broken script references (no 404s). Impact: low
+(the game still boots correctly because the HTML is authoritative at
+runtime), but any tooling or future automation that trusts
+_script_order.json as complete will silently miss data/hairstyles.js.
+
+Boot flow:
+1. vendor/three.min.js, then core/* (registry, config, constants, utils,
+   stats).
+2. data/* definition files (tiles, classes, races, spells, hairstyles*,
+   mercs, enemies, npcs, dungeons, loot, items, loot-tables, resources,
+   crafting, events, quests, default-zones), interleaved with two
+   "compiler" systems (spell-compiler-system.js, item-compiler-system.js)
+   that turn raw data/* drafts into runtime-ready objects.
+3. entities/* classes (entity.js base class, then player/enemy/mercenary/
+   pet/remote-player/bot-player, all "extends Entity").
+4. core/globals.js (compatibility bridge exposing DR.* as bare globals).
+5. systems/* (71 files) in dependency order: world/save serialization,
+   gathering/crafting, world/cave generation, mob spawning, collision,
+   pathfinding, effects/portals/atmosphere/weather/time, audio, loot/
+   inventory/status/threat/combat, racial abilities, spellcasting, mercs,
+   skills/professions, UI, multiplayer/party/bots, chests, events, dungeons/
+   puzzles, NPCs, quests, the in-game editor(s), asset/sprite caching,
+   performance systems, then a long chain of render-backend/hybrid/release/
+   QA systems (see section 6).
+6. render/* (23 files): shared render utilities, terrain/object/entity/
+   effects/minimap renderers, the humanoid animation+rig+paperdoll system,
+   then per-race/per-class/per-mob procedural model files, in that order.
+7. Three more QA/regression systems, then game.js itself last.
+8. game.js's own IIFE tail (~line 3820-3888) calls `SystemName.install(Game)`
+   once per system, in the exact order those systems appear in the load
+   list, then does `window.DarkWoodsGame = new Game()` and one integrity
+   check (`runRuntimeIntegrityAudit('boot')`).
+
+Main game loop: `Game.prototype.loop(now)` (game.js:1994) is the single
+requestAnimationFrame driver. Per frame it: computes clamped dt, updates the
+FPS counter, calls `this.update(dt)` inside its own try/catch (only if
+`started && !paused`), then calls `this.render()` inside a separate
+try/catch (renders a recovery overlay on error instead of crashing the
+loop), records per-phase timings into `this.perfStats`, feeds them to
+`adaptivePerformance`/`performanceVerifier`, and re-schedules itself via
+`requestAnimationFrame`. Both `update` and `render` failures are caught and
+logged (`handleRuntimeFrameError`) without stopping the loop — the game
+degrades rather than hard-crashing on a single bad frame.
+
+Renderer ownership: `Game.prototype.render` is DEFINED ONCE in game.js
+(line 3233: terrain -> objects -> entities -> effects -> minimap -> UI, the
+canonical 2D Canvas path), then EXPLICITLY RE-ASSIGNED 12 more times by
+later systems (see section 6) via a documented `install(Game)` pattern —
+this is not hidden monkey-patching; every wrap is an explicit, ordered call
+visible in one place at the bottom of game.js, and every wrapper this audit
+sampled correctly captures and delegates to the previous implementation
+behind an idempotency guard (`__drXxxWrapped`). The functional core owner
+of "what does a frame look like" is still game.js; everything after it is
+additive QA/telemetry/feature-flag layering, confirmed by
+render-backend-system.js: it is the one wrap that actually changes
+behavior (2D canvas vs. optional Three.js path), the rest are
+instrumentation/UI-panel additions.
+
+Update loop ownership: same pattern — `Game.prototype.update` defined once
+in game.js (line 2304), then re-assigned 4 more times by
+hybrid-default-candidate/rollout/health systems for telemetry, not core
+gameplay logic.
+
+Input ownership: no single input router. `game.js` itself registers three
+separate `window.addEventListener('keydown', ...)` handlers (lines 941,
+953, 1107) for three different concerns (primary hotkeys/movement with a
+repeat+editor guard, key-rebind capture, and Escape-to-close-menus), plus a
+`mousemove`/`pointerdown` pair on the canvas. In addition, roughly 19
+different systems each register their own `window.addEventListener
+('keydown', ...)` gated on their own "is my panel/mode active" check
+(fishing, npc, save, event, racial-ability, swimming, quest, chest,
+crafting, resource-gathering, dps-meter, dungeon, puzzle, editor,
+profession, and 3 in game.js itself). The in-game editor
+(editor-system.js) and the layered-map sub-editor
+(layered-map-editor-system.js) both register their own canvas listeners for
+mousemove/pointerdown/contextmenu/wheel, and rely on capture-phase
+registration plus `stopImmediatePropagation()` to suppress the base-game
+handlers while active. This works today (verified in the V0.15.55 audit and
+re-confirmed this pass) but is a maintenance risk: correctness depends on
+every new listener remembering to check the right "am I allowed to act
+right now" gate, since there is no central dispatcher that only one
+subsystem receives input from at a time.
+
+Save/load ownership: `systems/save-system.js` (character/account saves) and
+`systems/world-serializer.js` (world/zone/runtime-system saves) are the two
+canonical owners; every other system that needs to persist state exposes
+`serializeState()`/`importState()` and is called from one of those two
+files (see section 3 and section 6 risk list for exceptions).
+
+
+2. CURRENT GAMEPLAY SYSTEMS (FILE OWNERSHIP MAP)
+--------------------------------------------------
+
+Combat
+- systems/combat-system.js — auto attack, damageEntity/healEntity, death/
+  respawn, checkLevelUp/regen, tab-target and click-to-target resolution.
+- systems/threat-system.js — separate threat table (addThreat, tauntEnemy).
+- systems/status-effect-system.js — buffs/debuffs.
+- systems/racial-ability-system.js — race active abilities (thin, calls
+  back into combat/status/threat).
+- systems/dps-meter-system.js — telemetry/HUD only.
+
+Movement / collision / pathfinding
+- systems/collision-system.js — tryMove, isWalkable, blocking-object checks.
+- systems/pathfinding-worker-system.js — web-worker pathfinding.
+- systems/swimming-system.js, systems/terrain-footstep-system.js —
+  movement-adjacent state (water, footstep audio), not core movement.
+
+Targeting
+- Owned entirely by systems/combat-system.js (both tab-target and
+  click-to-target); game.js's pointerdown handler and
+  systems/steam-deck-system.js (controller input) call into it rather than
+  duplicating targeting logic.
+
+Inventory
+- systems/inventory-system.js — bags/equipment/gear-derived stats.
+- systems/item-compiler-system.js — compiles data/items.js drafts into
+  runtime item objects (loaded before inventory-system, per script order).
+
+Loot
+- systems/loot-system.js — loot table rolls, corpse loot windows.
+- systems/chest-system.js — world chest containers (reuses loot-system
+  rolls rather than re-implementing them).
+- Data: data/loot.js, data/loot-tables.js.
+
+Classes / spells / racials
+- data/classes.js, data/races.js, data/spells.js — static definitions.
+- systems/spell-compiler-system.js — compiles raw spell data.
+- systems/spell-system.js — casting engine; ALSO owns pet summoning
+  (summonPet) — see "Pets" below, this is the de facto pet-system owner.
+- systems/racial-ability-system.js — racial actives.
+- systems/skills-system.js — meditation/profession skill window (not class
+  spells, name is a bit misleading).
+
+Quests
+- data/quests.js — static definitions.
+- systems/quest-system.js — per-character quest progress/turn-in.
+- systems/npc-system.js — dialogue, quest-giving, vendor interactions.
+
+Zones
+- systems/world-system.js — overworld.
+- systems/cave-system.js — cave sub-zones (composite zone keys for
+  multi-floor caves).
+- systems/dungeon-system.js — instanced dungeons (largest zone system,
+  ~3255 lines); uses systems/puzzle-system.js for dungeon puzzles.
+- systems/portal-system.js — zone-transition portals.
+- systems/world-serializer.js — (de)serialization format for all of the
+  above.
+
+Gathering
+- systems/resource-gathering-system.js — generic mining/herb/wood nodes.
+- systems/fishing-system.js — separate fishing minigame, own XP grant path.
+
+Pets
+- entities/pet.js — the Pet entity class (state/AI/combat behavior).
+- No dedicated pet-system.js file exists; summon/replace-pet mechanics live
+  inside systems/spell-system.js.
+
+Mercs
+- systems/mercenary-system.js — hire/manage/AI-control.
+- entities/mercenary.js — Mercenary extends Entity.
+- Data: data/mercs.js.
+
+Crafting
+- systems/crafting-system.js — recipes/crafting rolls (data/crafting.js).
+- systems/profession-system.js — profession level tracking fed by crafting/
+  gathering.
+
+UI
+- systems/ui-system.js (2294 lines) — main HUD/panels; defines the BASE
+  Game.prototype.renderSettingsPanel that every later QA/release system
+  wraps.
+- systems/editor-system.js (5317 lines, the single largest system file) —
+  in-game world/map editor.
+- systems/layered-map-editor-system.js — multi-layer tile sub-editor,
+  explicitly synced from editor-system (syncLayeredMapEditor()) — verified
+  complementary, not a duplicate.
+- systems/skills-system.js, systems/dps-meter-system.js — smaller HUD
+  widgets.
+
+
+3. EXISTING DATA MODEL
+------------------------
+
+Entity IDs: single base class (entities/entity.js), every actor type
+(Player/Enemy/Mercenary/Pet/RemotePlayer/BotPlayer) extends it — no
+parallel hierarchies. `Entity.id` is a plain in-memory auto-increment
+counter (entity.js:6, "let nextId = 1") that RESETS EVERY PAGE LOAD and is
+never itself persisted; it is transient runtime-only bookkeeping (threat
+tables, forcedTargetId, assistSourceId). Durable identity is layered on
+top: `Player.characterId` (generated once, save-system.js:281-285, format
+"char-<slot+1>-<hash>"), `BotPlayer.botId`, `RemotePlayer.remoteId`.
+
+Item IDs: two layers — a string catalog key (e.g. "item_linen_pouch",
+data/items.js) used everywhere items are referenced/saved, and a numeric
+per-session `itemSerial` (loot-system.js) that is a uniqueness token only,
+not a stable key (resets on reload, same pattern as Entity.id). Inventory
+slot shape: itemId, name, rarity/rarityKey (grey/white/green/blue/purple/
+gold/orange/red, data/loot.js), stats (a flat numeric map — rolled affixes
+are folded irreversibly into this map at generation time, not kept as a
+separate structured affix list), level, value, stack (stack count). No
+durability field exists anywhere in the codebase.
+
+Quest IDs: string keys (e.g. "quest_darkwood_first_steps", data/quests.js),
+collected into a frozen DR.QUEST_BY_ID lookup. Per-character progress shape:
+{ active: {}, completed: {}, discovered: {}, selectedQuestId, version }.
+NOTE (gap): quest runtime state is written/read from two different save
+paths — Game.applyCharacterState reads data.runtime.quests, while
+WorldSerializer.apply separately reads questRuntime from the world save —
+both ultimately call questSystem.importState(); which one wins if the two
+diverge is not resolved by any code seen this pass. There is also an
+orphaned standalone localStorage key ("dream-realms.quest-runtime.v1")
+that does not appear wired into either canonical save path.
+
+Class IDs: keyed by display-name string (DR.CLASSES = { Bard: {...},
+Druid: {...}, ... }, data/classes.js). Each class carries base stats, an
+attributes block (five raw stats), combat-style/auto-attack shape, and one
+hard-coded signature ability (`use(game) {...}`) — full spellbooks live
+separately in data/spells.js / DR.DEFAULT_CLASS_SPELL_SLOTS.
+
+Zone IDs: `Game.currentZone` is a coarse enum ('overworld'|'cave'|
+'dungeon'). Fine-grained zone/cave identity is a string id (dark_woods,
+mossfang_cave, plus 4 more cave ids defined in data/default-zones.js:
+silk_web_cavern, ashroot_hollow, crystal_grotto, forgotten_mine,
+blackroot_catacombs). Multi-floor caves use a composite key via
+`caveZoneKey(caveId, floor)`. Portal records use their own zoneKey format
+("overworld" or "cave:<id>:<floor>"). GAP: portal-system.js has no
+'dungeon' branch — capturing a portal location while inside a dungeon
+would mislabel it as 'overworld'.
+
+Save format: two localStorage families —
+- World/zone saves: key "dream-realms.world.v1" (+ .backup.v1/.corrupt.v1),
+  schema "dream-realms-world-save-v2", SAVE_FORMAT_VERSION=2, BUILD_PASS=65.
+  Payload includes worldTime/weather/mapSize/layeredMaps, editor catalogs
+  (quests/resourceTypes/professions/craftingStations/recipes/npcs/mobs/
+  bosses/mobSpawnGroups/dungeons/puzzles/items/lootTables/spells/
+  classSpellSlots), runtime blobs (questRuntime/eventRuntime/chestRuntime/
+  resourceRuntime/craftingRuntime/npcRuntime/dungeonRuntime/puzzleRuntime/
+  mobRuntime), and zones.dark_woods / zones.mossfang_cave tile+object
+  grids only — the other 4 cave ids from default-zones.js are NOT part of
+  this payload (they rely on procedural regeneration / dungeonRuntime
+  instead of persisted grids).
+- Character/account saves: key "dream-realms.accounts.v1" (+ backup/
+  corrupt), schema "dream-realms-account-character-save-v2", up to 4
+  character slots/account via characterSlotIndex; individual character
+  payload schema is still v1 ("dream-realms-character-save-v1"); legacy
+  mirror key "dream-realms.character.v1" for import/export only.
+  Game.applyCharacterState restores identity/appearance/level/hp/mana/
+  inventory/equipment, recomputes base stats from gear if missing, then
+  dispatches data.runtime.* into worldTime/weather/mercenary/pet/
+  botPlayers/party/resourceGathering/craftingSystem/questSystem via each
+  system's own importState().
+- Migration: WorldSerializer.migrate() accepts v1 and v2, backfills missing
+  sections, keeps a capped migrationHistory; corrupted/unsupported saves
+  are quarantined to a .corrupt.v1 key rather than overwriting the active
+  save.
+- docs/WORLD_SAVE_PIPELINE.txt is CONFIRMED STALE: it describes the old
+  Pass 17/43 single-key state and explicitly lists "not saved yet: live mob
+  states, player character save, quests, chests, resource depletion,
+  dungeon state" — all of these are now saved. It has no mention of the
+  account/character-slot system at all. Flagged, not rewritten this pass
+  (documentation-only, matches the V0.15.55 audit's decision to leave
+  docs/SYSTEM_OWNERSHIP.txt stale rather than rewrite documentation
+  outside the requested scope).
+
+
+4. MULTIPLAYER-READINESS RISK
+-------------------------------
+
+Transport: BroadcastChannel only (same-browser, cross-tab; no real network
+layer, no localStorage-polling fallback). Every ~0.35s each tab broadcasts a
+flat snapshot (position/z/vz/hp/mana/facing/meditating/party membership) —
+not an event log. Combat/loot outcomes are computed locally per tab and
+gossiped as best-effort result messages (partyReward, partyCombatPing,
+partyInvite/Accept/Leave/Disband) that peers apply on trust with a locally-
+generated dedup ledger, not a server ack.
+
+Authority model: none. Every tab is fully authoritative over its own
+player/mercs/pets/bots. RemotePlayer has no combat/AI logic at all — it is
+a pure lerp-toward-last-broadcast-position visual proxy that mirrors hp/
+mana fields verbatim from the peer packet.
+
+Damage/loot/inventory: `damageEntity` (combat-system.js) mutates target.hp
+and calls killEntity synchronously in one client function call — no seam
+for a server round-trip. Loot rolls and combat crit/variance use unseeded
+Math.random() scattered across combat-system.js/loot-system.js with no
+seeded-PRNG anywhere in the repo, so outcomes are not reproducible/
+verifiable by a third party. Inventory mutation (addItem/spendGold) writes
+directly and instantly with no validation/pending-ack layer, and addItem
+will silently auto-sell to gold if bags are full.
+
+Global state: one dominant `window.DreamRealms` (DR) namespace closed over
+by essentially every module, plus one running `Game` instance exposed as
+`window.DarkWoodsGame` that almost all state/logic hangs off via
+Game.prototype installs. core/globals.js additionally re-exposes many DR
+properties as bare window.* globals for legacy-script compatibility. This
+is a single coherent global, not multiple competing ones, but it means
+there is no existing seam between "this tab's game" and "the authoritative
+game" — introducing a real server would require carving a client/server
+split out of a codebase that currently assumes exactly one mutable Game
+object owns everything.
+
+Direct localStorage usage outside the canonical save pipeline (each is a
+separate untracked piece of client-local state): systems/ui-system.js
+(window position persistence), systems/fishing-system.js (fishing minigame
+cache — already flagged in the V0.15.55 audit as not traveling with
+character saves), systems/performance-settings-cleanup-system.js and
+systems/stable-release-candidate-system.js (perf/QA gating flags).
+
+Bots vs. remote players: bots (entities/bot-player.js) are fully-simulated
+local AI that call the SAME shared resolution functions the real player
+uses (game.damageEntity, game.healEntity, game.addThreat) — combat math
+itself is not duplicated — but every open tab independently simulates every
+bot (HP, AI, loot) rather than bots being server-driven, which is the
+opposite problem a real server model would need to solve for NPCs.
+
+Prioritized risk list for a future authoritative-server phase:
+1. No authority boundary anywhere in the damage/loot/inventory call chain.
+2. Unseeded, unreproducible RNG throughout combat/loot.
+3. Gossip-based "sync" (trust-on-receipt) instead of real state replication
+   or server-issued sequencing.
+4. Single global Game/DR object with no client/server seam.
+5. No validation layer for inventory/economy mutation.
+6. Remote players carry no combat logic client-side (pure proxies) — the
+   opposite gap from bots, and inconsistent with how a server model would
+   want either side to work.
+7. Scattered direct localStorage writes outside the save pipeline.
+8. Transport primitive (BroadcastChannel) is same-machine-only; replacing
+   it means replacing everything built directly against postMessage/
+   onmessage semantics, not just swapping a URL.
+
+
+5. RENDER PIPELINE
+--------------------
+
+Renderer selection is centralized in ONE wrapper, systems/render-backend-
+system.js, which re-assigns Game.prototype.render once at boot: if
+`is3DRendererMode()` is active it hands the frame to
+`systems/render3d-system.js` (a self-contained Three.js renderer with its
+own init/renderFrame/setActive API) and auto-falls-back to the 2D canvas
+path on any 3D render failure; otherwise it calls the original (2D canvas)
+render implementation. rendererMode is persisted to its own localStorage
+key and normalized to canvas2d / hybrid-webgl-prototype / three-3d-
+prototype. Two OTHER call sites in game.js (safeScreenToWorld,
+pickTargetableEntityAtScreen) independently re-check the same 3D-mode flag
+to pick a raycast-vs-2D-projection input path — a small amount of the same
+branch logic duplicated in caller code rather than funneled through the
+render-backend system.
+
+There is no shared interface/base class implemented by both renderers
+(no `IRenderer.render()`); they are stitched together only by the
+render() wrapper's if/else. This maps directly onto the requested
+components:
+- SpriteSheetRenderer-equivalent: render/race-sprite-sheet-renderer.js
+  (baked-PNG sprite-sheet playback).
+- ProceduralRenderer-equivalent: render/race-identity-procedural-model.js +
+  render/humanoid-base-renderer.js (live Canvas2D procedural draw), plus
+  the per-class/per-mob procedural model files (bard/druid/wolf/boar/
+  rotling/human-npc/camp-npc/spirit-healer/pet-identity/silk-web-spider/
+  dark-woods-mob/class-identity) — all confirmed present in
+  _script_order.json and confirmed referenced from render/entity-
+  renderer.js or from one another (e.g. dark-woods-mob-procedural-model.js
+  legitimately delegates to the wolf/boar/rotling models rather than
+  reimplementing them — not a duplicate).
+- GltfRenderer-equivalent: none yet. systems/render3d-system.js is a
+  hand-built Three.js scene (meshes/materials constructed in code), not a
+  glTF asset loader. The Bogling GLB pipeline built in a separate session
+  (see docs/V0.15.6x-7x Bogling passes) exists as an exportable asset but
+  is not yet wired into render3d-system.js as a loadable model source.
+- Unified render adapter: partial. Every procedural/sprite model duck-types
+  the same { canDraw(actor), draw(ctx, actor, now) } shape and is treated
+  uniformly by drawCachedModelOrFallback's caching layer — that part is
+  genuinely reusable. But WHICH model wins for a given actor is decided by
+  one large, order-dependent if/else chain in render/entity-renderer.js
+  (not table-driven), so adding a new race/class means inserting a new
+  branch in the correct position by hand.
+- Animation state abstraction: NOT unified — three independent hand-
+  maintained "what pose is this actor in" priority chains exist and can
+  disagree: render/humanoid-animation-system.js resolveAction(), render/
+  entity-renderer.js renderActionForHumanoid(), and systems/render3d-
+  system.js resolveAnimAction() each list a different priority order for
+  death/swim/meditate/hit/cast/attack/gathering/fishing/walk/idle. The
+  render3d-system.js file's own comment admits it had to manually reason
+  around a known bug in the 2D system (entity.hitFlash is set once and
+  never decayed) rather than reuse a shared abstraction, because none
+  exists. This is a real (if not yet symptomatic) risk: a fix to one
+  priority order does not propagate to the other two.
+
+
+6. IMMEDIATE BUG RISKS
+------------------------
+
+Duplicate/dead systems: none confirmed as truly dead or duplicated in
+responsibility. Every system checked resolves to at least one call site.
+editor-system.js / layered-map-editor-system.js and world-serializer.js /
+save-system.js are complementary pairs, not duplicates (verified by
+grep — each references the other deliberately).
+
+The one genuine "why are there this many of these" finding: TEN separate
+systems (hybrid-final-qa-system.js, stable-release-candidate-system.js,
+post-release-candidate-hardening-system.js, renderer-release-polish-
+system.js, performance-stable-release-lock-system.js, final-performance-
+qa-patch-system.js, release-manifest-checklist-system.js, final-ship-
+cleanup-system.js, launch-validation-package-audit-system.js, final-
+gameplay-qa-fixes-system.js) each independently re-wrap the SAME trio
+(render / renderSettingsPanel / updateDebugOverlay) with near-identical
+capture-original / idempotency-guard / try-catch boilerplate. None of them
+is dead (all are installed and called from game.js), and the V0.15.55 audit
+already examined this chain and found every individual wrapper correctly
+delegates — so this is not a functional bug. It is, however, the single
+biggest "avoid patch-cascade" red flag in the codebase: ten files doing
+structurally the same job, apparently added as ten successive "QA/release
+pass" commits without ever consolidating the prior ones. Net effect:
+Game.prototype.render is reassigned 12 times total, update 4 times,
+renderSettingsPanel ~13 times, all behind __drXxxWrapped guards. Flagged
+for a FUTURE phase (large, cross-cutting, high-risk to collapse — explicitly
+not attempted this phase, matching the "do not remove existing systems
+unless proven dead" and "no large unrequested rewrites" rules).
+
+Global state conflicts: none found beyond the single-Game/DR-object
+concentration already covered in section 4 (that is a multiplayer-
+readiness concern, not an active bug).
+
+Broken references: none. Every _script_order.json path resolves to a real
+file; the only drift is the missing data/hairstyles.js manifest entry
+(documentation/tooling risk, not a runtime error — see section 1).
+
+Duplicate event listeners: confirmed pattern (not a proven active bug) —
+canvas mousemove/pointerdown is registered independently in game.js AND
+editor-system.js AND layered-map-editor-system.js; correctness currently
+depends on capture-phase + stopImmediatePropagation discipline in the
+editor layers. ~19+3 independent window keydown listeners exist across
+systems/ and game.js, each self-gated. Both patterns work today per this
+audit's review, but represent consolidation opportunities for a future
+input-router phase rather than bugs to fix now.
+
+Unsafe inventory mutations: addItem/spendGold mutate state directly and
+instantly with no validation layer (see section 4) — acceptable for a
+single-player/local-multiplayer game today, a real risk only if/when a
+server-authoritative economy is introduced.
+
+Save/load corruption risks: low. Every JSON.parse call site in the save
+path is wrapped in try/catch (confirmed in V0.15.55 audit, not re-litigated
+here), corrupted saves are quarantined rather than overwriting the active
+slot, and migration back-fills missing sections. The two confirmed data-
+model gaps that COULD cause subtle (not crash-level) corruption are: (a)
+quest runtime being written/read from two separate save paths that both
+feed the same importState() with no documented precedence, and (b) the
+orphaned "dream-realms.quest-runtime.v1" localStorage key that is dead
+weight but not currently read by canonical load code (confirm before
+deleting — out of scope this phase).
+
+Systems that bypass canonical state: systems/fishing-system.js persists to
+its own localStorage key rather than the save-system pipeline (already
+documented as a known, unfixed gap in the V0.15.55 audit — re-confirmed
+still true). systems/ui-system.js, systems/performance-settings-cleanup-
+system.js, and systems/stable-release-candidate-system.js also read/write
+localStorage directly for UI/perf/QA flags rather than through save-
+system.js — appropriate for those specific concerns (window position, perf
+toggles) since they are not meant to travel with a character save, but
+worth being deliberate about if a save-format audit tool is ever written.
+
+
+7. VALIDATION RESULTS
+-----------------------
+
+- `find . -name "*.js" -print0 | xargs -0 -n1 node --check` — ran across
+  187 .js files (186 excluding vendor/three.min.js): 0 syntax errors.
+- `find . -name "*.json" -print0 | xargs -0 -n1 python3 -m json.tool` — ran
+  across 67 .json files: 0 parse failures.
+- HTML <script src> vs _script_order.json cross-check (not part of the
+  literal validation command, but directly relevant to "boot flow" and
+  performed as part of this audit): 126/126 manifest entries resolve to
+  real files and match the HTML's actual order positionally; the HTML has
+  one additional script (data/hairstyles.js) not present in the manifest
+  (see section 1).
+- No syntax errors or boot blockers were found, so no code changes were
+  made this phase.
+
+
+8. RECOMMENDED PHASE ORDER (for future phases; not started)
+--------------------------------------------------------------
+
+Suggested order, each intentionally small enough to stay "surgical":
+1. Documentation-only pass: refresh docs/SYSTEM_OWNERSHIP.txt (confirmed
+   stale by two audits now) and docs/WORLD_SAVE_PIPELINE.txt (confirmed
+   stale this pass), and add data/hairstyles.js to _script_order.json.
+   Zero runtime risk, pure documentation/manifest accuracy.
+2. Quest-runtime save-path reconciliation: decide and document which of
+   the two quest-runtime save paths (character save vs. world save) is
+   authoritative, and remove or explicitly repurpose the orphaned
+   "dream-realms.quest-runtime.v1" localStorage key. Small, contained to
+   systems/quest-system.js + the two save call sites.
+3. Portal 'dungeon' zone-key gap fix in systems/portal-system.js (currently
+   only branches on 'cave' vs. everything-else-is-'overworld').
+4. Animation-state-abstraction unification: extract one shared "resolve
+   current pose/action for this actor" function that render/humanoid-
+   animation-system.js, render/entity-renderer.js, and systems/render3d-
+   system.js all call, instead of three hand-maintained copies. Medium
+   risk/size — needs careful behavioral diffing since the three current
+   orders already disagree in places.
+5. Render-wrapper-chain consolidation (the 10-file render/
+   renderSettingsPanel/updateDebugOverlay re-wrap chain): the single
+   largest structural cleanup opportunity in the codebase, but explicitly
+   large/cross-cutting/high-risk — do this only as its own dedicated phase
+   with a clear rollback plan, not bundled with unrelated work.
+6. Multiplayer-readiness groundwork (only if real networked multiplayer is
+   an actual near-term goal): introduce a seeded/reproducible RNG for
+   combat and loot, and identify/name the seam where damageEntity/addItem/
+   loot rolls would need to become request/validate/commit instead of
+   instant-and-local. This is a design phase before any implementation.
+
+What should NOT be touched yet (per this phase's own rules and because no
+proven dead code or bug was found):
+- The 10-file render/settings-panel wrapper chain — verified functionally
+  correct by two audits; collapsing it is a dedicated future phase, not an
+  incidental cleanup.
+- fishing-system.js's separate localStorage persistence — known gap,
+  deliberately deferred twice now (V0.15.55 and this pass) as a larger
+  change than a direct fix.
+- Any render/*.js procedural model file — all 12+ checked are referenced
+  and present in the load manifest; none are dead.
+- mob-spawn-system.js's layeredMapCanEnter gap (documented in V0.15.55,
+  re-confirmed not addressed and still out of scope here).
+
+
+9. FILES CHANGED THIS PHASE
+------------------------------
+- docs/PHASE_0_CODEBASE_AUDIT.txt (this file — new).
+
+No other files were modified. No syntax errors or critical boot blockers
+were found, so no source-code changes were necessary or made.

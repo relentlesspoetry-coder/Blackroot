@@ -1,0 +1,48 @@
+Dream Realms V0.13.49 — Seamless Ground Rendering + Terrain Chunk Cache Pass
+
+SYSTEMS CHANGED
+- render/terrain-renderer.js now owns a bounded offscreen terrain chunk cache for walkable ground tops.
+- game.js draws visible cached ground chunks before the existing structural terrain/object/entity pass and omits flat cached ground from per-tile sorting/drawing.
+- systems/editor-system.js invalidates affected terrain chunks directly for tile paint and elevation edits.
+- Runtime, save, world, README, HTML, and version metadata now identify V0.13.49.
+
+SEAMLESS GROUND
+- The logical map remains tile based. Only its visible ground-top presentation changed.
+- Grass, underbrush, forest floor, dirt/camp, stone/ruin, cave floor, and Silk Web Cavern floor use distinct continuous material palettes.
+- Broad world-anchored tonal patches cross tile and chunk boundaries, while irregular material-edge patches soften grass/dirt/stone/cave transitions.
+- Sparse grass blades, earth marks, stone cracks, cave wear, and Silk Web residue are baked into chunks once rather than recreated each frame.
+- Walkable cached ground no longer draws individual diamond rims, bevels, checker tint, or floor lips that exposed the gameplay grid.
+- Water, water depth, cave walls, cliffs, and elevation faces remain structurally explicit for gameplay readability.
+
+CHUNK CACHE / PERFORMANCE
+- Terrain uses 16×16 logical chunks with compact 24-pixel-per-tile material surfaces and three-tile build padding.
+- Chunks are built lazily for the visible camera area, retained in a 72-entry bounded cache, and reused while the player or camera moves.
+- World-space source textures are affine-projected at draw time, so zoom and continuous camera yaw do not trigger rebuilds or lose alignment.
+- Per-chunk terrain signatures detect type/elevation mutation and rebuild only changed chunks; neighboring signature coverage preserves softened edges.
+- Editor tile and elevation tools also invalidate the affected chunk region immediately.
+- Flat cached ground is excluded from the old per-tile ground draw and depth-sort work. Structural terrain still uses the existing owning pass.
+- Unsupported offscreen-canvas environments retain the existing per-tile terrain renderer as a safe fallback.
+
+GAMEPLAY / COMPATIBILITY
+- Collision, pathfinding, spawn/placement validation, combat distance, ranged attacks, loot placement, dungeon reachability, quests, and save/load still use the original tile data.
+- Cache surfaces and signatures are transient runtime state and are not written to saves.
+- Existing V0.13.47 and older saves remain compatible without migration.
+- Actor/object/effect/UI layering is unchanged: ground remains below props, loot, characters, health bars, nameplates, and chat bubbles.
+- Autonomous parties, bot pets, targeting, paper doll, inventory drops, item compare, currency, Purify, resurrection, dungeon encounters, Dark Woods visuals, and Esc save/exit remain intact.
+
+TESTS RUN
+- All JavaScript files: node --check.
+- Main HTML script reference existence and 88-script ordered boot.
+- Fighter start plus update/render smoke.
+- Terrain chunks build and remain bounded.
+- Camera movement and free-yaw changes reuse existing chunk surfaces.
+- Logical terrain mutation changes the signature and rebuilds the affected chunk.
+- Silk Web Cavern cave-floor material resolves to the Silk-specific surface.
+- Cached surfaces are fewer than visible logical tile positions and the logical tile identity remains unchanged.
+- Full existing regression smoke: party/HUD/bots/chat/pets, targeting/combat, save/load, paper doll, bag ground drop, item compare, spawn safety, dungeon respawn/placement/quests/loot, currency, Purify, resurrection, ranged attacks, Dark Woods rendering, and Esc menu.
+- ZIP contents and JavaScript syntax validated after packaging.
+
+MANUAL BROWSER CAVEATS
+- Subjective visual seam quality should be reviewed while walking and rotating through overworld grass/roads, Dark Woods, caves, and every Silk Web Cavern floor.
+- Review very high/low zoom, high-DPI displays, long camera rotations, shoreline/elevation boundaries, and editor painting directly across chunk borders.
+- Browser profiling is recommended for long-session GPU memory and frame-time comparison on the target Electron/AppImage hardware.

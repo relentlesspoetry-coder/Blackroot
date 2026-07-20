@@ -1,0 +1,32 @@
+Dream Realms V0.12.37 — Detailed Starter Camp NPC Renderer Pass
+
+Goal
+- Bring starter camp NPC visual quality up to the newer Bard procedural renderer bar.
+
+Implementation
+- Added render/camp-npc-procedural-model.js.
+- Added the new renderer to the HTML load order before entity-renderer.js.
+- Patched systems/npc-system.js render ownership to use CampNpcProceduralModel for Dark Woods settlement/starter camp NPCs.
+- Patched data/npcs.js with new detailed camp NPC definitions: healer, merc recruiter, smith, fisher/provisioner.
+- Patched DEFAULT_NPC_PLACEMENTS with four additional starter camp NPCs.
+
+NPC archetypes now supported
+- guide
+- merchant/vendor
+- cook
+- Bard trainer
+- road warden/guard
+- scout
+- surveyor
+- healer
+- mercenary recruiter
+- blacksmith/crafter
+- fisher/provisioner
+
+Visual details
+- Layered capes/cloaks, torsos, belts, pouches, hands, heads, hair/hat variants, and role props.
+- Role-specific props: scroll, map, contract, ledger, ladle, lute, spear, bow, staff, hammer, fishing rod.
+- Role-specific silhouettes and palettes instead of generic marker bodies.
+
+No-cascade note
+- No bottom-of-file hotfix wrapper was added. The owning systems were patched directly.

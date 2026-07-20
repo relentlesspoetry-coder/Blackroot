@@ -1,0 +1,45 @@
+Dream Realms V0.13.73 — World Object Sprite Sheet Bake Pipeline Expansion Pass
+
+Systems changed:
+- systems/sprite-bake-system.js
+- systems/sprite-sheet-system.js
+- render/object-renderer.js
+- tools/sprite-baker.html
+- tools/sprite-baker.js
+- assets/sprites/sprite-index.json
+- assets/sprites/sprite-index.manifest.js
+- assets/sprites/props/* placeholder metadata
+- version metadata / README / HTML build shell
+
+Object/prop bake coverage added:
+- Added prop/object bake definitions for trees, dead/evil trees, brush, grass clumps, flowers, mushrooms, glow mushrooms, stumps, root arches, rocks, crystals, mining veins, tents, large camp tents, vendor stalls, crates, banners, lantern posts, merc posts, camp stalls, forge, fire, loom, herbalist table, cave entrances, cave webs, cave herbs, cave mushrooms, bones, mine supports, broken carts, torches, dungeon gates, dungeon treasure, web anchors, silk cocoons, egg clusters, chitin columns, and venom pools.
+
+Per-object PNG/JSON export:
+- Props now export as one PNG plus one JSON metadata file per model into assets/sprites/props/.
+- Per-prop metadata preserves frame coordinates, render anchors, base/foot anchors, shadow anchors, click bounds, model ID, variant, state, direction, and frame index.
+
+Sprite index expansion:
+- assets/sprites/sprite-index.json now supports prop model entries alongside class and mob entries.
+- assets/sprites/sprite-index.manifest.js mirrors the prop-capable index for local-file fallback scenarios.
+
+Runtime prop sheet loading/rendering:
+- SpriteSheetSystem can resolve object model IDs, prop variants, prop states, and prop frame candidates.
+- ObjectRenderer now tries a per-prop sprite sheet frame before procedural drawing.
+- Missing sheets/frames warn through the existing once-per-key fallback path and preserve procedural rendering.
+
+Layering/anchor preservation:
+- The baked prop path uses the existing procedural object renderer as source of truth, including object shadows and visual proportions.
+- Runtime drawImage anchors use the same screen base point as the current procedural drawObject path, preserving depth sorting and ground alignment.
+
+Gameplay preserved:
+- No collision, pathfinding, interactions, targeting, combat, UI, map, save/load, terrain, camp, trainer, dungeon, or entity systems were removed or simplified.
+- Terrain, UI, nameplates, health bars, chat bubbles, target rings, and damage numbers are not baked.
+
+Tests run:
+- node --check passed for all JavaScript files.
+- Main HTML local script references audited: 95 found, 0 missing.
+- Static audit confirmed prop definitions, prop folder routing, prop sprite-index entries, baker prop buttons, runtime object frame resolution, and object-renderer procedural fallback.
+- Zip integrity passed.
+
+Manual browser-test caveats:
+- Browser bake/export workflow was not run inside the container. Manually verify tools/sprite-baker.html Load Renderers, Bake Selected Model for prop models, Bake Props, prop PNG/JSON output placement, runtime prop sheet loading, tree/foliage/camp/cave prop alignment, layering around actors, fallback behavior, save/load, and FPS locally.

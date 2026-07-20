@@ -1,0 +1,24 @@
+Dream Realms V0.14.24 — Cave Roof Dynamic Occlusion Depth Sort Fix Pass
+
+Summary
+- Fixed cave geometry rendering over/under actors incorrectly when the camera is rotated.
+- Added cave wall/roof occluder renderables to the main world depth sort.
+- Added a dedicated terrain renderer occlusion pass for cave walls so the roof/front lip can draw over entities positioned behind or underneath it relative to the camera.
+
+Files changed
+- game.js
+- render/terrain-renderer.js
+- Dream Realms V0.14.24.html
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.24_CAVE_ROOF_DYNAMIC_OCCLUSION_DEPTH_SORT_FIX_PASS.txt
+
+Validation
+- JavaScript syntax verified with node --check across all JS files.
+- Static render-order checks verified the caveOccluder path is present in worldRenderables, drawOrder, and draw dispatch.
+- ZIP integrity verified.

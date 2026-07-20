@@ -1,0 +1,32 @@
+Dream Realms V0.14.35 — Gathering Harvest Progress Animation Pass
+
+Summary
+- Added a visible harvest progress bar for herbs and resource nodes.
+- Added a dedicated player gathering action state and synchronized harvesting animation pose.
+- Added immediate cancellation when the player moves or takes damage.
+- Preserved existing resource node drops, depletion, respawn timers, tool checks, skill XP, and visual resource props.
+
+Files changed
+- systems/resource-gathering-system.js
+- render/humanoid-animation-system.js
+- render/humanoid-base-renderer.js
+- render/class-identity-procedural-model.js
+- render/entity-renderer.js
+- entities/player.js
+- game.js
+- systems/combat-system.js
+- systems/steam-deck-system.js
+- systems/swimming-system.js
+- Dream Realms V0.14.35.html
+- README.txt
+- VERSION.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.35_GATHERING_HARVEST_PROGRESS_ANIMATION_PASS.txt
+
+Validation
+- JavaScript syntax verified with node --check.
+- ZIP integrity verified with unzip -t.

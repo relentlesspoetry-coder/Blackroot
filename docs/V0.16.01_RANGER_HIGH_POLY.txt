@@ -1,0 +1,11 @@
+Dream Realms V0.16.05 - Ranger High-Poly Upgrade Pass
+
+Summary
+- Added a Ranger high-poly quad mesh source asset for baking/detail projection.
+- Added a generator script: tools/generate-ranger-highpoly.js
+- Upgraded the experimental 3D Ranger runtime silhouette with wilderness gear and bow/quiver identity.
+
+Generated Assets
+- assets/models/highpoly/ranger_class_highpoly_quadmesh_v0.16.01.obj
+- assets/models/highpoly/ranger_class_highpoly_quadmesh_v0.16.01.mtl
+- assets/models/highpoly/ranger_class_highpoly_quadmesh_v0.16.01.json

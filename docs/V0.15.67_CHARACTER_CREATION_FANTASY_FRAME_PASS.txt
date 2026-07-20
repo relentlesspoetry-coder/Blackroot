@@ -1,0 +1,3 @@
+Dream Realms V0.15.67 — Character Creation Fantasy Frame Pass
+
+Rebuilt character creation into a full-screen fantasy framed layout with left-side race/appearance controls, center large character preview and name bar, right-side class list, and bottom Back/Randomize/Create actions. All current races/classes remain supported, with no-scroll side panels and responsive fit improvements.

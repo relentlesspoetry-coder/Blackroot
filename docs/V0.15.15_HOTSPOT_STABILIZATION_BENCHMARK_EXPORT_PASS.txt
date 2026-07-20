@@ -1,0 +1,56 @@
+Dream Realms V0.15.15 — Hotspot Stabilization and Benchmark Export Pass
+
+Baseline:
+- Dream Realms V0.15.14 Performance Verification and Hotspot Fix Pass
+
+Goals:
+- Stabilize the optimization stack after the broad Canvas/AI/UI/GC passes.
+- Reduce runtime sprite-cache churn caused by unbounded wall-clock animation keys.
+- Harden path-worker fallback behavior under worker pressure without changing movement/combat behavior.
+- Make performance benchmark output actionable and exportable for later targeted fixes.
+
+Changes:
+- Runtime sprite cache now uses bounded animation buckets:
+  - idle buckets
+  - moving buckets
+  - action buckets
+  - death buckets
+- Added a per-frame sprite-cache miss budget to avoid frame spikes from mass cache generation.
+- Added sprite-cache diagnostics:
+  - evictions this frame
+  - budget skips this frame
+  - bounded/unbounded bucket counts
+  - top miss models
+  - top hit models
+- Pathfinding worker pressure is now measured separately from true synchronous fallback:
+  - frame-budget skips
+  - pending-cap skips
+  - actor cooldown rejects
+  - reused existing routes
+  - duplicate request suppression
+- Failed or timed-out worker path requests now apply a short actor-level cooldown to prevent immediate retry churn.
+- Existing routes are reused under worker pressure when safe instead of forcing avoidable synchronous pathfinding.
+- Benchmark reports now include:
+  - sprite misses per second
+  - sprite evictions per second
+  - path worker budget/cap/cooldown deltas
+  - top sprite miss models
+  - hotspot recommendation text
+- Settings panel now includes:
+  - Export Last Benchmark JSON
+  - Copy Benchmark Summary
+- F3 overlay now includes:
+  - benchmark drift metrics
+  - hotspot recommendation
+  - path-worker pressure metrics
+  - sprite-cache top miss models
+
+Gameplay impact:
+- No class, spell, loot, mob, quest, terrain, UI layout, or combat balance changes.
+- Renderer remains Canvas 2D.
+- Worker pathing still preserves synchronous fallback where no existing route can be reused.
+
+Validation target:
+- Run with F3 open.
+- Press F6 and play normally for 60 seconds.
+- Use Settings → Export Last Benchmark JSON to capture benchmark data for the next targeted pass.

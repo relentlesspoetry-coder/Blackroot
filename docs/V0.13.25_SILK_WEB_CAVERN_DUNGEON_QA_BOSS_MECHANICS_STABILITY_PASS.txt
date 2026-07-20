@@ -1,0 +1,9 @@
+Dream Realms V0.13.25 - Silk Web Cavern Dungeon QA Boss Mechanics Stability Pass
+
+- Mini-bosses now run their ability timers instead of being static named elites.
+- Silk Web Cavern web gates now require both web-anchor progress and appropriate floor mini-boss clears.
+- Dungeon runtime state now records mini-boss kill state and floor audit stats.
+- Dungeon kill events now report dungeon zone IDs correctly for quest/objective logic.
+- Boss add spawns and Webbed Retreat now use walkable placement instead of raw coordinate offsets.
+- Added active floor audit helper for blocked spawns, non-spider mobs, transition blockers, bosses, and mini-bosses.
+- Updated metadata to V0.13.25.

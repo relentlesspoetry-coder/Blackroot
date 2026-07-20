@@ -1,0 +1,5 @@
+Dream Realms V0.15.107 - Creator Emblem Edge Feather Pass
+
+- Reworked the character creator emblem backdrop again to feather the emblem edges more aggressively.
+- The emblem now blends into the preview background more softly so the cutout artifacts are much harder to see.
+- Other class emblem usages remain unchanged.

@@ -1,0 +1,1450 @@
+{
+  "asset": "ranger_class_highpoly_quadmesh_v0.16.01.obj",
+  "generator": "tools/generate-ranger-highpoly.js",
+  "coordinateSystem": "+Y up, +Z forward",
+  "units": "meters (art reference scale)",
+  "intendedUse": "high-poly source for normal-map baking and detail projection onto the existing Ranger runtime model",
+  "vertices": 31054,
+  "quadFaces": 27666,
+  "triangles": 0,
+  "ngons": 0,
+  "groups": [
+    {
+      "name": "torso_fitted_jerkin",
+      "material": "ranger_forest_cloth",
+      "vertices": 866,
+      "quads": 864
+    },
+    {
+      "name": "back_padding_gambeson",
+      "material": "ranger_dark_wool",
+      "vertices": 602,
+      "quads": 600
+    },
+    {
+      "name": "pelvis_soft_trouser_core",
+      "material": "ranger_forest_cloth",
+      "vertices": 602,
+      "quads": 600
+    },
+    {
+      "name": "linen_shirt_front_panel",
+      "material": "ranger_linen",
+      "vertices": 294,
+      "quads": 216
+    },
+    {
+      "name": "leather_chest_guard",
+      "material": "ranger_oiled_leather",
+      "vertices": 294,
+      "quads": 216
+    },
+    {
+      "name": "embossed_sternum_leaf_panel",
+      "material": "ranger_soft_hide",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "sternum_leaf_vein_0",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "sternum_leaf_vein_1",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "sternum_leaf_vein_2",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "sternum_leaf_vein_3",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "sternum_leaf_vein_4",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "sternum_leaf_vein_5",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "sternum_leaf_vein_6",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "wide_dark_leather_belt",
+      "material": "ranger_oiled_leather",
+      "vertices": 294,
+      "quads": 216
+    },
+    {
+      "name": "simple_iron_buckle",
+      "material": "ranger_burnished_metal",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "diagonal_quiver_strap",
+      "material": "ranger_soft_hide",
+      "vertices": 216,
+      "quads": 150
+    },
+    {
+      "name": "rope_coil_belt_loop",
+      "material": "ranger_soft_hide",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "rope_loop_turn_0",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "rope_loop_turn_1",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "rope_loop_turn_2",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "rope_loop_turn_3",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "rope_loop_turn_4",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "rope_loop_turn_5",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "rope_loop_turn_6",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "rope_loop_turn_7",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "rope_loop_turn_8",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "rope_loop_turn_9",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "lean_alert_face",
+      "material": "ranger_skin_weathered",
+      "vertices": 866,
+      "quads": 864
+    },
+    {
+      "name": "short_stubble_beard_plane",
+      "material": "ranger_hair_dark",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "left_cheek_scar",
+      "material": "ranger_burnished_metal",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "brow_scar",
+      "material": "ranger_burnished_metal",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "practical_hair_mass",
+      "material": "ranger_hair_dark",
+      "vertices": 602,
+      "quads": 600
+    },
+    {
+      "name": "pulled_back_hair_tail",
+      "material": "ranger_hair_dark",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "side_braid_left",
+      "material": "ranger_hair_dark",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "leather_headband",
+      "material": "ranger_oiled_leather",
+      "vertices": 216,
+      "quads": 150
+    },
+    {
+      "name": "feather_token_stem",
+      "material": "ranger_burnished_metal",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "feather_token_vane",
+      "material": "ranger_feather",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "deep_hood_pushed_back",
+      "material": "ranger_dark_wool",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "hood_neck_fold_left",
+      "material": "ranger_dark_wool",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "hood_neck_fold_right",
+      "material": "ranger_dark_wool",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "shoulder_mantle_left",
+      "material": "ranger_soft_hide",
+      "vertices": 216,
+      "quads": 150
+    },
+    {
+      "name": "shoulder_mantle_right",
+      "material": "ranger_soft_hide",
+      "vertices": 216,
+      "quads": 150
+    },
+    {
+      "name": "weathered_half_cape_main",
+      "material": "ranger_dark_wool",
+      "vertices": 726,
+      "quads": 600
+    },
+    {
+      "name": "weathered_half_cape_overlap_patch",
+      "material": "ranger_forest_cloth",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "cloak_repair_patch_whipstitch",
+      "material": "ranger_soft_hide",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "cloak_whip_stitch_0",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "cloak_whip_stitch_1",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "cloak_whip_stitch_2",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "cloak_whip_stitch_3",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "cloak_whip_stitch_4",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "cloak_whip_stitch_5",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "cloak_whip_stitch_6",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "cloak_whip_stitch_7",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "oak_leaf_clasp",
+      "material": "ranger_burnished_metal",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "leaf_clasp_vein_0",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "leaf_clasp_vein_1",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "leaf_clasp_vein_2",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "leaf_clasp_vein_3",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "leaf_clasp_vein_4",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "left_upper_arm_shirt",
+      "material": "ranger_linen",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "left_forearm_wrapped",
+      "material": "ranger_skin_weathered",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "left_hardened_leather_bracer",
+      "material": "ranger_oiled_leather",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "left_fingerless_glove",
+      "material": "ranger_soft_hide",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "left_glove_finger_0",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_glove_finger_1",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_glove_finger_2",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_glove_finger_3",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "left_bracer_lacing_0",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "left_bracer_lacing_1",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "left_bracer_lacing_2",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "left_bracer_lacing_3",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "left_bracer_lacing_4",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "right_upper_arm_shirt",
+      "material": "ranger_linen",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "right_forearm_wrapped",
+      "material": "ranger_skin_weathered",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "right_hardened_leather_bracer",
+      "material": "ranger_oiled_leather",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "right_fingerless_glove",
+      "material": "ranger_soft_hide",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "right_glove_finger_0",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_glove_finger_1",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_glove_finger_2",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_glove_finger_3",
+      "material": "ranger_soft_hide",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "right_bracer_lacing_0",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "right_bracer_lacing_1",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "right_bracer_lacing_2",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "right_bracer_lacing_3",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "right_bracer_lacing_4",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "left_thigh_trouser",
+      "material": "ranger_forest_cloth",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "left_shin_trouser",
+      "material": "ranger_forest_cloth",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "left_knee_patch",
+      "material": "ranger_soft_hide",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "left_light_greave",
+      "material": "ranger_oiled_leather",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "left_soft_sole_boot",
+      "material": "ranger_soft_hide",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "left_folded_boot_cuff",
+      "material": "ranger_oiled_leather",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "left_boot_moc_toe_stitch",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "right_thigh_trouser",
+      "material": "ranger_forest_cloth",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "right_shin_trouser",
+      "material": "ranger_forest_cloth",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "right_knee_patch",
+      "material": "ranger_soft_hide",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "right_light_greave",
+      "material": "ranger_oiled_leather",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "right_soft_sole_boot",
+      "material": "ranger_soft_hide",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "right_folded_boot_cuff",
+      "material": "ranger_oiled_leather",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "right_boot_moc_toe_stitch",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "quiver_leather_body",
+      "material": "ranger_oiled_leather",
+      "vertices": 488,
+      "quads": 486
+    },
+    {
+      "name": "quiver_mouth_rim",
+      "material": "ranger_soft_hide",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "quiver_base_cap",
+      "material": "ranger_soft_hide",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "arrow_shaft_0",
+      "material": "ranger_weathered_wood",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_0_a",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_0_b",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_0_c",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_shaft_1",
+      "material": "ranger_weathered_wood",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_1_a",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_1_b",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_1_c",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_shaft_2",
+      "material": "ranger_weathered_wood",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_2_a",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_2_b",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_2_c",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_shaft_3",
+      "material": "ranger_weathered_wood",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_3_a",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_3_b",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_3_c",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_shaft_4",
+      "material": "ranger_weathered_wood",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_4_a",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_4_b",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_4_c",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_shaft_5",
+      "material": "ranger_weathered_wood",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_5_a",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_5_b",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_5_c",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_shaft_6",
+      "material": "ranger_weathered_wood",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_6_a",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_6_b",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_6_c",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_shaft_7",
+      "material": "ranger_weathered_wood",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_7_a",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_7_b",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_7_c",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_shaft_8",
+      "material": "ranger_weathered_wood",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_8_a",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_8_b",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_8_c",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_shaft_9",
+      "material": "ranger_weathered_wood",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_9_a",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_9_b",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_9_c",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_shaft_10",
+      "material": "ranger_weathered_wood",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_10_a",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_10_b",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_10_c",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_broadhead_10",
+      "material": "ranger_burnished_metal",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "arrow_shaft_11",
+      "material": "ranger_weathered_wood",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_11_a",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_11_b",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_fletch_11_c",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "arrow_broadhead_11",
+      "material": "ranger_burnished_metal",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "quick_release_buckle",
+      "material": "ranger_burnished_metal",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "longbow_limb_segment_0",
+      "material": "ranger_burnished_metal",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "longbow_limb_segment_1",
+      "material": "ranger_burnished_metal",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "longbow_limb_segment_2",
+      "material": "ranger_weathered_wood",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "longbow_limb_segment_3",
+      "material": "ranger_weathered_wood",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "longbow_limb_segment_4",
+      "material": "ranger_weathered_wood",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "longbow_limb_segment_5",
+      "material": "ranger_burnished_metal",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "longbow_wrapped_grip",
+      "material": "ranger_oiled_leather",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "longbow_upper_string",
+      "material": "ranger_linen",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "longbow_lower_string",
+      "material": "ranger_linen",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "string_silencer_upper",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "string_silencer_lower",
+      "material": "ranger_feather",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "bow_rune_carve_0",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "bow_rune_carve_1",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "bow_rune_carve_2",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "bow_rune_carve_3",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "bow_rune_carve_4",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "bow_rune_carve_5",
+      "material": "ranger_leaf_token",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "left_shortblade_sheath",
+      "material": "ranger_oiled_leather",
+      "vertices": 216,
+      "quads": 150
+    },
+    {
+      "name": "left_sheath_throat",
+      "material": "ranger_burnished_metal",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "left_sheath_chape",
+      "material": "ranger_burnished_metal",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "left_shortblade_grip",
+      "material": "ranger_soft_hide",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "left_shortblade_guard",
+      "material": "ranger_burnished_metal",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "left_crescent_pommel",
+      "material": "ranger_burnished_metal",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "right_shortblade_sheath",
+      "material": "ranger_oiled_leather",
+      "vertices": 216,
+      "quads": 150
+    },
+    {
+      "name": "right_sheath_throat",
+      "material": "ranger_burnished_metal",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "right_sheath_chape",
+      "material": "ranger_burnished_metal",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "right_shortblade_grip",
+      "material": "ranger_soft_hide",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "right_shortblade_guard",
+      "material": "ranger_burnished_metal",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "right_crescent_pommel",
+      "material": "ranger_burnished_metal",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "bedroll_core",
+      "material": "ranger_linen",
+      "vertices": 386,
+      "quads": 384
+    },
+    {
+      "name": "bedroll_strap_left",
+      "material": "ranger_oiled_leather",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "bedroll_strap_right",
+      "material": "ranger_oiled_leather",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "waxed_canvas_tarp",
+      "material": "ranger_dark_wool",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "belt_pouch_main",
+      "material": "ranger_oiled_leather",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "belt_pouch_flap",
+      "material": "ranger_soft_hide",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "small_skinning_knife_hilt",
+      "material": "ranger_burnished_metal",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "coin_stack_0",
+      "material": "ranger_burnished_metal",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "coin_stack_1",
+      "material": "ranger_burnished_metal",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "coin_stack_2",
+      "material": "ranger_burnished_metal",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "coin_stack_3",
+      "material": "ranger_burnished_metal",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "coin_stack_4",
+      "material": "ranger_burnished_metal",
+      "vertices": 98,
+      "quads": 96
+    },
+    {
+      "name": "water_flask_boiled_leather",
+      "material": "ranger_soft_hide",
+      "vertices": 218,
+      "quads": 216
+    },
+    {
+      "name": "water_flask_cork",
+      "material": "ranger_weathered_wood",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "flask_cup_tied",
+      "material": "ranger_burnished_metal",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "healing_satchel_body",
+      "material": "ranger_oiled_leather",
+      "vertices": 296,
+      "quads": 294
+    },
+    {
+      "name": "healing_satchel_strap",
+      "material": "ranger_soft_hide",
+      "vertices": 150,
+      "quads": 96
+    },
+    {
+      "name": "satchel_map_roll",
+      "material": "ranger_linen",
+      "vertices": 54,
+      "quads": 24
+    },
+    {
+      "name": "herb_bundle",
+      "material": "ranger_leaf_token",
+      "vertices": 152,
+      "quads": 150
+    },
+    {
+      "name": "jerkin_stitch_right_0",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "jerkin_stitch_right_1",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "jerkin_stitch_right_2",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "jerkin_stitch_right_3",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "jerkin_stitch_right_4",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "jerkin_stitch_right_5",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "jerkin_stitch_right_6",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "jerkin_stitch_right_7",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "jerkin_stitch_left_0",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "jerkin_stitch_left_1",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "jerkin_stitch_left_2",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "jerkin_stitch_left_3",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "jerkin_stitch_left_4",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "jerkin_stitch_left_5",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "jerkin_stitch_left_6",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "jerkin_stitch_left_7",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "trouser_patch",
+      "material": "ranger_soft_hide",
+      "vertices": 96,
+      "quads": 54
+    },
+    {
+      "name": "trouser_patch_stitch_0",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "trouser_patch_stitch_1",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "trouser_patch_stitch_2",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "trouser_patch_stitch_3",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "trouser_patch_stitch_4",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "bracer_burnish_mark",
+      "material": "ranger_burnished_metal",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "cloak_frayed_edge_left",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    },
+    {
+      "name": "cloak_frayed_edge_right",
+      "material": "ranger_linen",
+      "vertices": 24,
+      "quads": 6
+    }
+  ],
+  "materialGroups": [
+    "ranger_forest_cloth",
+    "ranger_dark_wool",
+    "ranger_linen",
+    "ranger_oiled_leather",
+    "ranger_soft_hide",
+    "ranger_leaf_token",
+    "ranger_burnished_metal",
+    "ranger_skin_weathered",
+    "ranger_hair_dark",
+    "ranger_feather",
+    "ranger_weathered_wood"
+  ],
+  "anchors": {
+    "anchor_root": [
+      0,
+      0,
+      0
+    ],
+    "anchor_head_center": [
+      0,
+      1.97,
+      0.18
+    ],
+    "anchor_chest_center": [
+      0,
+      1.45,
+      0.05
+    ],
+    "anchor_back_center": [
+      0,
+      1.48,
+      -0.1
+    ],
+    "anchor_bow_grip": [
+      0.04,
+      1.67,
+      -0.05
+    ],
+    "anchor_quiver_mount": [
+      -0.2,
+      1.56,
+      -0.19
+    ],
+    "anchor_left_blade": [
+      -0.28,
+      0.87,
+      0.14
+    ],
+    "anchor_right_blade": [
+      0.28,
+      0.87,
+      0.14
+    ],
+    "anchor_ground_left_foot": [
+      -0.21,
+      0.02,
+      0.16
+    ],
+    "anchor_ground_right_foot": [
+      0.21,
+      0.02,
+      0.16
+    ]
+  },
+  "validation": {
+    "allFacesAreQuads": true,
+    "noTriangles": true,
+    "noNgons": true,
+    "realGeometryDetail": [
+      "face scars and stubble planes",
+      "pushed-back hood and half-cape",
+      "embossed chest guard",
+      "bracers with lacing",
+      "quiver and arrow cluster",
+      "segmented longbow and string silencers",
+      "twin blade sheaths and hardware",
+      "bedroll, satchel, flask, rope coil and herb bundle",
+      "stitches, patches and burnished wear marks"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+Dream Realms V0.14.56 — Click Target Tab Cycle Fix Pass
+
+Scope
+- Fix click mob targeting so selecting a target never also starts click-to-move.
+- Fix Tab target cycling so it is a deliberate manual cycle over valid nearby enemies.
+
+Implementation
+- Updated the owning canvas pointer/click input paths in game.js to resolve hostile/friendly targets before corpse interaction and before terrain movement.
+- Increased shared target hit bounds in getEntityTargetScreenBounds so large mob sprites are reliably targetable.
+- Added a defensive setClickMoveTarget screen-hit guard to prevent movement if any targetable actor is under the original click.
+- Updated targetNearest in systems/combat-system.js to use non-repeat manual keydown input and a stable visible left-to-right cycle order.
+
+Validation
+- node --check passed for all runtime JavaScript files.
+- Static audit verified no cascade patch layer was added.

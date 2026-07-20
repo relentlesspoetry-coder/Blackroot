@@ -1,0 +1,35 @@
+Dream Realms V0.13.64 — High FPS Render Projection Optimization Pass
+
+Systems changed
+- game.js
+- systems/threat-system.js
+- VERSION.txt
+- README.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- Dream Realms V0.13.64.html
+- docs/MODULAR_HISTORY.txt
+
+Performance changes
+- Added a frame-safe camera projection cache for worldToScreen(), cameraDepth(), screenToWorld(), cameraCenter(), and beginWorldCameraTransform().
+- Avoided repeated camera center/player tile elevation/yaw sin-cos/viewport-half calculations in hot projection paths.
+- Reused pooled render queue records for tile, water-depth, terrain-depth, object, entity, effect, and damage renderables instead of allocating new queue objects every frame.
+- Precomputed viewport dimensions, projection zoom, cull padding, and viewport cull limits outside the inner tile loop.
+- Culled offscreen effects and floating damage text before inserting them into the sorted world render queue.
+- Reduced threat-system allocation churn by replacing filter/Object.entries/Object.keys hot paths with direct loops and lightweight table scans.
+
+Preserved behavior/visuals
+- No graphics, models, colors, animations, particles, UI layout, camera behavior, mob count, quest content, loot, combat behavior, targeting rules, threat ownership rules, pathfinding rules, save/load behavior, or dungeon logic was intentionally changed.
+- V0.13.60 targeting/threat ownership behavior is preserved.
+- V0.13.61/V0.13.62 boar and Rotling renderer behavior is preserved.
+
+Validation run
+- All JavaScript files passed node --check.
+- Main HTML local script references were audited.
+- V0.13.64 metadata was verified in config/save/default-world/serializer/README/VERSION/HTML/docs.
+- ZIP integrity was verified.
+
+Manual browser-test caveats
+- The container cannot accurately measure interactive browser FPS. Verify Dark Woods dense combat, Silk Web Cavern, rotated camera, UI panels, inventory/tooltips, Tab/click targeting, bot combat, save/load, and long-session frame pacing locally.

@@ -1,0 +1,9 @@
+Dream Realms V0.13.21 - Class Bot Roster Meditation Lock Fix Pass
+
+Scope:
+- Fix bots moving or continuing autonomous routines while marked as meditating.
+- Ensure meditation hard-locks bot/merc movement, clears companion paths, clears roam targets, and blocks class AI/advanced routines until meditation ends or is cancelled.
+- Expand/top-off the world bot roster so every playable class present in the class/spell registry has a visible AI bot representative.
+- Place spawned class bots on nearby valid walkable tiles instead of blocked/water terrain.
+
+No cascade patch layer was added. Changes live in the owning meditation, bot AI/roster, and mercenary movement systems.

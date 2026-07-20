@@ -1,0 +1,13 @@
+Dream Realms V0.14.49 Death Visibility Bot Pet Parity Fix Pass
+
+Owner-path fixes:
+- Entity lifecycle now owns a markActorDeathState() helper for death visibility and renderability.
+- CombatSystem killEntity() uses the shared death-state helper rather than only setting alive=false.
+- PartySystem activeZoneAllies() keeps visible dead player/bot/merc actors so render rebuilds do not drop the corpse/death pose.
+- Pet target selection no longer forks for bot-owned pets.
+- BotPlayerSystem keeps bot pets in assist mode and records the bot master's combat target for shared Pet AI resolution.
+- BotPlayer fallback combat AI also marks the bot master combat target for older/stripped runtime paths.
+
+Validation:
+- node --check across runtime JavaScript files.
+- ZIP integrity verification after packaging.

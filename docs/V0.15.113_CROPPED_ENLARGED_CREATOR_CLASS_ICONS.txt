@@ -1,0 +1,4 @@
+Dream Realms V0.15.113 - Cropped Enlarged Creator Class Icons
+
+- Built a new creator-only class background sheet by cropping each class icon and enlarging it by 40%.
+- The creator preview now centers each cropped class icon behind the model and renders it 40% larger.

@@ -1,0 +1,32 @@
+Dream Realms V0.13.83 — Fighter High-Poly Plate Mesh Upgrade Pass
+
+Scope
+- Upgraded the V0.13.82 owning Premium Fighter render path with a denser high-poly-style plate mesh pass.
+- Preserved Fighter silhouette, proportions, coordinate space, facing direction support, animation states, nameplate anchors, class-card preview usage, and gameplay systems.
+
+Renderer Changes
+- Added internal high-detail helper functions in render/class-identity-procedural-model.js:
+  - fighterMetalGradient
+  - drawFighterQuadPlate
+  - drawFighterRivet
+  - drawFighterVentedInset
+  - drawPremiumFighterTorsoPlateMesh
+  - drawPremiumFighterShoulderPlateMesh
+  - drawPremiumFighterLegPlateMesh
+  - drawPremiumFighterArmPlateMesh
+- Torso now has layered interlocking armor plate cells, modeled panel gaps, bevel-edge highlights/shadows, center seam detail, inset radiator/vent details, and fasteners.
+- Shoulders now have layered lame strips and rivets on top of the existing pauldron silhouette.
+- Legs now have thigh plate overlays, greave support loops, knee rivets, and shin segmentation.
+- Arms now have forearm/bracer plate overlays.
+- Shield now has extra inset plate geometry, rim support detail, rivets, and service-panel cutouts.
+
+Compatibility
+- No gameplay data changed.
+- No renderer cascade/hotfix layer added.
+- Non-Fighter class renderers still use their existing paths.
+- Fighter click/nameplate anchors remain in the same coordinate space.
+
+Validation
+- JavaScript syntax checked with node --check.
+- Script references verified in the packaged HTML.
+- ZIP integrity verified after packaging.

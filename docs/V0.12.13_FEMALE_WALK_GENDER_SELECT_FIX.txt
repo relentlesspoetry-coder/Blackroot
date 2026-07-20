@@ -1,0 +1,9 @@
+Dream Realms V0.12.13 — Female Walk Animation and Gender Select Fix
+
+Diagnosis
+- Character creation exposed a Nonbinary gender option that was not requested.
+- Female character rendering could bypass or flatten the normal planted-step leg/foot animation path, causing sliding.
+
+Fix
+- Removed Nonbinary from character creation options and bundled UI/data text.
+- Kept female models on the shared humanoid walk-cycle owner so moveBlend, stride, foot lift, and planted-step animation apply consistently.

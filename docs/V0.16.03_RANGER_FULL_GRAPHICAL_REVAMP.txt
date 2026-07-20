@@ -1,0 +1,15 @@
+Dream Realms V0.16.05 - Ranger Full Graphical Revamp
+
+Summary
+- Full Ranger visual revamp applied to the procedural/character-creation renderer.
+- Ranger now clearly reads as a wilderness archer with longbow, quiver, hip blades, layered mantle, chest guard, survival gear, and reinforced boots/legs.
+- Regenerated Ranger quad-only high-poly bake source files for v0.16.03.
+
+Primary Files Changed
+- render/class-identity-procedural-model.js
+- tools/generate-ranger-highpoly.js
+- assets/models/highpoly/ranger_class_highpoly_quadmesh_v0.16.03.obj
+- assets/models/highpoly/ranger_class_highpoly_quadmesh_v0.16.03.mtl
+- assets/models/highpoly/ranger_class_highpoly_quadmesh_v0.16.03.json
+- Dream Realms V0.16.05.html
+- PATCH_NOTES.md

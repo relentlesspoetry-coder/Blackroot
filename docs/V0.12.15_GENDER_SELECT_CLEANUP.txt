@@ -1,0 +1,5 @@
+Dream Realms V0.12.15 — Gender Select Cleanup
+
+Fix
+- Replaced the character creation gender dropdown options with exactly Male and Female.
+- Removed blank/empty option entries from the gender select.

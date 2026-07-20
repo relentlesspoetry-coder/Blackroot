@@ -1,0 +1,433 @@
+{
+  "$comment": [
+    "Blackroot authored prop spec - the generation contract for Dark Woods props.",
+    "",
+    "EVERY NUMBER HERE WAS MEASURED IN-WORLD, not estimated. Method: clear the canvas, call",
+    "drawObject() for one exemplar of the type at the player's own tile (so distance LOD is at full",
+    "detail), colour-diff against the cleared frame, and map the anchor through ctx.getTransform().",
+    "The canvas context is alpha:false, so an alpha-based bbox reads the whole canvas and is useless.",
+    "",
+    "SIZES ARE NORMALISED TO obj.scale = 1.0 AND overworldObjectScale = 1.0, and that correction",
+    "  matters. A first pass measured live exemplars and wrote those numbers down directly, but a",
+    "  live tree carries obj.scale 0.86-1.46 and drawObject additionally applies a per-type",
+    "  overworldObjectScale multiplier. Frames authored from those raw figures were then multiplied",
+    "  by the same factors again at draw time: measured in-world, authored trees came out 1.38x the",
+    "  procedural ones, which is exactly obj.scale 1.3278 x frame padding 1.046. These numbers are",
+    "  re-measured with obj.scale forced to 1 and overworldObjectScale divided back out, so BOTH",
+    "  engine multipliers stay live at draw time and per-instance variation still works.",
+    "",
+    "frame = the on-screen size in DRAW pixels at camera zoom 1.0, for a scale-1.0 instance.",
+    "anchor = the GROUND CONTACT point in frame pixels, measured from the frame's top-left.",
+    "  drawObject anchors props at worldToScreen(x + 0.5, y + 0.5, elev) - the TILE CENTRE - and",
+    "  drawPropContactShadow puts the shadow at s.y + 6, which is why anchor.y sits ~6-10px above",
+    "  the frame bottom on most props rather than flush with it.",
+    "contactShadow = taken from the shadowSize table in render/object-renderer.js where that table",
+    "  has an entry for the type, so authored props keep the shadows the game already tuned. Types",
+    "  absent from that table are marked derived:true and use rx = width * 0.22, ry = rx * 0.37.",
+    "variants = the distinct obj.variant values actually present in the live overworld. Generate one",
+    "  image per variant; they must differ in silhouette, not just in tint.",
+    "scaleRange = the obj.scale spread the engine applies at draw time. Author at scale 1.0 and let",
+    "  the engine scale, exactly as it does for procedural props.",
+    "hueRandomised = the engine currently randomises hue per instance for this type. See the art brief",
+    "  in docs/AUTHORED_PROP_ART_SPEC.md - authored frames should take a much gentler hue jitter than",
+    "  procedural ones, or none at all.",
+    "",
+    "COVERAGE: these types are 33,575 of the 34,705 placed objects in the live overworld - 96.7%.",
+    "40 images total.",
+    "",
+    "appliesObjScale = whether the type's PROCEDURAL draw routine responds to obj.scale at all.",
+    "  Measured by drawing each type at obj.scale 1 and 2 and comparing width: tree 1.34, deadTree",
+    "  1.48 and brush 1.54 respond (sub-linearly - they clamp), and every other type measured",
+    "  EXACTLY 1.00, i.e. it ignores obj.scale completely. The authored path honours this flag,",
+    "  because applying obj.scale uniformly made authored rootArch 1.23x its procedural counterpart",
+    "  - precisely that instance's obj.scale. Note the responding types are sub-linear while the",
+    "  authored path is linear, so per-instance VARIATION differs slightly from procedural; sizes",
+    "  still land within a few percent, and once a type is fully authored the procedural curve is",
+    "  no longer the reference."
+  ],
+  "schema": "blackroot-prop-spec-v1",
+  "zone": "dark_woods",
+  "atlasName": "props_dark_woods",
+  "cameraPitchDeg": 30,
+  "tileMetrics": {
+    "tileWidth": 136,
+    "tileHeight": 68,
+    "elevStep": 45
+  },
+  "props": {
+    "tree": {
+      "count": 7744,
+      "frame": {
+        "w": 128,
+        "h": 158
+      },
+      "anchor": {
+        "x": 64,
+        "y": 148
+      },
+      "contactShadow": {
+        "rx": 30,
+        "ry": 11,
+        "alpha": 0.24
+      },
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "scaleRange": [
+        0.86,
+        1.46
+      ],
+      "hueRandomised": true,
+      "occlusionHeight": 145,
+      "brief": "Ancient gothic woodland tree. Gnarled bark with deep vertical fissures, heavy exposed root flare gripping the soil, sparse canopy of dark desaturated foliage. Weathered, old, oppressive. Variants must differ in TRUNK LEAN and CANOPY MASS, not only in colour.",
+      "appliesObjScale": true
+    },
+    "deadTree": {
+      "count": 832,
+      "frame": {
+        "w": 56,
+        "h": 88
+      },
+      "anchor": {
+        "x": 29,
+        "y": 78
+      },
+      "contactShadow": {
+        "rx": 28,
+        "ry": 10,
+        "alpha": 0.25
+      },
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8
+      ],
+      "scaleRange": [
+        1.02,
+        1.34
+      ],
+      "hueRandomised": true,
+      "occlusionHeight": 78,
+      "brief": "Dead standing tree, bark stripped to pale grey heartwood, splintered broken limbs, no foliage. Reads as a bone-coloured silhouette against dark ground.",
+      "appliesObjScale": true
+    },
+    "rootArch": {
+      "count": 1355,
+      "frame": {
+        "w": 94,
+        "h": 56
+      },
+      "anchor": {
+        "x": 47,
+        "y": 43
+      },
+      "contactShadow": {
+        "rx": 31,
+        "ry": 12,
+        "alpha": 0.22
+      },
+      "variants": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "scaleRange": [
+        1.02,
+        1.34
+      ],
+      "hueRandomised": true,
+      "occlusionHeight": 43,
+      "brief": "Arching exposed root that a character can walk beneath, rising from the soil and re-entering it. Damp bark, clinging moss on the upper surface, deep shadow in the arch void.",
+      "appliesObjScale": false
+    },
+    "mushroom": {
+      "count": 2303,
+      "frame": {
+        "w": 56,
+        "h": 56
+      },
+      "anchor": {
+        "x": 27,
+        "y": 40
+      },
+      "contactShadow": {
+        "rx": 13,
+        "ry": 5,
+        "alpha": 0.18
+      },
+      "variants": [],
+      "hueRandomised": false,
+      "occlusionHeight": 0,
+      "brief": "Cluster of three to five woodland mushrooms, muted ochre and dusty violet caps, damp soft-bodied stems, a little leaf litter at the base.",
+      "appliesObjScale": false
+    },
+    "rock": {
+      "count": 3025,
+      "frame": {
+        "w": 54,
+        "h": 44
+      },
+      "anchor": {
+        "x": 24,
+        "y": 25
+      },
+      "contactShadow": {
+        "rx": 18,
+        "ry": 7,
+        "alpha": 0.23
+      },
+      "variants": [],
+      "hueRandomised": false,
+      "occlusionHeight": 0,
+      "brief": "Weathered granite boulder part-sunk into the earth, lichen in the crevices, flat lit top and a dark undercut where it meets the ground so it reads as embedded rather than resting on top.",
+      "appliesObjScale": false
+    },
+    "brush": {
+      "count": 3408,
+      "frame": {
+        "w": 70,
+        "h": 38
+      },
+      "anchor": {
+        "x": 30,
+        "y": 23
+      },
+      "contactShadow": {
+        "rx": 16,
+        "ry": 6,
+        "alpha": 0.18
+      },
+      "variants": [],
+      "scaleRange": [
+        1.0,
+        1.3
+      ],
+      "hueRandomised": false,
+      "occlusionHeight": 0,
+      "brief": "Low tangled undergrowth, thin bare twigs with sparse dark leaves. Open and scrubby, not a solid mass.",
+      "appliesObjScale": true
+    },
+    "rootCluster": {
+      "count": 2900,
+      "frame": {
+        "w": 38,
+        "h": 18
+      },
+      "anchor": {
+        "x": 18,
+        "y": 10
+      },
+      "contactShadow": {
+        "rx": 10,
+        "ry": 4,
+        "alpha": 0.18,
+        "derived": true
+      },
+      "variants": [],
+      "hueRandomised": false,
+      "occlusionHeight": 0,
+      "brief": "Surface roots breaking through soil, low and flat to the ground, with dirt gathered against them. Almost a decal - it must not read as a raised object.",
+      "appliesObjScale": false
+    },
+    "grassTuft": {
+      "count": 7149,
+      "frame": {
+        "w": 46,
+        "h": 32
+      },
+      "anchor": {
+        "x": 18,
+        "y": 23
+      },
+      "contactShadow": {
+        "rx": 10,
+        "ry": 4,
+        "alpha": 0.15,
+        "derived": true
+      },
+      "variants": [
+        0
+      ],
+      "hueRandomised": false,
+      "occlusionHeight": 0,
+      "brief": "Tuft of coarse dark meadow grass, blades of uneven height, some bent and dry. Desaturated green-brown.",
+      "appliesObjScale": false
+    },
+    "flower": {
+      "count": 2402,
+      "frame": {
+        "w": 46,
+        "h": 32
+      },
+      "anchor": {
+        "x": 18,
+        "y": 23
+      },
+      "contactShadow": {
+        "rx": 10,
+        "ry": 4,
+        "alpha": 0.15,
+        "derived": true
+      },
+      "variants": [
+        0
+      ],
+      "hueRandomised": false,
+      "occlusionHeight": 0,
+      "brief": "Small clump of pale woodland wildflowers on thin stems above low leaves. Muted bone-white and dusty violet - the only gentle colour on the forest floor. MUST be visually distinct from grassTuft; see the note in the art brief, the two currently render identically.",
+      "note": "grassTuft and flower measured byte-identical in-world (both 45.3x30.9 with the same anchors), so flowers presently draw as grass. Authoring them separately is what fixes that.",
+      "appliesObjScale": false
+    },
+    "ashStump": {
+      "count": 1081,
+      "frame": {
+        "w": 34,
+        "h": 44
+      },
+      "anchor": {
+        "x": 17,
+        "y": 32
+      },
+      "contactShadow": {
+        "rx": 20,
+        "ry": 8,
+        "alpha": 0.24
+      },
+      "variants": [
+        0
+      ],
+      "hueRandomised": false,
+      "occlusionHeight": 30,
+      "brief": "Cut tree stump, charred and ash-greyed, growth rings visible on the sawn face, ragged bark edge, small fungal shelves on one side.",
+      "appliesObjScale": false
+    },
+    "fallenLog": {
+      "count": 1023,
+      "frame": {
+        "w": 68,
+        "h": 34
+      },
+      "anchor": {
+        "x": 32,
+        "y": 17
+      },
+      "contactShadow": {
+        "rx": 16,
+        "ry": 6,
+        "alpha": 0.22,
+        "derived": true
+      },
+      "variants": [
+        0,
+        1
+      ],
+      "hueRandomised": false,
+      "occlusionHeight": 20,
+      "brief": "Fallen rotting trunk lying across the ground, bark sloughing away, moss along the upper length, dark hollow at the broken end.",
+      "appliesObjScale": false
+    },
+    "rootBarrier": {
+      "count": 375,
+      "frame": {
+        "w": 70,
+        "h": 42
+      },
+      "anchor": {
+        "x": 34,
+        "y": 28
+      },
+      "contactShadow": {
+        "rx": 15,
+        "ry": 6,
+        "alpha": 0.2,
+        "derived": true
+      },
+      "variants": [],
+      "hueRandomised": false,
+      "occlusionHeight": 28,
+      "brief": "Dense barrier of interlocked surface roots forming an impassable low wall. Thick woody coils, packed earth and leaf litter caught between them, deep shadow at the base.",
+      "appliesObjScale": false
+    }
+  },
+  "secondary": {
+    "$comment": "Present in the zone but below 1% each. Measured, so they are ready when the primary set lands.",
+    "webbedBush": {
+      "count": 223,
+      "frame": {
+        "w": 64,
+        "h": 40
+      },
+      "anchor": {
+        "x": 32,
+        "y": 26
+      }
+    },
+    "thornBush": {
+      "count": 89,
+      "frame": {
+        "w": 60,
+        "h": 40
+      },
+      "anchor": {
+        "x": 30,
+        "y": 24
+      }
+    },
+    "standingStone": {
+      "count": 11,
+      "frame": {
+        "w": 32,
+        "h": 96
+      },
+      "anchor": {
+        "x": 16,
+        "y": 86
+      }
+    },
+    "ruinWall": {
+      "count": 28,
+      "frame": {
+        "w": 108,
+        "h": 76
+      },
+      "anchor": {
+        "x": 54,
+        "y": 32
+      }
+    },
+    "bones": {
+      "count": 40,
+      "frame": {
+        "w": 64,
+        "h": 28
+      },
+      "anchor": {
+        "x": 32,
+        "y": 18
+      }
+    }
+  }
+}

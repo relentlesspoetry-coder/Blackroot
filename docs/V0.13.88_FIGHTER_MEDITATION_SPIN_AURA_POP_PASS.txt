@@ -1,0 +1,19 @@
+Dream Realms V0.13.88 — Fighter Meditation Spin Aura Pop Pass
+
+Summary
+- Made the Fighter meditation ground aura brighter and more noticeable.
+- Added spinning ring segments and orbiting nodes to create visible rotational energy around the Fighter.
+- Kept the aura under the model and the spirit effect above it.
+
+Files Changed
+- render/class-identity-procedural-model.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.13.88_FIGHTER_MEDITATION_SPIN_AURA_POP_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- ZIP integrity verified with `unzip -t`.

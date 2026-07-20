@@ -1,0 +1,9 @@
+window.DreamRealmsSpriteSheetMetadata = window.DreamRealmsSpriteSheetMetadata || {};
+window.DreamRealmsSpriteSheetMetadata['Dungeon_Gate.json'] = {
+  "version": "0.13.74",
+  "type": "dream-realms-model-sprite-sheet",
+  "modelId": "Dungeon_Gate",
+  "modelType": "prop",
+  "image": "Dungeon_Gate.png",
+  "frames": {}
+};

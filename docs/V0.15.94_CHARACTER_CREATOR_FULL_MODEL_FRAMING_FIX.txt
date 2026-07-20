@@ -1,0 +1,5 @@
+Dream Realms V0.15.94 - Character Creator Full Model Framing Fix
+
+- Adjusted creator preview scaling to show the entire selected class model at a larger readable size.
+- Reduced the over-zoom that was cropping many humanoid classes at the waist.
+- Enlarged and brightened the class emblem backdrop so it is clearly visible behind the selected class during creation.

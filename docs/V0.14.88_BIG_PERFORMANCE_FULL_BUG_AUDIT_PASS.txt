@@ -1,0 +1,24 @@
+Dream Realms V0.14.88 — Big Performance and Full Bug Audit Pass
+
+Baseline
+- Dream Realms V0.14.87 Necromancer Icon Skill Slot Bag Bar Fix Pass
+
+Scope
+- Comprehensive root-owner performance and stability pass across rendering, UI, particles/effects, AI scheduling, collision/separation, and runtime cleanup.
+- No mobs, NPCs, quests, abilities, loot tables, classes, portal behavior, icon behavior, or visual quality settings were removed or reduced.
+
+Changed Systems
+- core/config.js: added explicit performance budget knobs for UI cadence, active effects, damage text, and actor separation cadence.
+- game.js: routed frame UI refresh through the batched UI owner instead of forcing full DOM refresh every frame.
+- systems/ui-system.js: added updateUIBatched(), cached hotbar lookup, reduced per-frame DOM churn, and stopped the merc gear panel from rebuilding unless open or dirty.
+- render/terrain-renderer.js: pre-sorted terrain/water/shore layers when chunks are built, reused visible chunk entry records, raised cache capacity, and removed per-frame Map LRU churn.
+- systems/effects-system.js: added effect/damage-text budget helpers, in-place effect compaction, single-frame follow-target maps, and capped high-volume visual feedback safely.
+- systems/combat-system.js: routed damage/heal floaters through the damage-text budget owner.
+- systems/terrain-footstep-system.js: routed terrain-step particles through the effect budget owner.
+- systems/collision-system.js: throttled actor separation, reused scratch structures, removed repeated index lookup, and fixed the duplicate companion range check.
+- systems/bot-player-system.js: reused bot scheduler ordering records and reduced per-frame sort/allocation pressure.
+
+Validation
+- JavaScript syntax check passed across all runtime JS files.
+- Headless browser load smoke test was run against the generated build.
+- Zip integrity test passed.

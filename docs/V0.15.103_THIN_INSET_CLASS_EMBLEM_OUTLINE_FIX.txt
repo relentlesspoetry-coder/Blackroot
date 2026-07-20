@@ -1,0 +1,5 @@
+Dream Realms V0.15.103 - Thin Inset Class Emblem Outline Fix
+
+- Made the class emblem outlines much thinner.
+- Changed the creator backdrop emblem outline to an inset edge outline.
+- Preserved creator centering and emblem sizing from the previous pass.

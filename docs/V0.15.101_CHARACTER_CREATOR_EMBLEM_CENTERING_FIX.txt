@@ -1,0 +1,4 @@
+Dream Realms V0.15.101 - Character Creator Emblem Centering Fix
+
+- Centered the oversized class emblem backdrop in the creator preview.
+- Preserved the V0.15.100 centered class model placement.

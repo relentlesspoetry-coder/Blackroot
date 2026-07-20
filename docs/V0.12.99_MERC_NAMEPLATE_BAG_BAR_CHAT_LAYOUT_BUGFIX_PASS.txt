@@ -1,0 +1,24 @@
+Dream Realms V0.12.99 — Merc Nameplate Bag Bar Chat Layout Bugfix Pass
+
+Baseline
+Dream Realms V0.12.98 — Party HUD Cleanup Bot Cave Follow Bugfix Pass
+
+Scope
+- Fix mercenary nameplate duplicate level formatting.
+- Render mercenary nameplate as role/title, base name, and level line.
+- Improve bag dock icons so equipped bags look like bags.
+- Grey out empty bag slots.
+- Move the bag dock left to avoid Menu button overlap.
+- Shrink the chat/log window to avoid action bar overlap.
+
+Implementation Notes
+- Nameplate formatting was fixed in render/entity-renderer.js inside drawNameplate, the owning nameplate renderer.
+- Bag bar rendering was fixed in systems/inventory-system.js inside renderBagBar and a dedicated bagBarIconHtml helper.
+- Layout fixes were made in Dream Realms V0.12.99.html CSS.
+- No cascade patch layer or bottom-of-file hotfix wrapper was added.
+
+Validation
+- JS syntax check on all active JavaScript files.
+- HTML script order check.
+- Missing script check.
+- Static checks for merc nameplate branch, bag bar icon helper, empty bag slot styling, bag dock offset, and compact chat panel.

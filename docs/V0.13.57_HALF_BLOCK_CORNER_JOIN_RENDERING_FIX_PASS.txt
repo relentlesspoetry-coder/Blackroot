@@ -1,0 +1,41 @@
+Dream Realms V0.13.57 — Half-Block Corner Join Rendering Fix Pass
+
+Systems changed
+- render/terrain-renderer.js
+- Runtime/version metadata in core/config.js, data/default-zones.js, systems/save-system.js, systems/world-serializer.js, README, VERSION, and the main HTML shell.
+
+Terrain corner-join fix
+- Extended resolveHalfBlockExposure() to sample diagonal neighbors in addition to north/east/south/west cardinal neighbors.
+- Added explicit corner join descriptors for northEast, southEast, southWest, and northWest corners.
+- Preserved the existing full-sided half-block face rendering from V0.13.55 while adding diagonal-aware corner repair for bridge endpoints, zig-zag boundaries, shoreline turns, and isolated raised terrain.
+
+Cave-wall reference adaptation
+- Reused the cave wall renderer principle of closing exposed perpendicular faces with a vertical material column.
+- Adapted the treatment for overworld materials with softer grass/dirt/path-toned columns instead of heavy cave-stone outlines.
+- Kept cave wall behavior compatible with the same corner column path so the two renderers stay architecturally aligned.
+
+Corner adjacency handling
+- Handles north + east, north + west, south + east, and south + west joins.
+- Handles three-sided and four-sided exposure naturally by emitting the relevant corner descriptors.
+- Handles one-sided exposed edges with lower/void diagonal neighbors using ownership rules to avoid doubled thick seams on continuous chunk/tile boundaries.
+- Corner caps now use the same corner descriptor data, so the ground/lip layer hides the top seam of both side faces and corner columns.
+
+Chunk composition changes
+- Preserved terrain chunk caching and the existing 2-tile neighbor sampling requirement.
+- Preserved chunk signatures that sample beyond chunk bounds so diagonal corner data invalidates correctly at chunk borders.
+- Updated terrain cache telemetry from full-cardinal-exposure-v1 to corner-join-columns-v2.
+
+Gameplay systems preserved
+- Collision, pathfinding, spawn validation, water blocking, mob placement, quests, loot, combat distance, ranged auto attacks, Purify/Resurrection, autonomous bots, pets, dungeon logic, save/load, Esc menu, V0.13.54 attack timing, and V0.13.56 Spirit Healer visuals were not intentionally changed.
+
+Tests run
+- node --check over every JavaScript file.
+- Main HTML local script reference audit.
+- Version metadata audit for V0.13.57.
+- Static terrain renderer audit for diagonal corner sampling, corner descriptors, and corner-join column mode.
+- Resolver smoke test for isolated raised terrain, bridge-like exposure, and four-sided exposure.
+- Zip integrity test.
+
+Manual browser-test caveats
+- A full interactive browser visual pass was not completed in this container.
+- Manually verify overworld half-block corners, shoreline turns, narrow bridges, chunk borders, rotated camera views, terrain/prop layering, and actor/nameplate behavior locally.

@@ -1,0 +1,15 @@
+Dream Realms V0.14.57 — Dust Wisp High Detail Procedural Model Upgrade Pass
+
+Scope
+- Upgrade the Dust/Wisp low-poly renderer into a denser high-detail procedural graphical model while preserving existing silhouette, proportions, anchors, combat behavior, targeting, and spawn data.
+
+Implementation
+- Reworked the owning `drawWisp` path in `render/dark-woods-mob-procedural-model.js` instead of adding a late overlay or cascade patch.
+- Added layered translucent dust density lobes, helical vortex bands, arm streamers, face/eye hollows, an inner consciousness nucleus, containment energy threads, orbiting motes, static sparks, debris inclusions, dust fallout, and ground deposition rings.
+- Added deterministic particle placement so the model reads as particulate and alive without random flicker or runtime allocation churn.
+- Added an explicit `dustWisp` visual key and palette for future Dust Wisp spawns while continuing to route Duskwisp, Grave Wisp, and Lumen-Wisp through the upgraded renderer.
+- Added Wisp sprite-bake definitions so the upgraded model can be exported consistently by the existing sprite baking workflow.
+
+Validation
+- node --check passed for all runtime JavaScript files.
+- Static audit verified the fix is inside the owning renderer and sprite-bake owner, with no cascade patch layer.

@@ -1,0 +1,36 @@
+Dream Realms V0.10.3 Modular Pass 31 - Runtime Quest Log + Quest Playback
+
+Baseline
+- Built from Modular Pass 30.
+- Preserves editor foundations, dungeon/puzzle editor data, cave rendering, combat, spells, fishing, party/multiplayer, and save/export plumbing.
+
+Runtime additions
+- Added systems/quest-system.js as an external runtime system.
+- L toggles the Quest Journal.
+- E interacts with nearby quest sources.
+- Camp Quest Board, Town Guide, and Wounded Scout fallback sources make starter quests usable on the unedited default map.
+- Placed editor quest hooks and placed NPC markers with quest ids are consumed by the runtime interaction path.
+
+Quest playback
+- Accepts quests from editor quest drafts.
+- Tracks active quest objectives.
+- Supports objective advancement for:
+  - kill
+  - enterZone
+  - explore
+  - collect / item-gained foundation
+- Turns in ready quests at the matching nearby quest source.
+- Grants XP, gold, and material-style reward items.
+- Calls checkLevelUp after quest reward XP.
+
+Runtime event hooks
+- Combat system now emits enemy-killed events.
+- Cave system now emits zone-entered events for Dark Woods and Mossfang Cave.
+- Inventory system now emits item-gained events for newly added items/material stacks.
+
+Persistence
+- Quest runtime progress is persisted in localStorage under dream-realms.quest-runtime.v1.
+- World serializer now includes questRuntime for world save/export/import support.
+
+Deferred
+- Dialogue windows, chest events, shop events, scripted event command playback, runtime chests, and runtime NPC interaction are now covered by Passes 32, 33, and 36.

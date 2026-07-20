@@ -1,0 +1,32 @@
+Dream Realms V0.15.38 — Renderer QA Fixes and Release Polish Pass
+
+Goal:
+Finalize renderer/performance release QA by polishing Hybrid-as-default safety, cleanup behavior, and release diagnostics without changing gameplay or content.
+
+Changes:
+- Added systems/renderer-release-polish-system.js.
+- Added renderer release-polish scoring across Hybrid health, Final QA, StableRC, PostRC, benchmark evidence, fallback pressure, Hybrid frame cost, WebGL readiness, and Canvas fallback readiness.
+- Added localStorage repair for invalid renderer profile / rollout policy values.
+- Added stale/corrupt rollback timestamp cleanup without clearing active rollbacks.
+- Added Settings panel controls:
+  - Release Polish Gate
+  - Export Polish JSON
+  - Copy Polish Summary
+  - Clear Polish Samples
+  - Clear Renderer Safety State
+- Added F3 ReleasePolish line showing score, status, benchmark state, fallback pressure, and blockers.
+- Added renderer release polish metrics to perfStats for benchmark/export/reporting.
+- Added release polish export payload containing StableRC, PostRC, Hybrid Final QA, rollout health, and last benchmark evidence.
+- Kept Canvas Safe Mode and Canvas fallback authoritative.
+
+No gameplay/content changes:
+- No class balance changes.
+- No spell value changes.
+- No loot/economy changes.
+- No mob/quest/dungeon/zone layout changes.
+- No UI layout redesign beyond the release-polish Settings section.
+
+Validation:
+- JavaScript syntax validation passed.
+- _script_order.json checked for missing files.
+- HTML script references checked for missing files.

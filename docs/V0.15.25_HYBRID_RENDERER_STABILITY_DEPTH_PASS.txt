@@ -1,0 +1,23 @@
+Dream Realms V0.15.25 — Hybrid Renderer Stability and Depth Pass
+
+Goal:
+Harden the newly promoted Hybrid WebGL terrain/sprite layers before more renderer migration work.
+
+Changes:
+- Updated build metadata to V0.15.25.
+- Added Canvas fallback drawing for queued visible WebGL sprite groups when promotion fails.
+- Treats partial WebGL sprite group draws as unsafe and falls back to Canvas for the full group.
+- Added sprite depth-order validation to prevent out-of-order WebGL grouping artifacts.
+- Added depth diagnostics for visible WebGL sprite groups, depth-order fallback count, and Canvas fallback draw count.
+- Added configurable terrain seam bleed for WebGL terrain chunk compositing.
+- Added terrain partial-promotion diagnostics and seam bleed reporting.
+- Expanded F3 overlay and Settings diagnostics with hybrid stability counters.
+
+Gameplay impact:
+- No combat, class, quest, loot, mob, map, UI layout, or balance changes.
+- Canvas 2D remains the stable fallback.
+- Hybrid WebGL remains optional and watchdog-protected.
+
+Validation:
+- JavaScript syntax validation should pass across the modular runtime.
+- _script_order.json and HTML script references should remain valid.

@@ -1,0 +1,29 @@
+Dream Realms Modular Pass 47.1 - Dark Woods Density / Meditation Rules
+
+Scope
+-----
+- Increase Dark Woods starter-zone combat availability.
+- Formalize meditation gameplay rules.
+- Route mercenary meditation through the same settle/tick/visual runtime.
+
+Gameplay Rules
+--------------
+- Meditation only starts out of combat.
+- Meditation cancels on movement.
+- Meditation cancels when the meditating entity takes damage.
+- Player meditation cancels on attack and spell cast.
+- Meditation has a 2.0 second settle time before the first tick can accumulate.
+- Meditation XP is granted only when an actual restore tick happens.
+
+Scaling
+-------
+- Level 1 tick rate: 15.00s.
+- Level 60 tick rate: 5.00s.
+- Level 1 HP/Mana restore: +2.
+- Level 60 HP/Mana restore: +45.
+
+Mob Density
+-----------
+- Added additional Dark Woods auto-seeded mob spawn markers outside the starter protection radius.
+- Increased wolf and rotling default pack sizes and slightly reduced respawn timers.
+- Existing saved worlds receive missing default markers without requiring a reset.

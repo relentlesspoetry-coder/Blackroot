@@ -1,0 +1,15 @@
+Dream Realms V0.12.48 - Centered Corpse Loot Window
+
+Scope:
+- Focused UI positioning fix for the Corpse Loot bag.
+
+Changes:
+- Added Game.prototype.centerCorpseLootWindow in systems/loot-system.js.
+- Corpse Loot now opens centered in the viewport when activated with E.
+- Existing Corpse Loot windows are re-centered every time they open.
+- The window remains draggable after it appears; dragging converts it to a normal fixed-position window through the existing UI drag owner.
+- Increased Corpse Loot z-index so it appears above HUD/action bar panels.
+
+Verification:
+- No bottom-of-file patch script added.
+- Change is owned by systems/loot-system.js and the Corpse Loot CSS block in the HTML shell.

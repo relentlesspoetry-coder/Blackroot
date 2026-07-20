@@ -1,0 +1,30 @@
+Dream Realms V0.10.3 Modular Pass 33
+Runtime Chests + Loot Table Integration
+
+Baseline:
+- Dream Realms V0.10.3 Modular Pass 32
+
+Owning systems updated:
+- systems/loot-system.js
+- systems/combat-system.js
+- systems/event-system.js
+- systems/chest-system.js
+- systems/world-serializer.js
+- systems/save-system.js
+- game.js
+
+Added:
+- Central runtime loot-table rolling through Game.prototype.rollEditorLootTable.
+- Editor item draft conversion into runtime inventory/equipment/material items.
+- Enemy death drops now use editor loot tables instead of only randomized legacy loot.
+- Chest event opening now routes through the same central loot-table roller.
+- Runtime resource chest system for editor-placed Chest Spawn nodes.
+- Persistent opened-state for resource chests.
+- Chest runtime state included in world save/export/import.
+
+Controls:
+- E opens nearby editor resource chest spawns.
+
+Notes:
+- This pass activates loot table consumption for mobs and chests.
+- It does not change cave rendering, combat math, spell runtime, editor painting, or map generation.

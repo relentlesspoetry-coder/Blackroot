@@ -1,0 +1,21 @@
+Dream Realms V0.12.61 — Click Move, Terrain Foot FX, Meditation Revamp Pass
+
+Bug fixes
+- Click-to-move no longer gets intercepted by loose nearest-enemy world-radius selection.
+- Click-to-move searches nearby walkable tiles more aggressively when clicking blocked/edge terrain.
+- Click-to-move can now fall back to axis stepping when direct diagonal movement is blocked by a corner.
+
+Visual fixes
+- Terrain footstep effects now use the current humanoid ground anchor when available.
+- Terrain footstep effects draw below character bodies instead of over the new class models.
+- Grass blades/dirt dust now sit lower at the actual feet/ground baseline.
+
+Meditation revamp
+- Added shared high-detail meditation aura in the humanoid base renderer.
+- Adds layered blue-white glow, rotating dashed rings, rising motes, soft bloom orbs, and vertical energy wisps.
+
+Ownership
+- game.js owns click-to-move target resolution and world render ordering.
+- systems/terrain-footstep-system.js owns terrain footstep spawning/metadata.
+- render/effects-renderer.js owns terrain footstep screen anchoring and drawing.
+- render/humanoid-base-renderer.js owns shared humanoid meditation aura rendering.

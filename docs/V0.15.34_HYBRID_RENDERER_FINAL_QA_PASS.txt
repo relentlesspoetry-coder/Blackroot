@@ -1,0 +1,23 @@
+Dream Realms V0.15.34 — Hybrid Renderer Final QA Pass
+
+Purpose
+- Add a final QA gate above the Hybrid/WebGL rollout stack before release-candidate cleanup.
+- Keep Hybrid as the default rollout path when healthy while preserving Canvas as the authoritative compatibility fallback.
+
+Changes
+- Added systems/hybrid-final-qa-system.js.
+- Added final Hybrid QA scoring across camera rotation, zoom, cave/fringe context, terrain seam/fallback pressure, sprite origin drift, depth-order violations, rollout health, QA holdoffs, and WebGL context state.
+- Added per-layer final QA blocks for terrain, sprites, effects, and damage text. Unsafe layers temporarily fall back to Canvas without disabling healthy layers.
+- Added release-candidate readiness scoring with average/min score windows and sample thresholds.
+- Added Settings controls for Final QA gate, release-candidate gate, export/copy summary, clear layer blocks, and clear history.
+- Added F3 overlay lines for HybridFinalQA score, risks, blocked layers, fallback pressure, cost, and recommendation.
+- Patched rollout risk calculation so critical final QA evidence can trigger rollback while release-ready final QA can suppress non-hard transient spikes.
+
+Validation
+- JavaScript syntax validation should pass across the modular runtime.
+- _script_order.json includes the new system after Hybrid Rollout Health.
+- HTML script references include the new system.
+
+Notes
+- No gameplay, class balance, spell values, loot, quest, mob, zone, dungeon, or UI layout values were changed.
+- This is a renderer safety/QA pass, not a new feature layer.

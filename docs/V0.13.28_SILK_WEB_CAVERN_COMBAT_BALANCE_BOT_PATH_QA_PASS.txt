@@ -1,0 +1,11 @@
+Dream Realms V0.13.28 — Silk Web Cavern Combat Balance Bot Path QA Pass
+
+- Tuned Silk Web Cavern elite, mini-boss, boss, and hazard pressure by floor.
+- Fixed Silk Web boss/hazard status application to use structured status-effect payloads instead of string-only status calls.
+- Added breakable Cocoon Prison boss objects that release trapped allies when broken or expired.
+- Capped active boss add pressure and ensured boss adds spawn on walkable tiles.
+- Rebalanced boss ability cadence with floor/rank cooldown bias so Floor 1 is readable and Floor 3 remains dangerous.
+- Improved companion combat-position selection to prefer safe non-hazard tiles inside dungeon arenas.
+- Forces path recalculation when bots/mercs/pets are standing in dungeon hazards.
+- Added active Silk Web combat balance and pathing QA audit helpers.
+- No cascade patch layer added.

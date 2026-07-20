@@ -1,0 +1,27 @@
+# Dream Realms V0.15.93 - Paladin Meditation Arm Pose Fix
+
+## Fixed
+
+- Paladin meditation no longer draws the stretched, crossed-arm pose visible in V0.15.92.
+- Replaced the meditation arm construction with a Paladin-specific compact kneeling oath pose.
+- Removed reliance on standing/Fighter-style arm anchor geometry during Paladin meditation.
+
+## New Meditation Arm Read
+
+- Shield remains planted beside the Paladin.
+- Mace remains planted in front of the kneeling pose.
+- Arms now bend downward beside the torso.
+- Hands clasp tightly around the mace grip/pommel area.
+- Elbows, wrists, gauntlet caps, clasp glow, and rosary loop remain visible without creating an X-shaped silhouette.
+
+## Files Touched
+
+- render/class-identity-procedural-model.js
+- Dream Realms V0.15.93.html
+- VERSION.txt
+- PATCH_NOTES.md
+- docs/V0.15.93_PALADIN_MEDITATION_ARM_POSE_FIX.txt
+
+## Validation
+
+- JavaScript syntax sweep: pending package step.

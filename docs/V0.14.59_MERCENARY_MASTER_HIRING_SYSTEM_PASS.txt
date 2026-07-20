@@ -1,0 +1,10 @@
+Dream Realms V0.14.59 — Mercenary Master Hiring System Pass
+
+- Added the Mercenary Master NPC in the Dark Woods hub near trainers and quest services.
+- Created a Mercenary Hiring UI with available mercenary name, class, level, role, and hire cost.
+- Hiring now checks player gold, existing active mercenary state, and party capacity.
+- Hired mercenaries join the party automatically when a slot is available; otherwise they remain active followers outside the party.
+- Added same-window dismissal for active hired mercenaries.
+- Added Mercenary Master dialogue: "Looking for capable swords, magic, or stealth? My mercenaries never disappoint... for a price."
+- Added right-click NPC interaction support by routing world picks through the NPC runtime.
+- Updated the Mercenary Master visual profile with a rugged tunic/leather jerkin, pauldrons, coin pouch, commander cape, contract prop, and officer identity distinct from playable class armor.

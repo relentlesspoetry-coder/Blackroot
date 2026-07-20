@@ -1,0 +1,21 @@
+Dream Realms V0.14.53 — Auto Attack Manual Toggle Pass
+
+Scope
+- Owning-system fix for player auto-attack behavior.
+- No cascade patch layer, wrapper hotfix, or bottom-of-file runtime override was added.
+
+Changes
+- Key 1 and the Auto Attack hotbar slot now act as a true toggle.
+  - First press starts auto-attacking the selected hostile target or nearest valid hostile in reach.
+  - Second press immediately stops auto-attacking and clears the current swing timer.
+- Targeting hostile mobs no longer starts auto-attack.
+- Entering combat from enemy proximity or being hit no longer starts player auto-attack.
+- Player spell damage no longer starts player auto-attack after the cast lands.
+- Killing a target no longer chains player auto-attack to the next nearby hostile automatically.
+- Existing active auto-attack can still follow a newly selected hostile target because selection changes the target, not the toggle state.
+- The action bar Auto Attack slot now reflects the explicit player auto-attack flag only and updates its label/title/aria-pressed state.
+
+Validation
+- JavaScript syntax checked with node --check across runtime files.
+- Static audit confirmed player auto-attack engagement now requires explicit/manual toggle ownership.
+- ZIP integrity verified.

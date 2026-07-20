@@ -1,0 +1,25 @@
+Warden Spell Icons Manifest
+Naming format: {Spell Name} - Warden - Level {Level}.png
+Source image: a_clean_high_detail_game_spell_ability_icon_chart.png
+Crop method: source artwork extracted, inconsistent source borders discarded, consistent 256x256 Warden frame applied.
+
+Level 01: Stonehand Strike - Warden - Level 1.png
+Level 02: Barkskin - Warden - Level 2.png
+Level 03: Root Grasp - Warden - Level 3.png
+Level 04: Thorn Guard - Warden - Level 4.png
+Level 05: Earthen Roar - Warden - Level 5.png
+Level 06: Grove Mend - Warden - Level 6.png
+Level 07: Stonehide - Warden - Level 7.png
+Level 08: Briar Lash - Warden - Level 8.png
+Level 09: Wild Fortitude - Warden - Level 9.png
+Level 10: Living Wall - Warden - Level 10.png
+Level 11: Quaking Challenge - Warden - Level 11.png
+Level 12: Ancient Pulse - Warden - Level 12.png
+Level 13: Ironroot Stance - Warden - Level 13.png
+Level 14: Thornsnare - Warden - Level 14.png
+Level 15: Mountain’s Patience - Warden - Level 15.png
+Level 16: Grove Shelter - Warden - Level 16.png
+Level 17: Primal Guard - Warden - Level 17.png
+Level 18: Heart of the Grove - Warden - Level 18.png
+Level 19: Titanroot - Warden - Level 19.png
+Level 20: Ancient Warden Form - Warden - Level 20.png

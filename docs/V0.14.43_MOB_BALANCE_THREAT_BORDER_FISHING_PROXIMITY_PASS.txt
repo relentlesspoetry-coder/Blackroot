@@ -1,0 +1,11 @@
+V0.14.43 - Mob Balance Threat Border Fishing Proximity Pass
+- Root stat ownership: hostile mob HP now receives a global 2.0x multiplier in entities/enemy.js, applying before cave/dungeon/elite/boss multipliers.
+- Root stat ownership: hostile mob attack now receives a global 1.2x multiplier in entities/enemy.js, so auto attacks and attack-stat-driven mob abilities inherit the damage increase.
+- Threat UI: mob threat bars now draw with a heavier dark outer border and inner rim for clearer bounds.
+- Fishing system: free-cast and clicked-water fishing now require shoreline proximity instead of allowing long-range casting; failed attempts show "Too far from water."
+
+Validation:
+- JavaScript syntax check across all modular JS files.
+- Enemy constructor audit confirmed health and attack global multipliers.
+- Fishing proximity smoke test confirmed nearby shoreline succeeds and distant shore fails.
+- Threat renderer audit confirmed dark outer border around threat meter.

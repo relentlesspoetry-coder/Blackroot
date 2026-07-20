@@ -1,0 +1,25 @@
+Dream Realms V0.15.28 — WebGL Billboard Overlay Pass
+
+Purpose
+- Promote safe floating combat text / billboard overlays toward Hybrid WebGL rendering while keeping Canvas fallback for combat readability.
+
+Changes
+- Added Visible WebGL Damage Text layer toggle in Settings.
+- Added persistent setting: dreamRealmsWebglVisibleDamageTextLayer.
+- Added damage-text billboard sprite cache with bounded LRU-style trimming.
+- Added progress-bucketed damage text textures so fade state is baked into cached frames.
+- Added WebGL damage text queueing, draw/composite metrics, fallback counters, and cache hit/miss/eviction metrics.
+- Updated consolidated Hybrid visible-frame lifecycle to flush terrain/sprites/effects/damage text through shared ordered boundaries.
+- Updated renderer watchdog pressure accounting to include damage-text WebGL draw/composite and fallback pressure.
+- Added Canvas fallback if damage text WebGL promotion is inactive, incomplete, over budget, or throws.
+- Expanded F3 overlay with WebGL damage text diagnostics.
+
+Safety Rules
+- Health bars, nameplates, selection rings, targeting indicators, and UI remain Canvas/DOM rendered.
+- Unsupported or failed damage-text promotions fall back to the existing drawDamage() path.
+- Canvas 2D remains the stable fallback renderer.
+
+Validation
+- JavaScript syntax validation passed across the modular runtime.
+- _script_order.json checked with no missing files.
+- HTML script references checked with no missing files.

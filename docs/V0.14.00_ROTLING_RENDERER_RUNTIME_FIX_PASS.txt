@@ -1,0 +1,21 @@
+Dream Realms V0.14.00 — Rotling Renderer Runtime Fix Pass
+
+Summary
+- Fixed the actual runtime break in the high-detail Rotling renderer.
+- The V0.13.98 pass used `rgba(...)` inside `render/rotling-procedural-model.js` but did not define it.
+- This pass adds a local safe `rgba(color, alpha)` helper and keeps the high-detail Rotling visuals.
+
+Files Changed
+- render/rotling-procedural-model.js
+- README.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.00_ROTLING_RENDERER_RUNTIME_FIX_PASS.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- Rotling draw smoke test verified with fake Canvas context.
+- ZIP integrity verified with `unzip -t`.

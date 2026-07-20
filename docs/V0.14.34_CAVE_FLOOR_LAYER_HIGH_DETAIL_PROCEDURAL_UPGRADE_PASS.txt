@@ -1,0 +1,22 @@
+Dream Realms V0.14.34 — Cave Floor Layer High-Detail Procedural Upgrade Pass
+
+Summary
+- Upgraded the cave floor rendering layer with a higher-detail procedural geology pass.
+- Added cached cave-floor detail support so optimized terrain chunks retain the upgraded floor read.
+- Added direct cave-floor detail support for non-cached terrain draw paths.
+
+Files changed
+- render/terrain-renderer.js
+- Dream Realms V0.14.34.html
+- README.txt
+- VERSION.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.34_CAVE_FLOOR_LAYER_HIGH_DETAIL_PROCEDURAL_UPGRADE_PASS.txt
+
+Validation
+- JavaScript syntax verified with node --check.
+- ZIP integrity verified with unzip -t.

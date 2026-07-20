@@ -1,0 +1,37 @@
+Dream Realms V0.13.68 — Sprite Baker Local Loader Fix Pass
+
+Systems changed:
+- tools/sprite-baker.js
+- tools/sprite-baker.html
+- VERSION.txt
+- README.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- Dream Realms V0.13.68.html
+- docs/MODULAR_HISTORY.txt
+
+Fix summary:
+- Fixed the dev sprite atlas baker failing during Load Renderers when browser fetch() cannot read ../_script_order.json from a local file launch.
+- Added a bundled script-order fallback generated from the project load order, so the baker can continue loading renderer scripts when fetch() is blocked.
+- Kept HTTP/server launches using the live _script_order.json when available.
+- Added safer script URL resolution and clearer load failure diagnostics for missing/extracted files.
+- Updated the tool description to note local file fallback behavior.
+
+Preserved behavior:
+- Procedural renderers remain the source of truth.
+- Runtime atlas loading and drawImage() rendering remain optional.
+- Missing atlas frames still fall back procedurally.
+- UI, nameplates, health bars, chat bubbles, targeting, anchors, footstep FX, gameplay systems, save/load, map UI, and combat behavior are unchanged.
+
+Validation run:
+- All JavaScript files passed node --check.
+- Main HTML local script references audited.
+- Sprite baker static audit confirmed bundled script order fallback, HTTP fetch path, script injection path, and renderer-load button path.
+- V0.13.68 metadata verified.
+- Zip integrity passed.
+
+Manual browser-test caveats:
+- Browser bake/export could not be executed inside the container.
+- Manually verify Load Renderers from tools/sprite-baker.html, then run the Boar + Wolf smoke bake and place the exported files into assets/atlases/.

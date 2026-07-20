@@ -1,0 +1,10 @@
+Dream Realms Final Launch Package Checklist
+
+Before shipping this build:
+1. Launch Dream Realms V0.15.43.html from the extracted folder.
+2. Confirm Settings > Launch Validation Package Audit reports no required-script or required-system blockers.
+3. Press F3 and verify LaunchValidation is visible.
+4. Press F6 and play normally for 60 seconds.
+5. Test Auto renderer, Hybrid GPU, Canvas Safe Mode, Low-Spec Mode, camera rotation, caves, combat, bots, mercs, pets, spell-heavy fights, and damage text.
+6. Export Launch Validation JSON/TXT from Settings.
+7. If Hybrid fails, ship with Canvas Safe Mode guidance retained.

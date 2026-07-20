@@ -1,0 +1,7 @@
+Dream Realms V0.13.30 - Silk Web Cavern Direct Layout Hook Corrective Pass
+
+Fixes the player-facing layout issue from V0.13.29:
+- Silk Web Cavern surface entrance now loads the authored 3-floor dungeon directly.
+- The old generic cave wrapper no longer hides the authored dungeon layout from normal play.
+- Older saves inside the generic Silk Web cave redirect to the authored dungeon floor.
+- No duplicate dungeon loader, no bottom-of-file wrapper, no renderer hack.

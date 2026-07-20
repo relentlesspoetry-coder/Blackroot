@@ -1,0 +1,23 @@
+Dream Realms V0.14.25 — Spider High-Detail Procedural Model Upgrade Pass
+
+Summary
+- Upgraded `render/silk-web-spider-procedural-model.js` with a high-detail arachnid renderer pass.
+- Preserved existing spider role profiles, silhouette, coordinate space, 8-direction facing, boss/elite scaling, nameplate anchoring, and mob gameplay.
+- Added segmented leg geometry, joint membranes, tarsal claws, sensory setae, eight-eye clusters, chelicera/fang detail, pedipalps, carapace striations, abdomen surface texture, spinnerets, silk traces, and environmental debris accents.
+
+Files changed
+- render/silk-web-spider-procedural-model.js
+- Dream Realms V0.14.25.html
+- README.txt
+- VERSION.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.25_SPIDER_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- Direct spider render smoke test passed across roles and all 8 facings.
+- ZIP integrity verified with `unzip -t`.

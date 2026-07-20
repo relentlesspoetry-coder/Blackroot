@@ -1,0 +1,19 @@
+Dream Realms V0.13.97 — Stability Rollback Pass
+
+Summary
+- Reverted the unstable V0.13.96 Rotling renderer changes.
+- Restored the stable V0.13.95 Rotling procedural renderer to stop popping/jitter/regression behavior.
+- Removed accidental old HTML build file from package output.
+
+Files Changed
+- render/rotling-procedural-model.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.13.97_STABILITY_ROLLBACK_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- ZIP integrity verified with `unzip -t`.

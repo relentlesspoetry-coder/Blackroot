@@ -1,0 +1,11 @@
+Dream Realms V0.12.16 — Class Starting Gear Pass
+
+Summary
+- Added basic class-specific starter gear for Bard, Druid, Enchanter, Fighter, Rogue, Summoner, Necromancer, and Cleric.
+- Starter gear uses white rarity, level 1 requirements, and modest stats.
+- Gear is auto-equipped on new character start through the inventory system owner.
+
+Design Notes
+- Front-line classes get slightly more defense and HP.
+- Caster classes get small mana bonuses and weak weapon damage.
+- Rogue/Bard receive lighter mobility-oriented gear without large damage spikes.

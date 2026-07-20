@@ -1,0 +1,22 @@
+Dream Realms V0.14.13 — Bone Servant High-Detail Procedural Model Upgrade Pass
+
+Summary
+- Upgraded the Necromancer Bone Servant / undead pet renderer with a higher-detail skeletal construction pass.
+- Added skull sutures, fracture/callus readables, jaw wire, uneven teeth, forehead rune detail, exposed vertebrae, mismatched rib/pelvis details, crude leather/copper/metal bindings, sharpened phalanges, soul motes, and necromantic joint glow.
+- Preserved the existing silhouette, footprint, proportions, nameplate anchor, 8-direction facing behavior, action animation hooks, and pet gameplay.
+
+Files changed
+- Dream Realms V0.14.13.html
+- render/pet-identity-procedural-model.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.13_BONE_SERVANT_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt
+
+Validation
+- node --check passed across all JavaScript files.
+- ZIP integrity verified.

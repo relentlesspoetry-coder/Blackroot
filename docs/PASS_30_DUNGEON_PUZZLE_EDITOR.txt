@@ -1,0 +1,30 @@
+Dream Realms V0.10.3 Modular Pass 30 — Dungeon / Puzzle Editor Foundation
+
+Baseline
+- Dream Realms V0.10.3 Modular Pass 29.
+
+Added
+- data/dungeons.js.
+- Dungeon draft definitions.
+- Puzzle draft definitions.
+- Dungeon room metadata definitions.
+- Dungeons editor tab.
+- Dungeon Browser / New / Edit / Duplicate / Delete tools.
+- Puzzle Browser / New / Edit / Duplicate / Delete tools.
+- Dungeon marker placement tools:
+  - Place Dungeon Entrance
+  - Boss Room
+  - Puzzle Marker
+  - Lock Marker
+  - Key Marker
+  - Door Marker
+  - Treasure Room
+  - Erase Dungeon Marker
+  - Eyedropper Dungeon
+  - Assign Dungeon Loot
+
+Save/export
+- Adds dungeons, puzzles, and per-zone dungeonMarkers to world saves and exported JSON.
+
+Runtime status
+- Runtime dungeon loading is implemented in Pass 38, puzzle execution is implemented in Pass 39, and boss/dungeon rewards are implemented in Pass 40.

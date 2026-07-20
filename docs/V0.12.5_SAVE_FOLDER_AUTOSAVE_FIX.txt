@@ -1,0 +1,22 @@
+Dream Realms V0.12.5 — Save Folder Autosave Fix
+
+Scope:
+- Character save persistence.
+- 15-minute autosave cadence.
+- Optional browser save-folder support.
+- Fishing animation arm-layer cleanup.
+
+Implementation:
+- Added character save serialization in systems/save-system.js.
+- Added browser-local character save storage under dream-realms.character.v1.
+- Added character save backup storage under dream-realms.character.backup.v1.
+- Added optional File System Access API save-folder linking.
+- Save Folder creates/uses a "Dream Realms Character Saves" directory inside the chosen folder when supported by the browser.
+- Added F5 Save Folder and F10 Export Character bindings.
+- F9 now writes both world and character state.
+- Added updateAutosave ownership in save-system.js and calls it from the main update loop.
+- Autosave triggers every 15 minutes while a character is active.
+- Fishing pose now suppresses the base humanoid arm polygons so only the fishing-specific arms/rod pose renders.
+
+Browser limitation:
+- Browsers cannot silently create arbitrary disk folders. Folder selection requires user approval. Local browser saves remain the fallback.

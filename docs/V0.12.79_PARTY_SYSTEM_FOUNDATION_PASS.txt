@@ -1,0 +1,44 @@
+Dream Realms V0.12.79 — Party System Foundation Pass
+
+Scope:
+- Resume the user-provided roadmap after V0.12.76 Mercenary System Completion, V0.12.77 Mercenary HUD + Progression, and V0.12.78 Mercenary Gear.
+- Use V0.12.79 for the Party System Foundation pass.
+- Retain the code ownership cleanup fixes without letting that maintenance work consume the roadmap feature slot.
+
+Changed:
+- systems/party-system.js
+- game.js
+- Dream Realms V0.12.79.html
+- VERSION.txt
+- README.txt
+- docs/MODULAR_HISTORY.txt
+
+Party foundation behavior:
+- Added normalized party state setup for local party id, leader id, party members, and invites.
+- Added party roster snapshots for local player, invited mercenary, remote browser-local peers, and missing/offline party members.
+- Added leader/local/downed/meditating/command state metadata to party member frames.
+- Added stronger party invite validation for nearby same-zone synced players.
+- Added accept/decline/leave handling with UI refresh and party update broadcasts.
+- Added mercenary invite/remove flow that keeps downed mercs visible if already included.
+- Added right-click world-context party actions for nearby players and active mercenaries.
+
+Party HUD:
+- Rebuilt Party HUD rows as member frames with portrait/icon, class/role, level, leader badge, HP, mana, and current state.
+- Added signature-based HUD rendering so the HUD updates on state changes without unnecessary DOM replacement.
+
+Party panel:
+- Rebuilt party member panel rows with the same HP/mana state model.
+- Nearby player rows now show distance and pending invite state.
+- Invite rows show sender class and clear Accept/Decline buttons.
+
+Carryover maintenance retained:
+- Combat state ownership remains centralized in systems/combat-system.js.
+- Enchanter has dedicated renderer identity.
+- Mercenary gear UI dirty/signature guards remain in place.
+- Legacy Rogue fallback renderer remains removed.
+- Steam Deck splash polling remains cleaned.
+
+Cascade status:
+- No bottom-of-file override layer.
+- No delayed repair layer.
+- No wrapper/monkey patch layer.

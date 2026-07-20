@@ -1,0 +1,44 @@
+Dream Realms V0.12.73 — Ambient Audio + Weather SFX Pass
+
+Scope:
+- Expand the V0.12.70-V0.12.72 audio foundation with actual world ambience.
+- Keep ambience low-frequency and positional so it adds atmosphere without overwhelming combat/UI sounds.
+- Preserve standalone compatibility with procedural fallback audio.
+
+Changed:
+- systems/audio-system.js
+- systems/ambient-audio-system.js
+- systems/weather-system.js
+- systems/runtime-qa-system.js
+- game.js
+- _script_order.json
+- sound-effects/
+- VERSION.txt
+- README.txt
+- docs/MODULAR_HISTORY.txt
+- Dream Realms V0.12.73.html
+
+New ambient sound assets:
+- sound-effects/forest_wind.wav
+- sound-effects/bird_chirp.wav
+- sound-effects/insect_trill.wav
+- sound-effects/owl_hoot.wav
+- sound-effects/water_lap.wav
+- sound-effects/cave_drip.wav
+- sound-effects/cave_rock.wav
+- sound-effects/campfire_crackle.wav
+- sound-effects/town_murmur.wav
+- sound-effects/thunder_roll.wav
+
+Ambient behavior:
+- Overworld: forest wind, birds during daylight, insects and owls at night.
+- Town/start camp: campfire crackle and distant town murmur.
+- Near water: water lap one-shots.
+- Caves: cave drip and rock-shift one-shots.
+- Thunder weather: lightning triggers thunder_roll with cooldown protection.
+
+Cascade status:
+- No bottom-of-file override layer.
+- No monkey patch wrapper.
+- No delayed repair layer.
+- Audio work remains in the owning audio, ambient-audio, and weather systems.

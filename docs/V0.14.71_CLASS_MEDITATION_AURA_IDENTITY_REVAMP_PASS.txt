@@ -1,0 +1,24 @@
+Dream Realms V0.14.71 — Class Meditation Aura Identity Revamp Pass
+
+Scope:
+- Complete readability pass for class meditation visuals.
+
+Runtime changes:
+- Shared humanoid meditation pose data now includes meditationAuraAlpha for fast fade-in under the existing meditation state machine.
+- Shared humanoid renderer now draws louder per-class ground aura/decal layers before the body model.
+- Fighter premium renderer now uses a cracked stone/ember battle-circle instead of the old generic blue spirit aura.
+- Class-specific poses were amplified for stronger silhouettes and immediate recognition.
+
+Class identities:
+- Bard: seated lute performance with a music-staff aura, stool/rock prop, and floating notes.
+- Druid: deep lotus on conjured earth with roots, leaves, mushrooms/firefly-style motes, and green pulse ring.
+- Fighter: one-knee weapon oath with sword planted in the earth, cracked stone battle-circle, sparks, embers, and dust.
+- Rogue: low one-knee crouch with dagger focus, shadow smoke ring, purple edges, and poison-green center glow.
+- Cleric: kneeling prayer with white/gold divine ring, halo, holy beam, feathers, and sparkle field.
+- Enchanter: upright levitating spell-draw pose with iridescent geometric rings, rotating runes, crystals, and star motes.
+- Summoner: kneeling tome ritual with binding circle/pentagram read, open book, and elemental motes.
+- Necromancer: standing death rite with raised hands, necrotic circle, skeletal hands, soul wisps, and dark purple glow.
+
+Validation:
+- JavaScript syntax checked across runtime files.
+- No cascade patch layer added.

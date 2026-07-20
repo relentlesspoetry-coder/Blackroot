@@ -1,0 +1,16 @@
+Dream Realms V0.13.17 - Inventory Item Tooltip Completion Pass
+
+Scope:
+- Rebuilt item tooltip generation around one structured builder in systems/inventory-system.js.
+- Tooltip content now includes item name, canonical rarity, item type, slot, weapon/armor/bag details, stats, requirements, effects, sell value, stack data, and flavor text.
+- Rebound tooltips across inventory slots, equipped gear, bag bar bags, corpse loot, vendor buy/sell rows, merc gear, and bot inspection/trade gear.
+- Added viewport-safe tooltip positioning and mobile long-press inspection without interfering with dragging or double-click equip.
+- Removed reliance on native title hover text for item slots once the shared tooltip binder attaches.
+
+Ownership:
+- systems/inventory-system.js owns item tooltip builder/renderer/binder.
+- systems/event-system.js owns shop row item tooltip integration.
+- systems/loot-system.js owns corpse loot row item tooltip integration.
+- systems/bot-player-system.js and systems/mercenary-system.js expose item nodes to the shared tooltip binder.
+
+No cascade patch layer, late wrapper, setTimeout patch, or duplicate tooltip manager was added.

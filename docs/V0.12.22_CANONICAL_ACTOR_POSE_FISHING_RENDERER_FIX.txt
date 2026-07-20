@@ -1,0 +1,18 @@
+Dream Realms V0.12.22 — Canonical Actor Pose and Fishing Renderer Fix
+
+Diagnosis
+- Meditation used a seated body but still drew the head from independent standing-style offsets, causing a visible neck gap/floating head.
+- Fishing bypassed the current standing/walking puppet model and fell back to drawStandingBodyLegacy(), so fishing looked like an old character model even after the visual refactor.
+
+Fix
+- Added buildActorPose(actor, mode, time, profile) for stand/fishing/meditate pose chains.
+- Added setActorNameplateAnchor() so nameplates follow pose head anchors instead of fixed foot offsets.
+- Meditation draw path now attaches head/neck/hair to meditating pose joints.
+- Standing/fishing draw path now attaches neck/head/hair to standing/fishing pose joints.
+- Removed the fishing-specific legacy model branch.
+- Added drawFishingActionOverlay() as an action overlay on the current puppet model.
+- Rod and reel now attach to the current right-hand anchor and update fishingRodTipScreen for line/bobber rendering.
+
+Architecture
+- Character states now move toward: buildActorPose() -> layered actor body -> action overlay -> nameplate/bar anchor.
+- Fishing is no longer a separate humanoid model implementation.

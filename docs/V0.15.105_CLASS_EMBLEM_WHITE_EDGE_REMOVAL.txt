@@ -1,0 +1,5 @@
+Dream Realms V0.15.105 - Class Emblem White Edge Removal
+
+- Removed remaining white/dotted edge pixels around the class emblem cutouts.
+- Rebuilt assets/ui/class-emblems.png from the corrected individual class emblem PNGs.
+- Preserved the current character creator emblem size, centering, and black inset outline treatment.

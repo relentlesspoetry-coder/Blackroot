@@ -1,0 +1,21 @@
+Dream Realms V0.15.39 — Performance Stable Release Lock Pass
+
+Scope:
+- Locks the renderer/performance optimization stack into the release-facing path.
+- Keeps Renderer profile default at Auto, which uses Hybrid GPU when healthy and Canvas Safe Mode when needed.
+- Keeps Canvas Safe Mode as the persistent compatibility fallback.
+- Hides advanced renderer diagnostics by default on first-run release sessions.
+- Adds a stable release lock score and ship-ready/locked gate above the existing Release Polish, PostRC, StableRC, FinalQA, and Hybrid health systems.
+- Adds Settings controls to export/copy release-lock evidence, clear samples, and clear renderer safety state.
+- Adds F3 StableLock diagnostics.
+
+No gameplay/content changes:
+- No class balance changes.
+- No spell, item, loot, quest, mob, dungeon, economy, or zone layout changes.
+- No renderer layer promotion changes.
+
+Validation target:
+- Run with Renderer: Auto.
+- Press F3 and F6, play for a full 60-second benchmark.
+- StableLock should show locked/ship-ready once enough clean samples are collected.
+- Canvas Safe Mode remains available if WebGL/Hybrid becomes unstable.

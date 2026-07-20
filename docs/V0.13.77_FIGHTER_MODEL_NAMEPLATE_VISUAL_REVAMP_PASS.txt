@@ -1,0 +1,41 @@
+Dream Realms V0.13.77 — Fighter Model + Nameplate Visual Quality Revamp Pass
+
+Systems changed:
+- render/class-identity-procedural-model.js
+- render/entity-renderer.js
+- version metadata, README, save metadata, world serializer metadata
+
+Fighter model visual upgrades:
+- Sharpened Fighter silhouette by tightening stance/posture identity and strengthening the shoulder/torso/waist proportions.
+- Rebuilt plate cuirass drawing with angular armor plates, center trim, bevel highlights, clearer panel separation, and stronger metal/cloth/leather material contrast.
+- Replaced soft round pauldrons with sharper faceted plate shoulders and clearer edge highlights.
+- Improved chest detail with a central crest/trim, readable rib-panel lines, and less flat torso treatment.
+- Improved belt and lower armor with sharper buckle/tasset details and grounded boot overlays.
+- Improved Fighter head identity with a crisp brow band, temple guards, and sharper martial silhouette without hiding appearance hair.
+- Rebuilt sword drawing with a cleaner blade profile, pointed tip, central highlight ridge, stronger guard, and clearer grip.
+- Rebuilt shield drawing with a larger sharper kite shape, layered face planes, trim line, crest/cross detail, and clearer metal shading.
+
+Nameplate visual upgrades:
+- Reworked overhead nameplate into a cleaner beveled plate with stronger border hierarchy and subtle top highlight.
+- Improved name/level hierarchy and centered level/emblem grouping.
+- Added cleaner emblem/badge framing for player-class nameplates.
+- Rebuilt HP bar with rounded frame, gradient fill, crisp edge definition, and subtle highlight.
+- Preserved nameplate anchor behavior and existing meditating skill XP bar.
+
+Preserved systems:
+- Player rendering pipeline and class identity renderer ownership.
+- Character creation appearance support.
+- Click targeting and Tab targeting.
+- Nameplate and health-bar anchoring.
+- Combat, movement, save/load, paper doll/gear logic, and sprite sheet bake/runtime fallback systems.
+
+Tests run:
+- JavaScript syntax checks for all project JS files.
+- Main HTML local script reference audit.
+- Version metadata audit.
+- ZIP integrity validation.
+
+Manual browser-test caveats:
+- Verify Fighter front/side/back readability in live gameplay.
+- Verify shield, sword, shoulders, chest armor, face/hair, nameplate, and HP bar at normal gameplay zoom.
+- Verify click targeting, Tab targeting, save/load, character creation appearance, and sprite-sheet fallback behavior locally.

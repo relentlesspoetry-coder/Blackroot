@@ -1,0 +1,22 @@
+Dream Realms V0.14.03 — Rogue High-Detail Procedural Model Upgrade Pass
+
+Summary
+- Upgraded the in-game Rogue model through the owning class-identity procedural renderer.
+- Added a detailed stealth kit while preserving existing Rogue silhouette, proportions, 8-direction facings, and gameplay hooks.
+
+Files Changed
+- render/class-identity-procedural-model.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- Dream Realms V0.14.03.html
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.03_ROGUE_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- Rogue renderer smoke-tested across idle, walk, attack, cast, meditate, fishing, hit, death, and all 8 facings.
+- ZIP integrity verified with `unzip -t`.

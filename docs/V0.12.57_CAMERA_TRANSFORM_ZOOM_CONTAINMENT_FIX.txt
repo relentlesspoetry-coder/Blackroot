@@ -1,0 +1,18 @@
+Dream Realms V0.12.57 — Camera Transform Zoom Containment Fix
+
+Root cause
+- A renderer error inside nested Canvas save/scale calls could leak a scaled transform.
+- The next frame would apply the world zoom on top of the leaked transform, creating runaway zoom.
+
+Owning files changed
+- game.js
+- render/entity-renderer.js
+- render/humanoid-base-renderer.js
+
+Fixes
+- Reset Canvas transform to identity before each render frame.
+- Reset Canvas transform after ending the world-camera transform.
+- Wrap scaled model renderer calls in try/finally.
+- Wrap HumanoidBaseRenderer draw state in try/finally.
+- Clamp/sanitize zoom and targetZoom before use.
+- Cap wheel delta handling.

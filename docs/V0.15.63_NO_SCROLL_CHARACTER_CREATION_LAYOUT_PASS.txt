@@ -1,0 +1,9 @@
+Dream Realms V0.15.63 — No-Scroll Character Creation Layout Pass
+
+- Rebuilt the existing character creator as a fixed-fit left/center/right grid.
+- All four races remain visible as compact cards without side-panel scrolling.
+- All eight existing classes remain visible in a two-column compact grid without side-panel scrolling.
+- Enlarged and centered the selected race/class procedural Canvas2D model.
+- Moved full selected race/class information into the center details panel.
+- Compressed appearance controls into a three-column grid and kept the Create button visible.
+- No race, class, save, racial ability, or renderer behavior was added or removed.

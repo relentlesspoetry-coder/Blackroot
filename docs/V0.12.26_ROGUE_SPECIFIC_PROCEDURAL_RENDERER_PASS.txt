@@ -1,0 +1,18 @@
+Dream Realms V0.12.26 — Rogue-Specific Procedural Renderer Pass
+
+Summary
+- Replaced Rogue's regular standing/walking visual path with a dedicated class-specific renderer module.
+- The generic humanoid renderer remains for other classes, but Rogue actors are routed to RogueProceduralModel before generic humanoid drawing.
+
+Implementation
+- Added render/rogue-procedural-model.js.
+- Added the module to the HTML script load order before render/entity-renderer.js.
+- Added renderer-owner helpers in render/entity-renderer.js: isRogueClassActor(), actorFacingName(), and drawRogueClassModel().
+- drawEntity() now sends non-meditating Rogue actors to drawRogueClassModel() and bypasses drawHumanoid().
+
+Visual Changes
+- Hood, mask, cloak, blue-black rogue palette.
+- Leather pouches and belt.
+- Asymmetrical metal shoulder plate.
+- Large readable dual daggers attached to hands.
+- Front/back facing silhouettes with motion bob, arm swing, leg swing, and cloak swing.

@@ -1,0 +1,15 @@
+Dream Realms V0.13.2 — World AI Target Discipline and Camp NPC Visual Polish Pass
+
+Scope
+- Tighten enemy target selection for better mob AI behavior.
+- Prevent off-zone/stale bots from being selected by enemies.
+- Keep autonomous bots in their own zone unless they are actually in the player party.
+- Improve camp NPC visual profiles while preserving class-model rendering ownership.
+- Add role-specific NPC prop overlays without restoring the ugly fallback body renderer.
+
+Validation
+- Syntax check all active JS files.
+- Verify script order file references.
+- Verify combat target selector uses zone/range gating.
+- Verify bot update only inherits player zone when grouped.
+- Verify NPC class visual profile and prop overlay hooks are present.

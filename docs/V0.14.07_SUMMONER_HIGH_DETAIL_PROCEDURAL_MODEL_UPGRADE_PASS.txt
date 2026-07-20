@@ -1,0 +1,19 @@
+Dream Realms V0.14.07 — Summoner High-Detail Procedural Model Upgrade Pass
+
+Summary
+- Performed the next class remodel pass on the Summoner.
+- Increased in-game Summoner visual fidelity while preserving the existing silhouette, proportions, and design language.
+- Focused on robe layering, ritual gear readability, head regalia, and a richer summoning focus weapon.
+
+Files Changed
+- render/class-identity-procedural-model.js
+- Dream Realms V0.14.07.html
+- README.txt
+- VERSION.txt
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.07_SUMMONER_HIGH_DETAIL_PROCEDURAL_MODEL_UPGRADE_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- Version metadata updated to V0.14.07.
+- ZIP integrity verified with `unzip -t`.

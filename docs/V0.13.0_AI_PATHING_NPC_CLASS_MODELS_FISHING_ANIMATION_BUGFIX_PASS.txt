@@ -1,0 +1,11 @@
+Dream Realms V0.13.0 — AI Pathing NPC Class Models Fishing Animation Bugfix Pass
+
+- Improved shared autonomous movement traversal for mobs and bot players with delta clamping, local blocker steering, and stronger path repathing.
+- Improved enemy AI recovery when mobs stall against terrain, tents, fences, trees, or water-edge blockers.
+- Strengthened bot adventure AI so bots are forced out of camp toward real hunt/quest anchors instead of standing in town while labeled as questing.
+- Camp/town NPCs now render as player-class model actors through the same drawEntity/class renderer pipeline instead of the ugly fallback NPC body.
+- Added real fishing poses to the shared humanoid rig so hands grip a fishing rod instead of standing static.
+- Added visible fishing rods and reel animation to class-identity models, Bard models, and Druid models.
+- Fishing line anchor now uses the rendered rod tip so the line attaches to the pole.
+
+Validation required: JS syntax, script order, render smoke, NPC render probe, fishing rod-tip probe, bot/mob movement static checks.

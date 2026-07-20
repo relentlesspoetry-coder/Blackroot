@@ -1,0 +1,28 @@
+Pass 45 - Full QA / Stabilization
+
+Purpose
+- Stabilize the full editor/runtime chain completed in Passes 31-44.
+- Fix broken source-data references instead of masking them at runtime.
+- Strengthen editor validation so future drafts expose broken dependencies before export/playback.
+
+Fixes
+- Added item_glooms_crypt_key, the key item referenced by Gloom's Crypt.
+- Added item_cooked_forest_stew and updated the Gloomleaf quest reward to use that compiled item id.
+- Added puzzle_bone_levers so Gloom's Crypt floor rotation no longer references a missing puzzle draft.
+- Added npc_camp_cook and default runtime placement/dialogue so the repeatable Gloomleaf gathering quest is reachable through a live NPC.
+- Save migration now upgrades buildPass metadata to Pass 45 instead of preserving stale lower pass numbers.
+- Export world save now validates/migrates the payload before writing JSON.
+
+Validation hardening
+- Editor validation now checks quest reward items.
+- Editor validation now checks NPC draft quest references.
+- Editor validation now checks mob draft and mob-spawn loot table references.
+- Editor validation now checks dungeon boss, key item, puzzle, and loot table references.
+- Editor validation now checks puzzle dungeon references and failure-spawn references.
+- Editor validation now normalizes the legacy common_chest loot-table alias.
+
+QA result
+- JavaScript syntax check passes across all modules.
+- Cross-reference QA passes across quests, items, loot tables, dungeons, puzzles, NPCs, mobs, mob spawns, recipes, and event command aliases.
+- Save migration smoke test confirms v1 saves migrate to schema v2 / Pass 45.
+- Editor validation smoke test confirms a clean default world reports zero broken runtime/editor references.

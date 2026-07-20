@@ -1,0 +1,81 @@
+Dream Realms — Class Identity Design Version Target: V0.11.6
+
+Class Roster
+
+1.  Fighter Role:
+
+-   Heavy-weapon melee DPS
+
+Identity: - Slow, powerful melee attacks - Two-handed weapon
+specialist - High burst physical damage - Armor breaking - Cleaves -
+Bleeds - Execute-style finishers
+
+Not a tank: - No taunts - No shield-focused identity - No threat
+management
+
+2.  Rogue Role:
+
+-   Fast burst melee DPS
+-   Poison specialist
+
+Identity: - Quick attacks - Backstab - Critical strikes - Bleeds -
+Poison damage over time - High mobility - Evasion
+
+3.  Bard Role:
+
+-   Support DPS
+
+Identity: - Songs - Buffs - Debuffs - Group utility - Moderate personal
+damage
+
+4.  Cleric Role:
+
+-   Primary healer
+-   Holy support
+
+Identity: - Direct heals - Group healing - Holy damage - Defensive
+blessings - Protection magic
+
+5.  Druid Role:
+
+-   Nature caster
+-   Hybrid sustain
+
+Identity: - Nature damage - Roots - Thorns - Healing - Poison -
+Wildlife-themed magic
+
+6.  Summoner Role:
+
+-   Primary pet-focused caster DPS
+
+Identity: - Strongest pet class - Multiple summon types - Pet
+management - Pet synergies - Arcane/elemental summons
+
+7.  Necromancer Role:
+
+-   Undead pet caster
+-   Attrition caster
+
+Identity: - Skeletons and undead pets - Disease - Damage-over-time -
+Life drain - Mana drain - Bone and corpse magic - Pet-supported
+sustained pressure
+
+8.  Enchanter Role:
+
+-   Crowd control caster
+
+Identity: - Mezmerize - Slow - Debuffs - Mana manipulation - Control
+effects - Pull management
+
+V0.11.6 Scope
+
+-   Rewrite Fighter as heavy melee DPS.
+-   Rewrite Rogue as burst + poison specialist.
+-   Rewrite Necromancer as undead pet caster with drains and disease.
+-   Review and update all eight class descriptions.
+-   Update character creation descriptions.
+-   Update spellbook descriptions.
+-   Update tooltips.
+-   Update trainer text.
+-   Update turn-based combat interactions.
+-   Remove any remaining incorrect tank references from Fighter.

@@ -1,0 +1,27 @@
+Dream Realms V0.14.78 — Necromancer Spell Animation Set Pass
+
+Implemented:
+- Created a dedicated procedural spell animation set for the Necromancer's six spells:
+  - Raise Bone Servant
+  - Life Tap
+  - Bone Spear
+  - Rot Cloud
+  - Grave Armor
+  - Soul Leech
+- Added necromantic visual identity across all six spells: bone-white geometry, sickly green-black corruption, cold mist, bone dust, dark tendrils, and pale undeath highlights.
+- Added new effect spawning ownership in systems/effects-system.js.
+- Added spell resolver hooks in systems/spell-system.js so the existing Necromancer spells trigger their correct visual effect.
+- Added effect renderer branches in render/effects-renderer.js:
+  - drawNecroRaiseBoneServantEffect
+  - drawNecroDrainTendrilEffect
+  - drawNecroBoneSpearEffect
+  - drawNecroRotCloudEffect
+  - drawNecroGraveArmorEffect
+  - drawNecroBoneDustEffect
+- Added animation-ready procedural geometry documentation:
+  - assets/effects/necromancer_spell_effect_geometry_v0.14.78.json
+
+Validation:
+- Runtime JavaScript syntax validated with node --check.
+- Zip integrity validated with unzip -t.
+- No cascade patch layer added.

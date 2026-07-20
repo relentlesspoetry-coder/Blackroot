@@ -1,0 +1,8 @@
+Dream Realms V0.10.5 - Click-to-Walk Owning-System Freeze Fix
+
+- Moved click-to-walk ownership into game.js input and movement update methods.
+- Removed duplicate click-to-walk pointer handling from systems/steam-deck-system.js.
+- Removed Steam Deck render wrapper for click destination markers; marker drawing is now owned by game.js render.
+- Added frame-level runtime recovery so a click movement/render fault cannot permanently stop the game canvas loop.
+- Added finite coordinate guards, direct steering only, strict dt clamping, stuck timeout, and safe target clearing.
+- Output file renamed to Dream Realms V0.10.5.zip.

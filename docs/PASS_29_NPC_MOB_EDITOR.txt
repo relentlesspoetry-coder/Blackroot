@@ -1,0 +1,57 @@
+Dream Realms V0.10.3 Modular Pass 29 — NPC / Mob Editor Foundation
+
+Baseline
+- Built from Modular Pass 28.
+- No cave-render, combat, spell, movement, fishing, party, or multiplayer changes.
+
+Added data file
+- data/npcs.js
+
+Added editor data definitions
+- NPC_DRAFTS / NPC_DRAFT_BY_ID
+- MOB_DRAFTS / MOB_DRAFT_BY_ID
+- MOB_SPAWN_DRAFTS / MOB_SPAWN_BY_ID
+
+Added editor tabs
+- NPCs
+- Mobs
+
+NPC editor support
+- NPC Browser
+- New NPC
+- Edit NPC
+- Duplicate NPC
+- Delete NPC
+- Place NPC
+- Erase NPC
+- Eyedropper NPC
+- Assign Quest
+- Assign Shop
+- Assign Dialogue
+
+Mob editor support
+- Mob Browser
+- New Mob
+- Edit Mob
+- Duplicate Mob
+- Delete Mob
+- Spawn Browser
+- New Spawn
+- Edit Spawn
+- Duplicate Spawn
+- Delete Spawn
+- Place Spawn
+- Erase Spawn
+- Eyedropper Spawn
+- Assign Mob Loot
+
+Save/export support
+- top-level NPC definitions
+- top-level mob definitions
+- top-level mob spawn group definitions
+- per-zone placed NPC markers
+- per-zone placed mob spawn markers
+
+Runtime note
+- This pass is editor/data-only.
+- NPC interaction playback was implemented in Pass 36. Mob spawn conversion was implemented in Pass 37 runtime work.

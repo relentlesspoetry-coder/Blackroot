@@ -1,0 +1,39 @@
+Dream Realms V0.15.12 — Adaptive Performance Governor Pass
+
+Scope
+- Adds an adaptive frame-budget governor for the existing Canvas 2D renderer.
+- Does not change gameplay, class balance, spells, mobs, loot, quests, zones, or UI layout.
+- Keeps Canvas 2D as the active renderer; WebGL remains a future renderer-backend project.
+
+Runtime changes
+- Added systems/adaptive-performance-system.js.
+- Game startup now creates AdaptivePerformanceSystem alongside the asset, sprite atlas, sprite sheet, and runtime sprite cache systems.
+- performanceSettings() now routes through the adaptive governor so existing systems can consume effective runtime performance settings without hardcoding a second configuration path.
+- The main loop samples frame, render, and update timings, then lets the governor downshift/upshift quality under sustained pressure.
+- Canvas resize is deferred and consumed by the Game runtime when the adaptive level changes DPR.
+
+Adaptive levels
+- Balanced: current default values.
+- Performance: lower DPR cap, smaller render pad, tighter culling pads, no weather sky overlay, slower full UI refresh, lower effect/damage-text budgets.
+- Rescue: DPR 1.0, smaller render pad, tighter culling pads, weather overlays disabled, slower UI cadence, stronger effect/damage-text limits.
+
+Config additions
+- enableAdaptivePerformance
+- adaptiveInitialLevel
+- adaptiveMinLevel
+- adaptiveMaxLevel
+- adaptiveTargetFrameMs
+- adaptiveStressFrameMs
+- adaptiveRecoveryFrameMs
+- adaptiveSampleIntervalMs
+- adaptiveDownshiftHoldMs
+- adaptiveUpshiftHoldMs
+
+Instrumentation
+- F3 overlay now reports adaptive level, frame/render/update EMA, downshift/upshift counts, and last adaptive change reason.
+- UI cadence and effect budget systems now use game.performanceSettings(), so adaptive settings are respected instead of reading only static CONFIG.PERFORMANCE.
+
+Validation
+- JavaScript syntax validation passed across the modular runtime.
+- _script_order.json has no missing files.
+- HTML script references have no missing files.

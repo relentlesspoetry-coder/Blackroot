@@ -1,0 +1,18 @@
+Dream Realms V0.14.55 — Professions Skills Layout Movable Windows Pass
+
+Scope:
+- Center Professions and Skills side-by-side when Professions opens.
+- Make runtime UI windows movable through their title/header handles.
+- Preserve manually moved window positions during the session and through browser-local storage when available.
+
+Changes:
+- Professions opens Skills automatically and calls the shared side-by-side layout helper.
+- The shared UI owner now provides clamped position, stored-position, center-window, and Professions/Skills group-layout helpers.
+- Professions and Crafting Station windows now use gameWindow + windowHeader ownership instead of custom non-draggable title rows.
+- Bot Inspect exposes its title row as a drag handle.
+- Window dragging ignores buttons, inputs, selects, textareas, links, and content-editable regions to avoid interfering with panel controls.
+
+Validation:
+- Ran node --check across runtime JavaScript files.
+- Verified the Professions toggle path owns Skills opening and grouped layout.
+- Verified no cascade patch layer was added.

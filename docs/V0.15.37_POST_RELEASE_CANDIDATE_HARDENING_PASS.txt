@@ -1,0 +1,20 @@
+Dream Realms V0.15.37 — Post-Release Candidate Hardening Pass
+
+Goal
+- Harden the V0.15.36 Stable Release Candidate path before treating Hybrid GPU as a shippable default.
+- Do not change combat, classes, spells, loot, mobs, quests, dungeons, zones, or balance.
+
+Changes
+- Added systems/post-release-candidate-hardening-system.js.
+- Added PostRC confidence scoring that combines StableRC score, rollout health, Final QA, fallback pressure, Hybrid frame cost, and benchmark evidence.
+- Added first-run renderer default handling. New local sessions default to Auto unless the player already selected a renderer profile.
+- Added benchmark evidence policy support. V0.15.37 warns when no release benchmark has been completed instead of blocking by default.
+- Added repeated rollback hardening. Repeated Hybrid rollback evidence can temporarily lock to Canvas Safe Mode so unstable devices stop retrying WebGL.
+- Added Settings controls for hardening gate, release benchmark, JSON export, summary copy, sample reset, and Canvas lock clearing.
+- Added F3 PostRC line with confidence, ship-readiness, benchmark state, and blockers.
+- Added export payload containing PostRC history, rollback evidence, StableRC, renderer health, and benchmark history.
+
+Validation
+- JavaScript syntax validation should pass across all modular runtime scripts.
+- _script_order.json includes the new system after Stable Release Candidate.
+- HTML script references include the new system before render scripts and game.js.

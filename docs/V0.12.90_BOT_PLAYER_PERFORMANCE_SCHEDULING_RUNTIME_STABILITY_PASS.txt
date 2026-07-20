@@ -1,0 +1,42 @@
+Dream Realms V0.12.90 — Bot Player Performance Scheduling Runtime Stability Pass
+
+Baseline
+- Dream Realms V0.12.89 — Bot Player Social Economy World Presence Pass
+
+Primary Goal
+- Stabilize the bot-player simulation before adding more bot/world features.
+
+Implemented
+- Bot runtime scheduler owner in systems/bot-player-system.js.
+- Actor AI scheduling for BotPlayer.update:
+  - party bots remain hot
+  - nearby bots remain responsive
+  - combat bots remain hot
+  - distant autonomous bots tick less frequently
+- Advanced routine scheduling:
+  - quest/camp/dungeon/social/economy routines no longer run for every bot every frame
+  - hot bots bypass the low-priority budget when necessary
+  - autonomous distant bots use longer update intervals
+- Timed bot ensure/squad refresh:
+  - ensureBotPlayers no longer runs every frame
+  - ensureBotSquads no longer runs every frame
+- Runtime stability guards:
+  - invalid bot coordinates recover to spawn/camp anchors
+  - invalid HP/mana values are repaired
+  - autonomous stuck bots can recover to their roam anchor
+- Scheduler stats:
+  - actor tick count
+  - advanced tick count
+  - skipped actor tick count
+  - skipped advanced tick count
+  - active bot count
+- Bot save snapshot upgraded to version 4.
+- Runtime QA checks for scheduler APIs.
+
+Validation
+- node --check on all active JavaScript files
+- _script_order.json matches HTML script tags
+- static checks for scheduler ownership and snapshot version 4
+- zip extraction/integrity check
+
+No cascade patch layer was added.

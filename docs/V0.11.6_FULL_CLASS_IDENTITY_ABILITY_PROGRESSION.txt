@@ -1,0 +1,23 @@
+Dream Realms V0.11.6 - Full Class Identity and Ability Progression
+
+Scope:
+- Corrected the full eight-class identity model.
+- Fighter is heavy-weapon melee DPS, not a tank.
+- Rogue is fast burst melee DPS with poison damage.
+- Necromancer is an undead pet caster with drains, disease, and attrition pressure.
+- Bard, Cleric, Druid, Summoner, and Enchanter descriptions were aligned with their intended class roles.
+- Added class spell unlock-level metadata for the Dark Woods 1-10 band.
+- Added spell tooltip metadata for unlock level, targeting, cost, cooldown, and turn behavior.
+- Added turn-based poison/disease/bleed tick damage support.
+- Added Necromancer undead pet summon support while preserving Summoner as the stronger primary pet class.
+
+No cascade patching:
+- Class definitions: data/classes.js
+- Spell definitions: data/spells.js
+- Spell draft generation: data/spell-editor.js
+- Spell compiler metadata: systems/spell-compiler-system.js
+- Spell runtime resolution: systems/spell-system.js
+- Turn status ticks: systems/turn-combat-system.js
+- Pet entity behavior: entities/pet.js
+- Buff metadata ownership: entities/entity.js
+- Fighter visual weapon identity: render/entity-renderer.js

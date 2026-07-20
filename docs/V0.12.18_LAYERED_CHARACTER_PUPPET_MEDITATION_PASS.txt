@@ -1,0 +1,16 @@
+Dream Realms V0.12.18 — Layered Character Puppet and Meditation Pose Pass
+
+Diagnosis
+- The draw-based character renderer was visually weak because meditation was embedded inside one large humanoid draw path and relied on compact polygon blocks.
+- Meditation did not have a clear seated silhouette or explicit body-part layering.
+
+Fix
+- Renamed the previous humanoid path to drawStandingBody().
+- Added drawHumanoid() as a dispatcher that routes meditating entities into a separate layered puppet path.
+- Added modular meditation methods: drawMeditationAura, drawMeditationParticles, drawTerrainMeditationResponse, drawMeditatingBody, drawMeditationBackCloth, drawMeditationLegs, drawMeditationTorso, drawMeditationArms, drawMeditationHands, drawPuppetHead, drawPuppetHairOrHood, and drawMeditationGearDetails.
+- Meditation now draws shadow/aura response, folded legs, torso, sleeves, hands, head, hood/hair/helmet, gear details, particles, then existing nameplate/bars.
+- Added simple direction profile data so side/back/front meditation silhouettes differ instead of using one identical shape.
+
+Performance
+- The heaviest particle/aura work is limited to meditating entities, usually the player/merc.
+- Standing rendering remains unchanged to avoid a risky broad visual regression in this pass.

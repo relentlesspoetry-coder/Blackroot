@@ -1,0 +1,119 @@
+{
+  "columns": 7,
+  "rows": 2,
+  "cellSize": 512,
+  "classes": [
+    {
+      "name": "Paladin",
+      "key": "paladin",
+      "col": 0,
+      "row": 0,
+      "fallback": "\u2726",
+      "path": "assets/ui/class-emblems/paladin.png"
+    },
+    {
+      "name": "Warden",
+      "key": "warden",
+      "col": 1,
+      "row": 0,
+      "fallback": "\u25c6",
+      "path": "assets/ui/class-emblems/warden.png"
+    },
+    {
+      "name": "Fighter",
+      "key": "fighter",
+      "col": 2,
+      "row": 0,
+      "fallback": "\u2694",
+      "path": "assets/ui/class-emblems/fighter.png"
+    },
+    {
+      "name": "Rogue",
+      "key": "rogue",
+      "col": 3,
+      "row": 0,
+      "fallback": "\ud83d\udde1",
+      "path": "assets/ui/class-emblems/rogue.png"
+    },
+    {
+      "name": "Ranger",
+      "key": "ranger",
+      "col": 4,
+      "row": 0,
+      "fallback": "\u27b6",
+      "path": "assets/ui/class-emblems/ranger.png"
+    },
+    {
+      "name": "Assassin",
+      "key": "assassin",
+      "col": 5,
+      "row": 0,
+      "fallback": "\u2301",
+      "path": "assets/ui/class-emblems/assassin.png"
+    },
+    {
+      "name": "Wizard",
+      "key": "wizard",
+      "col": 6,
+      "row": 0,
+      "fallback": "\u2727",
+      "path": "assets/ui/class-emblems/wizard.png"
+    },
+    {
+      "name": "Shaman",
+      "key": "shaman",
+      "col": 0,
+      "row": 1,
+      "fallback": "\u25c8",
+      "path": "assets/ui/class-emblems/shaman.png"
+    },
+    {
+      "name": "Summoner",
+      "key": "summoner",
+      "col": 1,
+      "row": 1,
+      "fallback": "\u2726",
+      "path": "assets/ui/class-emblems/summoner.png"
+    },
+    {
+      "name": "Necromancer",
+      "key": "necromancer",
+      "col": 2,
+      "row": 1,
+      "fallback": "\u2620",
+      "path": "assets/ui/class-emblems/necromancer.png"
+    },
+    {
+      "name": "Cleric",
+      "key": "cleric",
+      "col": 3,
+      "row": 1,
+      "fallback": "\u271a",
+      "path": "assets/ui/class-emblems/cleric.png"
+    },
+    {
+      "name": "Druid",
+      "key": "druid",
+      "col": 4,
+      "row": 1,
+      "fallback": "\u2618",
+      "path": "assets/ui/class-emblems/druid.png"
+    },
+    {
+      "name": "Bard",
+      "key": "bard",
+      "col": 5,
+      "row": 1,
+      "fallback": "\u266b",
+      "path": "assets/ui/class-emblems/bard.png"
+    },
+    {
+      "name": "Enchanter",
+      "key": "enchanter",
+      "col": 6,
+      "row": 1,
+      "fallback": "\u25c7",
+      "path": "assets/ui/class-emblems/enchanter.png"
+    }
+  ]
+}

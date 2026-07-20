@@ -1,0 +1,20 @@
+Dream Realms V0.15.05 - Silk Web Cavern Environment Graphical Upgrade Pass
+
+Summary
+- Upgraded the Silk Web Cavern environment through the dungeon-generation and rendering owners.
+- Preserved exact authored room centers, room dimensions, corridor links, boss arena bounds, enemy spawn placement semantics, quest/objective placement, and dungeon traversal flow.
+- Added high-fidelity non-blocking dressing for entrance descent, web anchor galleries, egg sac chambers, prey storage, bone middens, boss sanctums, water seeps, side tunnels, cave formations, and ambient fungus.
+- Added tile-level high-fidelity surface metadata and runtime surface-detail rendering for webbed limestone, venom-stained limestone, cocoon silk, and royal silk.
+- Added a complete three-floor high-poly environment bake/reference OBJ generated from the existing SILK_WEB_FLOOR_CONFIG.
+
+High-Poly Asset
+- assets/models/highpoly/silk_web_cavern_environment_highpoly_quadmesh_v0.15.05.obj
+- assets/models/highpoly/silk_web_cavern_environment_highpoly_quadmesh_v0.15.05.json
+
+Gameplay Preservation
+- No room dimensions changed.
+- No corridor widths changed.
+- No spawn points removed or moved by this pass.
+- No boss arena bounds changed.
+- No quests, loot tables, interactables, portals, stairs, entrances, or exits were removed.
+- New environment dressing is visual-only, passable, and non-damaging unless an existing object type already owned gameplay behavior.

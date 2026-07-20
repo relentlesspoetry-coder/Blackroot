@@ -1,0 +1,17 @@
+Dream Realms V0.13.89 — Fighter Meditation EXP Bar Ground Anchor Pass
+
+Summary
+- Moved the meditation EXP bar below the model feet by anchoring it to the actor ground position.
+
+Files Changed
+- render/entity-renderer.js
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.13.89_FIGHTER_MEDITATION_EXP_BAR_GROUND_ANCHOR_PASS.txt
+
+Validation
+- JavaScript syntax verified with `node --check`.
+- ZIP integrity verified with `unzip -t`.

@@ -1,0 +1,25 @@
+Dream Realms V0.14.21 — Pet Auto Attack and Party HUD Attachment Fix Pass
+
+Summary
+- Fixed Necromancer and Summoner pet auto-attack targeting and attack execution.
+- Added explicit pet attack animation triggering for Bone Servant and Azure Shard Familiar.
+- Made the Summoner Azure Shard Familiar use ranged caster auto-attack behavior and projectile-style visuals.
+- Corrected Party HUD class emblem portraits and attached the companion/party frame stack under the player HUD instead of covering the play space.
+
+Files changed
+- entities/pet.js
+- systems/ui-system.js
+- systems/party-system.js
+- Dream Realms V0.14.21.html
+- README.txt
+- VERSION.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.21_PET_AUTO_ATTACK_PARTY_HUD_ATTACHMENT_FIX_PASS.txt
+
+Validation
+- JavaScript syntax verified with node --check.
+- ZIP integrity verified with unzip -t.

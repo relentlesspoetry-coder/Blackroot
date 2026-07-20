@@ -1,0 +1,119 @@
+Dream Realms V0.15.56 — 3D Renderer Prototype Phase 1
+
+Scope: Phase 1 (3D engine integration) and Phase 2 (coordinate mapping) of a
+planned full 3D conversion, per the project owner's phased plan. Toggle-gated:
+Canvas 2D remains the default renderer and is byte-for-byte unaffected unless
+the player explicitly switches to the new mode. No existing gameplay system
+was modified, simplified, or removed.
+
+Ownership map established this pass:
+- Main render loop: game.js Game.prototype.render, dispatched through the
+  existing render-backend-system.js wrapper (single canonical "which renderer
+  draws this frame" decision point).
+- Camera (2D): game.js camera = {x, y, yaw, zoom} + worldToScreen/screenToWorld.
+- Terrain (2D): render/terrain-renderer.js.
+- Entities (2D): render/entity-renderer.js, humanoid-base-renderer.js, and 12
+  per-class/monster procedural-model.js files (~11,250 lines of 2D canvas art).
+- Existing "Hybrid Renderer" (V0.15.16-V0.15.39): confirmed to be a WebGL
+  textured-quad compositor over the same 2D canvas drawing, not a 3D
+  foundation - no matrices, no mesh geometry, no depth buffer, no 3D camera,
+  no raycasting. Not reused for this pass beyond its render-backend-system.js
+  mode-switching machinery, which IS the correct existing owner for "which
+  renderer mode is active" and was extended rather than duplicated.
+
+Added:
+- vendor/three.min.js: Three.js r128 (MIT), the last version with a classic
+  global/UMD build compatible with this project's plain <script> tag loading
+  (no bundler/ES modules in this codebase).
+- systems/render3d-system.js: owns the Three.js scene/camera/renderer/lighting
+  lifecycle, the canonical 2D-tile -> 3D-world coordinate mapping
+  (worldToScene3D/scene3DToWorld, 1 world unit per tile, 0.45 units per
+  elevation step), a real heightmap terrain mesh built from the live
+  game.map (vertex-colored by tile type, 200x200 tiles), a player capsule
+  mesh, and a shared marker-mesh registry for other live entities (keyed by
+  game.entities[].kind - the seed of the Phase 4 per-class/per-monster mesh
+  registry, not the final art).
+- A third renderer mode, 'three-3d-prototype', added to render-backend-system.js
+  alongside the existing canvas2d/hybrid-webgl-prototype modes (same
+  normalizeRendererMode/setRendererMode/canEnter*Mode pattern, same
+  localStorage persistence, same auto-fallback-to-canvas2d-on-failure
+  discipline as the existing hybrid mode).
+- Settings > Renderer: a fourth profile button, "3D Prototype", alongside the
+  existing Auto/Hybrid GPU/Canvas Safe Mode buttons (performance-settings-
+  cleanup-system.js), plus a matching row in the advanced diagnostics panel
+  (performance-verification-system.js).
+
+Fixed (discovered during validation, pre-existing, unrelated to the 3D work):
+- Settings panel crashed (`presets.map is not a function`) whenever the
+  player-facing "simple" settings view rendered, because
+  performance-settings-cleanup-system.js assumed DR.PERFORMANCE_PRESETS was
+  an array; it is a keyed object. Both the primary and the regression-fix
+  fallback path hit the same crash. Fixed by iterating with Object.entries,
+  matching how the same PRESETS object is already consumed correctly in
+  performance-verification-system.js.
+- The existing Hybrid Default Rollout system (hybrid-default-rollout-system.js)
+  periodically re-applies its own hybrid-webgl-prototype mode whenever the
+  active mode isn't already that, with no awareness of any other mode; this
+  silently hijacked the new 3D Prototype mode back to Hybrid GPU within
+  ~3.5 seconds. Fixed by making its periodic auto-apply stand down while the
+  3D Prototype mode is active, the same way it already stands down for
+  policy === 'canvas'. An explicit user click on Auto/Hybrid GPU still works
+  and correctly switches away from the 3D mode.
+- final-gameplay-qa-fixes-system.js's per-frame "critical safety" watchdog
+  (designed to protect the hybrid-webgl-prototype pipeline) also forced
+  Canvas Safe Mode within a few frames whenever active, unaware of the new
+  mode. Fixed with the same stand-down guard.
+
+Verified this pass (Playwright + headless Chromium, full account/character
+creation flow):
+- Default boot is unaffected: canvas2d renders correctly, no console errors.
+- Switching to "3D Prototype" (via the real Settings UI, not a script
+  shortcut) produces a visible 3D scene: heightmap terrain, player capsule,
+  nearby entity markers, camera positioned near the player - confirmed via
+  both live scene introspection and screenshot.
+- The 3D canvas correctly layers above the 2D world canvas and below all
+  DOM HUD/menu UI (z-index tuning was required here - see Known limitations).
+- Switching back to Auto/Hybrid GPU/Canvas Safe Mode correctly hides the 3D
+  canvas and returns to normal 2D rendering with no leftover state.
+- No console errors or thrown exceptions in either direction; only benign
+  software-WebGL GPU driver performance warnings in the headless test
+  environment.
+- node --check passes on all 180 .js files; all .json files validate;
+  _script_order.json remains in exact sync with the HTML script tag list.
+
+Known limitations (explicitly not attempted this pass, scoped for later
+phases per the phased plan):
+- Only the player and other live entities are drawn as generic capsule
+  markers (color-coded by kind), not unique per-class/per-monster meshes.
+  This is Phase 4 work.
+- No animation state machine, no 3D combat/spell VFX, no raycast-based
+  click targeting or Tab targeting integration - input still flows entirely
+  through the existing 2D click-to-move/targeting code, unaffected. This is
+  Phase 5-7 work.
+- Camera pitch is a fixed constant; only yaw and zoom are live (read from the
+  existing 2D camera state), and there is no terrain-collision-safe camera
+  arc yet. This is Phase 7 work.
+- The 3D canvas's required CSS z-index (3) to correctly layer above the 2D
+  canvas was determined empirically in this environment (a position:fixed,
+  explicit z-index element visually painting behind a position:static,
+  z-index:auto sibling is not standard CSS behavior); if this recurs on other
+  browsers/GPUs it should be revisited.
+- Terrain/entity meshes rebuild the full 200x200 heightmap on every zone
+  change but are not yet chunked/culled/LOD'd - fine at this prototype scale,
+  a Phase 8 concern for larger maps or lower-end hardware.
+
+Files changed:
+- vendor/three.min.js (new)
+- systems/render3d-system.js (new)
+- systems/render-backend-system.js
+- systems/performance-verification-system.js
+- systems/performance-settings-cleanup-system.js
+- systems/hybrid-default-rollout-system.js
+- systems/final-gameplay-qa-fixes-system.js
+- systems/ui-system.js
+- game.js
+- core/config.js
+- _script_order.json
+- Dream Realms V0.15.52.html
+- VERSION.txt
+- README.txt

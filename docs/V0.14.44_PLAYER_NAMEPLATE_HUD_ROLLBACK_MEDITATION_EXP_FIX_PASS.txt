@@ -1,0 +1,20 @@
+Dream Realms V0.14.44 Player Nameplate HUD Rollback Meditation EXP Fix Pass
+
+Purpose:
+- Correct the V0.14.42 placement mistake. The bot-style two-row nameplate/status treatment belongs to the player's world nameplate, not the fixed character HUD.
+
+Changes:
+- Restored the fixed character HUD to its prior character-vitals layout.
+- Removed the player EXP bar from the fixed character HUD.
+- Restored the player character EXP bar above the action bar.
+- Added player status text to the bottom-right of the world nameplate.
+- Moved the player class emblem into the world nameplate top row beside the player name.
+- Kept level on the bottom-left of the world nameplate as Lvl:X.
+- Repositioned the Meditation skill EXP bar to the world nameplate stack, directly below the player's health bar while meditating.
+- Removed the old feet/ground-positioned meditation EXP placement.
+
+Validation:
+- node --check passed for all JavaScript files.
+- Markup audit confirms exactly one xpFill in the hotbar/action EXP meter and none in the fixed HUD.
+- Renderer audit confirms player world nameplate owns status + meditation skill EXP.
+- unzip -tq passed.

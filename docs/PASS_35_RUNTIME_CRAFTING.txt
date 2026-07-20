@@ -1,0 +1,25 @@
+Dream Realms V0.10.3 Modular Pass 35.1 — Runtime Crafting Completion
+
+Baseline:
+- Dream Realms V0.10.3 Modular Pass 35.
+
+Completed:
+- systems/crafting-system.js remains the owner for runtime crafting.
+- Runtime crafting panel and crafting station window.
+- C key opens nearby crafting stations.
+- Crafting station detection from placed object types and station metadata.
+- Campfire, forge, and loom runtime station support.
+- Recipe input checking and input consumption.
+- Recipe unlock/prerequisite enforcement, including unlock grants from successful crafts.
+- Recipe craft timers and success chance handling.
+- Crafted item/material/equipment output grants through the existing inventory/loot item pipeline.
+- Cooking, Blacksmithing, and Tailoring runtime profession XP/levels with visible XP progress.
+- Crafting runtime persistence in localStorage and world save/export/import.
+- Default forge and loom props in the town camp.
+- Editor object palette support for forge, loom, and herbalist table.
+- Crafting editor Place Station / Erase Station / Eyedropper Station tools.
+- Basic forge, loom, and herbalist table rendering.
+
+Still deferred to later runtime passes:
+- Consumable item use effects.
+- Full production-grade equipment upgrade trees beyond crafted equipment variants.

@@ -1,0 +1,22 @@
+Dream Realms V0.14.30 — FPS HUD Real Frame Cadence Fix Pass
+
+Summary
+- Fixed the FPS display reporting bug where the game could feel smooth while the HUD reported very low FPS.
+- The counter now measures real wall-clock frame cadence from requestAnimationFrame timestamps rather than clamped simulation delta.
+- Added hidden-tab and resume-spike reset guards, plus smoothing for a steadier diagnostic value.
+
+Files Changed
+- game.js
+- Dream Realms V0.14.30.html
+- README.txt
+- VERSION.txt
+- core/config.js
+- data/default-zones.js
+- systems/save-system.js
+- systems/world-serializer.js
+- docs/MODULAR_HISTORY.txt
+- docs/V0.14.30_FPS_HUD_REAL_FRAME_CADENCE_FIX_PASS.txt
+
+Validation
+- JavaScript syntax passed with `node --check` across all JS files.
+- ZIP integrity verified with `unzip -t`.

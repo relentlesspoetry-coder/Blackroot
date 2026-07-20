@@ -1,0 +1,26 @@
+Dream Realms V0.12.59 — Runtime QA + Renderer Stability Pass
+
+Scope
+- Stability pass after humanoid class, mercenary, NPC, camera zoom, and DPR transform changes.
+- No new gameplay systems.
+- No bottom-of-file patches or method wrapper hotfix layers.
+
+Owning files changed
+- game.js
+- render/entity-renderer.js
+- systems/weather-system.js
+- systems/dungeon-system.js
+
+Fixes
+- resetCanvasTransform now restores the DPR-aware display transform directly.
+- External-system update/render calls are isolated so one system fault does not tear down the whole frame.
+- World renderable drawing is guarded per object/entity/effect/damage entry.
+- Legacy fallback humanoid draw paths now use try/finally around scaled canvas transforms.
+- Removed a duplicate class identity guard.
+
+Audit
+- JS syntax check passed.
+- HTML script references valid.
+- _script_order.json matched HTML order.
+- Duplicate Game.prototype owners: none found.
+- Cascade-pattern scan: no hotfix/monkey-patch/wrapper-patch/bottom-of-file patch markers found.

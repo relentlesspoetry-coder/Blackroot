@@ -1,0 +1,31 @@
+Dream Realms V0.11.2 - Dark Woods Visual Atmosphere
+
+Focus:
+- Increase moment-to-moment visual identity of Dark Woods without adding new zones or cascade systems.
+- Keep effects low-cost and render-time culled.
+
+Added:
+- Low-cost fog pockets around visible Dark Woods terrain.
+- Firefly clusters around water/forest pockets.
+- Lantern Post object for safer road readability.
+- Dead Tree object for deeper/outer woods danger transition.
+- Ash Stump object for dead-soil edge dressing.
+- Glow Mushroom Cluster object for small bioluminescent detail.
+- Root Arch object for readable mid/deep forest landmarks.
+
+Owning systems changed:
+- systems/world-system.js: seeds permanent Dark Woods atmosphere landmarks directly in world generation and save-world maintenance.
+- systems/atmosphere-system.js: owns runtime fog/firefly ambience.
+- render/object-renderer.js: owns drawing for the new object types.
+- systems/editor-system.js: registers new object palette entries and validation types.
+- game.js: calls atmosphere rendering and keeps existing saves supplied with atmosphere landmarks.
+
+No cascade patching:
+- No bottom-of-file hotfixes.
+- No wrapper patches.
+- No duplicate object renderer.
+- No duplicate world generator.
+
+Performance rules:
+- Fog and fireflies are deterministic, culled around the camera/player, and capped per frame.
+- No particle arrays are spawned every frame for atmosphere.

@@ -1,0 +1,16 @@
+Dream Realms V0.12.93 — NPC Visuals Merchant Sell Bugfix Pass
+
+Baseline
+- Dream Realms V0.12.92 — Bot Party Movement HUD Duplication Bugfix Pass
+
+Fixes
+- Town/camp NPCs no longer use the old leg-heavy fallback look.
+- NPCs now render with full body silhouettes, heads/faces, clothing panels, props, role colors, shadows, and headgear.
+- Trainer/vendor/quest badges are raised above the model instead of sitting on the face.
+- Merchant sell lists now read the canonical player inventory array used by the bag UI.
+- All carried items are sellable by default, including starter/bound/class-restricted/material/quest-tagged inventory items, unless an item is explicitly engine-locked.
+
+Validation
+- JS syntax check.
+- Script order check.
+- Static checks for NPC billboard path, raised badge anchor, inventory-backed vendor rows, and vendor row selling.

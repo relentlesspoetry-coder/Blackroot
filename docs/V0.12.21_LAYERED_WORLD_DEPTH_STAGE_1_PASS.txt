@@ -1,0 +1,16 @@
+Dream Realms V0.12.21 — Layered World Depth Stage 1 Pass
+
+Source brief
+- The world-depth request called for strict layering, tile bevels, deterministic variation, wall-face details, ground decals, prop contact shadows, lighting texture, and foreground/depth groundwork.
+
+Implemented in this pass
+- Terrain renderer now generates deterministic tile variants through hash2D/getTileVisualVariant.
+- Floor tiles receive bevel highlights, lower-edge shadows, chipped corners, pebbles, cracks, moss, dust, stain, and decal overlays.
+- Exposed wall side faces now use vertical gradients and added detail passes: seams, cracks, moss/root streaks, rubble at base, ledge lips, and broken edge detail.
+- Object renderer now draws contact shadows under common props before drawing the prop itself.
+- Sun shafts now vary width and opacity, add soft floor impact patches, and draw drifting deterministic dust motes.
+
+Deferred
+- Stage 2 sparse prop placement and foreground occlusion objects.
+- Stage 3 room-specific atmosphere templates.
+- Stage 4 room identity templates for shrine/spider/flooded/boss/treasure rooms.

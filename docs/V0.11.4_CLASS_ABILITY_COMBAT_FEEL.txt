@@ -1,0 +1,27 @@
+Dream Realms V0.11.4 - Class Ability and Combat Feel
+
+Scope:
+- Improve combat readability and ability feedback after the Dark Woods loot/progression pass.
+- Keep changes in owning systems only. No cascade patches, late prototype wrappers, or duplicate combat controllers.
+
+Implemented:
+- Added combat impact bursts and sparks for damage events.
+- Added cast cues for attacks, spells, ally assists, enemy abilities, and turn-advance actions.
+- Added status pulse effects for healing, mana restore, buffs, and debuffs.
+- Added enemy turn telegraphs before enemy attacks resolve.
+- Added hotbar cooldown/MP readouts and turn-readiness styling.
+- Added clearer turn-combat visual feedback without changing the core turn controller.
+
+Owning files changed:
+- systems/effects-system.js
+- render/effects-renderer.js
+- systems/combat-system.js
+- systems/spell-system.js
+- systems/turn-combat-system.js
+- systems/ui-system.js
+- Dream Realms V0.11.4.html
+- VERSION.txt
+
+Verification:
+- Full JavaScript syntax check across all modules.
+- Zip integrity test.
